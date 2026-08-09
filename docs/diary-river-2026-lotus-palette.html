@@ -1035,6 +1035,18 @@ html&gt;body{padding:0}&lt;/style&gt;
       height: 100%;
       overflow: visible;
     }
+    #diary-river-2026 .dr-river-group.is-breathing {
+      transform-box: view-box;
+      transform-origin: center;
+      animation: dr-river-breathe 6s ease-in-out infinite alternate;
+    }
+    @keyframes dr-river-breathe {
+      from { transform: translateY(-0.8px) scaleY(1.003); }
+      to { transform: translateY(0.8px) scaleY(0.997); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #diary-river-2026 .dr-river-group.is-breathing { animation: none; }
+    }
     #diary-river-2026 .dr-layer {
       stroke: var(--dr-divider-color);
       stroke-width: var(--dr-divider-width);
@@ -1252,6 +1264,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       let revealFrame = 0;
       let revealComplete = false;
+      const reduceMotion = window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
 
       function draw() {
         if (revealFrame) cancelAnimationFrame(revealFrame);
@@ -1289,7 +1302,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         clip.appendChild(revealRect);
         defs.appendChild(clip);
         svg.appendChild(defs);
-        const riverGroup = el(&#x27;g&#x27;, { &#x27;clip-path&#x27;: `url(#${clipId})` });
+        const riverGroup = el(&#x27;g&#x27;, {
+          class: `dr-river-group${revealComplete &amp;&amp; !reduceMotion ? &#x27; is-breathing&#x27; : &#x27;&#x27;}`,
+          &#x27;clip-path&#x27;: `url(#${clipId})`
+        });
         svg.appendChild(riverGroup);
 
         const bounds = {};
@@ -1378,7 +1394,6 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
 
         if (!revealComplete) {
-          const reduceMotion = window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
           if (reduceMotion) {
             revealRect.setAttribute(&#x27;width&#x27;, String(plotW));
             revealComplete = true;
@@ -1395,6 +1410,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               } else {
                 revealFrame = 0;
                 revealComplete = true;
+                riverGroup.classList.add(&#x27;is-breathing&#x27;);
               }
             };
             revealFrame = requestAnimationFrame(animateReveal);
