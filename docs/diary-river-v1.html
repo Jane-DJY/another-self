@@ -1,0 +1,1718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Diary River V1</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Diary River V1" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Diary River V1&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;section id=&quot;diary-river-2026&quot; aria-label=&quot;时间都去哪儿了河流图&quot;&gt;
+  &lt;style&gt;
+    #diary-river-2026 {
+      width: 100%;
+      color: var(--foreground);
+      --dr-divider-color: #f7f4d5;
+      --dr-divider-width: 1;
+      --dr-band-font-size: 11px;
+      --dr-band-text-color: #f7f4d5;
+      --dr-event-font-size: 7px;
+      --dr-event-text-color: #f7f4d5;
+      --dr-event-text-opacity: 0.6;
+      --dr-event-bg: var(--background);
+      --dr-event-bg-opacity: 0;
+      --dr-work: #105666;
+      --dr-creation: #d3968c;
+      --dr-venture: #f7f4d5;
+      --dr-learning: #839958;
+      --dr-life: #0a3323;
+    }
+    #diary-river-2026 .dr-editor {
+      display: grid;
+      grid-template-columns: minmax(0, min(calc(100svh * 0.75), calc(100% - 236px))) 220px;
+      gap: 1rem;
+      align-items: start;
+      justify-content: start;
+    }
+    #diary-river-2026 .dr-poster {
+      aspect-ratio: 3 / 4;
+      display: flex;
+      flex-direction: column;
+      width: min(100%, calc(100svh * 0.75));
+      justify-self: start;
+      min-width: 0;
+      padding: clamp(0.8rem, 2.5vw, 1.35rem);
+      overflow: hidden;
+      background: var(--background);
+    }
+    #diary-river-2026 .dr-sidebar {
+      min-width: 0;
+    }
+    #diary-river-2026 .dr-title {
+      margin: 0;
+      font-family: ui-serif, Georgia, &quot;Songti SC&quot;, serif;
+      font-size: clamp(1.3rem, 3.3vw, 2rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+    }
+    #diary-river-2026 .dr-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.7rem;
+      margin-block-end: 0.4rem;
+      color: var(--muted-foreground);
+    }
+    #diary-river-2026 .dr-key {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      white-space: nowrap;
+    }
+    #diary-river-2026 .dr-swatch {
+      inline-size: 0.72rem;
+      block-size: 0.72rem;
+      border-radius: 0.16rem;
+    }
+    #diary-river-2026 .dr-settings {
+      margin: 0;
+      padding-block: 0.65rem;
+      border-block: 1px solid var(--border);
+    }
+    #diary-river-2026 .dr-settings summary {
+      cursor: pointer;
+      font-weight: 500;
+    }
+    #diary-river-2026 .dr-setting-value {
+      color: var(--muted-foreground);
+      font-variant-numeric: tabular-nums;
+    }
+    #diary-river-2026 .dr-settings-body {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-block-start: 0.6rem;
+    }
+    #diary-river-2026 .dr-range-control {
+      display: grid;
+      gap: 0.12rem;
+    }
+    #diary-river-2026 .dr-control-head,
+    #diary-river-2026 .dr-color-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+    #diary-river-2026 .dr-color-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem 0.65rem;
+    }
+    #diary-river-2026 .dr-group-title,
+    #diary-river-2026 .dr-color-grid,
+    #diary-river-2026 .dr-replay {
+      grid-column: 1 / -1;
+    }
+    #diary-river-2026 .dr-group-title {
+      margin: 0.1rem 0 0;
+      color: var(--muted-foreground);
+    }
+    #diary-river-2026 .dr-chart {
+      width: 100%;
+      min-height: 0;
+      flex: 1 1 auto;
+    }
+    #diary-river-2026 .dr-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-block-start: 0.35rem;
+      color: var(--muted-foreground);
+    }
+    #diary-river-2026 .dr-notes,
+    #diary-river-2026 .dr-watermark {
+      display: grid;
+      gap: 0.08rem;
+      color: var(--muted-foreground);
+      font: inherit;
+      opacity: 1;
+    }
+    #diary-river-2026 .dr-notes { max-width: 62%; }
+    #diary-river-2026 .dr-watermark {
+      max-width: 38%;
+      text-align: right;
+    }
+    #diary-river-2026 .dr-footer-label {
+      color: var(--foreground);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+    #diary-river-2026 svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    #diary-river-2026 .dr-river-group.is-breathing {
+      transform-box: view-box;
+      transform-origin: center;
+      animation: dr-river-breathe 6s ease-in-out infinite alternate;
+    }
+    @keyframes dr-river-breathe {
+      from { transform: translateY(-0.8px) scaleY(1.003); }
+      to { transform: translateY(0.8px) scaleY(0.997); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #diary-river-2026 .dr-river-group.is-breathing { animation: none; }
+    }
+    #diary-river-2026 .dr-layer {
+      stroke: var(--dr-divider-color);
+      stroke-width: var(--dr-divider-width);
+      stroke-linejoin: round;
+      opacity: 1;
+    }
+    #diary-river-2026 .dr-axis,
+    #diary-river-2026 .dr-tick {
+      stroke: var(--border);
+      stroke-width: 1;
+    }
+    #diary-river-2026 .dr-month,
+    #diary-river-2026 .dr-count,
+    #diary-river-2026 .dr-axis-label,
+    #diary-river-2026 .dr-sample-note {
+      fill: var(--muted-foreground);
+    }
+    #diary-river-2026 .dr-count {
+      opacity: 0.78;
+    }
+    #diary-river-2026 .dr-band-label {
+      fill: var(--dr-band-text-color);
+      font-size: var(--dr-band-font-size);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      stroke: none;
+      pointer-events: none;
+    }
+    #diary-river-2026 .dr-event-bg {
+      fill: var(--dr-event-bg);
+      opacity: var(--dr-event-bg-opacity);
+      stroke: none;
+      pointer-events: none;
+    }
+    #diary-river-2026 .dr-event-dot {
+      fill: var(--dr-event-text-color);
+      opacity: var(--dr-event-text-opacity);
+      stroke: none;
+    }
+    #diary-river-2026 .dr-event-text {
+      fill: var(--dr-event-text-color);
+      opacity: var(--dr-event-text-opacity);
+      font-size: var(--dr-event-font-size);
+      font-weight: 400;
+      stroke: none;
+    }
+    #diary-river-2026 .dr-method {
+      margin-block-start: 0.65rem;
+      padding-block-start: 0.65rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted-foreground);
+    }
+    #diary-river-2026 details summary {
+      cursor: pointer;
+      color: var(--foreground);
+    }
+    #diary-river-2026 details p {
+      margin: 0.55rem 0 0;
+      max-width: 70rem;
+    }
+    @media (max-width: 650px) {
+      #diary-river-2026 .dr-editor { grid-template-columns: 1fr; }
+      #diary-river-2026 .dr-sidebar { order: 2; }
+      #diary-river-2026 .dr-poster {
+        width: min(100%, calc((100svh - 3.85rem) * 0.75));
+        justify-self: center;
+      }
+    }
+    @media (max-width: 380px) {
+      #diary-river-2026 .dr-legend { gap: 0.35rem 0.7rem; }
+      #diary-river-2026 .dr-poster { padding: 0.75rem; }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;dr-editor&quot;&gt;
+    &lt;div class=&quot;dr-poster&quot; aria-label=&quot;小红书 3 比 4 成图预览&quot;&gt;
+      &lt;h2 class=&quot;dr-title&quot;&gt;时间都去哪儿了？&lt;/h2&gt;
+
+      &lt;div class=&quot;dr-legend text-small&quot; aria-label=&quot;主题图例&quot;&gt;
+        &lt;span class=&quot;dr-key&quot;&gt;&lt;span class=&quot;dr-swatch&quot; style=&quot;background:var(--dr-work)&quot;&gt;&lt;/span&gt;主业与组织责任&lt;/span&gt;
+        &lt;span class=&quot;dr-key&quot;&gt;&lt;span class=&quot;dr-swatch&quot; style=&quot;background:var(--dr-creation)&quot;&gt;&lt;/span&gt;个人创作与自媒体&lt;/span&gt;
+        &lt;span class=&quot;dr-key&quot;&gt;&lt;span class=&quot;dr-swatch&quot; style=&quot;background:var(--dr-venture)&quot;&gt;&lt;/span&gt;产品实验&lt;/span&gt;
+        &lt;span class=&quot;dr-key&quot;&gt;&lt;span class=&quot;dr-swatch&quot; style=&quot;background:var(--dr-learning)&quot;&gt;&lt;/span&gt;学习与研究&lt;/span&gt;
+        &lt;span class=&quot;dr-key&quot;&gt;&lt;span class=&quot;dr-swatch&quot; style=&quot;background:var(--dr-life)&quot;&gt;&lt;/span&gt;关系、身体与生活&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;dr-chart&quot; data-chart&gt;&lt;/div&gt;
+      &lt;footer class=&quot;dr-footer text-small&quot;&gt;
+        &lt;div class=&quot;dr-notes&quot;&gt;
+          &lt;span&gt;数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;dr-watermark&quot; aria-label=&quot;作者水印&quot;&gt;
+          &lt;span&gt;爱可视化的简女士&lt;/span&gt;
+          &lt;span&gt;Jane of Visual Stories&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;
+
+    &lt;aside class=&quot;dr-sidebar&quot; aria-label=&quot;设计参数&quot;&gt;
+      &lt;details class=&quot;dr-settings&quot; open&gt;
+        &lt;summary&gt;设计参数 · 3:4&lt;/summary&gt;
+        &lt;div class=&quot;dr-settings-body&quot;&gt;
+          &lt;button class=&quot;btn btn-block dr-replay&quot; type=&quot;button&quot; data-replay&gt;重播河流动画&lt;/button&gt;
+          &lt;label class=&quot;dr-range-control form-label&quot;&gt;
+            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;分割线粗细&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;divider-width&quot;&gt;1 px&lt;/span&gt;&lt;/span&gt;
+            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;8&quot; step=&quot;0.5&quot; value=&quot;1&quot; data-setting=&quot;divider-width&quot;&gt;
+          &lt;/label&gt;
+          &lt;label class=&quot;dr-range-control form-label&quot;&gt;
+            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;主题文字大小&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;band-font-size&quot;&gt;11 px&lt;/span&gt;&lt;/span&gt;
+            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;11&quot; max=&quot;22&quot; step=&quot;1&quot; value=&quot;11&quot; data-setting=&quot;band-font-size&quot;&gt;
+          &lt;/label&gt;
+          &lt;label class=&quot;dr-range-control form-label&quot;&gt;
+            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;节点文字大小&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;event-font-size&quot;&gt;7 px&lt;/span&gt;&lt;/span&gt;
+            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;6&quot; max=&quot;22&quot; step=&quot;1&quot; value=&quot;7&quot; data-setting=&quot;event-font-size&quot;&gt;
+          &lt;/label&gt;
+          &lt;label class=&quot;dr-range-control form-label&quot;&gt;
+            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;节点文字透明度&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;event-text-opacity&quot;&gt;60%&lt;/span&gt;&lt;/span&gt;
+            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0.1&quot; max=&quot;1&quot; step=&quot;0.05&quot; value=&quot;0.6&quot; data-setting=&quot;event-text-opacity&quot;&gt;
+          &lt;/label&gt;
+          &lt;label class=&quot;dr-range-control form-label&quot;&gt;
+            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;节点底色透明度&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;event-bg-opacity&quot;&gt;0%&lt;/span&gt;&lt;/span&gt;
+            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;1&quot; step=&quot;0.05&quot; value=&quot;0&quot; data-setting=&quot;event-bg-opacity&quot;&gt;
+          &lt;/label&gt;
+
+          &lt;p class=&quot;dr-group-title text-small&quot;&gt;文字与分割线&lt;/p&gt;
+          &lt;div class=&quot;dr-color-grid&quot;&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;主题字&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#f7f4d5&quot; data-setting=&quot;band-text-color&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;节点字&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#f7f4d5&quot; data-setting=&quot;event-text-color&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;分割线&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#f7f4d5&quot; data-setting=&quot;divider-color&quot;&gt;&lt;/label&gt;
+          &lt;/div&gt;
+
+          &lt;p class=&quot;dr-group-title text-small&quot;&gt;河流颜色&lt;/p&gt;
+          &lt;div class=&quot;dr-color-grid&quot; aria-label=&quot;主题颜色&quot;&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;主业&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#105666&quot; data-setting=&quot;work-color&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;个人创作&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#d3968c&quot; data-setting=&quot;creation-color&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;产品实验&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#f7f4d5&quot; data-setting=&quot;venture-color&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;学习研究&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#839958&quot; data-setting=&quot;learning-color&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;dr-color-control form-label&quot;&gt;关系生活&lt;input class=&quot;form-control form-control-color&quot; type=&quot;color&quot; value=&quot;#0a3323&quot; data-setting=&quot;life-color&quot;&gt;&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+    &lt;/aside&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;diary-river-2026&#x27;);
+      const host = root?.querySelector(&#x27;[data-chart]&#x27;);
+      if (!root || !host) return;
+      requestAnimationFrame(() =&gt; {
+        const settings = root.querySelector(&#x27;.dr-settings&#x27;);
+        if (settings) settings.open = root.getBoundingClientRect().width &gt; 650;
+      });
+
+      const months = [
+        { label: &#x27;1月&#x27;, n: 6 }, { label: &#x27;2月&#x27;, n: 6 }, { label: &#x27;3月&#x27;, n: 27 },
+        { label: &#x27;4月&#x27;, n: 24 }, { label: &#x27;5月&#x27;, n: 23 }, { label: &#x27;6月&#x27;, n: 25 },
+        { label: &#x27;7月&#x27;, n: 29 }
+      ];
+      const series = [
+        { key: &#x27;learning&#x27;, label: &#x27;学习与研究&#x27;, color: &#x27;var(--dr-learning)&#x27;, values: [4.7, 5.3, 13.8, 25.1, 5.5, 14.1, 6.2] },
+        { key: &#x27;work&#x27;, label: &#x27;主业与组织责任&#x27;, color: &#x27;var(--dr-work)&#x27;, values: [76.3, 87.6, 43.1, 42.9, 49.1, 45.7, 37.6] },
+        { key: &#x27;venture&#x27;, label: &#x27;产品实验&#x27;, color: &#x27;var(--dr-venture)&#x27;, values: [1.4, 0.0, 0.4, 0.0, 0.7, 0.0, 2.6] },
+        { key: &#x27;creation&#x27;, label: &#x27;个人创作与自媒体&#x27;, color: &#x27;var(--dr-creation)&#x27;, values: [6.4, 5.6, 10.4, 13.2, 10.2, 21.3, 41.3] },
+        { key: &#x27;life&#x27;, label: &#x27;关系、身体与生活&#x27;, color: &#x27;var(--dr-life)&#x27;, values: [11.3, 1.6, 32.3, 18.9, 34.5, 18.9, 12.3] }
+      ];
+      const milestones = [
+        { month: 0, key: &#x27;work&#x27;, lines: [&#x27;开始适应&#x27;, &#x27;负责人角色&#x27;], dx: 10, dy: 3 },
+        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;数字艺术&#x27;, &#x27;第一个小爆款&#x27;], dx: 10, dy: 4.67 },
+        { month: 6, key: &#x27;venture&#x27;, lines: [&#x27;「后来」产品规划&#x27;], dx: -4, dy: 0 },
+        { month: 6, key: &#x27;creation&#x27;, lines: [&#x27;第二个小爆款&#x27;], dx: -10, dy: -8 },
+        { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;统计学学习&#x27;], dx: -58, dy: 0, nodeDy: 12 },
+        { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;炒股学习&#x27;], dx: -8, dy: 0, nodeDy: 12 }
+      ];
+      const ns = &#x27;http://www.w3.org/2000/svg&#x27;;
+      const settingMap = {
+        &#x27;divider-width&#x27;: { variable: &#x27;--dr-divider-width&#x27;, unit: &#x27;&#x27;, displayUnit: &#x27; px&#x27; },
+        &#x27;divider-color&#x27;: { variable: &#x27;--dr-divider-color&#x27;, unit: &#x27;&#x27; },
+        &#x27;band-text-color&#x27;: { variable: &#x27;--dr-band-text-color&#x27;, unit: &#x27;&#x27; },
+        &#x27;band-font-size&#x27;: { variable: &#x27;--dr-band-font-size&#x27;, unit: &#x27;px&#x27;, displayUnit: &#x27; px&#x27; },
+        &#x27;event-font-size&#x27;: { variable: &#x27;--dr-event-font-size&#x27;, unit: &#x27;px&#x27;, displayUnit: &#x27; px&#x27; },
+        &#x27;event-text-color&#x27;: { variable: &#x27;--dr-event-text-color&#x27;, unit: &#x27;&#x27; },
+        &#x27;event-text-opacity&#x27;: { variable: &#x27;--dr-event-text-opacity&#x27;, unit: &#x27;&#x27;, format: (value) =&gt; `${Math.round(Number(value) * 100)}%` },
+        &#x27;event-bg-opacity&#x27;: { variable: &#x27;--dr-event-bg-opacity&#x27;, unit: &#x27;&#x27;, format: (value) =&gt; `${Math.round(Number(value) * 100)}%` },
+        &#x27;work-color&#x27;: { variable: &#x27;--dr-work&#x27;, unit: &#x27;&#x27; },
+        &#x27;creation-color&#x27;: { variable: &#x27;--dr-creation&#x27;, unit: &#x27;&#x27; },
+        &#x27;venture-color&#x27;: { variable: &#x27;--dr-venture&#x27;, unit: &#x27;&#x27; },
+        &#x27;learning-color&#x27;: { variable: &#x27;--dr-learning&#x27;, unit: &#x27;&#x27; },
+        &#x27;life-color&#x27;: { variable: &#x27;--dr-life&#x27;, unit: &#x27;&#x27; }
+      };
+
+      function el(tag, attrs = {}, text = &#x27;&#x27;) {
+        const node = document.createElementNS(ns, tag);
+        Object.entries(attrs).forEach(([key, value]) =&gt; node.setAttribute(key, String(value)));
+        if (text) node.textContent = text;
+        return node;
+      }
+
+      function smooth(points) {
+        let d = `M${points[0][0]},${points[0][1]}`;
+        for (let i = 0; i &lt; points.length - 1; i += 1) {
+          const p0 = points[i - 1] || points[i];
+          const p1 = points[i];
+          const p2 = points[i + 1];
+          const p3 = points[i + 2] || p2;
+          const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+          const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+          const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+          const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+          d += ` C${c1x},${c1y} ${c2x},${c2y} ${p2[0]},${p2[1]}`;
+        }
+        return d;
+      }
+
+      let revealFrame = 0;
+      let revealComplete = false;
+      const reduceMotion = window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
+
+      function draw() {
+        if (revealFrame) cancelAnimationFrame(revealFrame);
+        const width = Math.max(320, Math.round(host.getBoundingClientRect().width || 720));
+        const compact = width &lt; 380;
+        const availableHeight = Math.round(host.getBoundingClientRect().height || 0);
+        const height = Math.max(compact ? 280 : 360, availableHeight);
+        const margin = compact
+          ? { top: 18, right: 10, bottom: 62, left: 10 }
+          : { top: 32, right: 24, bottom: 76, left: 24 };
+        const plotW = width - margin.left - margin.right;
+        const plotH = height - margin.top - margin.bottom;
+        const top = margin.top;
+        const bottom = top + plotH;
+        const xs = months.map((_, i) =&gt; margin.left + (plotW * i) / (months.length - 1));
+        const centerY = top + plotH / 2;
+        const svg = el(&#x27;svg&#x27;, {
+          viewBox: `0 0 ${width} ${height}`,
+          role: &#x27;img&#x27;,
+          &#x27;aria-labelledby&#x27;: &#x27;dr26-title dr26-desc&#x27;
+        });
+        host.replaceChildren(svg);
+        svg.appendChild(el(&#x27;title&#x27;, { id: &#x27;dr26-title&#x27; }, &#x27;时间都去哪儿了？&#x27;));
+        svg.appendChild(el(&#x27;desc&#x27;, { id: &#x27;dr26-desc&#x27; }, &#x27;河流围绕水平中轴展开，总宽度表示当月可归类日记数量的平方根缩放，内部颜色表示五类人生场景的相对份额。&#x27;));
+
+        const clipId = &#x27;dr26-river-reveal&#x27;;
+        const defs = el(&#x27;defs&#x27;);
+        const clip = el(&#x27;clipPath&#x27;, { id: clipId });
+        const revealRect = el(&#x27;rect&#x27;, {
+          x: margin.left,
+          y: 0,
+          width: revealComplete ? plotW : 0,
+          height
+        });
+        clip.appendChild(revealRect);
+        defs.appendChild(clip);
+        svg.appendChild(defs);
+        const riverGroup = el(&#x27;g&#x27;, {
+          class: `dr-river-group${revealComplete &amp;&amp; !reduceMotion ? &#x27; is-breathing&#x27; : &#x27;&#x27;}`,
+          &#x27;clip-path&#x27;: `url(#${clipId})`
+        });
+        svg.appendChild(riverGroup);
+
+        const bounds = {};
+        const monthTotals = months.map((_, index) =&gt; series.reduce((sum, item) =&gt; sum + item.values[index], 0));
+        const roots = months.map((month) =&gt; Math.sqrt(month.n));
+        const minRoot = Math.min(...roots);
+        const maxRoot = Math.max(...roots);
+        const totalHeights = roots.map((value) =&gt; {
+          const normalized = maxRoot === minRoot ? 1 : (value - minRoot) / (maxRoot - minRoot);
+          return plotH * (0.35 + normalized * 0.55);
+        });
+        const cumulative = totalHeights.map((value) =&gt; -value / 2);
+        series.forEach((item) =&gt; {
+          const normalized = item.values.map((value, index) =&gt; value / monthTotals[index]);
+          const thickness = normalized.map((value, index) =&gt; value * totalHeights[index]);
+          const upper = xs.map((x, i) =&gt; [x, centerY + cumulative[i]]);
+          const lower = xs.map((x, i) =&gt; [x, centerY + cumulative[i] + thickness[i]]);
+          bounds[item.key] = { lower, upper };
+          const reversed = [...lower].reverse();
+          const path = el(&#x27;path&#x27;, {
+            class: &#x27;dr-layer&#x27;,
+            fill: item.color,
+            d: `${smooth(upper)} L${reversed[0][0]},${reversed[0][1]} ${smooth(reversed).replace(/^M[^C]+/, &#x27;&#x27;)} Z`
+          });
+          path.appendChild(el(&#x27;title&#x27;, {}, `${item.label}：${item.values.join(&#x27;%、&#x27;)}%`));
+          riverGroup.appendChild(path);
+          thickness.forEach((value, i) =&gt; { cumulative[i] += value; });
+        });
+
+        const bandLabels = compact
+          ? [
+              { key: &#x27;work&#x27;, month: 3, text: &#x27;主业&#x27; },
+              { key: &#x27;creation&#x27;, month: 3, text: &#x27;个人创作&#x27; },
+              { key: &#x27;life&#x27;, month: 4, text: &#x27;生活&#x27;, dy: 12 }
+            ]
+          : [
+              { key: &#x27;learning&#x27;, month: 3, text: &#x27;学习与研究&#x27; },
+              { key: &#x27;work&#x27;, month: 3, text: &#x27;主业与组织责任&#x27; },
+              { key: &#x27;creation&#x27;, month: 3, text: &#x27;个人创作&#x27;, dy: 2 },
+              { key: &#x27;life&#x27;, month: 4, text: &#x27;关系、身体与生活&#x27;, dy: 12 }
+            ];
+        bandLabels.forEach((item) =&gt; {
+          const band = bounds[item.key];
+          const y = (band.lower[item.month][1] + band.upper[item.month][1]) / 2 + 4 + (item.dy || 0);
+          riverGroup.appendChild(el(&#x27;text&#x27;, {
+            class: &#x27;dr-band-label text-small&#x27;, x: xs[item.month] + (item.dx || 0), y, &#x27;text-anchor&#x27;: &#x27;middle&#x27;
+          }, item.text));
+        });
+
+        const activeMilestones = compact
+          ? milestones.filter((item) =&gt; item.month === 0 || (item.month === 6 &amp;&amp; item.key === &#x27;creation&#x27;))
+          : milestones;
+        activeMilestones.forEach((item) =&gt; {
+          const band = bounds[item.key];
+          const x = xs[item.month] + item.dx;
+          const y = (band.lower[item.month][1] + band.upper[item.month][1]) / 2;
+          const nodeY = y + (item.nodeDy || 0);
+          const anchor = item.month &gt;= 6 ? &#x27;end&#x27; : item.month === 0 ? &#x27;start&#x27; : &#x27;middle&#x27;;
+          const tx = item.month &gt;= 6 ? x - 8 : item.month === 0 ? x + 8 : x;
+          const eventFontSize = parseFloat(getComputedStyle(root).getPropertyValue(&#x27;--dr-event-font-size&#x27;)) || 12;
+          const lineHeight = eventFontSize + 2;
+          const centeredY = nodeY + item.dy - ((item.lines.length - 1) * lineHeight) / 2 + 4;
+          const text = el(&#x27;text&#x27;, {
+            class: &#x27;dr-event-text text-small&#x27;, x: tx, y: centeredY, &#x27;text-anchor&#x27;: anchor
+          });
+          item.lines.forEach((line, index) =&gt; {
+            const span = el(&#x27;tspan&#x27;, { x: tx, dy: index === 0 ? 0 : lineHeight }, line);
+            text.appendChild(span);
+          });
+          riverGroup.appendChild(text);
+          const textBox = text.getBBox();
+          const padX = 5;
+          const padY = 3;
+          const background = el(&#x27;rect&#x27;, {
+            class: &#x27;dr-event-bg&#x27;,
+            x: textBox.x - padX,
+            y: textBox.y - padY,
+            width: textBox.width + padX * 2,
+            height: textBox.height + padY * 2,
+            rx: 3
+          });
+          riverGroup.insertBefore(background, text);
+          const dotX = anchor === &#x27;middle&#x27; ? textBox.x + textBox.width + 8 : x;
+          const dotY = textBox.y + textBox.height / 2;
+          riverGroup.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: dotY, r: compact ? 2.5 : 3 }));
+        });
+
+        if (!revealComplete) {
+          if (reduceMotion) {
+            revealRect.setAttribute(&#x27;width&#x27;, String(plotW));
+            revealComplete = true;
+          } else {
+            const duration = 2600;
+            const startedAt = performance.now();
+            const animateReveal = (now) =&gt; {
+              if (!revealRect.isConnected) return;
+              const progress = Math.min(1, (now - startedAt) / duration);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              revealRect.setAttribute(&#x27;width&#x27;, String(plotW * eased));
+              if (progress &lt; 1) {
+                revealFrame = requestAnimationFrame(animateReveal);
+              } else {
+                revealFrame = 0;
+                revealComplete = true;
+                riverGroup.classList.add(&#x27;is-breathing&#x27;);
+              }
+            };
+            revealFrame = requestAnimationFrame(animateReveal);
+          }
+        }
+
+        svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dr-axis&#x27;, x1: margin.left, y1: bottom + 16, x2: width - margin.right, y2: bottom + 16 }));
+        months.forEach((month, i) =&gt; {
+          const show = !compact || i === 0 || i === 2 || i === 4 || i === 6 || i === 7;
+          if (!show) return;
+          svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dr-tick&#x27;, x1: xs[i], y1: bottom + 16, x2: xs[i], y2: bottom + 22 }));
+          svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dr-month text-small&#x27;, x: xs[i], y: bottom + 42, &#x27;text-anchor&#x27;: &#x27;middle&#x27; }, month.label));
+          svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dr-count text-small&#x27;, x: xs[i], y: bottom + 60, &#x27;text-anchor&#x27;: &#x27;middle&#x27; }, `n=${month.n}`));
+        });
+        if (!compact) {
+          svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dr-axis-label text-small&#x27;, x: 9, y: centerY, &#x27;text-anchor&#x27;: &#x27;middle&#x27;, transform: `rotate(-90 9 ${centerY})` }, &#x27;当月记录强度（√n）&#x27;));
+        }
+      }
+
+      let observedWidth = -1;
+      let observedHeight = -1;
+      let resizeFrame = 0;
+      const observer = new ResizeObserver((entries) =&gt; {
+        const rect = entries[0]?.contentRect;
+        if (!rect) return;
+        const nextWidth = Math.round(rect.width);
+        const nextHeight = Math.round(rect.height);
+        if (nextWidth === observedWidth &amp;&amp; nextHeight === observedHeight) return;
+        observedWidth = nextWidth;
+        observedHeight = nextHeight;
+        if (resizeFrame) cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(() =&gt; {
+          resizeFrame = 0;
+          draw();
+        });
+      });
+      const initialRect = host.getBoundingClientRect();
+      observedWidth = Math.round(initialRect.width);
+      observedHeight = Math.round(initialRect.height);
+      observer.observe(host);
+      root.querySelectorAll(&#x27;[data-setting]&#x27;).forEach((input) =&gt; {
+        input.addEventListener(&#x27;input&#x27;, () =&gt; {
+          const config = settingMap[input.dataset.setting];
+          if (!config) return;
+          root.style.setProperty(config.variable, `${input.value}${config.unit}`);
+          const output = root.querySelector(`[data-value-for=&quot;${input.dataset.setting}&quot;]`);
+          if (output) output.textContent = config.format
+            ? config.format(input.value)
+            : `${input.value}${config.displayUnit || &#x27;&#x27;}`;
+          draw();
+        });
+      });
+      root.querySelector(&#x27;[data-replay]&#x27;)?.addEventListener(&#x27;click&#x27;, () =&gt; {
+        revealComplete = false;
+        draw();
+      });
+      draw();
+    })();
+  &lt;/script&gt;
+&lt;/section&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
