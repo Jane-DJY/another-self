@@ -1248,7 +1248,11 @@ html&gt;body{padding:0}&lt;/style&gt;
         return d;
       }
 
+      let revealFrame = 0;
+      let revealComplete = false;
+
       function draw() {
+        if (revealFrame) cancelAnimationFrame(revealFrame);
         const width = Math.max(320, Math.round(host.getBoundingClientRect().width || 720));
         const compact = width &lt; 380;
         const availableHeight = Math.round(host.getBoundingClientRect().height || 0);
@@ -1270,6 +1274,21 @@ html&gt;body{padding:0}&lt;/style&gt;
         host.replaceChildren(svg);
         svg.appendChild(el(&#x27;title&#x27;, { id: &#x27;dr26-title&#x27; }, &#x27;时间都去哪儿了？&#x27;));
         svg.appendChild(el(&#x27;desc&#x27;, { id: &#x27;dr26-desc&#x27; }, &#x27;河流围绕水平中轴展开，总宽度表示当月可归类日记数量的平方根缩放，内部颜色表示五类人生场景的相对份额。&#x27;));
+
+        const clipId = &#x27;dr26-river-reveal&#x27;;
+        const defs = el(&#x27;defs&#x27;);
+        const clip = el(&#x27;clipPath&#x27;, { id: clipId });
+        const revealRect = el(&#x27;rect&#x27;, {
+          x: margin.left,
+          y: 0,
+          width: revealComplete ? plotW : 0,
+          height
+        });
+        clip.appendChild(revealRect);
+        defs.appendChild(clip);
+        svg.appendChild(defs);
+        const riverGroup = el(&#x27;g&#x27;, { &#x27;clip-path&#x27;: `url(#${clipId})` });
+        svg.appendChild(riverGroup);
 
         const bounds = {};
         const monthTotals = months.map((_, index) =&gt; series.reduce((sum, item) =&gt; sum + item.values[index], 0));
@@ -1294,7 +1313,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             d: `${smooth(upper)} L${reversed[0][0]},${reversed[0][1]} ${smooth(reversed).replace(/^M[^C]+/, &#x27;&#x27;)} Z`
           });
           path.appendChild(el(&#x27;title&#x27;, {}, `${item.label}：${item.values.join(&#x27;%、&#x27;)}%`));
-          svg.appendChild(path);
+          riverGroup.appendChild(path);
           thickness.forEach((value, i) =&gt; { cumulative[i] += value; });
         });
 
@@ -1313,7 +1332,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         bandLabels.forEach((item) =&gt; {
           const band = bounds[item.key];
           const y = (band.lower[item.month][1] + band.upper[item.month][1]) / 2 + 4 + (item.dy || 0);
-          svg.appendChild(el(&#x27;text&#x27;, {
+          riverGroup.appendChild(el(&#x27;text&#x27;, {
             class: &#x27;dr-band-label text-small&#x27;, x: xs[item.month] + (item.dx || 0), y, &#x27;text-anchor&#x27;: &#x27;middle&#x27;
           }, item.text));
         });
@@ -1338,7 +1357,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             const span = el(&#x27;tspan&#x27;, { x: tx, dy: index === 0 ? 0 : lineHeight }, line);
             text.appendChild(span);
           });
-          svg.appendChild(text);
+          riverGroup.appendChild(text);
           const textBox = text.getBBox();
           const padX = 5;
           const padY = 3;
@@ -1350,11 +1369,35 @@ html&gt;body{padding:0}&lt;/style&gt;
             height: textBox.height + padY * 2,
             rx: 3
           });
-          svg.insertBefore(background, text);
+          riverGroup.insertBefore(background, text);
           const dotX = anchor === &#x27;middle&#x27; ? textBox.x + textBox.width + 8 : x;
           const dotY = textBox.y + textBox.height / 2;
-          svg.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: dotY, r: compact ? 2.5 : 3 }));
+          riverGroup.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: dotY, r: compact ? 2.5 : 3 }));
         });
+
+        if (!revealComplete) {
+          const reduceMotion = window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
+          if (reduceMotion) {
+            revealRect.setAttribute(&#x27;width&#x27;, String(plotW));
+            revealComplete = true;
+          } else {
+            const duration = 2600;
+            const startedAt = performance.now();
+            const animateReveal = (now) =&gt; {
+              if (!revealRect.isConnected) return;
+              const progress = Math.min(1, (now - startedAt) / duration);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              revealRect.setAttribute(&#x27;width&#x27;, String(plotW * eased));
+              if (progress &lt; 1) {
+                revealFrame = requestAnimationFrame(animateReveal);
+              } else {
+                revealFrame = 0;
+                revealComplete = true;
+              }
+            };
+            revealFrame = requestAnimationFrame(animateReveal);
+          }
+        }
 
         svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dr-axis&#x27;, x1: margin.left, y1: bottom + 16, x2: width - margin.right, y2: bottom + 16 }));
         months.forEach((month, i) =&gt; {
