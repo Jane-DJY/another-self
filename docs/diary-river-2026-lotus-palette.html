@@ -901,7 +901,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       --dr-event-text-color: #0a3323;
       --dr-event-text-opacity: 0.6;
       --dr-event-bg: var(--background);
-      --dr-event-bg-opacity: 0.1;
+      --dr-event-bg-opacity: 0;
       --dr-work: #105666;
       --dr-creation: #d3968c;
       --dr-venture: #f7f4d5;
@@ -1152,8 +1152,8 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0.1&quot; max=&quot;1&quot; step=&quot;0.05&quot; value=&quot;0.6&quot; data-setting=&quot;event-text-opacity&quot;&gt;
           &lt;/label&gt;
           &lt;label class=&quot;dr-range-control form-label&quot;&gt;
-            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;节点底色透明度&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;event-bg-opacity&quot;&gt;10%&lt;/span&gt;&lt;/span&gt;
-            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;1&quot; step=&quot;0.05&quot; value=&quot;0.1&quot; data-setting=&quot;event-bg-opacity&quot;&gt;
+            &lt;span class=&quot;dr-control-head&quot;&gt;&lt;span&gt;节点底色透明度&lt;/span&gt;&lt;span class=&quot;dr-setting-value&quot; data-value-for=&quot;event-bg-opacity&quot;&gt;0%&lt;/span&gt;&lt;/span&gt;
+            &lt;input class=&quot;form-range&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;1&quot; step=&quot;0.05&quot; value=&quot;0&quot; data-setting=&quot;event-bg-opacity&quot;&gt;
           &lt;/label&gt;
 
           &lt;p class=&quot;dr-group-title text-small&quot;&gt;文字与分割线&lt;/p&gt;
@@ -1201,7 +1201,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       ];
       const milestones = [
         { month: 0, key: &#x27;work&#x27;, lines: [&#x27;开始适应&#x27;, &#x27;负责人角色&#x27;], dx: 10, dy: 3 },
-        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;p5 作品获得&#x27;, &#x27;首次社媒正反馈&#x27;], dx: 0, dy: 6.67 },
+        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;p5 作品获得&#x27;, &#x27;首次社媒正反馈&#x27;], dx: 10, dy: 4.67 },
         { month: 6, key: &#x27;venture&#x27;, lines: [&#x27;「后来」产品规划&#x27;], dx: -4, dy: 0 },
         { month: 6, key: &#x27;creation&#x27;, lines: [&#x27;第二个小爆款&#x27;], dx: -10, dy: -8 },
         { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;统计学学习&#x27;], dx: -58, dy: 0, nodeDy: 12 },
