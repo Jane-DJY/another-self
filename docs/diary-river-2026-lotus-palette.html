@@ -1203,11 +1203,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       ];
       const milestones = [
         { month: 0, key: &#x27;work&#x27;, lines: [&#x27;开始适应&#x27;, &#x27;负责人角色&#x27;], dx: 10, dy: 3 },
-        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;p5 作品获得&#x27;, &#x27;首次社媒正反馈&#x27;], dx: 0, dy: -3 },
-        { month: 6, key: &#x27;venture&#x27;, lines: [&#x27;「后来」产品规划&#x27;], dx: -4, dy: 12 },
+        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;p5 作品获得&#x27;, &#x27;首次社媒正反馈&#x27;], dx: 0, dy: 9 },
+        { month: 6, key: &#x27;venture&#x27;, lines: [&#x27;「后来」产品规划&#x27;], dx: -4, dy: 0 },
         { month: 6, key: &#x27;creation&#x27;, lines: [&#x27;第二个小爆款&#x27;], dx: -10, dy: -8 },
-        { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;统计学学习&#x27;], dx: -58, dy: 7 },
-        { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;炒股学习&#x27;], dx: -8, dy: 7 }
+        { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;统计学学习&#x27;], dx: -58, dy: 0, nodeDy: 12 },
+        { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;炒股学习&#x27;], dx: -8, dy: 0, nodeDy: 12 }
       ];
       const ns = &#x27;http://www.w3.org/2000/svg&#x27;;
       const settingMap = {
@@ -1326,11 +1326,12 @@ html&gt;body{padding:0}&lt;/style&gt;
           const band = bounds[item.key];
           const x = xs[item.month] + item.dx;
           const y = (band.lower[item.month][1] + band.upper[item.month][1]) / 2;
+          const nodeY = y + (item.nodeDy || 0);
           const anchor = item.month &gt;= 6 ? &#x27;end&#x27; : item.month === 0 ? &#x27;start&#x27; : &#x27;middle&#x27;;
           const tx = item.month &gt;= 6 ? x - 8 : item.month === 0 ? x + 8 : x;
           const eventFontSize = parseFloat(getComputedStyle(root).getPropertyValue(&#x27;--dr-event-font-size&#x27;)) || 12;
           const lineHeight = eventFontSize + 2;
-          const centeredY = y + item.dy - ((item.lines.length - 1) * lineHeight) / 2 + 4;
+          const centeredY = nodeY + item.dy - ((item.lines.length - 1) * lineHeight) / 2 + 4;
           const text = el(&#x27;text&#x27;, {
             class: &#x27;dr-event-text text-small&#x27;, x: tx, y: centeredY, &#x27;text-anchor&#x27;: anchor
           });
@@ -1352,7 +1353,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           });
           svg.insertBefore(background, text);
           const dotX = anchor === &#x27;middle&#x27; ? textBox.x + textBox.width + 8 : x;
-          svg.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: y, r: compact ? 3.5 : 4.5 }));
+          svg.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: nodeY, r: compact ? 3.5 : 4.5 }));
         });
 
         svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dr-axis&#x27;, x1: margin.left, y1: bottom + 16, x2: width - margin.right, y2: bottom + 16 }));
