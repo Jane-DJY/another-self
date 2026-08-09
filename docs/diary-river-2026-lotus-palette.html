@@ -1203,7 +1203,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       ];
       const milestones = [
         { month: 0, key: &#x27;work&#x27;, lines: [&#x27;开始适应&#x27;, &#x27;负责人角色&#x27;], dx: 10, dy: 3 },
-        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;p5 作品获得&#x27;, &#x27;首次社媒正反馈&#x27;], dx: 0, dy: 9 },
+        { month: 4, key: &#x27;creation&#x27;, lines: [&#x27;p5 作品获得&#x27;, &#x27;首次社媒正反馈&#x27;], dx: 0, dy: 6.67 },
         { month: 6, key: &#x27;venture&#x27;, lines: [&#x27;「后来」产品规划&#x27;], dx: -4, dy: 0 },
         { month: 6, key: &#x27;creation&#x27;, lines: [&#x27;第二个小爆款&#x27;], dx: -10, dy: -8 },
         { month: 6, key: &#x27;learning&#x27;, lines: [&#x27;统计学学习&#x27;], dx: -58, dy: 0, nodeDy: 12 },
@@ -1369,7 +1369,26 @@ html&gt;body{padding:0}&lt;/style&gt;
         }
       }
 
-      const observer = new ResizeObserver(draw);
+      let observedWidth = -1;
+      let observedHeight = -1;
+      let resizeFrame = 0;
+      const observer = new ResizeObserver((entries) =&gt; {
+        const rect = entries[0]?.contentRect;
+        if (!rect) return;
+        const nextWidth = Math.round(rect.width);
+        const nextHeight = Math.round(rect.height);
+        if (nextWidth === observedWidth &amp;&amp; nextHeight === observedHeight) return;
+        observedWidth = nextWidth;
+        observedHeight = nextHeight;
+        if (resizeFrame) cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(() =&gt; {
+          resizeFrame = 0;
+          draw();
+        });
+      });
+      const initialRect = host.getBoundingClientRect();
+      observedWidth = Math.round(initialRect.width);
+      observedHeight = Math.round(initialRect.height);
       observer.observe(host);
       root.querySelectorAll(&#x27;[data-setting]&#x27;).forEach((input) =&gt; {
         input.addEventListener(&#x27;input&#x27;, () =&gt; {
