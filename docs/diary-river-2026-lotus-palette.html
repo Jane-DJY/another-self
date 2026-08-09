@@ -1351,7 +1351,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           });
           svg.insertBefore(background, text);
           const dotX = anchor === &#x27;middle&#x27; ? textBox.x + textBox.width + 8 : x;
-          svg.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: nodeY, r: compact ? 3.5 : 4.5 }));
+          const dotY = textBox.y + textBox.height / 2;
+          svg.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dr-event-dot&#x27;, cx: dotX, cy: dotY, r: compact ? 2.5 : 3 }));
         });
 
         svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dr-axis&#x27;, x1: margin.left, y1: bottom + 16, x2: width - margin.right, y2: bottom + 16 }));
