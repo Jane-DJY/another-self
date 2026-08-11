@@ -1942,27 +1942,29 @@ html>body{padding:0}</style>
         const profileScale = compact ? 0.78 : 1;
         const firstWidth = totalWidths[0];
         const figureLayer = el('g', { 'aria-hidden': 'true' });
-        const headTop = plotTop - 76 * profileScale;
-        const headHalfWidth = firstWidth * 0.63;
+        const neckWidth = firstWidth * 0.72;
+        const headTop = plotTop - 64 * profileScale;
+        const headHalfWidth = neckWidth * 0.62;
         figureLayer.appendChild(el('path', {
           class: 'dor-figure-head-shape',
           d: [
-            `M${center - firstWidth / 2},${plotTop + 3}`,
-            `C${center - firstWidth * 0.51},${plotTop - 9 * profileScale} ${center - headHalfWidth},${plotTop - 28 * profileScale} ${center - headHalfWidth},${plotTop - 48 * profileScale}`,
+            `M${center - neckWidth / 2},${plotTop + 3}`,
+            `C${center - neckWidth * 0.51},${plotTop - 9 * profileScale} ${center - headHalfWidth},${plotTop - 25 * profileScale} ${center - headHalfWidth},${plotTop - 42 * profileScale}`,
             `C${center - headHalfWidth},${headTop + 11 * profileScale} ${center - headHalfWidth * 0.52},${headTop} ${center},${headTop}`,
-            `C${center + headHalfWidth * 0.52},${headTop} ${center + headHalfWidth},${headTop + 11 * profileScale} ${center + headHalfWidth},${plotTop - 48 * profileScale}`,
-            `C${center + headHalfWidth},${plotTop - 28 * profileScale} ${center + firstWidth * 0.51},${plotTop - 9 * profileScale} ${center + firstWidth / 2},${plotTop + 3}`,
+            `C${center + headHalfWidth * 0.52},${headTop} ${center + headHalfWidth},${headTop + 11 * profileScale} ${center + headHalfWidth},${plotTop - 42 * profileScale}`,
+            `C${center + headHalfWidth},${plotTop - 25 * profileScale} ${center + neckWidth * 0.51},${plotTop - 9 * profileScale} ${center + neckWidth / 2},${plotTop + 3}`,
             'Z'
           ].join(' ')
         }));
         const lipY = plotTop - 18 * profileScale;
+        const lipScale = profileScale * 0.82;
         figureLayer.appendChild(el('path', {
           class: 'dor-figure-lips',
           d: [
-            `M${center - 11 * profileScale},${lipY}`,
-            `C${center - 5 * profileScale},${lipY - 5 * profileScale} ${center - 2 * profileScale},${lipY - 2 * profileScale} ${center},${lipY - 3 * profileScale}`,
-            `C${center + 3 * profileScale},${lipY - 2 * profileScale} ${center + 6 * profileScale},${lipY - 5 * profileScale} ${center + 11 * profileScale},${lipY}`,
-            `C${center + 5 * profileScale},${lipY + 6 * profileScale} ${center - 5 * profileScale},${lipY + 6 * profileScale} ${center - 11 * profileScale},${lipY}`,
+            `M${center - 11 * lipScale},${lipY}`,
+            `C${center - 5 * lipScale},${lipY - 5 * lipScale} ${center - 2 * lipScale},${lipY - 2 * lipScale} ${center},${lipY - 3 * lipScale}`,
+            `C${center + 3 * lipScale},${lipY - 2 * lipScale} ${center + 6 * lipScale},${lipY - 5 * lipScale} ${center + 11 * lipScale},${lipY}`,
+            `C${center + 5 * lipScale},${lipY + 6 * lipScale} ${center - 5 * lipScale},${lipY + 6 * lipScale} ${center - 11 * lipScale},${lipY}`,
             'Z'
           ].join(' ')
         }));
@@ -1970,16 +1972,16 @@ html>body{padding:0}</style>
 
         const legendLayout = compact
           ? [
-              [-85, -76, 86, -4], [-5, -79, 92, 3],
-              [-101, -53, 80, 3], [-34, -56, 88, -3], [38, -52, 88, 4]
+              [-77, -68, 78, -4], [-5, -72, 84, 3],
+              [-90, -47, 72, 3], [-30, -51, 80, -3], [37, -46, 80, 4]
             ]
           : [
-              [-104, -84, 116, -4], [-2, -88, 124, 3],
-              [-130, -58, 106, 3], [-48, -63, 118, -3], [44, -57, 112, 4]
+              [-94, -74, 104, -4], [-4, -78, 112, 3],
+              [-114, -51, 96, 3], [-38, -56, 106, -3], [46, -50, 100, 4]
             ];
         categories.forEach((item, index) => {
           const [dx, dy, blockWidth, rotation] = legendLayout[index];
-          const blockHeight = compact ? 24 : 29;
+          const blockHeight = compact ? 22 : 26;
           const blockX = center + dx * profileScale;
           const blockY = plotTop + dy * profileScale;
           const legendGroup = el('g', {
