@@ -1210,9 +1210,9 @@ html>body{padding:0}</style>
       stroke-linejoin: round;
     }
     #diary-river-organic-ribbons .dor-figure-head-shape {
-      fill: var(--dor-figure-head);
-      stroke: var(--dor-figure-outline);
-      stroke-width: 1.35;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 1.8;
       stroke-linejoin: round;
     }
     #diary-river-organic-ribbons .dor-figure-lips {
@@ -1702,7 +1702,7 @@ html>body{padding:0}</style>
           <p class="dor-inference">“可避免的弯路”是基于公开经历为你的路径做的推导，不是当事人的原话，也不是对未来的概率判断。</p>`;
       }
       const milestones = [
-        { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: -8, outside: true },
+        { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: 15, outside: true },
         { id: 'event-first-feedback', month: 4, key: 'creation', text: '数字艺术第一个小爆款', dy: -8, wrapWidth: 48 },
         { id: 'event-second-hit', month: 6, key: 'creation', text: '第二个小爆款', dy: -9 },
         { id: 'event-later', month: 6, key: 'venture', text: '「后来」产品规划', dy: 13, outside: true },
@@ -1969,16 +1969,16 @@ html>body{padding:0}</style>
 
         const legendLayout = compact
           ? [
-              [-70, -69, 54, -3], [-12, -72, 64, 2],
-              [-82, -47, 50, 2], [-27, -48, 54, -2], [32, -45, 58, 3]
+              [-88, -76, 72, -3], [-10, -78, 80, 2],
+              [-98, -51, 66, 2], [-28, -53, 70, -2], [46, -50, 76, 3]
             ]
           : [
-              [-88, -79, 70, -3], [-10, -82, 82, 2],
-              [-102, -54, 64, 2], [-31, -57, 70, -2], [46, -52, 78, 3]
+              [-112, -84, 94, -3], [-10, -87, 106, 2],
+              [-128, -55, 84, 2], [-37, -58, 90, -2], [60, -54, 98, 3]
             ];
         categories.forEach((item, index) => {
           const [dx, dy, blockWidth, rotation] = legendLayout[index];
-          const blockHeight = compact ? 18 : 21;
+          const blockHeight = compact ? 24 : 29;
           const blockX = center + dx * profileScale;
           const blockY = plotTop + dy * profileScale;
           const legendGroup = el('g', {
@@ -2003,7 +2003,7 @@ html>body{padding:0}</style>
             'text-anchor': 'middle',
             fill: '#fff8ed',
             'font-family': '-apple-system, BlinkMacSystemFont, PingFang SC, sans-serif',
-            'font-size': compact ? 9 : 10,
+            'font-size': compact ? 10 : 12,
             'font-weight': 500
           }, legendLabel));
           svg.appendChild(legendGroup);
