@@ -1969,12 +1969,12 @@ html>body{padding:0}</style>
 
         const legendLayout = compact
           ? [
-              [-88, -76, 72, -3], [-10, -78, 80, 2],
-              [-98, -51, 66, 2], [-28, -53, 70, -2], [46, -50, 76, 3]
+              [-85, -76, 86, -4], [-5, -79, 92, 3],
+              [-101, -53, 80, 3], [-34, -56, 88, -3], [38, -52, 88, 4]
             ]
           : [
-              [-112, -84, 94, -3], [-10, -87, 106, 2],
-              [-128, -55, 84, 2], [-37, -58, 90, -2], [60, -54, 98, 3]
+              [-104, -84, 116, -4], [-2, -88, 124, 3],
+              [-130, -58, 106, 3], [-48, -63, 118, -3], [44, -57, 112, 4]
             ];
         categories.forEach((item, index) => {
           const [dx, dy, blockWidth, rotation] = legendLayout[index];
@@ -1991,8 +1991,10 @@ html>body{padding:0}</style>
             y: blockY,
             width: blockWidth * profileScale,
             height: blockHeight * profileScale,
-            rx: 3 * profileScale,
-            fill: item.color
+            rx: 2.5 * profileScale,
+            fill: item.color,
+            opacity: 0.96,
+            style: 'filter:drop-shadow(0 1px 1px rgb(60 45 34 / 0.16))'
           }));
           const legendLabel = compact
             ? { work: '工作', creation: '创作', learning: '学习', venture: '副业', life: '生活' }[item.key]
