@@ -2039,40 +2039,6 @@ html>body{padding:0}</style>
           widths.forEach((value, index) => { cumulative[index] += value; });
         });
 
-        const neckFadeId = 'dor-neck-fade';
-        const neckFadeHeight = compact ? 25 : 32;
-        const fadeDefs = el('defs');
-        categories.forEach((item) => {
-          const neckFade = el('linearGradient', {
-            id: `${neckFadeId}-${item.key}`,
-            x1: 0,
-            y1: 0,
-            x2: 0,
-            y2: 1
-          });
-          neckFade.appendChild(el('stop', {
-            offset: '0%',
-            'stop-color': 'var(--dor-bg)'
-          }));
-          neckFade.appendChild(el('stop', {
-            offset: '100%',
-            'stop-color': item.color
-          }));
-          fadeDefs.appendChild(neckFade);
-        });
-        svg.appendChild(fadeDefs);
-        categories.forEach((item) => {
-          const firstLeft = geometry[item.key].left[0][0];
-          const firstRight = geometry[item.key].right[0][0];
-          svg.appendChild(el('rect', {
-            x: firstLeft,
-            y: plotTop - neckFadeHeight,
-            width: Math.max(0, firstRight - firstLeft),
-            height: neckFadeHeight + 1,
-            fill: `url(#${neckFadeId}-${item.key})`,
-            'aria-hidden': 'true'
-          }));
-        });
         svg.appendChild(figureLips);
 
         const labels = predictionOpen
