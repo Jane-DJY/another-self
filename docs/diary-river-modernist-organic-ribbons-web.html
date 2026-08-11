@@ -1209,10 +1209,16 @@ html>body{padding:0}</style>
       stroke-width: var(--dor-separator-width);
       stroke-linejoin: round;
     }
-    #diary-river-organic-ribbons .dor-profile-head {
+    #diary-river-organic-ribbons .dor-figure-head-shape {
       fill: var(--dor-figure-head);
       stroke: var(--dor-figure-outline);
       stroke-width: 1.35;
+      stroke-linejoin: round;
+    }
+    #diary-river-organic-ribbons .dor-figure-lips {
+      fill: #9f3f3d;
+      stroke: #6f2c2b;
+      stroke-width: 0.85;
       stroke-linejoin: round;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
@@ -1935,26 +1941,27 @@ html>body{padding:0}</style>
         const profileScale = compact ? 0.78 : 1;
         const firstWidth = totalWidths[0];
         const figureLayer = el('g', { 'aria-hidden': 'true' });
-        figureLayer.appendChild(el('rect', {
-          x: center - firstWidth / 2,
-          y: plotTop - 15 * profileScale,
-          width: firstWidth,
-          height: 19 * profileScale,
-          rx: 4 * profileScale,
-          fill: 'var(--dor-figure-head)'
-        }));
-        const profileTop = plotTop - 67 * profileScale;
+        const headTop = plotTop - 76 * profileScale;
+        const headHalfWidth = firstWidth * 0.63;
         figureLayer.appendChild(el('path', {
-          class: 'dor-profile-head',
+          class: 'dor-figure-head-shape',
           d: [
-            `M${center - 10 * profileScale},${plotTop - 7 * profileScale}`,
-            `C${center - 15 * profileScale},${plotTop - 17 * profileScale} ${center - 20 * profileScale},${plotTop - 29 * profileScale} ${center - 18 * profileScale},${profileTop + 18 * profileScale}`,
-            `C${center - 16 * profileScale},${profileTop + 7 * profileScale} ${center - 7 * profileScale},${profileTop + 1 * profileScale} ${center + 4 * profileScale},${profileTop}`,
-            `C${center + 15 * profileScale},${profileTop - 1 * profileScale} ${center + 22 * profileScale},${profileTop + 5 * profileScale} ${center + 22 * profileScale},${profileTop + 13 * profileScale}`,
-            `C${center + 23 * profileScale},${profileTop + 20 * profileScale} ${center + 21 * profileScale},${profileTop + 22 * profileScale} ${center + 28 * profileScale},${profileTop + 26 * profileScale}`,
-            `C${center + 32 * profileScale},${profileTop + 29 * profileScale} ${center + 29 * profileScale},${profileTop + 33 * profileScale} ${center + 22 * profileScale},${profileTop + 33 * profileScale}`,
-            `C${center + 21 * profileScale},${profileTop + 38 * profileScale} ${center + 25 * profileScale},${profileTop + 40 * profileScale} ${center + 20 * profileScale},${profileTop + 43 * profileScale}`,
-            `C${center + 18 * profileScale},${profileTop + 46 * profileScale} ${center + 16 * profileScale},${profileTop + 48 * profileScale} ${center + 13 * profileScale},${plotTop - 7 * profileScale}`,
+            `M${center - firstWidth / 2},${plotTop + 3}`,
+            `C${center - firstWidth * 0.51},${plotTop - 9 * profileScale} ${center - headHalfWidth},${plotTop - 28 * profileScale} ${center - headHalfWidth},${plotTop - 48 * profileScale}`,
+            `C${center - headHalfWidth},${headTop + 11 * profileScale} ${center - headHalfWidth * 0.52},${headTop} ${center},${headTop}`,
+            `C${center + headHalfWidth * 0.52},${headTop} ${center + headHalfWidth},${headTop + 11 * profileScale} ${center + headHalfWidth},${plotTop - 48 * profileScale}`,
+            `C${center + headHalfWidth},${plotTop - 28 * profileScale} ${center + firstWidth * 0.51},${plotTop - 9 * profileScale} ${center + firstWidth / 2},${plotTop + 3}`,
+            'Z'
+          ].join(' ')
+        }));
+        const lipY = plotTop - 18 * profileScale;
+        figureLayer.appendChild(el('path', {
+          class: 'dor-figure-lips',
+          d: [
+            `M${center - 11 * profileScale},${lipY}`,
+            `C${center - 5 * profileScale},${lipY - 5 * profileScale} ${center - 2 * profileScale},${lipY - 2 * profileScale} ${center},${lipY - 3 * profileScale}`,
+            `C${center + 3 * profileScale},${lipY - 2 * profileScale} ${center + 6 * profileScale},${lipY - 5 * profileScale} ${center + 11 * profileScale},${lipY}`,
+            `C${center + 5 * profileScale},${lipY + 6 * profileScale} ${center - 5 * profileScale},${lipY + 6 * profileScale} ${center - 11 * profileScale},${lipY}`,
             'Z'
           ].join(' ')
         }));
