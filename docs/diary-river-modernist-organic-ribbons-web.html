@@ -1930,7 +1930,7 @@ html>body{padding:0}</style>
           futureStartY = nowY;
           svg.appendChild(el('line', { class: 'dor-now-line', x1: pad, y1: nowY, x2: width - pad, y2: nowY }));
           svg.appendChild(el('text', { class: 'dor-now-label', x: pad, y: nowY - 7 }, '现在'));
-          svg.appendChild(el('text', { class: 'dor-forecast-label', x: width - pad, y: nowY - 7, 'text-anchor': 'end' }, '未来一年 · 行为情景推演'));
+          svg.appendChild(el('text', { class: 'dor-forecast-label', x: width - pad, y: nowY + 15, 'text-anchor': 'end' }, '未来一年 · 行为情景推演'));
         }
 
         const styles = getComputedStyle(root);
