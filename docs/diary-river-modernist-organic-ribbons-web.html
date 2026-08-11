@@ -1019,7 +1019,7 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-history-title,
     #diary-river-organic-ribbons .dor-prediction-title { pointer-events: auto; }
     #diary-river-organic-ribbons .dor-prediction-title { display: none; }
-    #diary-river-organic-ribbons.is-predicting .dor-history-title { display: none; }
+    #diary-river-organic-ribbons.is-predicting .dor-history-title { display: inline; }
     #diary-river-organic-ribbons.is-predicting .dor-prediction-title {
       display: inline-flex;
       align-items: baseline;
@@ -1295,6 +1295,33 @@ html>body{padding:0}</style>
       font-size: 12px;
       letter-spacing: 0.14em;
     }
+    #diary-river-organic-ribbons .dor-view-switch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 34px;
+      color: #9a8e7f;
+      font-size: 12px;
+    }
+    #diary-river-organic-ribbons .dor-view-switch button {
+      border: 0;
+      border-bottom: 1px solid transparent;
+      padding: 0 0 4px;
+      background: transparent;
+      color: #8a7e70;
+      font: 400 12px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-view-switch button[aria-pressed="true"] {
+      border-bottom-color: #342f29;
+      color: #342f29;
+      font-weight: 500;
+    }
+    #diary-river-organic-ribbons .dor-reading .dor-scenario-select {
+      max-width: none;
+      font-size: .72em;
+      vertical-align: baseline;
+    }
     #diary-river-organic-ribbons .dor-reading h2 {
       margin: 0 0 12px;
       font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
@@ -1372,15 +1399,6 @@ html>body{padding:0}</style>
     <div class="dor-poster">
       <div class="dor-heading">
         <span class="dor-history-title">时间都去哪儿了？</span>
-        <span class="dor-prediction-title">
-          <span>一年后我可能是</span>
-          <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
-            <option value="expert">创作型专家</option>
-            <option value="creator">独立创作者</option>
-            <option value="later">产品创业</option>
-          </select>
-        </span>
-        <button class="dor-predict-trigger" type="button" data-predict>预个测</button>
       </div>
       <div data-poster></div>
       <div class="dor-node-popover" data-node-popover hidden>
@@ -1619,10 +1637,18 @@ html>body{padding:0}</style>
         categories = historyCategories.map((item, index) => ({ ...item, values: [...item.values, ...forecast[index].values] }));
       }
       const reading = root.querySelector('[data-reading]');
+      function viewSwitchMarkup() {
+        return `<nav class="dor-view-switch" aria-label="切换时间视角">
+          <button type="button" data-view-mode="history" aria-pressed="${predictionOpen ? 'false' : 'true'}">回看过去</button>
+          <span aria-hidden="true">｜</span>
+          <button type="button" data-view-mode="future" aria-pressed="${predictionOpen ? 'true' : 'false'}">推演一年后</button>
+        </nav>`;
+      }
       function renderReading() {
         if (!reading) return;
         if (!predictionOpen) {
           reading.innerHTML = `
+            ${viewSwitchMarkup()}
             <p class="dor-reading-kicker">从 1—7 月的日记主题中看见</p>
             <h2>四次精力转向</h2>
             <p class="dor-reading-lead">河流高度表示当月日记主题中的注意力分布，不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</p>
@@ -1633,8 +1659,15 @@ html>body{padding:0}</style>
         }
         const model = roleModels[activeScenario];
         reading.innerHTML = `
+          ${viewSwitchMarkup()}
           <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
-          <h2>${model.title}</h2>
+          <h2>一年后，我可能成为
+            <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
+              <option value="expert"${activeScenario === 'expert' ? ' selected' : ''}>创作型专家</option>
+              <option value="creator"${activeScenario === 'creator' ? ' selected' : ''}>独立创作者</option>
+              <option value="later"${activeScenario === 'later' ? ' selected' : ''}>产品创业者</option>
+            </select>
+          </h2>
           <p class="dor-reading-lead">${model.lead}</p>
           <div class="dor-role-list">${model.people.map((person, index) => `
             <article class="dor-role">
@@ -2054,11 +2087,10 @@ html>body{padding:0}</style>
         if (svg) playAnimation(svg);
       });
       root.querySelector('[data-node-popover-close]')?.addEventListener('click', hideNodePopover);
-      root.querySelector('[data-predict]')?.addEventListener('click', () => {
-        predictionOpen = !predictionOpen;
+      function setPrediction(nextState) {
+        if (predictionOpen === nextState) return;
+        predictionOpen = nextState;
         root.classList.toggle('is-predicting', predictionOpen);
-        const trigger = root.querySelector('[data-predict]');
-        if (trigger) trigger.textContent = predictionOpen ? '取消预测' : '预个测';
         if (predictionOpen) {
           forecastGrowRequested = true;
           useScenario(activeScenario);
@@ -2068,10 +2100,15 @@ html>body{padding:0}</style>
         }
         renderReading();
         draw();
+      }
+      reading?.addEventListener('click', (event) => {
+        const trigger = event.target.closest('[data-view-mode]');
+        if (!trigger) return;
+        setPrediction(trigger.dataset.viewMode === 'future');
       });
-      root.querySelector('[data-scenario-select]')?.addEventListener('change', (event) => {
-        if (predictionOpen) {
-          useScenario(event.currentTarget.value);
+      reading?.addEventListener('change', (event) => {
+        if (predictionOpen && event.target.matches('[data-scenario-select]')) {
+          useScenario(event.target.value);
           renderReading();
           draw();
         }
