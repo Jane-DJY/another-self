@@ -1298,26 +1298,29 @@ html>body{padding:0}</style>
       letter-spacing: 0.14em;
     }
     #diary-river-organic-ribbons .dor-view-switch {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 0;
       margin: 0 0 34px;
-      color: #9a8e7f;
-      font-size: 12px;
+      padding: 3px;
+      border: 1px solid rgba(52, 47, 41, 0.32);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
     }
+    #diary-river-organic-ribbons .dor-view-switch > span { display: none; }
     #diary-river-organic-ribbons .dor-view-switch button {
       border: 0;
-      border-bottom: 1px solid transparent;
-      padding: 0 0 4px;
+      border-radius: 999px;
+      padding: 8px 14px;
       background: transparent;
-      color: #8a7e70;
-      font: 400 12px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      color: #665e54;
+      font: 500 12px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
       cursor: pointer;
+      transition: color 180ms ease, background 180ms ease;
     }
     #diary-river-organic-ribbons .dor-view-switch button[aria-pressed="true"] {
-      border-bottom-color: #342f29;
-      color: #342f29;
-      font-weight: 500;
+      background: #342f29;
+      color: #f5ede2;
     }
     #diary-river-organic-ribbons .dor-reading .dor-scenario-select {
       max-width: none;
