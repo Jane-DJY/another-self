@@ -1007,9 +1007,7 @@ html>body{padding:0}</style>
       left: 1.35rem;
       right: 1.35rem;
       z-index: 3;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
+      display: block;
       color: var(--dor-title-text);
       font-family: ui-serif, Georgia, "Songti SC", serif;
       font-size: 26px;
@@ -1017,6 +1015,13 @@ html>body{padding:0}</style>
       letter-spacing: -0.02em;
       white-space: nowrap;
       pointer-events: none;
+    }
+    #diary-river-organic-ribbons .dor-data-source {
+      display: block;
+      margin-top: 5px;
+      color: var(--dor-muted);
+      font: 400 clamp(7px, 1.55vw, 9px)/1.35 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      letter-spacing: 0;
     }
     #diary-river-organic-ribbons .dor-history-title,
     #diary-river-organic-ribbons .dor-prediction-title { pointer-events: auto; }
@@ -1418,6 +1423,7 @@ html>body{padding:0}</style>
     <div class="dor-poster">
       <div class="dor-heading">
         <span class="dor-history-title">时间都去哪儿了？</span>
+        <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）</span>
       </div>
       <div data-poster></div>
       <div class="dor-node-popover" data-node-popover hidden>
@@ -1900,8 +1906,8 @@ html>body{padding:0}</style>
         svg.appendChild(el('desc', { id: 'dor-desc' }, '纵向时间轴上的五条数据丝带。整条河的总宽度由每月可归类日记数的平方根决定，每条彩带的宽度由对应主题份额决定，并保持固定顺序以便追踪。'));
 
         const pad = compact ? 22 : 38;
-        const plotTop = compact ? 116 : 138;
-        const plotBottom = height - (compact ? 92 : 116);
+        const plotTop = compact ? 136 : 156;
+        const plotBottom = height - (compact ? 42 : 46);
         const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
         const center = width * 0.56;
         const maxN = Math.max(...months.map((month) => month.n));
@@ -1942,8 +1948,8 @@ html>body{padding:0}</style>
         const profileScale = compact ? 0.78 : 1;
         const firstWidth = totalWidths[0];
         const figureLayer = el('g', { 'aria-hidden': 'true' });
-        const neckWidth = firstWidth * 0.72;
-        const headTop = plotTop - 64 * profileScale;
+        const neckWidth = firstWidth;
+        const headTop = plotTop - 78 * profileScale;
         const headHalfWidth = neckWidth * 0.62;
         figureLayer.appendChild(el('path', {
           class: 'dor-figure-head-shape',
@@ -2104,12 +2110,6 @@ html>body{padding:0}</style>
             svg.appendChild(group);
           });
         }
-
-        const footerY = height - (compact ? 48 : 62);
-        svg.appendChild(el('line', { class: 'dor-rule', x1: pad, y1: footerY - 20, x2: width - pad, y2: footerY - 20 }));
-        svg.appendChild(el('text', { class: 'dor-note', x: pad, y: footerY + (compact ? 0 : 18) }, '数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）'));
-        svg.appendChild(el('text', { class: 'dor-note', x: width - pad, y: footerY + (compact ? 16 : 0), 'text-anchor': 'end' }, '爱可视化的简女士'));
-        svg.appendChild(el('text', { class: 'dor-note', x: width - pad, y: footerY + (compact ? 30 : 18), 'text-anchor': 'end' }, 'Jane of Visual Stories'));
 
         requestAnimationFrame(() => {
           if (predictionOpen) {
