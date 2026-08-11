@@ -998,7 +998,7 @@ html>body{padding:0}</style>
       width: 100%;
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: var(--dor-bg);
+      background: transparent;
     }
     #diary-river-organic-ribbons .dor-poster > [data-poster] { width: 100%; height: 100%; }
     #diary-river-organic-ribbons .dor-heading {
@@ -1906,8 +1906,8 @@ html>body{padding:0}</style>
         svg.appendChild(el('desc', { id: 'dor-desc' }, '纵向时间轴上的五条数据丝带。整条河的总宽度由每月可归类日记数的平方根决定，每条彩带的宽度由对应主题份额决定，并保持固定顺序以便追踪。'));
 
         const pad = compact ? 22 : 38;
-        const plotTop = compact ? 146 : 168;
-        const plotBottom = height - (compact ? 42 : 46);
+        const plotTop = compact ? 154 : 178;
+        const plotBottom = height - 18;
         const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
         const center = width * 0.56;
         const maxN = Math.max(...months.map((month) => month.n));
@@ -1949,7 +1949,7 @@ html>body{padding:0}</style>
         const firstWidth = totalWidths[0];
         const figureLayer = el('g', { 'aria-hidden': 'true' });
         const neckWidth = firstWidth;
-        const headTop = plotTop - 92 * profileScale;
+        const headTop = plotTop - 98 * profileScale;
         const headHalfWidth = neckWidth * 0.62;
         figureLayer.appendChild(el('path', {
           class: 'dor-figure-head-shape',
@@ -1977,12 +1977,12 @@ html>body{padding:0}</style>
 
         const legendLayout = compact
           ? [
-              [-49, -81, 52, -4], [-2, -85, 56, 3],
-              [-59, -60, 48, 3], [-18, -64, 53, -3], [29, -59, 53, 4]
+              [-49, -87, 52, -4], [-2, -91, 56, 3],
+              [-59, -66, 48, 3], [-18, -70, 53, -3], [29, -65, 53, 4]
             ]
           : [
-              [-65, -86, 69, -4], [-3, -90, 75, 3],
-              [-78, -63, 64, 3], [-25, -68, 71, -3], [35, -62, 67, 4]
+              [-65, -92, 69, -4], [-3, -96, 75, 3],
+              [-78, -69, 64, 3], [-25, -74, 71, -3], [35, -68, 67, 4]
             ];
         categories.forEach((item, index) => {
           const [dx, dy, blockWidth, rotation] = legendLayout[index];
