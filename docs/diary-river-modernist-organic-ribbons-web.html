@@ -983,8 +983,8 @@ html>body{padding:0}</style>
       --dor-learning: #f4b51b;
       --dor-venture: #ef7d17;
       --dor-life: #0b5a43;
-      --dor-figure-head: #dfcdb2;
-      --dor-figure-outline: #51483e;
+      --dor-figure-head: #c88762;
+      --dor-figure-outline: #5a4335;
     }
     #diary-river-organic-ribbons .dor-editor {
       display: grid;
@@ -1893,44 +1893,10 @@ html>body{padding:0}</style>
         svg.appendChild(el('desc', { id: 'dor-desc' }, '纵向时间轴上的五条数据丝带。整条河的总宽度由每月可归类日记数的平方根决定，每条彩带的宽度由对应主题份额决定，并保持固定顺序以便追踪。'));
 
         const pad = compact ? 22 : 38;
-        const titleY = compact ? 34 : 48;
-        let legendX = pad;
-        const legendY = titleY + 36;
-        categories.forEach((item, index) => {
-          const short = compact
-            ? { work: '工作', creation: '创作', learning: '学习', venture: '副业', life: '生活' }[item.key]
-            : item.label;
-          if (!compact && index === 3) legendX = pad;
-          const rowY = !compact && index >= 3 ? legendY + 22 : legendY;
-          svg.appendChild(el('rect', { class: 'dor-legend-mark dor-animated', x: legendX, y: rowY - 9, width: 9, height: 9, fill: item.color, rx: 1.5, 'data-animate-theme': item.key }));
-          svg.appendChild(el('text', { class: 'dor-legend dor-animated', x: legendX + 14, y: rowY, 'data-animate-theme': item.key }, short));
-          legendX += (compact ? 58 : Math.max(96, short.length * 13 + 30));
-        });
-
         const plotTop = compact ? 116 : 138;
         const plotBottom = height - (compact ? 92 : 116);
         const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
         const center = width * 0.56;
-        const profileScale = compact ? 0.82 : 1;
-        const profileTop = plotTop - 52 * profileScale;
-        const profile = el('path', {
-          class: 'dor-profile-head',
-          d: [
-            `M${center - 7 * profileScale},${plotTop + 3}`,
-            `C${center - 10 * profileScale},${plotTop - 5 * profileScale} ${center - 18 * profileScale},${plotTop - 14 * profileScale} ${center - 19 * profileScale},${plotTop - 27 * profileScale}`,
-            `C${center - 20 * profileScale},${profileTop + 12 * profileScale} ${center - 11 * profileScale},${profileTop + 2 * profileScale} ${center + 1 * profileScale},${profileTop}`,
-            `C${center + 11 * profileScale},${profileTop - 1 * profileScale} ${center + 18 * profileScale},${profileTop + 4 * profileScale} ${center + 19 * profileScale},${profileTop + 11 * profileScale}`,
-            `C${center + 20 * profileScale},${profileTop + 17 * profileScale} ${center + 18 * profileScale},${profileTop + 19 * profileScale} ${center + 24 * profileScale},${profileTop + 23 * profileScale}`,
-            `C${center + 28 * profileScale},${profileTop + 26 * profileScale} ${center + 25 * profileScale},${profileTop + 29 * profileScale} ${center + 19 * profileScale},${profileTop + 29 * profileScale}`,
-            `C${center + 18 * profileScale},${profileTop + 33 * profileScale} ${center + 22 * profileScale},${profileTop + 34 * profileScale} ${center + 22 * profileScale},${profileTop + 37 * profileScale}`,
-            `C${center + 22 * profileScale},${profileTop + 40 * profileScale} ${center + 18 * profileScale},${profileTop + 40 * profileScale} ${center + 16 * profileScale},${profileTop + 41 * profileScale}`,
-            `C${center + 17 * profileScale},${profileTop + 44 * profileScale} ${center + 18 * profileScale},${profileTop + 47 * profileScale} ${center + 15 * profileScale},${profileTop + 49 * profileScale}`,
-            `C${center + 13 * profileScale},${profileTop + 51 * profileScale} ${center + 10 * profileScale},${profileTop + 50 * profileScale} ${center + 9 * profileScale},${plotTop + 3}`,
-            'Z'
-          ].join(' '),
-          'aria-hidden': 'true'
-        });
-        svg.appendChild(profile);
         const maxN = Math.max(...months.map((month) => month.n));
         const geometry = {};
 
@@ -1965,6 +1931,75 @@ html>body{padding:0}</style>
         const totalWidths = roots.map((value) => {
           const normalized = maxRoot === minRoot ? 1 : (value - minRoot) / (maxRoot - minRoot);
           return maxRiverWidth * (minWidthFactor + normalized * (0.9 - minWidthFactor));
+        });
+        const profileScale = compact ? 0.78 : 1;
+        const firstWidth = totalWidths[0];
+        const figureLayer = el('g', { 'aria-hidden': 'true' });
+        figureLayer.appendChild(el('rect', {
+          x: center - firstWidth / 2,
+          y: plotTop - 15 * profileScale,
+          width: firstWidth,
+          height: 19 * profileScale,
+          rx: 4 * profileScale,
+          fill: 'var(--dor-figure-head)'
+        }));
+        const profileTop = plotTop - 67 * profileScale;
+        figureLayer.appendChild(el('path', {
+          class: 'dor-profile-head',
+          d: [
+            `M${center - 10 * profileScale},${plotTop - 7 * profileScale}`,
+            `C${center - 15 * profileScale},${plotTop - 17 * profileScale} ${center - 20 * profileScale},${plotTop - 29 * profileScale} ${center - 18 * profileScale},${profileTop + 18 * profileScale}`,
+            `C${center - 16 * profileScale},${profileTop + 7 * profileScale} ${center - 7 * profileScale},${profileTop + 1 * profileScale} ${center + 4 * profileScale},${profileTop}`,
+            `C${center + 15 * profileScale},${profileTop - 1 * profileScale} ${center + 22 * profileScale},${profileTop + 5 * profileScale} ${center + 22 * profileScale},${profileTop + 13 * profileScale}`,
+            `C${center + 23 * profileScale},${profileTop + 20 * profileScale} ${center + 21 * profileScale},${profileTop + 22 * profileScale} ${center + 28 * profileScale},${profileTop + 26 * profileScale}`,
+            `C${center + 32 * profileScale},${profileTop + 29 * profileScale} ${center + 29 * profileScale},${profileTop + 33 * profileScale} ${center + 22 * profileScale},${profileTop + 33 * profileScale}`,
+            `C${center + 21 * profileScale},${profileTop + 38 * profileScale} ${center + 25 * profileScale},${profileTop + 40 * profileScale} ${center + 20 * profileScale},${profileTop + 43 * profileScale}`,
+            `C${center + 18 * profileScale},${profileTop + 46 * profileScale} ${center + 16 * profileScale},${profileTop + 48 * profileScale} ${center + 13 * profileScale},${plotTop - 7 * profileScale}`,
+            'Z'
+          ].join(' ')
+        }));
+        svg.appendChild(figureLayer);
+
+        const legendLayout = compact
+          ? [
+              [-70, -69, 54, -3], [-12, -72, 64, 2],
+              [-82, -47, 50, 2], [-27, -48, 54, -2], [32, -45, 58, 3]
+            ]
+          : [
+              [-88, -79, 70, -3], [-10, -82, 82, 2],
+              [-102, -54, 64, 2], [-31, -57, 70, -2], [46, -52, 78, 3]
+            ];
+        categories.forEach((item, index) => {
+          const [dx, dy, blockWidth, rotation] = legendLayout[index];
+          const blockHeight = compact ? 18 : 21;
+          const blockX = center + dx * profileScale;
+          const blockY = plotTop + dy * profileScale;
+          const legendGroup = el('g', {
+            class: 'dor-animated',
+            transform: `rotate(${rotation} ${blockX + blockWidth * profileScale / 2} ${blockY + blockHeight * profileScale / 2})`,
+            'data-animate-theme': item.key
+          });
+          legendGroup.appendChild(el('rect', {
+            x: blockX,
+            y: blockY,
+            width: blockWidth * profileScale,
+            height: blockHeight * profileScale,
+            rx: 3 * profileScale,
+            fill: item.color
+          }));
+          const legendLabel = compact
+            ? { work: '工作', creation: '创作', learning: '学习', venture: '副业', life: '生活' }[item.key]
+            : item.label;
+          legendGroup.appendChild(el('text', {
+            x: blockX + blockWidth * profileScale / 2,
+            y: blockY + blockHeight * profileScale / 2 + 4,
+            'text-anchor': 'middle',
+            fill: '#fff8ed',
+            'font-family': '-apple-system, BlinkMacSystemFont, PingFang SC, sans-serif',
+            'font-size': compact ? 9 : 10,
+            'font-weight': 500
+          }, legendLabel));
+          svg.appendChild(legendGroup);
         });
         const monthTotals = months.map((_, index) => categories.reduce((sum, item) => sum + item.values[index], 0));
         const cumulative = totalWidths.map((value) => center - value / 2);
