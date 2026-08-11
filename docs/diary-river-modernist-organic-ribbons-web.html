@@ -1207,6 +1207,8 @@ html>body{padding:0}</style>
       stroke-width: var(--dor-separator-width);
       stroke-linejoin: round;
     }
+    #diary-river-organic-ribbons .dor-figure-head,
+    #diary-river-organic-ribbons .dor-figure-neck { fill: var(--dor-title-text); }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
     #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
     #diary-river-organic-ribbons .dor-event-bg { fill: var(--dor-bg); opacity: var(--dor-event-bg-opacity); }
@@ -1899,6 +1901,24 @@ html>body{padding:0}</style>
         const plotBottom = height - (compact ? 92 : 116);
         const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
         const center = width * 0.56;
+        const headRadius = compact ? 10 : 12;
+        const headY = plotTop - headRadius - (compact ? 7 : 9);
+        const figureHead = el('g', { 'aria-hidden': 'true' });
+        figureHead.appendChild(el('rect', {
+          class: 'dor-figure-neck',
+          x: center - (compact ? 4 : 5),
+          y: headY + headRadius - 1,
+          width: compact ? 8 : 10,
+          height: plotTop - (headY + headRadius) + 3,
+          rx: compact ? 3 : 4
+        }));
+        figureHead.appendChild(el('circle', {
+          class: 'dor-figure-head',
+          cx: center,
+          cy: headY,
+          r: headRadius
+        }));
+        svg.appendChild(figureHead);
         const maxN = Math.max(...months.map((month) => month.n));
         const geometry = {};
 
