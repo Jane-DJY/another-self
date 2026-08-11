@@ -1141,14 +1141,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     #diary-river-organic-ribbons .dor-event-bg { fill: var(--dor-bg); opacity: var(--dor-event-bg-opacity); }
     #diary-river-organic-ribbons .dor-rule { stroke: #8c8172; stroke-width: 0.7; opacity: 0.35; }
     #diary-river-organic-ribbons .dor-now-line {
-      stroke: var(--dor-text);
-      stroke-width: 0.8;
-      stroke-dasharray: 3 4;
-      opacity: 0.5;
+      stroke: var(--dor-title-text);
+      stroke-width: 1.4;
+      stroke-dasharray: 6 4;
+      opacity: 0.88;
     }
+    #diary-river-organic-ribbons .dor-now-label,
     #diary-river-organic-ribbons .dor-forecast-label {
-      fill: var(--dor-muted);
-      font: 400 8px/1 -apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, sans-serif;
+      fill: var(--dor-title-text);
+      font: 500 10px/1 -apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, sans-serif;
     }
     #diary-river-organic-ribbons .dor-replay {
       position: absolute;
@@ -1636,7 +1637,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           const nowY = ys[6];
           futureStartY = nowY;
           svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dor-now-line&#x27;, x1: pad, y1: nowY, x2: width - pad, y2: nowY }));
-          svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-forecast-label&#x27;, x: width - pad, y: nowY - 5, &#x27;text-anchor&#x27;: &#x27;end&#x27; }, &#x27;未来一年 · 行为情景推演&#x27;));
+          svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-now-label&#x27;, x: pad, y: nowY - 7 }, &#x27;现在&#x27;));
+          svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-forecast-label&#x27;, x: width - pad, y: nowY - 7, &#x27;text-anchor&#x27;: &#x27;end&#x27; }, &#x27;未来一年 · 行为情景推演&#x27;));
         }
 
         const styles = getComputedStyle(root);
