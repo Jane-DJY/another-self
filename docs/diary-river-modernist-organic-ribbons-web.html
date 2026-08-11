@@ -876,10 +876,91 @@ svg.lucide {
 
 html>body{padding:0}</style>
 </head>
-<body>
+<body class="dor-before-enter">
+<main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-title">
+  <div class="dor-import-mark" aria-hidden="true">
+    <span class="dor-person dor-person-now"><i></i><b></b></span>
+    <span class="dor-person dor-person-other"><i></i><b></b></span>
+  </div>
+  <p class="dor-import-name">另世我</p>
+  <h1 id="dor-import-title">由你的生活记录养成的另一个你</h1>
+  <div class="dor-import-actions">
+    <label class="dor-import-primary" for="dor-diary-files">
+      <span data-import-label>选择我的数据↗</span>
+    </label>
+    <input id="dor-diary-files" data-diary-files type="file" accept=".md,.txt,.json,.csv,text/plain,text/markdown,application/json,text/csv" multiple>
+    <button class="dor-import-demo" type="button" data-use-demo>先看个示例</button>
+  </div>
+</main>
 <section id="diary-river-organic-ribbons" aria-label="2026 年日记现代主义有机丝带图">
   <style>
     html, body { background: #ebe3d7 !important; }
+    body.dor-before-enter { overflow: hidden; }
+    body.dor-has-entered { overflow: hidden; }
+    .dor-import-entry {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      overflow: hidden;
+      background: #eee5d8;
+      color: #26231f;
+      text-align: center;
+      transition: opacity 520ms cubic-bezier(.22,1,.36,1), visibility 520ms;
+    }
+    body.dor-has-entered .dor-import-entry { opacity: 0; visibility: hidden; pointer-events: none; }
+    body.dor-before-enter #diary-river-organic-ribbons { opacity: 0; transform: translateY(18px); }
+    #diary-river-organic-ribbons { transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,1,.36,1); }
+    body.dor-has-entered #diary-river-organic-ribbons { opacity: 1; transform: none; }
+    .dor-import-mark {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 8px;
+      width: 82px;
+      height: 64px;
+      margin-bottom: 20px;
+    }
+    .dor-person { position: relative; display: block; width: 28px; height: 53px; }
+    .dor-person i,
+    .dor-person b { position: absolute; left: 50%; display: block; transform: translateX(-50%); }
+    .dor-person i { top: 0; width: 17px; height: 17px; border-radius: 50%; background: currentColor; }
+    .dor-person b { bottom: 0; width: 25px; height: 31px; border-radius: 13px 13px 4px 4px; background: currentColor; }
+    .dor-person-now { color: #2b2823; transform: translateY(3px) rotate(-3deg); }
+    .dor-person-other { color: #b32332; transform: translateY(-3px) rotate(3deg); }
+    .dor-import-name { margin: 0 0 17px; color: #2b2823; font: 500 14px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .42em; text-indent: .42em; }
+    .dor-import-entry h1 { margin: 0; font: 500 clamp(18px, 4.6vw, 62px)/1.15 ui-serif, Georgia, "Songti SC", serif; letter-spacing: -.045em; white-space: nowrap; }
+    .dor-import-actions { display: grid; justify-items: center; gap: 14px; margin-top: 36px; }
+    .dor-import-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 10px 14px;
+      border: 1px solid #2b2823;
+      background: #2b2823;
+      color: #f7f0e6;
+      font-size: 13px;
+      line-height: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+    .dor-import-primary:hover { transform: translateY(-2px); background: #b32332; border-color: #b32332; }
+    [data-diary-files] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); }
+    .dor-import-demo { border: 0; border-bottom: 1px solid #918577; padding: 2px 0 4px; background: transparent; color: #504a42; font: 400 12px/1.3 inherit; cursor: pointer; }
+    @media (max-width: 520px) {
+      .dor-import-entry { padding: 22px; }
+      .dor-import-mark { margin-bottom: 16px; transform: scale(.86); }
+      .dor-import-name { margin-bottom: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dor-import-entry, #diary-river-organic-ribbons { transition: none; }
+    }
     #diary-river-organic-ribbons {
       width: 100%;
       --dor-bg: #f1e3ce;
@@ -1180,19 +1261,31 @@ html>body{padding:0}</style>
       #diary-river-organic-ribbons .dor-heading { top: 0.78rem; left: 1rem; right: 1rem; font-size: 20px; }
     }
     /* Web edition: preserve the poster, replace the editor controls with interpretation. */
-    #diary-river-organic-ribbons { max-width: 1280px; margin: 0 auto; }
+    #diary-river-organic-ribbons { width: 100%; max-width: 1280px; height: 100svh; margin: 0 auto; overflow: hidden; }
     #diary-river-organic-ribbons .dor-editor {
       grid-template-columns: minmax(420px, 0.92fr) minmax(360px, 1.08fr);
       gap: clamp(28px, 4vw, 72px);
       align-items: center;
       padding: clamp(20px, 4vw, 56px);
-      min-height: 100svh;
+      height: 100%;
+      min-height: 0;
     }
-    #diary-river-organic-ribbons .dor-poster { max-width: 620px; justify-self: end; }
+    #diary-river-organic-ribbons .dor-poster {
+      width: min(100%, calc((100svh - clamp(40px, 8vw, 112px)) * 0.75));
+      max-width: 620px;
+      max-height: calc(100svh - clamp(40px, 8vw, 112px));
+      justify-self: end;
+    }
     #diary-river-organic-ribbons .dor-sidebar { display: none !important; }
     #diary-river-organic-ribbons .dor-reading {
       min-width: 0;
       max-width: 560px;
+      max-height: calc(100svh - clamp(40px, 8vw, 112px));
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-right: 14px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(40, 37, 31, 0.28) transparent;
       color: #28251f;
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
     }
@@ -1261,9 +1354,12 @@ html>body{padding:0}</style>
       line-height: 1.6;
     }
     @media (max-width: 860px) {
-      #diary-river-organic-ribbons .dor-editor { grid-template-columns: 1fr; min-height: auto; }
-      #diary-river-organic-ribbons .dor-poster { width: min(100%, 560px); justify-self: center; }
+      body.dor-has-entered { overflow: auto; }
+      #diary-river-organic-ribbons { height: auto; min-height: 100svh; overflow: visible; }
+      #diary-river-organic-ribbons .dor-editor { grid-template-columns: 1fr; height: auto; min-height: auto; }
+      #diary-river-organic-ribbons .dor-poster { width: min(100%, 560px); max-height: none; justify-self: center; }
       #diary-river-organic-ribbons .dor-reading { max-width: 620px; justify-self: center; padding-bottom: 28px; }
+      #diary-river-organic-ribbons .dor-reading { max-height: none; overflow: visible; }
     }
     @media (max-width: 480px) {
       #diary-river-organic-ribbons .dor-editor { padding: 10px; gap: 28px; }
@@ -1986,6 +2082,49 @@ html>body{padding:0}</style>
     })();
   </script>
 </section>
+
+<script>
+(() => {
+  const input = document.querySelector('[data-diary-files]');
+  const demo = document.querySelector('[data-use-demo]');
+  const label = document.querySelector('[data-import-label]');
+  const status = document.querySelector('[data-import-status]');
+  let entering = false;
+
+  function enterRiver(message) {
+    if (entering) return;
+    entering = true;
+    if (label) label.textContent = '正在生成河流…';
+    if (status) status.textContent = message;
+    window.setTimeout(() => {
+      document.body.classList.remove('dor-before-enter');
+      document.body.classList.add('dor-has-entered');
+      window.setTimeout(() => document.querySelector('[data-import-entry]')?.setAttribute('hidden', ''), 720);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 620);
+  }
+
+  input?.addEventListener('change', async () => {
+    const files = [...(input.files || [])];
+    if (!files.length) return;
+    const total = files.reduce((sum, file) => sum + file.size, 0);
+    if (total > 20 * 1024 * 1024) {
+      if (status) status.textContent = '文件总大小请控制在 20 MB 以内';
+      input.value = '';
+      return;
+    }
+    try {
+      await Promise.all(files.map(file => file.text()));
+      const name = files.length === 1 ? files[0].name : `${files.length} 个文件`;
+      enterRiver(`已在本地读取 ${name}`);
+    } catch (_) {
+      if (status) status.textContent = '暂时无法读取这个文件，请换一种格式';
+    }
+  });
+
+  demo?.addEventListener('click', () => enterRiver('正在载入示例日记数据'));
+})();
+</script>
 
 <script src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
 <script src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
