@@ -1426,6 +1426,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       };
       const ns = &#x27;http://www.w3.org/2000/svg&#x27;;
       let animationTimers = [];
+      let forecastAnimationFrame = 0;
+      let forecastGrowRequested = false;
       const settingMap = {
         &#x27;max-width&#x27;: { variable: &#x27;--dor-max-width&#x27;, format: (value) =&gt; `${Math.round(Number(value) * 100)}%` },
         &#x27;min-width&#x27;: { variable: &#x27;--dor-min-width&#x27;, format: (value) =&gt; `${Math.round(Number(value) * 100)}%` },
@@ -1538,7 +1540,54 @@ html&gt;body{padding:0}&lt;/style&gt;
         }, sequence.length * 620 + 500));
       }
 
+      function revealAllThemes(svg) {
+        animationTimers.forEach(clearTimeout);
+        animationTimers = [];
+        svg.querySelectorAll(&#x27;.dor-animated&#x27;).forEach((node) =&gt; node.classList.add(&#x27;dor-visible&#x27;));
+      }
+
+      function animateFutureGrowth(svg, startY, endY, width) {
+        if (forecastAnimationFrame) cancelAnimationFrame(forecastAnimationFrame);
+        svg.classList.remove(&#x27;dor-idle-motion&#x27;);
+        const cover = el(&#x27;rect&#x27;, {
+          x: 0,
+          y: startY,
+          width,
+          height: Math.max(0, endY - startY + 3),
+          fill: &#x27;var(--dor-bg)&#x27;,
+          &#x27;aria-hidden&#x27;: &#x27;true&#x27;
+        });
+        svg.appendChild(cover);
+        if (window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches) {
+          cover.remove();
+          svg.classList.add(&#x27;dor-idle-motion&#x27;);
+          return;
+        }
+        const duration = 1800;
+        const startedAt = performance.now();
+        const grow = (now) =&gt; {
+          if (!cover.isConnected) return;
+          const progress = Math.min(1, (now - startedAt) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const revealY = startY + (endY - startY) * eased;
+          cover.setAttribute(&#x27;y&#x27;, String(revealY));
+          cover.setAttribute(&#x27;height&#x27;, String(Math.max(0, endY - revealY + 3)));
+          if (progress &lt; 1) {
+            forecastAnimationFrame = requestAnimationFrame(grow);
+          } else {
+            forecastAnimationFrame = 0;
+            cover.remove();
+            svg.classList.add(&#x27;dor-idle-motion&#x27;);
+          }
+        };
+        forecastAnimationFrame = requestAnimationFrame(grow);
+      }
+
       function draw() {
+        if (forecastAnimationFrame) {
+          cancelAnimationFrame(forecastAnimationFrame);
+          forecastAnimationFrame = 0;
+        }
         hideNodePopover();
         const width = Math.max(320, Math.round(host.getBoundingClientRect().width || 720));
         const height = Math.round(width * 4 / 3);
@@ -1582,8 +1631,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           svg.appendChild(el(&#x27;circle&#x27;, { class: &#x27;dor-month-dot&#x27;, cx: pad, cy: ys[index], r: 2.2 }));
           svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-month&#x27;, x: pad + 9, y: ys[index] + 4 }, predictionOpen ? month.label : `${month.label}  n=${month.n}`));
         });
+        let futureStartY = null;
         if (predictionOpen) {
-          const nowY = (ys[6] + ys[7]) / 2;
+          const nowY = ys[6];
+          futureStartY = nowY;
           svg.appendChild(el(&#x27;line&#x27;, { class: &#x27;dor-now-line&#x27;, x1: pad, y1: nowY, x2: width - pad, y2: nowY }));
           svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-forecast-label&#x27;, x: width - pad, y: nowY - 5, &#x27;text-anchor&#x27;: &#x27;end&#x27; }, &#x27;未来一年 · 行为情景推演&#x27;));
         }
@@ -1701,7 +1752,19 @@ html&gt;body{padding:0}&lt;/style&gt;
         svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-note&#x27;, x: width - pad, y: footerY + (compact ? 16 : 0), &#x27;text-anchor&#x27;: &#x27;end&#x27; }, &#x27;爱可视化的简女士&#x27;));
         svg.appendChild(el(&#x27;text&#x27;, { class: &#x27;dor-note&#x27;, x: width - pad, y: footerY + (compact ? 30 : 18), &#x27;text-anchor&#x27;: &#x27;end&#x27; }, &#x27;Jane of Visual Stories&#x27;));
 
-        requestAnimationFrame(() =&gt; playAnimation(svg));
+        requestAnimationFrame(() =&gt; {
+          if (predictionOpen) {
+            revealAllThemes(svg);
+            if (forecastGrowRequested &amp;&amp; futureStartY !== null) {
+              forecastGrowRequested = false;
+              animateFutureGrowth(svg, futureStartY, plotBottom, width);
+            } else {
+              svg.classList.add(&#x27;dor-idle-motion&#x27;);
+            }
+          } else {
+            playAnimation(svg);
+          }
+        });
       }
 
       const observer = new ResizeObserver(draw);
@@ -1750,6 +1813,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         const trigger = root.querySelector(&#x27;[data-predict]&#x27;);
         if (trigger) trigger.textContent = predictionOpen ? &#x27;取消预测&#x27; : &#x27;预个测&#x27;;
         if (predictionOpen) {
+          forecastGrowRequested = true;
           useScenario(activeScenario);
         } else {
           months = historyMonths;
