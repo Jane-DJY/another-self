@@ -1221,11 +1221,11 @@ html>body{padding:0}</style>
       stroke-linejoin: round;
     }
     #diary-river-organic-ribbons .dor-figure-lips {
-      fill: #9b7c6d;
+      fill: none;
       stroke: #7f675c;
-      stroke-width: 0.85;
-      stroke-linejoin: round;
-      opacity: 0.68;
+      stroke-width: 1.15;
+      stroke-linecap: round;
+      opacity: 0.56;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
     #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
@@ -1962,18 +1962,17 @@ html>body{padding:0}</style>
             'Z'
           ].join(' ')
         }));
-        const lipY = plotTop - 18 * profileScale;
+        const lipY = plotTop - 9 * profileScale;
         const lipScale = profileScale * 0.82;
-        figureLayer.appendChild(el('path', {
+        const figureLips = el('path', {
           class: 'dor-figure-lips',
           d: [
-            `M${center - 11 * lipScale},${lipY}`,
-            `C${center - 5 * lipScale},${lipY - 5 * lipScale} ${center - 2 * lipScale},${lipY - 2 * lipScale} ${center},${lipY - 3 * lipScale}`,
-            `C${center + 3 * lipScale},${lipY - 2 * lipScale} ${center + 6 * lipScale},${lipY - 5 * lipScale} ${center + 11 * lipScale},${lipY}`,
-            `C${center + 5 * lipScale},${lipY + 6 * lipScale} ${center - 5 * lipScale},${lipY + 6 * lipScale} ${center - 11 * lipScale},${lipY}`,
-            'Z'
+            `M${center - 9 * lipScale},${lipY}`,
+            `Q${center},${lipY - 3 * lipScale} ${center + 9 * lipScale},${lipY}`,
+            `M${center - 8 * lipScale},${lipY + 1 * lipScale}`,
+            `Q${center},${lipY + 5 * lipScale} ${center + 8 * lipScale},${lipY + 1 * lipScale}`
           ].join(' ')
-        }));
+        });
         svg.appendChild(figureLayer);
 
         const legendLayout = compact
@@ -2041,34 +2040,40 @@ html>body{padding:0}</style>
         });
 
         const neckFadeId = 'dor-neck-fade';
+        const neckFadeHeight = compact ? 25 : 32;
         const fadeDefs = el('defs');
-        const neckFade = el('linearGradient', {
-          id: neckFadeId,
-          x1: 0,
-          y1: 0,
-          x2: 0,
-          y2: 1
+        categories.forEach((item) => {
+          const neckFade = el('linearGradient', {
+            id: `${neckFadeId}-${item.key}`,
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          });
+          neckFade.appendChild(el('stop', {
+            offset: '0%',
+            'stop-color': 'var(--dor-bg)'
+          }));
+          neckFade.appendChild(el('stop', {
+            offset: '100%',
+            'stop-color': item.color
+          }));
+          fadeDefs.appendChild(neckFade);
         });
-        neckFade.appendChild(el('stop', {
-          offset: '0%',
-          'stop-color': 'var(--dor-bg)',
-          'stop-opacity': 1
-        }));
-        neckFade.appendChild(el('stop', {
-          offset: '100%',
-          'stop-color': 'var(--dor-bg)',
-          'stop-opacity': 0
-        }));
-        fadeDefs.appendChild(neckFade);
         svg.appendChild(fadeDefs);
-        svg.appendChild(el('rect', {
-          x: center - firstWidth / 2 - 1,
-          y: plotTop - 1,
-          width: firstWidth + 2,
-          height: compact ? 27 : 34,
-          fill: `url(#${neckFadeId})`,
-          'aria-hidden': 'true'
-        }));
+        categories.forEach((item) => {
+          const firstLeft = geometry[item.key].left[0][0];
+          const firstRight = geometry[item.key].right[0][0];
+          svg.appendChild(el('rect', {
+            x: firstLeft,
+            y: plotTop - neckFadeHeight,
+            width: Math.max(0, firstRight - firstLeft),
+            height: neckFadeHeight + 1,
+            fill: `url(#${neckFadeId}-${item.key})`,
+            'aria-hidden': 'true'
+          }));
+        });
+        svg.appendChild(figureLips);
 
         const labels = predictionOpen
           ? [
