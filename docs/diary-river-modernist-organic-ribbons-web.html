@@ -983,6 +983,8 @@ html>body{padding:0}</style>
       --dor-learning: #f4b51b;
       --dor-venture: #ef7d17;
       --dor-life: #0b5a43;
+      --dor-figure-head: #dfcdb2;
+      --dor-figure-outline: #51483e;
     }
     #diary-river-organic-ribbons .dor-editor {
       display: grid;
@@ -1205,6 +1207,12 @@ html>body{padding:0}</style>
       opacity: var(--dor-ribbon-opacity);
       stroke: var(--dor-separator);
       stroke-width: var(--dor-separator-width);
+      stroke-linejoin: round;
+    }
+    #diary-river-organic-ribbons .dor-profile-head {
+      fill: var(--dor-figure-head);
+      stroke: var(--dor-figure-outline);
+      stroke-width: 1.35;
       stroke-linejoin: round;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
@@ -1903,6 +1911,26 @@ html>body{padding:0}</style>
         const plotBottom = height - (compact ? 92 : 116);
         const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
         const center = width * 0.56;
+        const profileScale = compact ? 0.82 : 1;
+        const profileTop = plotTop - 52 * profileScale;
+        const profile = el('path', {
+          class: 'dor-profile-head',
+          d: [
+            `M${center - 7 * profileScale},${plotTop + 3}`,
+            `C${center - 10 * profileScale},${plotTop - 5 * profileScale} ${center - 18 * profileScale},${plotTop - 14 * profileScale} ${center - 19 * profileScale},${plotTop - 27 * profileScale}`,
+            `C${center - 20 * profileScale},${profileTop + 12 * profileScale} ${center - 11 * profileScale},${profileTop + 2 * profileScale} ${center + 1 * profileScale},${profileTop}`,
+            `C${center + 11 * profileScale},${profileTop - 1 * profileScale} ${center + 18 * profileScale},${profileTop + 4 * profileScale} ${center + 19 * profileScale},${profileTop + 11 * profileScale}`,
+            `C${center + 20 * profileScale},${profileTop + 17 * profileScale} ${center + 18 * profileScale},${profileTop + 19 * profileScale} ${center + 24 * profileScale},${profileTop + 23 * profileScale}`,
+            `C${center + 28 * profileScale},${profileTop + 26 * profileScale} ${center + 25 * profileScale},${profileTop + 29 * profileScale} ${center + 19 * profileScale},${profileTop + 29 * profileScale}`,
+            `C${center + 18 * profileScale},${profileTop + 33 * profileScale} ${center + 22 * profileScale},${profileTop + 34 * profileScale} ${center + 22 * profileScale},${profileTop + 37 * profileScale}`,
+            `C${center + 22 * profileScale},${profileTop + 40 * profileScale} ${center + 18 * profileScale},${profileTop + 40 * profileScale} ${center + 16 * profileScale},${profileTop + 41 * profileScale}`,
+            `C${center + 17 * profileScale},${profileTop + 44 * profileScale} ${center + 18 * profileScale},${profileTop + 47 * profileScale} ${center + 15 * profileScale},${profileTop + 49 * profileScale}`,
+            `C${center + 13 * profileScale},${profileTop + 51 * profileScale} ${center + 10 * profileScale},${profileTop + 50 * profileScale} ${center + 9 * profileScale},${plotTop + 3}`,
+            'Z'
+          ].join(' '),
+          'aria-hidden': 'true'
+        });
+        svg.appendChild(profile);
         const maxN = Math.max(...months.map((month) => month.n));
         const geometry = {};
 
