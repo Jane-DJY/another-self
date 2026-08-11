@@ -1977,6 +1977,40 @@ html>body{padding:0}</style>
         });
         svg.appendChild(figureLayer);
 
+        const decorativeTagLayout = compact
+          ? [
+              [-46, -101, 25, 13, -5, 2], [-13, -106, 22, 14, 4, 0], [22, -100, 29, 13, -3, 3],
+              [-75, -86, 27, 15, 5, 1], [51, -84, 25, 14, -5, 4],
+              [-82, -63, 23, 14, -4, 3], [63, -61, 22, 13, 6, 2],
+              [-70, -44, 31, 14, 3, 4], [-35, -47, 23, 13, -6, 0],
+              [10, -46, 29, 14, 5, 1], [45, -40, 26, 13, -4, 3],
+              [-48, -27, 27, 12, 5, 2], [20, -25, 34, 12, -3, 4]
+            ]
+          : [
+              [-61, -105, 34, 16, -5, 2], [-18, -111, 30, 17, 4, 0], [29, -104, 39, 16, -3, 3],
+              [-98, -88, 37, 18, 5, 1], [67, -87, 34, 17, -5, 4],
+              [-106, -63, 31, 17, -4, 3], [82, -62, 30, 16, 6, 2],
+              [-91, -43, 42, 17, 3, 4], [-46, -47, 31, 16, -6, 0],
+              [13, -46, 39, 17, 5, 1], [59, -39, 35, 16, -4, 3],
+              [-63, -25, 37, 15, 5, 2], [26, -24, 46, 15, -3, 4]
+            ];
+        decorativeTagLayout.forEach(([dx, dy, blockWidth, blockHeight, rotation, colorIndex]) => {
+          const blockX = center + dx * profileScale;
+          const blockY = plotTop + dy * profileScale;
+          svg.appendChild(el('rect', {
+            x: blockX,
+            y: blockY,
+            width: blockWidth * profileScale,
+            height: blockHeight * profileScale,
+            rx: 2.2 * profileScale,
+            fill: categories[colorIndex].color,
+            opacity: 0.9,
+            transform: `rotate(${rotation} ${blockX + blockWidth * profileScale / 2} ${blockY + blockHeight * profileScale / 2})`,
+            'aria-hidden': 'true',
+            style: 'filter:drop-shadow(0 1px 1px rgb(60 45 34 / 0.12))'
+          }));
+        });
+
         const legendLayout = compact
           ? [
               [-49, -87, 52, -4], [-2, -91, 56, 3],
