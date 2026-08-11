@@ -1853,12 +1853,15 @@ html>body{padding:0}</style>
       function animateFutureGrowth(svg, startY, endY, width) {
         if (forecastAnimationFrame) cancelAnimationFrame(forecastAnimationFrame);
         svg.classList.remove('dor-idle-motion');
+        const pageBackground = getComputedStyle(document.documentElement).backgroundColor;
         const cover = el('rect', {
           x: 0,
           y: startY,
           width,
           height: Math.max(0, endY - startY + 3),
-          fill: 'var(--dor-bg)',
+          fill: pageBackground && pageBackground !== 'rgba(0, 0, 0, 0)'
+            ? pageBackground
+            : '#ebe3d7',
           'aria-hidden': 'true'
         });
         svg.appendChild(cover);
