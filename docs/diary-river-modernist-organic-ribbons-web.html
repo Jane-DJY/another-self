@@ -2040,6 +2040,36 @@ html>body{padding:0}</style>
           widths.forEach((value, index) => { cumulative[index] += value; });
         });
 
+        const neckFadeId = 'dor-neck-fade';
+        const fadeDefs = el('defs');
+        const neckFade = el('linearGradient', {
+          id: neckFadeId,
+          x1: 0,
+          y1: 0,
+          x2: 0,
+          y2: 1
+        });
+        neckFade.appendChild(el('stop', {
+          offset: '0%',
+          'stop-color': 'var(--dor-bg)',
+          'stop-opacity': 1
+        }));
+        neckFade.appendChild(el('stop', {
+          offset: '100%',
+          'stop-color': 'var(--dor-bg)',
+          'stop-opacity': 0
+        }));
+        fadeDefs.appendChild(neckFade);
+        svg.appendChild(fadeDefs);
+        svg.appendChild(el('rect', {
+          x: center - firstWidth / 2 - 1,
+          y: plotTop - 1,
+          width: firstWidth + 2,
+          height: compact ? 27 : 34,
+          fill: `url(#${neckFadeId})`,
+          'aria-hidden': 'true'
+        }));
+
         const labels = predictionOpen
           ? [
               { id: 'theme-work', key: 'work', month: 2, text: '工作' },
