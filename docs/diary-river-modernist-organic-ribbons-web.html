@@ -1,0 +1,2230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>时间都去哪儿了？｜日记河流与未来情景</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed="true"],
+    [aria-selected="true"],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+</head>
+<body>
+<section id="diary-river-organic-ribbons" aria-label="2026 年日记现代主义有机丝带图">
+  <style>
+    html, body { background: #ebe3d7 !important; }
+    #diary-river-organic-ribbons {
+      width: 100%;
+      --dor-bg: #f1e3ce;
+      --dor-text: #ffffff;
+      --dor-title-text: #22221f;
+      --dor-outside-event-text: #22221f;
+      --dor-muted: #6e665b;
+      --dor-separator: #f1e3ce;
+      --dor-separator-width: 1.35;
+      --dor-ribbon-opacity: 0.95;
+      --dor-max-width: 0.72;
+      --dor-min-width: 0.35;
+      --dor-theme-font-size: 12px;
+      --dor-theme-wrap-width: 104;
+      --dor-event-font-size: 8px;
+      --dor-event-wrap-width: 76;
+      --dor-event-bg-opacity: 0;
+      --dor-work: #165d91;
+      --dor-creation: #d7192d;
+      --dor-learning: #f4b51b;
+      --dor-venture: #ef7d17;
+      --dor-life: #0b5a43;
+    }
+    #diary-river-organic-ribbons .dor-editor {
+      display: grid;
+      grid-template-columns: minmax(0, min(720px, calc(100svh * 0.75), calc(100% - 236px))) 220px;
+      gap: 1rem;
+      align-items: start;
+      justify-content: start;
+    }
+    #diary-river-organic-ribbons .dor-poster {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--dor-bg);
+    }
+    #diary-river-organic-ribbons .dor-poster > [data-poster] { width: 100%; height: 100%; }
+    #diary-river-organic-ribbons .dor-heading {
+      position: absolute;
+      top: 1.05rem;
+      left: 1.35rem;
+      right: 1.35rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--dor-title-text);
+      font-family: ui-serif, Georgia, "Songti SC", serif;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    #diary-river-organic-ribbons .dor-history-title,
+    #diary-river-organic-ribbons .dor-prediction-title { pointer-events: auto; }
+    #diary-river-organic-ribbons .dor-prediction-title { display: none; }
+    #diary-river-organic-ribbons.is-predicting .dor-history-title { display: none; }
+    #diary-river-organic-ribbons.is-predicting .dor-prediction-title {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.18em;
+    }
+    #diary-river-organic-ribbons .dor-scenario-select {
+      max-width: 7.8em;
+      border: 0;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      color: inherit;
+      padding: 0 0.1em 0.05em;
+      font-family: inherit;
+      font-size: 0.92em;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-predict-trigger {
+      pointer-events: auto;
+      border: 1px solid color-mix(in srgb, var(--dor-title-text) 35%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--dor-bg) 88%, transparent);
+      color: var(--dor-title-text);
+      padding: 0.22rem 0.58rem;
+      font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-future-node { cursor: pointer; }
+    #diary-river-organic-ribbons .dor-future-dot {
+      fill: var(--dor-text);
+      stroke: var(--dor-bg);
+      stroke-width: 1;
+    }
+    #diary-river-organic-ribbons .dor-future-text {
+      fill: var(--dor-text);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+    }
+    #diary-river-organic-ribbons .dor-node-popover {
+      position: absolute;
+      z-index: 5;
+      width: min(12rem, calc(100% - 1.4rem));
+      padding: 0.58rem 0.65rem;
+      border: 1px solid color-mix(in srgb, var(--dor-title-text) 25%, transparent);
+      border-radius: 0.55rem;
+      background: color-mix(in srgb, var(--dor-bg) 96%, white 4%);
+      color: var(--dor-text);
+      box-shadow: 0 0.5rem 1.5rem color-mix(in srgb, var(--dor-text) 16%, transparent);
+      font: 400 11px/1.45 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    }
+    #diary-river-organic-ribbons .dor-node-popover[hidden] { display: none; }
+    #diary-river-organic-ribbons .dor-node-popover-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-block-end: 0.25rem;
+      font-weight: 500;
+    }
+    #diary-river-organic-ribbons .dor-node-popover p { margin: 0; }
+    #diary-river-organic-ribbons .dor-node-popover-close {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-sidebar {
+      position: relative;
+      min-width: 0;
+      max-height: min(700px, 100svh);
+      overflow-y: auto;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+    #diary-river-organic-ribbons .dor-sidebar .form-range { min-height: 1rem; }
+    #diary-river-organic-ribbons .dor-settings {
+      margin: 0;
+      padding-block: 0.65rem;
+      border-block: 1px solid var(--border);
+    }
+    #diary-river-organic-ribbons .dor-settings summary {
+      cursor: pointer;
+      font-weight: 500;
+      padding-inline-end: 5.5rem;
+    }
+    #diary-river-organic-ribbons .dor-settings-body {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.35rem 0.55rem;
+      margin-block-start: 0.4rem;
+    }
+    #diary-river-organic-ribbons .dor-range {
+      display: grid;
+      gap: 0.12rem;
+    }
+    #diary-river-organic-ribbons .dor-control-head,
+    #diary-river-organic-ribbons .dor-color {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+    #diary-river-organic-ribbons .dor-setting-value {
+      color: var(--muted-foreground);
+      font-variant-numeric: tabular-nums;
+    }
+    #diary-river-organic-ribbons .dor-group-title,
+    #diary-river-organic-ribbons .dor-color-grid,
+    #diary-river-organic-ribbons .dor-position-settings { grid-column: 1 / -1; }
+    #diary-river-organic-ribbons .dor-group-title {
+      margin: 0.1rem 0 0;
+      color: var(--muted-foreground);
+    }
+    #diary-river-organic-ribbons .dor-color-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.25rem 0.65rem;
+    }
+    #diary-river-organic-ribbons .dor-position-settings {
+      border-block: 1px solid var(--border);
+      padding-block: 0.45rem;
+    }
+    #diary-river-organic-ribbons .dor-position-settings summary {
+      cursor: pointer;
+      font-weight: 500;
+    }
+    #diary-river-organic-ribbons .dor-position-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem;
+      margin-block-start: 0.5rem;
+    }
+    #diary-river-organic-ribbons .dor-position-target { grid-column: 1 / -1; }
+    #diary-river-organic-ribbons svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #diary-river-organic-ribbons .dor-title,
+    #diary-river-organic-ribbons .dor-theme,
+    #diary-river-organic-ribbons .dor-event {
+      fill: var(--dor-text);
+    }
+    #diary-river-organic-ribbons .dor-subtitle,
+    #diary-river-organic-ribbons .dor-legend,
+    #diary-river-organic-ribbons .dor-month,
+    #diary-river-organic-ribbons .dor-note {
+      fill: var(--dor-muted);
+    }
+    #diary-river-organic-ribbons .dor-title {
+      fill: var(--dor-title-text);
+      font-family: ui-serif, Georgia, "Songti SC", serif;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    #diary-river-organic-ribbons .dor-subtitle,
+    #diary-river-organic-ribbons .dor-legend,
+    #diary-river-organic-ribbons .dor-month,
+    #diary-river-organic-ribbons .dor-note,
+    #diary-river-organic-ribbons .dor-theme,
+    #diary-river-organic-ribbons .dor-event {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    #diary-river-organic-ribbons .dor-theme {
+      font-size: var(--dor-theme-font-size);
+      font-weight: 500;
+    }
+    #diary-river-organic-ribbons .dor-event {
+      font-size: var(--dor-event-font-size);
+    }
+    #diary-river-organic-ribbons .dor-event-outside { fill: var(--dor-outside-event-text); }
+    #diary-river-organic-ribbons .dor-event-dot.dor-event-dot-outside { fill: var(--dor-outside-event-text); }
+    #diary-river-organic-ribbons .dor-note {
+      font-size: 8px;
+    }
+    #diary-river-organic-ribbons .dor-ribbon {
+      opacity: var(--dor-ribbon-opacity);
+      stroke: var(--dor-separator);
+      stroke-width: var(--dor-separator-width);
+      stroke-linejoin: round;
+    }
+    #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
+    #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
+    #diary-river-organic-ribbons .dor-event-bg { fill: var(--dor-bg); opacity: var(--dor-event-bg-opacity); }
+    #diary-river-organic-ribbons .dor-rule { stroke: #8c8172; stroke-width: 0.7; opacity: 0.35; }
+    #diary-river-organic-ribbons .dor-now-line {
+      stroke: var(--dor-title-text);
+      stroke-width: 1.4;
+      stroke-dasharray: 6 4;
+      opacity: 0.88;
+    }
+    #diary-river-organic-ribbons .dor-now-label,
+    #diary-river-organic-ribbons .dor-forecast-label {
+      fill: var(--dor-title-text);
+      font: 500 10px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    }
+    #diary-river-organic-ribbons .dor-replay {
+      position: absolute;
+      top: 0.38rem;
+      right: 0;
+      z-index: 2;
+      border: 1px solid color-mix(in srgb, var(--dor-title-text) 35%, transparent);
+      border-radius: 4px;
+      padding: 0.24rem 0.42rem;
+      color: var(--dor-title-text);
+      background: color-mix(in srgb, var(--dor-bg) 88%, transparent);
+      font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-replay:hover { background: var(--dor-bg); }
+    #diary-river-organic-ribbons .dor-animated:not(.dor-visible) { opacity: 0 !important; }
+    #diary-river-organic-ribbons .dor-animated {
+      transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #diary-river-organic-ribbons .dor-ribbon.dor-visible { opacity: var(--dor-ribbon-opacity); }
+    #diary-river-organic-ribbons .dor-event-bg.dor-visible { opacity: var(--dor-event-bg-opacity); }
+    #diary-river-organic-ribbons svg.dor-idle-motion .dor-ribbon {
+      animation: dor-afterglow 6s ease-in-out infinite;
+      animation-delay: calc(var(--dor-motion-order, 0) * -0.7s);
+    }
+    @keyframes dor-afterglow {
+      0%, 100% { filter: saturate(1) brightness(1); }
+      50% { filter: saturate(1.035) brightness(1.025); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #diary-river-organic-ribbons .dor-animated { transition: none; }
+      #diary-river-organic-ribbons svg.dor-idle-motion .dor-ribbon { animation: none; }
+    }
+    @media (max-width: 650px) {
+      #diary-river-organic-ribbons .dor-editor { grid-template-columns: 1fr; }
+      #diary-river-organic-ribbons .dor-poster { max-width: 540px; justify-self: center; }
+      #diary-river-organic-ribbons .dor-sidebar { order: 2; }
+      #diary-river-organic-ribbons .dor-heading { top: 0.78rem; left: 1rem; right: 1rem; font-size: 20px; }
+    }
+    /* Web edition: preserve the poster, replace the editor controls with interpretation. */
+    #diary-river-organic-ribbons { max-width: 1280px; margin: 0 auto; }
+    #diary-river-organic-ribbons .dor-editor {
+      grid-template-columns: minmax(420px, 0.92fr) minmax(360px, 1.08fr);
+      gap: clamp(28px, 4vw, 72px);
+      align-items: center;
+      padding: clamp(20px, 4vw, 56px);
+      min-height: 100svh;
+    }
+    #diary-river-organic-ribbons .dor-poster { max-width: 620px; justify-self: end; }
+    #diary-river-organic-ribbons .dor-sidebar { display: none !important; }
+    #diary-river-organic-ribbons .dor-reading {
+      min-width: 0;
+      max-width: 560px;
+      color: #28251f;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    }
+    #diary-river-organic-ribbons .dor-reading-kicker {
+      margin: 0 0 10px;
+      color: #7d7163;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+    }
+    #diary-river-organic-ribbons .dor-reading h2 {
+      margin: 0 0 12px;
+      font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: -0.025em;
+    }
+    #diary-river-organic-ribbons .dor-reading-lead {
+      max-width: 42em;
+      margin: 0 0 28px;
+      color: #70675b;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    #diary-river-organic-ribbons .dor-insight-list,
+    #diary-river-organic-ribbons .dor-role-list { display: grid; gap: 0; }
+    #diary-river-organic-ribbons .dor-insight,
+    #diary-river-organic-ribbons .dor-role {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 18px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(40, 37, 31, 0.16);
+    }
+    #diary-river-organic-ribbons .dor-insight-time,
+    #diary-river-organic-ribbons .dor-role-index {
+      color: #887a69;
+      font: 500 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    #diary-river-organic-ribbons .dor-insight h3,
+    #diary-river-organic-ribbons .dor-role h3 { margin: 0 0 6px; font-size: 16px; font-weight: 500; }
+    #diary-river-organic-ribbons .dor-insight p,
+    #diary-river-organic-ribbons .dor-role p { margin: 0; color: #5f574d; font-size: 13px; line-height: 1.65; }
+    #diary-river-organic-ribbons .dor-metric { color: #b02a32; font-weight: 500; }
+    #diary-river-organic-ribbons .dor-timeline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 8px;
+      margin: 9px 0;
+      color: #3d3933;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    #diary-river-organic-ribbons .dor-timeline span:not(:last-child)::after { content: " →"; color: #aa9c8b; }
+    #diary-river-organic-ribbons .dor-role-note { margin-top: 7px !important; }
+    #diary-river-organic-ribbons .dor-role-note strong { color: #35312b; }
+    #diary-river-organic-ribbons .dor-source {
+      display: inline-block;
+      margin-top: 9px;
+      color: #756858;
+      font-size: 11px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    #diary-river-organic-ribbons .dor-inference {
+      margin-top: 18px;
+      color: #8b8175;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    @media (max-width: 860px) {
+      #diary-river-organic-ribbons .dor-editor { grid-template-columns: 1fr; min-height: auto; }
+      #diary-river-organic-ribbons .dor-poster { width: min(100%, 560px); justify-self: center; }
+      #diary-river-organic-ribbons .dor-reading { max-width: 620px; justify-self: center; padding-bottom: 28px; }
+    }
+    @media (max-width: 480px) {
+      #diary-river-organic-ribbons .dor-editor { padding: 10px; gap: 28px; }
+      #diary-river-organic-ribbons .dor-insight,
+      #diary-river-organic-ribbons .dor-role { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+    }
+  </style>
+
+  <div class="dor-editor">
+    <div class="dor-poster">
+      <div class="dor-heading">
+        <span class="dor-history-title">时间都去哪儿了？</span>
+        <span class="dor-prediction-title">
+          <span>一年后我可能是</span>
+          <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
+            <option value="expert">创作型专家</option>
+            <option value="creator">独立创作者</option>
+            <option value="later">产品创业</option>
+          </select>
+        </span>
+        <button class="dor-predict-trigger" type="button" data-predict>预个测</button>
+      </div>
+      <div data-poster></div>
+      <div class="dor-node-popover" data-node-popover hidden>
+        <div class="dor-node-popover-head">
+          <span data-node-popover-title></span>
+          <button class="dor-node-popover-close" type="button" data-node-popover-close aria-label="关闭解释">×</button>
+        </div>
+        <p data-node-popover-detail></p>
+      </div>
+    </div>
+    <aside class="dor-sidebar" aria-label="设计参数">
+      <button class="dor-replay" type="button" data-replay aria-label="重新播放主题出现动画">↻ 重播动画</button>
+      <details class="dor-settings" open>
+        <summary>设计参数 · 3:4</summary>
+        <div class="dor-settings-body">
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>河流最大宽度</span><span class="dor-setting-value" data-value-for="max-width">72%</span></span>
+            <input class="form-range" type="range" min="0.42" max="0.72" step="0.01" value="0.72" data-setting="max-width">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>低记录月宽度</span><span class="dor-setting-value" data-value-for="min-width">35%</span></span>
+            <input class="form-range" type="range" min="0.18" max="0.6" step="0.01" value="0.35" data-setting="min-width">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>彩带透明度</span><span class="dor-setting-value" data-value-for="ribbon-opacity">95%</span></span>
+            <input class="form-range" type="range" min="0.45" max="1" step="0.05" value="0.95" data-setting="ribbon-opacity">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>分割线粗细</span><span class="dor-setting-value" data-value-for="separator-width">1.35 px</span></span>
+            <input class="form-range" type="range" min="0" max="5" step="0.25" value="1.35" data-setting="separator-width">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>主题文字大小</span><span class="dor-setting-value" data-value-for="theme-font-size">12 px</span></span>
+            <input class="form-range" type="range" min="8" max="22" step="1" value="12" data-setting="theme-font-size">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>主题文字宽度</span><span class="dor-setting-value" data-value-for="theme-wrap-width">104 px</span></span>
+            <input class="form-range" type="range" min="48" max="180" step="4" value="104" data-setting="theme-wrap-width">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>节点文字大小</span><span class="dor-setting-value" data-value-for="event-font-size">8 px</span></span>
+            <input class="form-range" type="range" min="6" max="20" step="1" value="8" data-setting="event-font-size">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>节点文字宽度</span><span class="dor-setting-value" data-value-for="event-wrap-width">76 px</span></span>
+            <input class="form-range" type="range" min="36" max="180" step="4" value="76" data-setting="event-wrap-width">
+          </label>
+          <label class="dor-range form-label">
+            <span class="dor-control-head"><span>节点背景透明度</span><span class="dor-setting-value" data-value-for="event-bg-opacity">0%</span></span>
+            <input class="form-range" type="range" min="0" max="1" step="0.05" value="0" data-setting="event-bg-opacity">
+          </label>
+
+          <details class="dor-position-settings">
+            <summary>逐条调整文字位置</summary>
+            <div class="dor-position-controls">
+              <label class="dor-position-target form-label">选择文字
+                <select class="form-select" data-position-target>
+                  <optgroup label="主题文字">
+                    <option value="theme-work">工作</option>
+                    <option value="theme-creation">个人创作</option>
+                    <option value="theme-learning">学习</option>
+                    <option value="theme-life">生活与关系</option>
+                  </optgroup>
+                  <optgroup label="节点文字">
+                    <option value="event-responsibility">承担负责人角色</option>
+                    <option value="event-first-feedback">数字艺术第一个小爆款</option>
+                    <option value="event-second-hit">第二个小爆款</option>
+                    <option value="event-later">「后来」产品规划</option>
+                    <option value="event-statistics">统计学学习</option>
+                    <option value="event-stock">炒股学习</option>
+                  </optgroup>
+                </select>
+              </label>
+              <label class="dor-range form-label">
+                <span class="dor-control-head"><span>左右位置</span><span class="dor-setting-value" data-position-value="x">0 px</span></span>
+                <input class="form-range" type="range" min="-80" max="80" step="1" value="0" data-position-axis="x">
+              </label>
+              <label class="dor-range form-label">
+                <span class="dor-control-head"><span>上下位置</span><span class="dor-setting-value" data-position-value="y">0 px</span></span>
+                <input class="form-range" type="range" min="-60" max="60" step="1" value="0" data-position-axis="y">
+              </label>
+            </div>
+          </details>
+
+          <p class="dor-group-title text-small">画面颜色</p>
+          <div class="dor-color-grid">
+            <label class="dor-color form-label">背景<input class="form-control form-control-color" type="color" value="#f1e3ce" data-setting="background"></label>
+            <label class="dor-color form-label">文字<input class="form-control form-control-color" type="color" value="#ffffff" data-setting="text"></label>
+            <label class="dor-color form-label">分割线<input class="form-control form-control-color" type="color" value="#f1e3ce" data-setting="separator"></label>
+            <label class="dor-color form-label">外部节点<input class="form-control form-control-color" type="color" value="#22221f" data-setting="outside-event-text"></label>
+          </div>
+
+          <p class="dor-group-title text-small">主题颜色</p>
+          <div class="dor-color-grid">
+            <label class="dor-color form-label">工作<input class="form-control form-control-color" type="color" value="#165d91" data-setting="work"></label>
+            <label class="dor-color form-label">个人创作<input class="form-control form-control-color" type="color" value="#d7192d" data-setting="creation"></label>
+            <label class="dor-color form-label">学习<input class="form-control form-control-color" type="color" value="#f4b51b" data-setting="learning"></label>
+            <label class="dor-color form-label">副业尝试<input class="form-control form-control-color" type="color" value="#ef7d17" data-setting="venture"></label>
+            <label class="dor-color form-label">生活与关系<input class="form-control form-control-color" type="color" value="#0b5a43" data-setting="life"></label>
+          </div>
+        </div>
+      </details>
+    </aside>
+    <aside class="dor-reading" data-reading aria-live="polite"></aside>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.getElementById('diary-river-organic-ribbons');
+      const host = root?.querySelector('[data-poster]');
+      if (!root || !host) return;
+      const poster = root.querySelector('.dor-poster');
+      const nodePopover = root.querySelector('[data-node-popover]');
+      const nodePopoverTitle = root.querySelector('[data-node-popover-title]');
+      const nodePopoverDetail = root.querySelector('[data-node-popover-detail]');
+      function hideNodePopover() {
+        if (nodePopover) nodePopover.hidden = true;
+      }
+      function showNodePopover(item, trigger) {
+        if (!poster || !nodePopover || !nodePopoverTitle || !nodePopoverDetail) return;
+        nodePopoverTitle.textContent = item.text;
+        nodePopoverDetail.textContent = item.detail;
+        nodePopover.hidden = false;
+        const posterRect = poster.getBoundingClientRect();
+        const triggerRect = trigger.getBoundingClientRect();
+        const popoverWidth = Math.min(192, posterRect.width - 22);
+        const preferredLeft = triggerRect.left - posterRect.left - popoverWidth / 2;
+        const left = Math.max(11, Math.min(preferredLeft, posterRect.width - popoverWidth - 11));
+        const preferredTop = triggerRect.bottom - posterRect.top + 7;
+        const top = Math.max(11, Math.min(preferredTop, posterRect.height - nodePopover.offsetHeight - 11));
+        nodePopover.style.left = `${left}px`;
+        nodePopover.style.top = `${top}px`;
+      }
+
+      const historyMonths = [
+        { label: '1月', n: 6 }, { label: '2月', n: 6 }, { label: '3月', n: 27 },
+        { label: '4月', n: 24 }, { label: '5月', n: 23 }, { label: '6月', n: 25 },
+        { label: '7月', n: 29 }
+      ];
+      const historyCategories = [
+        { key: 'work', label: '工作', color: 'var(--dor-work)', values: [76.3, 87.6, 43.1, 42.9, 49.1, 45.7, 37.6] },
+        { key: 'creation', label: '个人创作', color: 'var(--dor-creation)', values: [6.4, 5.6, 10.4, 13.2, 10.2, 21.3, 41.3] },
+        { key: 'learning', label: '学习', color: 'var(--dor-learning)', values: [4.7, 5.3, 13.8, 25.1, 5.5, 14.1, 6.2] },
+        { key: 'venture', label: '副业尝试', color: 'var(--dor-venture)', values: [1.4, 0, 0.4, 0, 0.7, 0, 2.6] },
+        { key: 'life', label: '生活与关系', color: 'var(--dor-life)', values: [11.3, 1.6, 32.3, 18.9, 34.5, 18.9, 12.3] }
+      ];
+      const futureLabels = ['8月', '9月', '10月', '11月', '12月', '27·1月', '2月', '3月', '4月', '5月', '6月', '7月'];
+      const scenarios = {
+        expert: {
+          n: [28, 29, 27, 30, 31, 29, 32, 31, 33, 32, 34, 35],
+          target: { learning: 12, work: 36, venture: 5, creation: 39, life: 8 },
+          nodes: [
+            { month: 9, key: 'creation', text: '沉淀一套创作方法', detail: '把数据分析、视觉表达和叙事过程整理成可复用的步骤、模板与判断标准，并用真实作品持续校正。' },
+            { month: 14, key: 'work', text: '主导一次高影响项目', detail: '主动承担一个能够同时体现业务理解、数据能力和表达能力的关键项目，让方法真正转化为组织影响力。' }
+          ]
+        },
+        creator: {
+          n: [27, 26, 28, 29, 27, 30, 31, 29, 32, 33, 34, 36],
+          target: { learning: 7, work: 12, venture: 10, creation: 58, life: 13 },
+          nodes: [
+            { month: 9, key: 'creation', text: '保持稳定周更', detail: '建立能够连续执行的选题、制作和发布节奏，用持续作品而不是偶发爆款验证内容方向。' },
+            { month: 14, key: 'creation', text: '验证可重复付费合作', detail: '关注主动咨询、复访和付费合作是否连续发生；只有收入来源能够重复，才逐步降低主业投入。' }
+          ]
+        },
+        later: {
+          n: [26, 25, 27, 28, 26, 29, 30, 28, 31, 32, 33, 34],
+          target: { learning: 12, work: 18, venture: 35, creation: 22, life: 13 },
+          nodes: [
+            { month: 9, key: 'venture', text: '完成 3–5 人验证', detail: '邀请少量真实用户自愿提供个人数据，验证结果是否准确、是否建立隐私信任，以及是否愿意继续使用。' },
+            { month: 14, key: 'venture', text: '形成可重复交付', detail: '把半人工服务整理成稳定流程，观察交付成本、复购或转介绍和真实付费意愿，再决定是否产品化。' }
+          ]
+        }
+      };
+      const historicalInsights = [
+        { time: '1—2月', title: '先把责任扛住', body: '工作占比从 <span class="dor-metric">76.3%</span> 升到 <span class="dor-metric">87.6%</span>。这段更像身份切换期：精力先集中到新的负责人与组织责任上。' },
+        { time: '3—4月', title: '精力开始重新分配', body: '工作回落到约 43%，4 月学习达到 <span class="dor-metric">25.1%</span>。你不是简单地“少工作”，而是在给新的能力结构腾位置。' },
+        { time: '5—6月', title: '创作反馈回路被点亮', body: '第一次明显反馈之后，个人创作从 <span class="dor-metric">10.2%</span> 升到 <span class="dor-metric">21.3%</span>。外部反馈开始改变下一阶段的精力选择。' },
+        { time: '7月', title: '个人创作第一次超过工作', body: '个人创作达到 <span class="dor-metric">41.3%</span>，高于工作 <span class="dor-metric">37.6%</span>。同时出现方法沉淀、持续学习与产品雏形，是一次身份重心的交叉点。' }
+      ];
+      const roleModels = {
+        expert: {
+          title: '创作型专家，可以向谁学习？',
+          lead: '共同点不是“更会画”，而是把观察、方法、作品与行业影响力连接成一条长期路径。',
+          people: [
+            { name: 'Giorgia Lupi', role: '把数据变成人文语言', timeline: ['建筑与信息设计训练', '2011 创办 Accurat', '2016《Dear Data》', '2019 成为 Pentagram 合伙人'], right: '用长周期个人实验建立辨识度，再把方法带进出版、品牌与公共议题。', detour: '只模仿视觉风格，却没有持续采集、解释和写作的方法。', source: 'https://www.pentagram.com/about/giorgia-lupi' },
+            { name: 'Nadieh Bremer', role: '把分析能力变成定制视觉叙事', timeline: ['天文学背景', '数据科学工作', '深入 D3 与视觉实验', '2017 创立 Visual Cinnamon'], right: '保留技术深度，同时坚持从数据与传播目标出发，形成从草图到迭代的完整流程。', detour: '为了追求复杂而复杂，忽略作品要帮助谁理解什么。', source: 'https://www.visualcinnamon.com/about/' },
+            { name: 'Shirley Wu', role: '用作品系列积累专业声誉', timeline: ['软件工程', '独立数据可视化', '持续公开作品与演讲', '形成鲜明的叙事型作品语言'], right: '把代码、设计和讲故事放进同一个作品里，让每个项目同时成为案例与教学材料。', detour: '项目之间没有共同主题，作品很多却难以沉淀成个人方法。', source: 'https://sxywu.github.io/' }
+          ]
+        },
+        creator: {
+          title: '独立创作者，可以向谁学习？',
+          lead: '三条路径都先建立稳定输出和清晰主题，再让内容逐步长出产品与收入。',
+          people: [
+            { name: 'Jack Butcher', role: '把每日视觉练习变成产品系统', timeline: ['十年品牌与代理工作', '2019 每日一张黑白视觉', '形成课程与工具', '2020 销售突破 100 万美元'], right: '极度收窄形式与主题，用持续公开作品积累分发，再把方法产品化。', detour: '长期停留在按小时出售服务，或尚未形成视觉语法就急着扩产品线。', source: 'https://visualizevalue.com/about' },
+            { name: 'Ali Abdaal', role: '用副业期验证再全职', timeline: ['2017 开始 YouTube', '6 个月发布 52 支视频', '医生阶段持续副业创作', '2020 后全职并扩展书与产品'], right: '在主业仍提供安全垫时，用高频作品验证受众与主题，信号足够强后再切换身份。', detour: '过早离开主业，或收入线扩张太快导致核心主题变模糊。', source: 'https://aliabdaal.com/about/' },
+            { name: 'Austin Kleon', role: '围绕一个母题长期写作', timeline: ['日常剪贴与笔记', '公开创作过程', '把短内容发展成书', '持续用演讲与通讯连接读者'], right: '作品、过程和阅读输入互相供养；不等“完成”才分享，而是持续展示正在形成的思考。', detour: '只追逐平台热点，没有可以反复返回的个人母题。', source: 'https://austinkleon.com/about/' }
+          ]
+        },
+        later: {
+          title: '产品创业，可以向谁学习？',
+          lead: '更适合你的不是先做“大平台”，而是从自己反复遇到的问题中提炼方法，再用小范围真实用户验证。',
+          people: [
+            { name: 'Anne-Laure Le Cunff', role: '从公开实验长出学习产品', timeline: ['离开 Google', '一次创业尝试未持续', '100 个工作日连续写作', '形成 Ness Labs、研究与书'], right: '把失败转成研究问题，用稳定写作吸引同类，再逐渐形成社区与产品。', detour: '先造完整产品再找需求；她后来的路径更像先内容、再社区、再产品。', source: 'https://nesslabs.com/author/annelaure' },
+            { name: 'Ryder Carroll', role: '把个人方法变成全球产品', timeline: ['长期打磨自己的笔记法', '2007 第一次教给别人', '2013 两周上线教程网站', '2014 社区反馈推动众筹与实体本'], right: '先免费讲清方法，看用户如何改造它；产品方向由真实使用行为而不是想象决定。', detour: '一开始就把方法做得过重，或替用户规定唯一正确的使用方式。', source: 'https://bulletjournal.com/pages/about' },
+            { name: 'Tiago Forte', role: '把知识工作流产品化', timeline: ['从个人数字笔记解决真实问题', '2013 尝试线上课程', '博客持续验证方法', '发展为课程、书与工具生态'], right: '先记录自己如何解决问题，再用文章测试概念，最后把被反复需要的步骤打包。', detour: '把零散知识直接包装成产品，却没有先经过公开写作和用户反馈。', source: 'https://fortelabs.com/blog/the-story-behind-basb/' }
+          ]
+        }
+      };
+      let predictionOpen = false;
+      let activeScenario = 'expert';
+      let months = historyMonths;
+      let categories = historyCategories;
+
+      function projectedValues(item, target, phase) {
+        const start = item.values[item.values.length - 1];
+        return Array.from({ length: 12 }, (_, index) => {
+          const t = (index + 1) / 12;
+          const eased = t * t * (3 - 2 * t);
+          const wave = Math.sin((index + 1) * Math.PI / 3 + phase) * 1.1 * (1 - t);
+          return Math.max(0, start + (target - start) * eased + wave);
+        });
+      }
+
+      function useScenario(key) {
+        activeScenario = key;
+        const scenario = scenarios[key];
+        const forecast = historyCategories.map((item, index) => ({
+          ...item,
+          values: projectedValues(item, scenario.target[item.key], index)
+        }));
+        for (let monthIndex = 0; monthIndex < 12; monthIndex += 1) {
+          const total = forecast.reduce((sum, item) => sum + item.values[monthIndex], 0);
+          forecast.forEach((item) => { item.values[monthIndex] = item.values[monthIndex] / total * 100; });
+        }
+        months = [...historyMonths, ...futureLabels.map((label, index) => ({ label, n: scenario.n[index], forecast: true }))];
+        categories = historyCategories.map((item, index) => ({ ...item, values: [...item.values, ...forecast[index].values] }));
+      }
+      const reading = root.querySelector('[data-reading]');
+      function renderReading() {
+        if (!reading) return;
+        if (!predictionOpen) {
+          reading.innerHTML = `
+            <p class="dor-reading-kicker">从 1—7 月的日记主题中看见</p>
+            <h2>四次精力转向</h2>
+            <p class="dor-reading-lead">河流高度表示当月日记主题中的注意力分布，不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</p>
+            <div class="dor-insight-list">${historicalInsights.map(item => `
+              <article class="dor-insight"><div class="dor-insight-time">${item.time}</div><div><h3>${item.title}</h3><p>${item.body}</p></div></article>
+            `).join('')}</div>`;
+          return;
+        }
+        const model = roleModels[activeScenario];
+        reading.innerHTML = `
+          <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
+          <h2>${model.title}</h2>
+          <p class="dor-reading-lead">${model.lead}</p>
+          <div class="dor-role-list">${model.people.map((person, index) => `
+            <article class="dor-role">
+              <div class="dor-role-index">0${index + 1}</div>
+              <div>
+                <h3>${person.name} · ${person.role}</h3>
+                <div class="dor-timeline">${person.timeline.map(point => `<span>${point}</span>`).join('')}</div>
+                <p class="dor-role-note"><strong>做对了：</strong>${person.right}</p>
+                <p class="dor-role-note"><strong>可避免的弯路：</strong>${person.detour}</p>
+                <a class="dor-source" href="${person.source}" target="_blank" rel="noreferrer">查看公开经历 ↗</a>
+              </div>
+            </article>
+          `).join('')}</div>
+          <p class="dor-inference">“可避免的弯路”是基于公开经历为你的路径做的推导，不是当事人的原话，也不是对未来的概率判断。</p>`;
+      }
+      const milestones = [
+        { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: -8, outside: true },
+        { id: 'event-first-feedback', month: 4, key: 'creation', text: '数字艺术第一个小爆款', dy: -8, wrapWidth: 48 },
+        { id: 'event-second-hit', month: 6, key: 'creation', text: '第二个小爆款', dy: -9 },
+        { id: 'event-later', month: 6, key: 'venture', text: '「后来」产品规划', dy: 13, outside: true },
+        { id: 'event-statistics', month: 5.5, key: 'learning', text: '统计学学习', dy: -8 },
+        { id: 'event-stock', month: 4.5, key: 'learning', text: '炒股学习', dy: -8 }
+      ];
+      const positionOffsets = {
+        'theme-work': { x: 0, y: 0 },
+        'theme-creation': { x: 0, y: 8 },
+        'theme-learning': { x: 0, y: 0 },
+        'theme-life': { x: 2, y: 18 },
+        'event-responsibility': { x: 0, y: 0 },
+        'event-first-feedback': { x: 0, y: 0 },
+        'event-second-hit': { x: 0, y: 0 },
+        'event-later': { x: 0, y: 0 },
+        'event-statistics': { x: 0, y: 0 },
+        'event-stock': { x: 0, y: 0 }
+      };
+      const ns = 'http://www.w3.org/2000/svg';
+      let animationTimers = [];
+      let forecastAnimationFrame = 0;
+      let forecastGrowRequested = false;
+      const settingMap = {
+        'max-width': { variable: '--dor-max-width', format: (value) => `${Math.round(Number(value) * 100)}%` },
+        'min-width': { variable: '--dor-min-width', format: (value) => `${Math.round(Number(value) * 100)}%` },
+        'ribbon-opacity': { variable: '--dor-ribbon-opacity', format: (value) => `${Math.round(Number(value) * 100)}%` },
+        'separator-width': { variable: '--dor-separator-width', unit: '', format: (value) => `${value} px` },
+        'theme-font-size': { variable: '--dor-theme-font-size', unit: 'px', format: (value) => `${value} px` },
+        'theme-wrap-width': { variable: '--dor-theme-wrap-width', format: (value) => `${value} px` },
+        'event-font-size': { variable: '--dor-event-font-size', unit: 'px', format: (value) => `${value} px` },
+        'event-wrap-width': { variable: '--dor-event-wrap-width', format: (value) => `${value} px` },
+        'event-bg-opacity': { variable: '--dor-event-bg-opacity', format: (value) => `${Math.round(Number(value) * 100)}%` },
+        background: { variable: '--dor-bg' },
+        text: { variable: '--dor-text' },
+        'outside-event-text': { variable: '--dor-outside-event-text' },
+        separator: { variable: '--dor-separator' },
+        work: { variable: '--dor-work' },
+        creation: { variable: '--dor-creation' },
+        learning: { variable: '--dor-learning' },
+        venture: { variable: '--dor-venture' },
+        life: { variable: '--dor-life' }
+      };
+
+      function el(tag, attrs = {}, text = '') {
+        const node = document.createElementNS(ns, tag);
+        Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, String(value)));
+        if (text) node.textContent = text;
+        return node;
+      }
+
+      function smooth(points) {
+        let d = `M${points[0][0]},${points[0][1]}`;
+        for (let i = 0; i < points.length - 1; i += 1) {
+          const p0 = points[i - 1] || points[i];
+          const p1 = points[i];
+          const p2 = points[i + 1];
+          const p3 = points[i + 2] || p2;
+          const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+          const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+          const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+          const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+          d += ` C${c1x},${c1y} ${c2x},${c2y} ${p2[0]},${p2[1]}`;
+        }
+        return d;
+      }
+
+      function wrapText(text, maxWidth, fontSize) {
+        const lines = [];
+        let line = '';
+        let lineWidth = 0;
+        [...text].forEach((character) => {
+          const characterWidth = /[\u2e80-\u9fff]/.test(character)
+            ? fontSize
+            : character === ' ' ? fontSize * 0.35 : fontSize * 0.58;
+          if (line && lineWidth + characterWidth > maxWidth) {
+            lines.push(line.trimEnd());
+            line = character.trimStart();
+            lineWidth = character.trim() ? characterWidth : 0;
+          } else {
+            line += character;
+            lineWidth += characterWidth;
+          }
+        });
+        if (line.trim()) lines.push(line.trim());
+        return lines.length ? lines : [''];
+      }
+
+      function addWrappedText(svg, className, textValue, x, centerY, anchor, maxWidth, fontSize) {
+        const lines = wrapText(textValue, maxWidth, fontSize);
+        const lineHeight = fontSize + 3;
+        const startY = centerY - ((lines.length - 1) * lineHeight) / 2;
+        const text = el('text', { class: className, x, y: startY, 'text-anchor': anchor });
+        lines.forEach((line, index) => {
+          text.appendChild(el('tspan', { x, dy: index === 0 ? 0 : lineHeight }, line));
+        });
+        svg.appendChild(text);
+        return text;
+      }
+
+      function pointAt(points, monthPosition) {
+        const lower = Math.floor(monthPosition);
+        const upper = Math.min(points.length - 1, Math.ceil(monthPosition));
+        if (lower === upper) return points[lower];
+        const progress = monthPosition - lower;
+        return [
+          points[lower][0] + (points[upper][0] - points[lower][0]) * progress,
+          points[lower][1] + (points[upper][1] - points[lower][1]) * progress
+        ];
+      }
+
+      function playAnimation(svg) {
+        animationTimers.forEach(clearTimeout);
+        animationTimers = [];
+        svg.classList.remove('dor-idle-motion');
+        const animated = [...svg.querySelectorAll('[data-animate-theme]')];
+        animated.forEach((node) => node.classList.remove('dor-visible'));
+        const sequence = ['work', 'creation', 'learning', 'venture', 'life'];
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reducedMotion) {
+          animated.forEach((node) => node.classList.add('dor-visible'));
+          return;
+        }
+        sequence.forEach((key, index) => {
+          animationTimers.push(setTimeout(() => {
+            animated
+              .filter((node) => node.dataset.animateTheme === key)
+              .forEach((node) => node.classList.add('dor-visible'));
+          }, index * 620));
+        });
+        animationTimers.push(setTimeout(() => {
+          svg.classList.add('dor-idle-motion');
+        }, sequence.length * 620 + 500));
+      }
+
+      function revealAllThemes(svg) {
+        animationTimers.forEach(clearTimeout);
+        animationTimers = [];
+        svg.querySelectorAll('.dor-animated').forEach((node) => node.classList.add('dor-visible'));
+      }
+
+      function animateFutureGrowth(svg, startY, endY, width) {
+        if (forecastAnimationFrame) cancelAnimationFrame(forecastAnimationFrame);
+        svg.classList.remove('dor-idle-motion');
+        const cover = el('rect', {
+          x: 0,
+          y: startY,
+          width,
+          height: Math.max(0, endY - startY + 3),
+          fill: 'var(--dor-bg)',
+          'aria-hidden': 'true'
+        });
+        svg.appendChild(cover);
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          cover.remove();
+          svg.classList.add('dor-idle-motion');
+          return;
+        }
+        const duration = 1800;
+        const startedAt = performance.now();
+        const grow = (now) => {
+          if (!cover.isConnected) return;
+          const progress = Math.min(1, (now - startedAt) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const revealY = startY + (endY - startY) * eased;
+          cover.setAttribute('y', String(revealY));
+          cover.setAttribute('height', String(Math.max(0, endY - revealY + 3)));
+          if (progress < 1) {
+            forecastAnimationFrame = requestAnimationFrame(grow);
+          } else {
+            forecastAnimationFrame = 0;
+            cover.remove();
+            svg.classList.add('dor-idle-motion');
+          }
+        };
+        forecastAnimationFrame = requestAnimationFrame(grow);
+      }
+
+      function draw() {
+        if (forecastAnimationFrame) {
+          cancelAnimationFrame(forecastAnimationFrame);
+          forecastAnimationFrame = 0;
+        }
+        hideNodePopover();
+        const width = Math.max(320, Math.round(host.getBoundingClientRect().width || 720));
+        const height = Math.round(width * 4 / 3);
+        const compact = width < 430;
+        const svg = el('svg', {
+          viewBox: `0 0 ${width} ${height}`,
+          role: 'img',
+          'aria-labelledby': 'dor-title dor-desc'
+        });
+        host.replaceChildren(svg);
+        svg.appendChild(el('title', { id: 'dor-title' }, '2026 年日记现代主义有机丝带抽象图'));
+        svg.appendChild(el('desc', { id: 'dor-desc' }, '纵向时间轴上的五条数据丝带。整条河的总宽度由每月可归类日记数的平方根决定，每条彩带的宽度由对应主题份额决定，并保持固定顺序以便追踪。'));
+
+        const pad = compact ? 22 : 38;
+        const titleY = compact ? 34 : 48;
+        let legendX = pad;
+        const legendY = titleY + 36;
+        categories.forEach((item, index) => {
+          const short = compact
+            ? { work: '工作', creation: '创作', learning: '学习', venture: '副业', life: '生活' }[item.key]
+            : item.label;
+          if (!compact && index === 3) legendX = pad;
+          const rowY = !compact && index >= 3 ? legendY + 22 : legendY;
+          svg.appendChild(el('rect', { class: 'dor-legend-mark dor-animated', x: legendX, y: rowY - 9, width: 9, height: 9, fill: item.color, rx: 1.5, 'data-animate-theme': item.key }));
+          svg.appendChild(el('text', { class: 'dor-legend dor-animated', x: legendX + 14, y: rowY, 'data-animate-theme': item.key }, short));
+          legendX += (compact ? 58 : Math.max(96, short.length * 13 + 30));
+        });
+
+        const plotTop = compact ? 116 : 138;
+        const plotBottom = height - (compact ? 92 : 116);
+        const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
+        const center = width * 0.56;
+        const maxN = Math.max(...months.map((month) => month.n));
+        const geometry = {};
+
+        months.forEach((month, index) => {
+          const showMonth = predictionOpen
+            ? index === 0 || index === 2 || index === 4 || index === 6 || index === 8 || index === 10 || index === 12 || index === 14 || index === 16 || index === 18
+            : true;
+          if (!showMonth) return;
+          svg.appendChild(el('circle', { class: 'dor-month-dot', cx: pad, cy: ys[index], r: 2.2 }));
+          svg.appendChild(el('text', { class: 'dor-month', x: pad + 9, y: ys[index] + 4 }, predictionOpen ? month.label : `${month.label}  n=${month.n}`));
+        });
+        let futureStartY = null;
+        if (predictionOpen) {
+          const nowY = ys[6];
+          futureStartY = nowY;
+          svg.appendChild(el('line', { class: 'dor-now-line', x1: pad, y1: nowY, x2: width - pad, y2: nowY }));
+          svg.appendChild(el('text', { class: 'dor-now-label', x: pad, y: nowY - 7 }, '现在'));
+          svg.appendChild(el('text', { class: 'dor-forecast-label', x: width - pad, y: nowY - 7, 'text-anchor': 'end' }, '未来一年 · 行为情景推演'));
+        }
+
+        const styles = getComputedStyle(root);
+        const maxWidthFactor = Number(styles.getPropertyValue('--dor-max-width')) || 0.58;
+        const minWidthFactor = Number(styles.getPropertyValue('--dor-min-width')) || 0.35;
+        const themeFontSize = parseFloat(styles.getPropertyValue('--dor-theme-font-size')) || 12;
+        const themeWrapWidth = Number(styles.getPropertyValue('--dor-theme-wrap-width')) || 112;
+        const eventFontSize = parseFloat(styles.getPropertyValue('--dor-event-font-size')) || 11;
+        const eventWrapWidth = Number(styles.getPropertyValue('--dor-event-wrap-width')) || 96;
+        const maxRiverWidth = width * Math.min(compact ? 0.62 : 0.72, maxWidthFactor);
+        const roots = months.map((month) => Math.sqrt(month.n));
+        const minRoot = Math.min(...roots);
+        const maxRoot = Math.max(...roots);
+        const totalWidths = roots.map((value) => {
+          const normalized = maxRoot === minRoot ? 1 : (value - minRoot) / (maxRoot - minRoot);
+          return maxRiverWidth * (minWidthFactor + normalized * (0.9 - minWidthFactor));
+        });
+        const monthTotals = months.map((_, index) => categories.reduce((sum, item) => sum + item.values[index], 0));
+        const cumulative = totalWidths.map((value) => center - value / 2);
+        categories.forEach((item, categoryIndex) => {
+          const widths = item.values.map((share, index) => share / monthTotals[index] * totalWidths[index]);
+          const left = ys.map((y, index) => [cumulative[index], y]);
+          const right = ys.map((y, index) => [cumulative[index] + widths[index], y]);
+          const centers = ys.map((y, index) => [(left[index][0] + right[index][0]) / 2, y]);
+          const reversed = [...right].reverse();
+          const path = el('path', {
+            class: 'dor-ribbon dor-animated',
+            fill: item.color,
+            d: `${smooth(left)} L${reversed[0][0]},${reversed[0][1]} ${smooth(reversed).replace(/^M[^C]+/, '')} Z`,
+            'data-animate-theme': item.key,
+            style: `--dor-motion-order:${categoryIndex}`
+          });
+          path.appendChild(el('title', {}, `${item.label}：宽度由每月主题份额与记录强度共同决定`));
+          svg.appendChild(path);
+          geometry[item.key] = { centers, widths, left, right };
+          widths.forEach((value, index) => { cumulative[index] += value; });
+        });
+
+        const labels = predictionOpen
+          ? [
+              { id: 'theme-work', key: 'work', month: 2, text: '工作' },
+              { id: 'theme-creation', key: 'creation', month: 5, text: '个人创作' },
+              { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
+              { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
+            ]
+          : compact
+            ? [
+                { id: 'theme-work', key: 'work', month: 2, text: '工作' },
+                { id: 'theme-creation', key: 'creation', month: 5, text: '个人创作' },
+                { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
+                { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
+              ]
+            : [
+                { id: 'theme-work', key: 'work', month: 1, text: '工作' },
+                { id: 'theme-creation', key: 'creation', month: 5.2, text: '个人创作', wrapWidth: 50 },
+                { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
+                { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
+              ];
+        labels.forEach((label) => {
+          const point = pointAt(geometry[label.key].centers, label.month);
+          const offset = positionOffsets[label.id];
+          const themeText = addWrappedText(svg, 'dor-theme dor-animated', label.text, point[0] + offset.x, point[1] - 10 + offset.y, 'middle', label.wrapWidth || themeWrapWidth, themeFontSize);
+          themeText.dataset.animateTheme = label.key;
+        });
+
+        const visibleMilestones = predictionOpen
+          ? []
+          : compact
+            ? milestones.filter((item) => item.month === 0 || item.text === '第二个小爆款')
+            : milestones;
+        visibleMilestones.forEach((item) => {
+          const point = pointAt(geometry[item.key].centers, item.month);
+          const anchor = 'middle';
+          const offset = positionOffsets[item.id];
+          const tx = point[0] + offset.x;
+          const eventClass = item.outside ? 'dor-event dor-event-outside dor-animated' : 'dor-event dor-animated';
+          const text = addWrappedText(svg, eventClass, item.text, tx, point[1] + item.dy + offset.y, anchor, item.wrapWidth || eventWrapWidth, eventFontSize);
+          text.dataset.animateTheme = item.key;
+          const box = text.getBBox();
+          const bg = el('rect', { class: 'dor-event-bg dor-animated', x: box.x - 4, y: box.y - 2, width: box.width + 8, height: box.height + 4, rx: 2, 'data-animate-theme': item.key });
+          svg.insertBefore(bg, text);
+          svg.appendChild(el('circle', { class: item.outside ? 'dor-event-dot dor-event-dot-outside dor-animated' : 'dor-event-dot dor-animated', cx: point[0], cy: point[1], r: 2.1, 'data-animate-theme': item.key }));
+        });
+
+        if (predictionOpen) {
+          scenarios[activeScenario].nodes.forEach((item, index) => {
+            const point = pointAt(geometry[item.key].centers, item.month);
+            const anchor = index === 0 ? 'start' : 'end';
+            const textX = point[0] + (index === 0 ? 6 : -6);
+            const group = el('g', {
+              class: 'dor-future-node',
+              role: 'button',
+              tabindex: '0',
+              'aria-label': `${item.text}，点击查看解释`
+            });
+            group.appendChild(el('circle', { class: 'dor-future-dot', cx: point[0], cy: point[1], r: compact ? 2.8 : 3.4 }));
+            group.appendChild(el('text', { class: 'dor-future-text', x: textX, y: point[1] + 3, 'text-anchor': anchor }, item.text));
+            const openPopover = () => showNodePopover(item, group);
+            group.addEventListener('click', openPopover);
+            group.addEventListener('keydown', (event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openPopover();
+              }
+            });
+            svg.appendChild(group);
+          });
+        }
+
+        const footerY = height - (compact ? 48 : 62);
+        svg.appendChild(el('line', { class: 'dor-rule', x1: pad, y1: footerY - 20, x2: width - pad, y2: footerY - 20 }));
+        svg.appendChild(el('text', { class: 'dor-note', x: pad, y: footerY + (compact ? 0 : 18) }, '数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）'));
+        svg.appendChild(el('text', { class: 'dor-note', x: width - pad, y: footerY + (compact ? 16 : 0), 'text-anchor': 'end' }, '爱可视化的简女士'));
+        svg.appendChild(el('text', { class: 'dor-note', x: width - pad, y: footerY + (compact ? 30 : 18), 'text-anchor': 'end' }, 'Jane of Visual Stories'));
+
+        requestAnimationFrame(() => {
+          if (predictionOpen) {
+            revealAllThemes(svg);
+            if (forecastGrowRequested && futureStartY !== null) {
+              forecastGrowRequested = false;
+              animateFutureGrowth(svg, futureStartY, plotBottom, width);
+            } else {
+              svg.classList.add('dor-idle-motion');
+            }
+          } else {
+            playAnimation(svg);
+          }
+        });
+      }
+
+      const observer = new ResizeObserver(draw);
+      observer.observe(host);
+      requestAnimationFrame(() => {
+        const settings = root.querySelector('.dor-settings');
+        if (settings) settings.open = root.getBoundingClientRect().width > 650;
+      });
+      root.querySelectorAll('[data-setting]').forEach((input) => {
+        input.addEventListener('input', () => {
+          const config = settingMap[input.dataset.setting];
+          if (!config) return;
+          root.style.setProperty(config.variable, `${input.value}${config.unit || ''}`);
+          const output = root.querySelector(`[data-value-for="${input.dataset.setting}"]`);
+          if (output) output.textContent = config.format ? config.format(input.value) : input.value;
+          draw();
+        });
+      });
+      const positionTarget = root.querySelector('[data-position-target]');
+      const positionInputs = [...root.querySelectorAll('[data-position-axis]')];
+      function syncPositionControls() {
+        const offset = positionOffsets[positionTarget.value];
+        positionInputs.forEach((input) => {
+          const axis = input.dataset.positionAxis;
+          input.value = offset[axis];
+          root.querySelector(`[data-position-value="${axis}"]`).textContent = `${offset[axis]} px`;
+        });
+      }
+      positionTarget.addEventListener('change', syncPositionControls);
+      positionInputs.forEach((input) => {
+        input.addEventListener('input', () => {
+          const axis = input.dataset.positionAxis;
+          positionOffsets[positionTarget.value][axis] = Number(input.value);
+          root.querySelector(`[data-position-value="${axis}"]`).textContent = `${input.value} px`;
+          draw();
+        });
+      });
+      root.querySelector('[data-replay]').addEventListener('click', () => {
+        const svg = host.querySelector('svg');
+        if (svg) playAnimation(svg);
+      });
+      root.querySelector('[data-node-popover-close]')?.addEventListener('click', hideNodePopover);
+      root.querySelector('[data-predict]')?.addEventListener('click', () => {
+        predictionOpen = !predictionOpen;
+        root.classList.toggle('is-predicting', predictionOpen);
+        const trigger = root.querySelector('[data-predict]');
+        if (trigger) trigger.textContent = predictionOpen ? '取消预测' : '预个测';
+        if (predictionOpen) {
+          forecastGrowRequested = true;
+          useScenario(activeScenario);
+        } else {
+          months = historyMonths;
+          categories = historyCategories;
+        }
+        renderReading();
+        draw();
+      });
+      root.querySelector('[data-scenario-select]')?.addEventListener('change', (event) => {
+        if (predictionOpen) {
+          useScenario(event.currentTarget.value);
+          renderReading();
+          draw();
+        }
+      });
+      syncPositionControls();
+      renderReading();
+      draw();
+    })();
+  </script>
+</section>
+
+<script src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script>
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script>
+(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+
+</body>
+</html>
