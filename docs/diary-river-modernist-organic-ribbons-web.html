@@ -1318,11 +1318,24 @@ html>body{padding:0}</style>
       font-size: 12px;
       letter-spacing: 0.14em;
     }
+    #diary-river-organic-ribbons .dor-reading-header {
+      margin: 0 0 18px;
+    }
+    #diary-river-organic-ribbons .dor-reading-header h1 {
+      margin: 0;
+      color: #28251f;
+      font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: -0.025em;
+    }
+    #diary-river-organic-ribbons .dor-reading-header .dor-data-source {
+      margin-top: 5px;
+      font-size: 9px;
+    }
     #diary-river-organic-ribbons .dor-view-switch {
       display: inline-flex;
       align-items: center;
       gap: 0;
-      margin: 0 0 34px;
+      margin: 0 0 30px;
       padding: 4px;
       border: 1px solid rgba(52, 47, 41, 0.46);
       border-radius: 8px;
@@ -1424,10 +1437,6 @@ html>body{padding:0}</style>
 
   <div class="dor-editor">
     <div class="dor-poster">
-      <div class="dor-heading">
-        <span class="dor-history-title">时间都去哪儿了？</span>
-        <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）</span>
-      </div>
       <div data-poster></div>
       <div class="dor-node-popover" data-node-popover hidden>
         <div class="dor-node-popover-head">
@@ -1672,10 +1681,17 @@ html>body{padding:0}</style>
           <button type="button" data-view-mode="future" aria-pressed="${predictionOpen ? 'true' : 'false'}">推演一年后</button>
         </nav>`;
       }
+      function readingHeaderMarkup() {
+        return `<header class="dor-reading-header">
+          <h1>时间都去哪儿了？</h1>
+          <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）</span>
+        </header>`;
+      }
       function renderReading() {
         if (!reading) return;
         if (!predictionOpen) {
           reading.innerHTML = `
+            ${readingHeaderMarkup()}
             ${viewSwitchMarkup()}
             <p class="dor-reading-kicker">从 1—7 月的日记主题中看见</p>
             <h2>四次精力转向</h2>
@@ -1687,6 +1703,7 @@ html>body{padding:0}</style>
         }
         const model = roleModels[activeScenario];
         reading.innerHTML = `
+          ${readingHeaderMarkup()}
           ${viewSwitchMarkup()}
           <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
           <h2>一年后，我可能成为
@@ -1993,23 +2010,22 @@ html>body{padding:0}</style>
 
         const decorativeTagLayout = compact
           ? [
-              [-46, -101, 25, 13, -5, 2], [-13, -106, 22, 14, 4, 0], [22, -100, 29, 13, -3, 3],
-              [-75, -86, 27, 15, 5, 1], [51, -84, 25, 14, -5, 4],
+              [-46, -113, 25, 13, -5, 2], [-13, -120, 22, 14, 4, 0], [22, -112, 29, 13, -3, 3],
+              [-75, -92, 27, 15, 5, 1], [51, -91, 25, 14, -5, 4],
               [-82, -63, 23, 14, -4, 3], [63, -61, 22, 13, 6, 2],
               [-70, -44, 31, 14, 3, 4], [-35, -47, 23, 13, -6, 0],
               [10, -46, 29, 14, 5, 1], [45, -40, 26, 13, -4, 3],
               [-48, -27, 27, 12, 5, 2], [20, -25, 34, 12, -3, 4]
             ]
           : [
-              [-61, -105, 34, 16, -5, 2], [-18, -111, 30, 17, 4, 0], [29, -104, 39, 16, -3, 3],
-              [-98, -88, 37, 18, 5, 1], [67, -87, 34, 17, -5, 4],
+              [-61, -121, 34, 16, -5, 2], [-18, -130, 30, 17, 4, 0], [29, -120, 39, 16, -3, 3],
+              [-98, -97, 37, 18, 5, 1], [67, -96, 34, 17, -5, 4],
               [-106, -63, 31, 17, -4, 3], [82, -62, 30, 16, 6, 2],
               [-91, -43, 42, 17, 3, 4], [-46, -47, 31, 16, -6, 0],
               [13, -46, 39, 17, 5, 1], [59, -39, 35, 16, -4, 3],
               [-63, -25, 37, 15, 5, 2], [26, -24, 46, 15, -3, 4]
             ];
-        const decorativeTagOpacities = [0.42, 0.68, 0.5, 0.78, 0.56, 0.36, 0.72, 0.48, 0.84, 0.4, 0.65, 0.52, 0.76];
-        decorativeTagLayout.forEach(([dx, dy, blockWidth, blockHeight, rotation, colorIndex], index) => {
+        decorativeTagLayout.forEach(([dx, dy, blockWidth, blockHeight, rotation, colorIndex]) => {
           const blockX = center + dx * profileScale;
           const blockY = plotTop + dy * profileScale;
           svg.appendChild(el('rect', {
@@ -2019,7 +2035,7 @@ html>body{padding:0}</style>
             height: blockHeight * profileScale,
             rx: 2.2 * profileScale,
             fill: categories[colorIndex].color,
-            opacity: decorativeTagOpacities[index],
+            opacity: 0.9,
             transform: `rotate(${rotation} ${blockX + blockWidth * profileScale / 2} ${blockY + blockHeight * profileScale / 2})`,
             'aria-hidden': 'true',
             style: 'filter:drop-shadow(0 1px 1px rgb(60 45 34 / 0.12))'
