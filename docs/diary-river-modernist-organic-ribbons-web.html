@@ -884,7 +884,7 @@ html>body{padding:0}</style>
 <main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-name">
   <div class="dor-import-brand">
     <figure class="dor-import-mark">
-      <img src="assets/another-self-story-mirror.png" alt="晶体中映照出多个女性身影，一位女性站在中央">
+      <img src="assets/another-self-life-crystal-transparent.png" alt="映照出多个女性身影的生命晶体">
     </figure>
     <h1 class="dor-import-name" id="dor-import-name">另世我</h1>
   </div>
@@ -1071,14 +1071,13 @@ html>body{padding:0}</style>
       width: clamp(68px, 5.4vw, 82px);
       height: auto;
       margin: 0;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      border-radius: 18px;
-      background: rgba(255,255,255,.3);
-      box-shadow: 0 18px 45px rgba(93,45,132,.2), 0 2px 12px rgba(255,255,255,.5) inset;
+      overflow: visible;
+      aspect-ratio: 3 / 4;
+      background: transparent;
+      filter: drop-shadow(0 10px 14px rgba(93,45,132,.2));
       animation: dor-story-mirror-float 5.2s ease-in-out infinite;
     }
-    .dor-import-mark img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .dor-import-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
     @keyframes dor-story-mirror-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
     @media (max-width: 520px) {
       .dor-import-mark { width: 64px; }
