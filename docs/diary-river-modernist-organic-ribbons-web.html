@@ -1991,7 +1991,8 @@ html>body{padding:0}</style>
               [13, -46, 39, 17, 5, 1], [59, -39, 35, 16, -4, 3],
               [-63, -25, 37, 15, 5, 2], [26, -24, 46, 15, -3, 4]
             ];
-        decorativeTagLayout.forEach(([dx, dy, blockWidth, blockHeight, rotation, colorIndex]) => {
+        const decorativeTagOpacities = [0.42, 0.68, 0.5, 0.78, 0.56, 0.36, 0.72, 0.48, 0.84, 0.4, 0.65, 0.52, 0.76];
+        decorativeTagLayout.forEach(([dx, dy, blockWidth, blockHeight, rotation, colorIndex], index) => {
           const blockX = center + dx * profileScale;
           const blockY = plotTop + dy * profileScale;
           svg.appendChild(el('rect', {
@@ -2001,7 +2002,7 @@ html>body{padding:0}</style>
             height: blockHeight * profileScale,
             rx: 2.2 * profileScale,
             fill: categories[colorIndex].color,
-            opacity: 0.9,
+            opacity: decorativeTagOpacities[index],
             transform: `rotate(${rotation} ${blockX + blockWidth * profileScale / 2} ${blockY + blockHeight * profileScale / 2})`,
             'aria-hidden': 'true',
             style: 'filter:drop-shadow(0 1px 1px rgb(60 45 34 / 0.12))'
