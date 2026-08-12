@@ -1219,10 +1219,10 @@ html>body{padding:0}</style>
     }
     #diary-river-organic-ribbons .dor-figure-lips {
       fill: none;
-      stroke: #7f675c;
-      stroke-width: 1.15;
+      stroke: #c85b63;
+      stroke-width: 1.25;
       stroke-linecap: round;
-      opacity: 0.56;
+      opacity: 0.82;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
     #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
@@ -1967,9 +1967,9 @@ html>body{padding:0}</style>
           class: 'dor-figure-lips',
           d: [
             `M${center - 9 * lipScale},${lipY}`,
-            `Q${center},${lipY - 3 * lipScale} ${center + 9 * lipScale},${lipY}`,
-            `M${center - 8 * lipScale},${lipY + 1 * lipScale}`,
-            `Q${center},${lipY + 5 * lipScale} ${center + 8 * lipScale},${lipY + 1 * lipScale}`
+            `Q${center},${lipY + 2.5 * lipScale} ${center + 9 * lipScale},${lipY}`,
+            `M${center - 7 * lipScale},${lipY + 0.5 * lipScale}`,
+            `Q${center},${lipY + 5 * lipScale} ${center + 7 * lipScale},${lipY + 0.5 * lipScale}`
           ].join(' ')
         });
         svg.appendChild(figureLayer);
