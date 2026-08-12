@@ -1176,6 +1176,7 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-subtitle,
     #diary-river-organic-ribbons .dor-legend,
     #diary-river-organic-ribbons .dor-month,
+    #diary-river-organic-ribbons .dor-month-count,
     #diary-river-organic-ribbons .dor-note {
       fill: var(--dor-muted);
     }
@@ -1194,6 +1195,11 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-event {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
       font-size: 12px;
+      font-weight: 400;
+    }
+    #diary-river-organic-ribbons .dor-month-count {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font-size: 8.5px;
       font-weight: 400;
     }
     #diary-river-organic-ribbons .dor-theme {
@@ -1919,7 +1925,18 @@ html>body{padding:0}</style>
             : true;
           if (!showMonth) return;
           svg.appendChild(el('circle', { class: 'dor-month-dot', cx: pad, cy: ys[index], r: 2.2 }));
-          svg.appendChild(el('text', { class: 'dor-month', x: pad + 9, y: ys[index] + 4 }, predictionOpen ? month.label : `${month.label}  n=${month.n}`));
+          svg.appendChild(el('text', {
+            class: 'dor-month',
+            x: pad + 9,
+            y: predictionOpen ? ys[index] + 4 : ys[index] - 2
+          }, month.label));
+          if (!predictionOpen) {
+            svg.appendChild(el('text', {
+              class: 'dor-month-count',
+              x: pad + 9,
+              y: ys[index] + 11
+            }, `n=${month.n}`));
+          }
         });
         let futureStartY = null;
         if (predictionOpen) {
