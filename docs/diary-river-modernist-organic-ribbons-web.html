@@ -1318,6 +1318,9 @@ html>body{padding:0}</style>
       font-size: 12px;
       letter-spacing: 0.14em;
     }
+    #diary-river-organic-ribbons .dor-reading-header-top .dor-reading-kicker {
+      margin: 0;
+    }
     #diary-river-organic-ribbons .dor-reading-header {
       margin: 0 0 28px;
     }
@@ -1692,7 +1695,10 @@ html>body{padding:0}</style>
       function readingHeaderMarkup() {
         if (predictionOpen) {
           return `<header class="dor-reading-header">
-            <div class="dor-reading-header-top" style="justify-content:flex-end">${viewSwitchMarkup()}</div>
+            <div class="dor-reading-header-top">
+              <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
+              ${viewSwitchMarkup()}
+            </div>
           </header>`;
         }
         return `<header class="dor-reading-header">
@@ -1716,7 +1722,6 @@ html>body{padding:0}</style>
         const model = roleModels[activeScenario];
         reading.innerHTML = `
           ${readingHeaderMarkup()}
-          <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
           <h2>一年后，我可能成为
             <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
               <option value="expert"${activeScenario === 'expert' ? ' selected' : ''}>创作型专家</option>
