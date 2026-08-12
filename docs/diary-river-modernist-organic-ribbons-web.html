@@ -881,21 +881,22 @@ html>body{padding:0}</style>
   <button class="dor-home-button" type="button" data-return-home>⌂ 首页</button>
   <a class="dor-stars-button" href="women-stars.html" aria-label="进入群星闪耀女性人生参照库">群星闪耀</a>
 </nav>
-<main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-title">
+<main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-name">
   <figure class="dor-import-mark">
     <img src="assets/another-self-story-mirror.png" alt="晶体中映照出多个女性身影，一位女性站在中央">
   </figure>
-  <p class="dor-import-name">另世我</p>
-  <h1 id="dor-import-title">
-    <span>他人的故事是一面镜子，自己的记录是一条来路。</span>
-    <span>我们从中看见自己，也看见更多可能。</span>
-  </h1>
+  <h1 class="dor-import-name" id="dor-import-name">另世我</h1>
+  <p class="dor-import-title" id="dor-import-title">
+    <span>看见走过的自己，</span>
+    <span>也看见更多可能。</span>
+  </p>
+  <p class="dor-import-description">从你的生活记录出发，重新理解自己，发现下一步。</p>
   <div class="dor-import-actions">
     <label class="dor-import-primary" for="dor-diary-files">
-      <span data-import-label>选择我的数据↗</span>
+      <span data-import-label>开始认识另一个我</span>
     </label>
     <input id="dor-diary-files" data-diary-files type="file" accept=".md,.txt,.json,.csv,text/plain,text/markdown,application/json,text/csv" multiple>
-    <button class="dor-import-demo" type="button" data-use-demo>先看个示例</button>
+    <button class="dor-import-demo" type="button" data-use-demo>先看一个示例</button>
   </div>
 </main>
 <section id="diary-river-organic-ribbons" aria-label="2026 年日记现代主义有机丝带图">
@@ -979,26 +980,39 @@ html>body{padding:0}</style>
     .dor-person b { bottom: 0; width: 25px; height: 31px; border-radius: 13px 13px 4px 4px; background: currentColor; }
     .dor-person-now { color: #2b2823; transform: translateY(3px) rotate(-3deg); }
     .dor-person-other { color: #b32332; transform: translateY(-3px) rotate(3deg); }
-    .dor-import-name { margin: 0 0 17px; color: #2b2823; font: 500 14px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .42em; text-indent: .42em; }
-    .dor-import-entry h1 {
-      width: min(1120px, 92vw);
+    .dor-import-name {
+      margin: 0 0 22px;
+      color: #2b2823;
+      font: 600 clamp(52px, 5.6vw, 76px)/1.08 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: .08em;
+      text-indent: .08em;
+    }
+    .dor-import-title {
+      width: min(660px, 86vw);
       margin: 0;
-      font: 500 clamp(25px, 3.1vw, 44px)/1.28 ui-serif, Georgia, "Songti SC", serif;
-      letter-spacing: -.035em;
+      font: 500 clamp(27px, 3vw, 40px)/1.36 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: -.02em;
       text-wrap: balance;
     }
-    .dor-import-entry h1 span { display: block; }
-    .dor-import-actions { display: grid; justify-items: center; gap: 14px; margin-top: 36px; }
+    .dor-import-title span { display: block; }
+    .dor-import-description {
+      max-width: 560px;
+      margin: 18px 0 0;
+      color: #705b78;
+      font: 400 15px/1.65 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      letter-spacing: .02em;
+    }
+    .dor-import-actions { display: grid; justify-items: center; gap: 14px; margin-top: 30px; }
     .dor-import-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: fit-content;
-      padding: 10px 14px;
+      padding: 13px 22px;
       border: 1px solid #2b2823;
       background: #2b2823;
       color: #f7f0e6;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1;
       text-align: center;
       cursor: pointer;
@@ -1009,10 +1023,11 @@ html>body{padding:0}</style>
     .dor-import-demo { border: 0; border-bottom: 1px solid #918577; padding: 2px 0 4px; background: transparent; color: #504a42; font: 400 12px/1.3 inherit; cursor: pointer; }
     @media (max-width: 520px) {
       .dor-import-entry { padding: 22px; }
-      .dor-import-mark { width: 88px; margin-bottom: 14px; }
-      .dor-import-name { margin-bottom: 14px; }
-      .dor-import-entry h1 { width: min(100%, 360px); font-size: clamp(23px, 7vw, 29px); line-height: 1.36; }
-      .dor-import-actions { margin-top: 28px; }
+      .dor-import-mark { width: 72px; margin-bottom: 14px; }
+      .dor-import-name { margin-bottom: 18px; font-size: clamp(46px, 14vw, 60px); }
+      .dor-import-title { width: min(100%, 360px); font-size: clamp(25px, 7.2vw, 31px); line-height: 1.38; }
+      .dor-import-description { max-width: 330px; margin-top: 16px; font-size: 14px; }
+      .dor-import-actions { margin-top: 25px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .dor-import-entry, #diary-river-organic-ribbons { transition: none; }
@@ -1043,12 +1058,12 @@ html>body{padding:0}</style>
       position: relative;
       z-index: 1;
       display: block;
-      width: clamp(104px, 8.8vw, 136px);
+      width: clamp(76px, 6.4vw, 92px);
       height: auto;
-      margin: 0 0 17px;
+      margin: 0 0 16px;
       overflow: hidden;
       aspect-ratio: 4 / 5;
-      border-radius: 22px;
+      border-radius: 18px;
       background: rgba(255,255,255,.3);
       box-shadow: 0 18px 45px rgba(93,45,132,.2), 0 2px 12px rgba(255,255,255,.5) inset;
       animation: dor-story-mirror-float 5.2s ease-in-out infinite;
@@ -1056,13 +1071,13 @@ html>body{padding:0}</style>
     .dor-import-mark img { display: block; width: 100%; height: 100%; object-fit: cover; }
     @keyframes dor-story-mirror-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
     @media (max-width: 520px) {
-      .dor-import-mark { width: 88px; }
+      .dor-import-mark { width: 72px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .dor-import-mark { animation: none; }
     }
     .dor-import-name{color:#5d2d73}
-    .dor-import-entry h1{color:#442352;text-shadow:0 1px 0 rgba(255,255,255,.42)}
+    .dor-import-title{color:#442352;text-shadow:0 1px 0 rgba(255,255,255,.42)}
     .dor-import-primary{border-color:#57306d;background:#57306d;color:#fff8fd;box-shadow:0 10px 28px rgba(88,40,112,.18)}
     .dor-import-primary:hover{background:#a33dc1;border-color:#a33dc1}
     .dor-import-demo{border-color:#916b9f;color:#644d6e}
@@ -2661,7 +2676,7 @@ html>body{padding:0}</style>
     entry?.removeAttribute('hidden');
     document.body.classList.remove('dor-has-entered');
     document.body.classList.add('dor-before-enter');
-    if (label) label.textContent = '选择我的数据↗';
+    if (label) label.textContent = '开始认识另一个我';
     if (input) input.value = '';
     entering = false;
     if (location.search) history.replaceState({}, '', location.pathname + location.hash);
