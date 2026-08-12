@@ -1765,19 +1765,19 @@ html>body{padding:0}</style>
           ${readingHeaderMarkup()}
           <p class="dor-reading-lead">${model.lead}</p>
           <p class="dor-case-intro">这些女性的人生经历可能给你参考</p>
+          <p class="dor-inference">“给你的避坑提醒”是根据公开经历为你的路径所做的推导，不是当事人的原话，也不是对未来的概率判断。</p>
           <div class="dor-role-list">${model.people.map((person, index) => `
             <article class="dor-role">
               <div class="dor-role-index">0${index + 1}</div>
               <div>
                 <h3>${person.name} · ${person.role}</h3>
                 <div class="dor-timeline">${person.timeline.map(point => `<span>${point}</span>`).join('')}</div>
-                <p class="dor-role-note"><strong>做对了：</strong>${person.right}</p>
-                <p class="dor-role-note"><strong>可避免的弯路：</strong>${person.detour}</p>
+                <p class="dor-role-note"><strong>案例人物的关键选择：</strong>${person.right}</p>
+                <p class="dor-role-note"><strong>给你的避坑提醒：</strong>${person.detour}</p>
                 <a class="dor-source" href="${person.source}" target="_blank" rel="noreferrer">查看公开经历 ↗</a>
               </div>
             </article>
-          `).join('')}</div>
-          <p class="dor-inference">“可避免的弯路”是基于公开经历为你的路径做的推导，不是当事人的原话，也不是对未来的概率判断。</p>`;
+          `).join('')}</div>`;
       }
       const milestones = [
         { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: 15 },
