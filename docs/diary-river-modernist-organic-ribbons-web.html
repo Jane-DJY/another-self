@@ -1684,7 +1684,7 @@ html>body{padding:0}</style>
       function readingHeaderMarkup() {
         return `<header class="dor-reading-header">
           <h1>时间都去哪儿了？</h1>
-          <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）</span>
+          <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放），不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</span>
         </header>`;
       }
       function renderReading() {
@@ -1693,9 +1693,6 @@ html>body{padding:0}</style>
           reading.innerHTML = `
             ${readingHeaderMarkup()}
             ${viewSwitchMarkup()}
-            <p class="dor-reading-kicker">从 1—7 月的日记主题中看见</p>
-            <h2>四次精力转向</h2>
-            <p class="dor-reading-lead">河流高度表示当月日记主题中的注意力分布，不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</p>
             <div class="dor-insight-list">${historicalInsights.map(item => `
               <article class="dor-insight"><div class="dor-insight-time">${item.time}</div><div><h3>${item.title}</h3><p>${item.body}</p></div></article>
             `).join('')}</div>`;
