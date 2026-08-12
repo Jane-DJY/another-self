@@ -12,7 +12,6 @@
   #stars{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
   .topbar{position:fixed;z-index:4;left:clamp(18px,4vw,58px);right:clamp(18px,4vw,58px);top:24px;display:flex;align-items:flex-start;justify-content:space-between;pointer-events:none}
   .brand{pointer-events:auto}.brand a{color:var(--muted);text-decoration:none;font-size:12px}.brand h1{margin:9px 0 4px;font:500 clamp(28px,4vw,54px)/1 ui-serif,Georgia,"Songti SC",serif;letter-spacing:.08em}.brand p{margin:0;color:var(--muted);font-size:12px;letter-spacing:.08em}
-  .counter{pointer-events:auto;text-align:right;color:var(--muted);font:12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}.counter strong{display:block;color:var(--ink);font-size:20px;font-weight:400}
   .filters{position:fixed;z-index:4;left:50%;bottom:24px;transform:translateX(-50%);display:flex;max-width:calc(100vw - 28px);gap:7px;padding:7px;border:1px solid var(--line);border-radius:999px;background:rgba(43,40,35,.7);backdrop-filter:blur(16px);overflow-x:auto;scrollbar-width:none}
   .filters button{flex:none;border:0;border-radius:999px;padding:8px 12px;background:transparent;color:rgba(255,250,240,.78);font:500 11px/1 sans-serif;cursor:pointer}.filters button[aria-pressed="true"]{background:var(--paper-soft);color:var(--rose)}
   .hint{position:fixed;z-index:3;left:50%;bottom:82px;transform:translateX(-50%);color:rgba(229,235,251,.56);font-size:11px;letter-spacing:.12em;pointer-events:none;transition:opacity .4s}.hint.hidden{opacity:0}
@@ -39,8 +38,8 @@
     radial-gradient(circle at 50% 125%,#d6b7ff 0%,transparent 46%),
     linear-gradient(150deg,#ffdff5 0%,#f5ccf0 42%,#e9d6ff 100%)}
   .sky::after{content:"";position:absolute;inset:auto -8% -16% -8%;height:42%;pointer-events:none;background:radial-gradient(ellipse at 50% 100%,rgba(174,106,229,.25),transparent 66%);filter:blur(24px)}
-  .brand a,.brand p,.counter{color:var(--muted)}
-  .brand h1,.counter strong{color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.5)}
+  .brand a,.brand p{color:var(--muted)}
+  .brand h1{color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.5)}
   .filters{border-color:rgba(91,47,111,.2);background:rgba(255,244,252,.58);box-shadow:0 14px 40px rgba(110,52,139,.12);backdrop-filter:blur(20px) saturate(1.2)}
   .filters button{color:rgba(68,35,82,.72)}
   .filters button[aria-pressed="true"]{background:#fff9fe;color:#8d31bc;box-shadow:0 3px 14px rgba(112,54,146,.14)}
@@ -67,7 +66,7 @@
 <body>
 <main class="sky" aria-label="五十位女性人生参照组成的星空">
   <canvas id="stars"></canvas>
-  <header class="topbar"><div class="brand"><a href="diary-river-modernist-organic-ribbons-web.html">← 回到我的河流</a><h1>群星闪耀</h1><p>她们不是答案，是五十种已经发生过的可能</p></div><div class="counter"><strong id="visible-count">50</strong>WOMEN · <span id="field-count">0</span> FIELDS</div></header>
+  <header class="topbar"><div class="brand"><a href="diary-river-modernist-organic-ribbons-web.html">← 回到我的河流</a><h1>群星闪耀</h1><p>她们不是答案，是五十种已经发生过的可能</p></div></header>
   <div class="hint" id="hint">移动鼠标辨认一颗星 · 点击进入她的人生轨道</div>
   <nav class="filters" aria-label="按领域筛选" id="filters"></nav>
   <div class="tooltip" id="tooltip"><b></b><span></span></div>
@@ -95,7 +94,7 @@
  function drawCrystal(s,r,c,isGold){const tilt=Math.sin(t*.42+s.phase)*.055;ctx.save();ctx.shadowColor=isGold?'rgba(255,201,68,.68)':'rgba(151,73,207,.4)';ctx.shadowBlur=hover===s?24:11;crystalPath(s.x,s.y,r,tilt);const g=ctx.createLinearGradient(s.x-r,s.y-r,s.x+r,s.y+r);g.addColorStop(0,'rgba(255,255,255,.92)');g.addColorStop(.34,c);g.addColorStop(.72,isGold?'#ffcb45':'#c65fe2');g.addColorStop(1,'#7230bf');ctx.fillStyle=g;ctx.fill();ctx.shadowBlur=0;ctx.beginPath();ctx.moveTo(s.x,s.y-r*1.25);ctx.lineTo(s.x-r*.55,s.y+r*.5);ctx.lineTo(s.x,s.y+r*1.18);ctx.closePath();ctx.fillStyle='rgba(255,255,255,.28)';ctx.fill();ctx.beginPath();ctx.moveTo(s.x,s.y-r*1.25);ctx.lineTo(s.x+r*.58,s.y-r*.35);ctx.lineTo(s.x,s.y+r*1.18);ctx.closePath();ctx.fillStyle='rgba(105,42,180,.18)';ctx.fill();ctx.restore()}
  function draw(){t+=.012;ctx.clearRect(0,0,w,h);for(let i=0;i<150;i++){const x=hash(i+800)*w,y=hash(i+950)*h,r=.7+hash(i+1220)*2.5,a=.26+hash(i+999)*.52;if(isReserved(x,y,r+7))continue;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,238,${a})`;ctx.shadowColor='rgba(255,255,220,.8)';ctx.shadowBlur=7;ctx.fill();ctx.shadowBlur=0}
    const shown=stars.filter(s=>active==='全部'||s.p.field===active);shown.forEach(s=>{const pulse=.96+.04*Math.sin(t*s.speed+s.phase),isGold=s.p.visibility==='广为人知',c=colors[s.p.field]||'#b56de1',r=s.r*2.35*(hover===s?1.22:1)*pulse;drawCrystal(s,r,c,isGold);if(hover===s){crystalPath(s.x,s.y,r+6,Math.sin(t*.42+s.phase)*.055);ctx.strokeStyle='rgba(92,38,124,.7)';ctx.lineWidth=1;ctx.stroke()}});requestAnimationFrame(draw)}
- const fields=['全部',...new Set(data.map(d=>d.field))];document.querySelector('#field-count').textContent=fields.length-1;const nav=document.querySelector('#filters');fields.forEach((f,i)=>{const b=document.createElement('button');b.textContent=f;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{active=f;[...nav.children].forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelector('#visible-count').textContent=data.filter(x=>f==='全部'||x.field===f).length;hover=null};nav.append(b)});
+ const fields=['全部',...new Set(data.map(d=>d.field))],nav=document.querySelector('#filters');fields.forEach((f,i)=>{const b=document.createElement('button');b.textContent=f;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{active=f;[...nav.children].forEach(x=>x.setAttribute('aria-pressed',x===b));hover=null};nav.append(b)});
  function nearest(e){let hit=null,dist=24;for(const s of stars){if(active!=='全部'&&s.p.field!==active)continue;const d=Math.hypot(e.clientX-s.x,e.clientY-s.y);if(d<dist){dist=d;hit=s}}return hit}
  canvas.addEventListener('pointermove',e=>{hover=nearest(e);if(hover){tip.querySelector('b').textContent=hover.p.name;tip.querySelector('span').textContent=`${hover.p.field} · ${hover.p.turnAge}岁关键转折`;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.classList.add('show');canvas.style.cursor='pointer'}else{tip.classList.remove('show');canvas.style.cursor='crosshair'}});
  canvas.addEventListener('click',e=>{const s=nearest(e);if(s)openPerson(s.p)});
