@@ -2539,8 +2539,16 @@ html>body{padding:0}</style>
     if (label) label.textContent = '选择我的数据↗';
     if (input) input.value = '';
     entering = false;
+    if (location.search) history.replaceState({}, '', location.pathname + location.hash);
     window.scrollTo({ top: 0, behavior: 'instant' });
   });
+
+  if (new URLSearchParams(location.search).get('view') === 'demo') {
+    document.querySelector('[data-import-entry]')?.setAttribute('hidden', '');
+    document.body.classList.remove('dor-before-enter');
+    document.body.classList.add('dor-has-entered');
+    entering = true;
+  }
 })();
 </script>
 
