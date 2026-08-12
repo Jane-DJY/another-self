@@ -877,7 +877,6 @@ svg.lucide {
 html>body{padding:0}</style>
 </head>
 <body class="dor-before-enter">
-<a class="dor-stars-button" href="women-stars.html" aria-label="进入群星闪耀女性人生参照库">群星闪耀</a>
 <main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-title">
   <div class="dor-import-mark" aria-hidden="true">
     <span class="dor-person dor-person-now"><i></i><b></b></span>
@@ -917,11 +916,16 @@ html>body{padding:0}</style>
     body.dor-before-enter #diary-river-organic-ribbons { opacity: 0; transform: translateY(18px); }
     #diary-river-organic-ribbons { position: relative; transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,1,.36,1); }
     body.dor-has-entered #diary-river-organic-ribbons { opacity: 1; transform: none; }
-    #diary-river-organic-ribbons .dor-home-button {
+    #diary-river-organic-ribbons .dor-top-nav {
       position: absolute;
       top: 18px;
       left: 20px;
       z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    #diary-river-organic-ribbons .dor-home-button {
       border: 0;
       background: transparent;
       color: #6e665b;
@@ -930,26 +934,21 @@ html>body{padding:0}</style>
       cursor: pointer;
     }
     #diary-river-organic-ribbons .dor-home-button:hover { color: #28251f; }
-    .dor-stars-button {
-      position: fixed;
-      top: 18px;
-      right: 20px;
-      z-index: 30;
+    #diary-river-organic-ribbons .dor-stars-button {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      border: 1px solid rgba(55, 48, 41, .32);
-      border-radius: 999px;
-      background: rgba(241, 227, 206, .78);
-      color: #39332c;
-      padding: 8px 12px;
+      border: 0;
+      border-left: 1px solid rgba(55, 48, 41, .24);
+      background: transparent;
+      color: #6e665b;
+      padding: 6px 4px 6px 12px;
       font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
       text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: transform 180ms ease, background 180ms ease;
+      transition: color 180ms ease;
     }
-    .dor-stars-button::before { content: "✦"; color: #b32332; font-size: 13px; }
-    .dor-stars-button:hover { transform: translateY(-1px); background: #f5ead9; text-decoration: none; }
+    #diary-river-organic-ribbons .dor-stars-button::before { content: "✦"; color: #b32332; font-size: 13px; }
+    #diary-river-organic-ribbons .dor-stars-button:hover { color: #28251f; text-decoration: none; }
     .dor-import-mark {
       display: flex;
       align-items: flex-end;
@@ -1501,7 +1500,10 @@ html>body{padding:0}</style>
     }
   </style>
 
-  <button class="dor-home-button" type="button" data-return-home>← 回到首页</button>
+  <nav class="dor-top-nav" aria-label="另世我页面导航">
+    <button class="dor-home-button" type="button" data-return-home>← 回到首页</button>
+    <a class="dor-stars-button" href="women-stars.html" aria-label="进入群星闪耀女性人生参照库">群星闪耀</a>
+  </nav>
   <div class="dor-editor">
     <div class="dor-poster">
       <div data-poster></div>
