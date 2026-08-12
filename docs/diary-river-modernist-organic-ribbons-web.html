@@ -1364,9 +1364,10 @@ html>body{padding:0}</style>
     }
     #diary-river-organic-ribbons .dor-view-switch {
       position: absolute;
-      top: 0;
+      top: clamp(15px, 1.8vw, 23px);
       right: 14px;
       z-index: 3;
+      transform: translateY(-50%);
       display: inline-flex;
       align-items: center;
       flex: 0 0 auto;
@@ -1473,7 +1474,7 @@ html>body{padding:0}</style>
     @media (max-width: 480px) {
       #diary-river-organic-ribbons .dor-editor { padding: 10px; gap: 28px; }
       #diary-river-organic-ribbons .dor-reading-header-top { padding-right: 0; }
-      #diary-river-organic-ribbons .dor-view-switch { position: static; margin-top: 12px; }
+      #diary-river-organic-ribbons .dor-view-switch { position: static; margin-top: 12px; transform: none; }
       #diary-river-organic-ribbons .dor-insight,
       #diary-river-organic-ribbons .dor-role { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
     }
