@@ -1150,11 +1150,44 @@ html>body{padding:0}</style>
       white-space: nowrap;
       cursor: pointer;
     }
-    #diary-river-organic-ribbons .dor-future-node { cursor: pointer; }
+    #diary-river-organic-ribbons .dor-future-node {
+      cursor: pointer;
+      outline: none;
+    }
+    #diary-river-organic-ribbons .dor-future-node:focus,
+    #diary-river-organic-ribbons .dor-future-node:focus-visible { outline: none; }
+    #diary-river-organic-ribbons .dor-future-halo {
+      fill: color-mix(in srgb, var(--dor-bg) 86%, white 14%);
+      stroke: color-mix(in srgb, var(--dor-title-text) 72%, white 28%);
+      stroke-width: 1.35;
+      vector-effect: non-scaling-stroke;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(0.72);
+      transition: opacity 160ms ease, transform 180ms ease;
+      filter: drop-shadow(0 2px 4px color-mix(in srgb, var(--dor-title-text) 24%, transparent));
+    }
+    #diary-river-organic-ribbons .dor-future-node:hover .dor-future-halo,
+    #diary-river-organic-ribbons .dor-future-node:focus-visible .dor-future-halo,
+    #diary-river-organic-ribbons .dor-future-node.dor-active .dor-future-halo {
+      opacity: 1;
+      transform: scale(1);
+    }
     #diary-river-organic-ribbons .dor-future-dot {
       fill: var(--dor-text);
       stroke: var(--dor-bg);
       stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+      transition: transform 180ms ease, stroke-width 180ms ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    #diary-river-organic-ribbons .dor-future-node:hover .dor-future-dot,
+    #diary-river-organic-ribbons .dor-future-node:focus-visible .dor-future-dot,
+    #diary-river-organic-ribbons .dor-future-node.dor-active .dor-future-dot {
+      stroke-width: 1.5;
+      transform: scale(1.12);
     }
     #diary-river-organic-ribbons .dor-future-text {
       fill: var(--dor-text);
@@ -1165,31 +1198,73 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-node-popover {
       position: absolute;
       z-index: 5;
-      width: min(12rem, calc(100% - 1.4rem));
-      padding: 0.58rem 0.65rem;
-      border: 1px solid color-mix(in srgb, var(--dor-title-text) 25%, transparent);
-      border-radius: 0.55rem;
-      background: color-mix(in srgb, var(--dor-bg) 96%, white 4%);
-      color: var(--dor-text);
-      box-shadow: 0 0.5rem 1.5rem color-mix(in srgb, var(--dor-text) 16%, transparent);
-      font: 400 11px/1.45 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      width: min(15.5rem, calc(100% - 1.4rem));
+      padding: 0.82rem 0.9rem 0.86rem;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--dor-title-text) 24%, transparent);
+      border-radius: 0.85rem;
+      background: color-mix(in srgb, #fffafc 96%, var(--dor-bg) 4%);
+      color: #624b69;
+      box-shadow:
+        0 1rem 2.4rem color-mix(in srgb, var(--dor-title-text) 18%, transparent),
+        0 0.15rem 0.55rem color-mix(in srgb, var(--dor-title-text) 12%, transparent);
+      backdrop-filter: blur(14px) saturate(1.12);
+      -webkit-backdrop-filter: blur(14px) saturate(1.12);
+      font: 400 12px/1.65 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      transform-origin: 50% 0;
+    }
+    #diary-river-organic-ribbons .dor-node-popover::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--dor-work), var(--dor-creation), var(--dor-learning));
+      opacity: 0.82;
     }
     #diary-river-organic-ribbons .dor-node-popover[hidden] { display: none; }
+    #diary-river-organic-ribbons .dor-node-popover:not([hidden]) {
+      animation: dor-popover-in 180ms cubic-bezier(0.22, 0.8, 0.3, 1) both;
+    }
+    @keyframes dor-popover-in {
+      from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
     #diary-river-organic-ribbons .dor-node-popover-head {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 0.4rem;
-      margin-block-end: 0.25rem;
-      font-weight: 500;
+      gap: 0.65rem;
+      margin-block-end: 0.35rem;
+      color: var(--dor-title-text);
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 650;
     }
-    #diary-river-organic-ribbons .dor-node-popover p { margin: 0; }
+    #diary-river-organic-ribbons .dor-node-popover p {
+      margin: 0;
+      color: #725f78;
+    }
     #diary-river-organic-ribbons .dor-node-popover-close {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 1.45rem;
+      height: 1.45rem;
       border: 0;
-      background: transparent;
-      color: inherit;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--dor-title-text) 7%, transparent);
+      color: #755d7d;
       padding: 0;
-      font: inherit;
+      font: 500 16px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
       cursor: pointer;
+      transition: color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+    #diary-river-organic-ribbons .dor-node-popover-close:hover,
+    #diary-river-organic-ribbons .dor-node-popover-close:focus-visible {
+      outline: none;
+      color: var(--dor-title-text);
+      background: color-mix(in srgb, var(--dor-title-text) 14%, transparent);
+      transform: rotate(5deg);
     }
     #diary-river-organic-ribbons .dor-sidebar {
       position: relative;
@@ -1728,17 +1803,23 @@ html>body{padding:0}</style>
       const nodePopover = root.querySelector('[data-node-popover]');
       const nodePopoverTitle = root.querySelector('[data-node-popover-title]');
       const nodePopoverDetail = root.querySelector('[data-node-popover-detail]');
+      let activeFutureNode = null;
       function hideNodePopover() {
+        activeFutureNode?.classList.remove('dor-active');
+        activeFutureNode = null;
         if (nodePopover) nodePopover.hidden = true;
       }
       function showNodePopover(item, trigger) {
         if (!poster || !nodePopover || !nodePopoverTitle || !nodePopoverDetail) return;
+        activeFutureNode?.classList.remove('dor-active');
+        activeFutureNode = trigger;
+        activeFutureNode.classList.add('dor-active');
         nodePopoverTitle.textContent = item.text;
         nodePopoverDetail.textContent = item.detail;
         nodePopover.hidden = false;
         const posterRect = poster.getBoundingClientRect();
         const triggerRect = trigger.getBoundingClientRect();
-        const popoverWidth = Math.min(192, posterRect.width - 22);
+        const popoverWidth = Math.min(248, posterRect.width - 22);
         const preferredLeft = triggerRect.left - posterRect.left - popoverWidth / 2;
         const left = Math.max(11, Math.min(preferredLeft, posterRect.width - popoverWidth - 11));
         const preferredTop = triggerRect.bottom - posterRect.top + 7;
@@ -2387,6 +2468,12 @@ html>body{padding:0}</style>
               tabindex: '0',
               'aria-label': `${item.text}，点击查看解释`
             });
+            group.appendChild(el('circle', {
+              class: 'dor-future-halo',
+              cx: point[0],
+              cy: point[1],
+              r: compact ? 6.2 : 7.2
+            }));
             group.appendChild(el('circle', { class: 'dor-future-dot', cx: point[0], cy: point[1], r: compact ? 2.8 : 3.4 }));
             group.appendChild(el('text', {
               class: 'dor-future-text',
