@@ -1336,6 +1336,12 @@ html>body{padding:0}</style>
       font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
       letter-spacing: -0.025em;
     }
+    #diary-river-organic-ribbons .dor-reading-header .dor-forecast-heading {
+      margin: 0;
+      color: #28251f;
+      font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: -0.025em;
+    }
     #diary-river-organic-ribbons .dor-reading-header .dor-data-source {
       margin-top: 5px;
       font-size: 9px;
@@ -1694,8 +1700,15 @@ html>body{padding:0}</style>
       }
       function readingHeaderMarkup() {
         if (predictionOpen) {
-          return `<header class="dor-reading-header" style="margin-bottom:10px">
-            <div class="dor-reading-header-top" style="justify-content:flex-end">
+          return `<header class="dor-reading-header">
+            <div class="dor-reading-header-top" style="align-items:flex-start">
+              <h2 class="dor-forecast-heading">一年后，我可能成为<br>
+                <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
+                  <option value="expert"${activeScenario === 'expert' ? ' selected' : ''}>创作型专家</option>
+                  <option value="creator"${activeScenario === 'creator' ? ' selected' : ''}>独立创作者</option>
+                  <option value="later"${activeScenario === 'later' ? ' selected' : ''}>产品创业者</option>
+                </select>
+              </h2>
               ${viewSwitchMarkup()}
             </div>
           </header>`;
@@ -1721,13 +1734,6 @@ html>body{padding:0}</style>
         const model = roleModels[activeScenario];
         reading.innerHTML = `
           ${readingHeaderMarkup()}
-          <h2>一年后，我可能成为
-            <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
-              <option value="expert"${activeScenario === 'expert' ? ' selected' : ''}>创作型专家</option>
-              <option value="creator"${activeScenario === 'creator' ? ' selected' : ''}>独立创作者</option>
-              <option value="later"${activeScenario === 'later' ? ' selected' : ''}>产品创业者</option>
-            </select>
-          </h2>
           <p class="dor-reading-lead">${model.lead}</p>
           <div class="dor-role-list">${model.people.map((person, index) => `
             <article class="dor-role">
