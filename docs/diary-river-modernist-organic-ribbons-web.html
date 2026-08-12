@@ -1626,7 +1626,7 @@ html>body{padding:0}</style>
       const roleModels = {
         expert: {
           title: '创作型专家，可以向谁学习？',
-          lead: '共同点不是“更会画”，而是把观察、方法、作品与行业影响力连接成一条长期路径。',
+          lead: '这些女性的人生经历可能给你参考',
           people: [
             { name: 'Giorgia Lupi', role: '把数据变成人文语言', timeline: ['建筑与信息设计训练', '2011 创办 Accurat', '2016《Dear Data》', '2019 成为 Pentagram 合伙人'], right: '用长周期个人实验建立辨识度，再把方法带进出版、品牌与公共议题。', detour: '只模仿视觉风格，却没有持续采集、解释和写作的方法。', source: 'https://www.pentagram.com/about/giorgia-lupi' },
             { name: 'Nadieh Bremer', role: '把分析能力变成定制视觉叙事', timeline: ['天文学背景', '数据科学工作', '深入 D3 与视觉实验', '2017 创立 Visual Cinnamon'], right: '保留技术深度，同时坚持从数据与传播目标出发，形成从草图到迭代的完整流程。', detour: '为了追求复杂而复杂，忽略作品要帮助谁理解什么。', source: 'https://www.visualcinnamon.com/about/' },
@@ -1690,6 +1690,11 @@ html>body{padding:0}</style>
         </nav>`;
       }
       function readingHeaderMarkup() {
+        if (predictionOpen) {
+          return `<header class="dor-reading-header">
+            <div class="dor-reading-header-top" style="justify-content:flex-end">${viewSwitchMarkup()}</div>
+          </header>`;
+        }
         return `<header class="dor-reading-header">
           <div class="dor-reading-header-top">
             <h1>时间都去哪儿了？</h1>
