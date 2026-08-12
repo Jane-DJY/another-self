@@ -11,7 +11,7 @@
   body{overflow:hidden}.sky{position:fixed;inset:0;background:radial-gradient(circle at 58% 38%,#4a3b32 0%,#342c27 42%,#25221f 100%)}
   #stars{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
   .topbar{position:fixed;z-index:4;left:clamp(18px,4vw,58px);right:clamp(18px,4vw,58px);top:24px;display:flex;align-items:flex-start;justify-content:space-between;pointer-events:none}
-  .brand{pointer-events:auto}.brand a{color:var(--muted);text-decoration:none;font-size:12px}.brand h1{margin:9px 0 4px;font:500 clamp(28px,4vw,54px)/1 ui-serif,Georgia,"Songti SC",serif;letter-spacing:.08em}.brand p{margin:0;color:var(--muted);font-size:12px;letter-spacing:.08em}
+  .brand{pointer-events:auto}.brand-nav{display:flex;align-items:center;gap:10px}.brand-nav a{color:var(--muted);text-decoration:none;font-size:12px}.brand-nav a+a{padding-left:10px;border-left:1px solid var(--line)}.brand-nav a:hover{color:var(--ink)}.brand h1{margin:9px 0 4px;font:500 clamp(28px,4vw,54px)/1 ui-serif,Georgia,"Songti SC",serif;letter-spacing:.08em}.brand p{margin:0;color:var(--muted);font-size:12px;letter-spacing:.08em}
   .filters{position:fixed;z-index:4;left:50%;bottom:24px;transform:translateX(-50%);display:flex;max-width:calc(100vw - 28px);gap:7px;padding:7px;border:1px solid var(--line);border-radius:999px;background:rgba(43,40,35,.7);backdrop-filter:blur(16px);overflow-x:auto;scrollbar-width:none}
   .filters button{flex:none;border:0;border-radius:999px;padding:8px 12px;background:transparent;color:rgba(255,250,240,.78);font:500 11px/1 sans-serif;cursor:pointer}.filters button[aria-pressed="true"]{background:var(--paper-soft);color:var(--rose)}
   .hint{position:fixed;z-index:3;left:50%;bottom:82px;transform:translateX(-50%);color:rgba(229,235,251,.56);font-size:11px;letter-spacing:.12em;pointer-events:none;transition:opacity .4s}.hint.hidden{opacity:0}
@@ -38,7 +38,7 @@
     radial-gradient(circle at 50% 125%,#d6b7ff 0%,transparent 46%),
     linear-gradient(150deg,#ffdff5 0%,#f5ccf0 42%,#e9d6ff 100%)}
   .sky::after{content:"";position:absolute;inset:auto -8% -16% -8%;height:42%;pointer-events:none;background:radial-gradient(ellipse at 50% 100%,rgba(174,106,229,.25),transparent 66%);filter:blur(24px)}
-  .brand a,.brand p{color:var(--muted)}
+  .brand-nav a,.brand p{color:var(--muted)}
   .brand h1{color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.5)}
   .filters{border-color:rgba(91,47,111,.2);background:rgba(255,244,252,.58);box-shadow:0 14px 40px rgba(110,52,139,.12);backdrop-filter:blur(20px) saturate(1.2)}
   .filters button{color:rgba(68,35,82,.72)}
@@ -66,7 +66,7 @@
 <body>
 <main class="sky" aria-label="五百位女性人生参照组成的星空">
   <canvas id="stars"></canvas>
-  <header class="topbar"><div class="brand"><a href="diary-river-modernist-organic-ribbons-web.html">← 回到我的河流</a><h1>群星闪耀</h1><p>她们不是答案，是五百种已经发生过的可能</p></div></header>
+  <header class="topbar"><div class="brand"><nav class="brand-nav" aria-label="页面导航"><a href="index.html">⌂ 首页</a><a href="diary-river-modernist-organic-ribbons-web.html">← 回到我的河流</a></nav><h1>群星闪耀</h1><p>她们不是答案，是五百种已经发生过的可能</p></div></header>
   <div class="hint" id="hint">移动鼠标辨认一颗星 · 点击进入她的人生轨道</div>
   <nav class="filters" aria-label="按领域筛选" id="filters"></nav>
   <div class="tooltip" id="tooltip"><b></b><span></span></div>
