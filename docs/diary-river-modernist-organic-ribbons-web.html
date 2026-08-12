@@ -951,7 +951,15 @@ html>body{padding:0}</style>
       text-decoration: none;
       transition: color 180ms ease;
     }
-    .dor-stars-button::before { content: "✦"; color: #b32332; font-size: 13px; }
+    .dor-stars-button::before {
+      content: "";
+      width: 10px;
+      height: 14px;
+      flex: none;
+      clip-path: polygon(50% 0, 88% 25%, 77% 76%, 50% 100%, 14% 72%, 8% 25%);
+      background: linear-gradient(145deg,#fff 0%,#dda2f2 32%,#9a4bd6 68%,#6323b4 100%);
+      filter: drop-shadow(0 2px 3px rgba(83,33,123,.22));
+    }
     .dor-stars-button:hover { color: #28251f; text-decoration: none; }
     .dor-import-mark {
       display: flex;
@@ -998,14 +1006,38 @@ html>body{padding:0}</style>
     @media (prefers-reduced-motion: reduce) {
       .dor-import-entry, #diary-river-organic-ribbons { transition: none; }
     }
+    /* Life crystal edition */
+    html, body { background: #f4d7ef !important; color: #442352; }
+    .dor-import-entry {
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,.92) 0 1px, transparent 3px),
+        radial-gradient(circle at 77% 28%, rgba(255,250,211,.9) 0 2px, transparent 5px),
+        radial-gradient(ellipse at 50% 115%, rgba(164,91,221,.28), transparent 52%),
+        linear-gradient(145deg,#ffe1f5 0%,#f6d3f1 48%,#e9d8ff 100%);
+      color: #442352;
+    }
+    .dor-import-entry::before,.dor-import-entry::after{content:none}
+    .dor-import-mark{position:relative;z-index:1;gap:12px;width:100px;height:78px;align-items:center}
+    .dor-person{width:37px;height:62px;clip-path:polygon(50% 0,88% 25%,77% 78%,50% 100%,14% 72%,8% 25%);filter:drop-shadow(0 12px 10px rgba(83,33,123,.2));animation:dor-crystal-float 4.8s ease-in-out infinite}
+    .dor-person i,.dor-person b{display:none}
+    .dor-person-now{background:linear-gradient(145deg,#fff,#ed9bd8 38%,#9852d4 75%,#6625b8);transform:translateY(8px) rotate(-5deg)}
+    .dor-person-other{background:linear-gradient(145deg,#fff,#d8b0fb 34%,#8745d0 72%,#ffd452);transform:translateY(-5px) rotate(5deg);animation-delay:-1.7s}
+    @keyframes dor-crystal-float{0%,100%{margin-top:0}50%{margin-top:-8px}}
+    .dor-import-name{color:#5d2d73}
+    .dor-import-entry h1{color:#442352;text-shadow:0 1px 0 rgba(255,255,255,.42)}
+    .dor-import-primary{border-color:#57306d;background:#57306d;color:#fff8fd;box-shadow:0 10px 28px rgba(88,40,112,.18)}
+    .dor-import-primary:hover{background:#a33dc1;border-color:#a33dc1}
+    .dor-import-demo{border-color:#916b9f;color:#644d6e}
+    .dor-home-button,.dor-stars-button{color:#694d75}
+    .dor-home-button:hover,.dor-stars-button:hover{color:#442352}
     #diary-river-organic-ribbons {
       width: 100%;
-      --dor-bg: #f1e3ce;
+      --dor-bg: #f8e7f5;
       --dor-text: #ffffff;
-      --dor-title-text: #22221f;
-      --dor-outside-event-text: #22221f;
-      --dor-muted: #6e665b;
-      --dor-separator: #f1e3ce;
+      --dor-title-text: #442352;
+      --dor-outside-event-text: #442352;
+      --dor-muted: #795f80;
+      --dor-separator: #f8e7f5;
       --dor-separator-width: 1.35;
       --dor-ribbon-opacity: 0.95;
       --dor-max-width: 0.72;
@@ -1015,14 +1047,29 @@ html>body{padding:0}</style>
       --dor-event-font-size: 8px;
       --dor-event-wrap-width: 76;
       --dor-event-bg-opacity: 0;
-      --dor-work: #165d91;
-      --dor-creation: #d7192d;
-      --dor-learning: #f4b51b;
-      --dor-venture: #ef7d17;
-      --dor-life: #0b5a43;
-      --dor-figure-head: #c88762;
-      --dor-figure-outline: #5a4335;
+      --dor-work: #7948ca;
+      --dor-creation: #d64fae;
+      --dor-learning: #f1b943;
+      --dor-venture: #ef79ba;
+      --dor-life: #a15ed3;
+      --dor-figure-head: #e8a9d7;
+      --dor-figure-outline: #754184;
     }
+    #diary-river-organic-ribbons{background:linear-gradient(135deg,#fff2fa 0%,#f8e7f5 48%,#eee3ff 100%)}
+    #diary-river-organic-ribbons .dor-reading{color:#442352}
+    #diary-river-organic-ribbons .dor-reading-header h1,
+    #diary-river-organic-ribbons .dor-reading-header .dor-forecast-heading{color:#442352}
+    #diary-river-organic-ribbons .dor-reading-lead{color:#755e7b}
+    #diary-river-organic-ribbons .dor-reading-kicker,
+    #diary-river-organic-ribbons .dor-case-intro,
+    #diary-river-organic-ribbons .dor-insight-time,
+    #diary-river-organic-ribbons .dor-role-index{color:#8c6c94}
+    #diary-river-organic-ribbons .dor-insight,
+    #diary-river-organic-ribbons .dor-role{border-color:rgba(79,40,96,.15)}
+    #diary-river-organic-ribbons .dor-view-switch{border-color:rgba(91,47,111,.22);background:rgba(255,247,253,.52);box-shadow:0 10px 30px rgba(101,48,128,.1)}
+    #diary-river-organic-ribbons .dor-view-switch button{color:#6e5277}
+    #diary-river-organic-ribbons .dor-view-switch button[aria-pressed="true"]{background:#603374;color:#fff7fd}
+    #diary-river-organic-ribbons .dor-ribbon{filter:saturate(.9);mix-blend-mode:multiply}
     #diary-river-organic-ribbons .dor-editor {
       display: grid;
       grid-template-columns: minmax(0, min(720px, calc(100svh * 0.75), calc(100% - 236px))) 220px;
@@ -1458,6 +1505,21 @@ html>body{padding:0}</style>
     }
     #diary-river-organic-ribbons .dor-insight h3,
     #diary-river-organic-ribbons .dor-role h3 { margin: 0 0 6px; font-size: 16px; font-weight: 500; }
+    #diary-river-organic-ribbons .dor-role h3 {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    #diary-river-organic-ribbons .dor-role h3::before {
+      content: "";
+      width: 12px;
+      height: 17px;
+      margin-top: 1px;
+      flex: 0 0 12px;
+      clip-path: polygon(50% 0,88% 25%,77% 76%,50% 100%,14% 72%,8% 25%);
+      background: linear-gradient(145deg,#fff 0%,#dda2f2 32%,#9a4bd6 68%,#6323b4 100%);
+      filter: drop-shadow(0 2px 3px rgba(83,33,123,.22));
+    }
     #diary-river-organic-ribbons .dor-insight p,
     #diary-river-organic-ribbons .dor-role p { margin: 0; color: #5f574d; font-size: 13px; line-height: 1.65; }
     #diary-river-organic-ribbons .dor-metric { color: #b02a32; font-weight: 500; }
@@ -1502,6 +1564,28 @@ html>body{padding:0}</style>
       #diary-river-organic-ribbons .dor-insight,
       #diary-river-organic-ribbons .dor-role { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
     }
+    /* Final color pass, intentionally after the original web-edition rules. */
+    #diary-river-organic-ribbons .dor-reading{color:#442352}
+    #diary-river-organic-ribbons .dor-reading-header h1,
+    #diary-river-organic-ribbons .dor-reading-header .dor-forecast-heading,
+    #diary-river-organic-ribbons .dor-reading h2{color:#442352}
+    #diary-river-organic-ribbons .dor-reading-lead,
+    #diary-river-organic-ribbons .dor-insight p,
+    #diary-river-organic-ribbons .dor-role p{color:#755e7b}
+    #diary-river-organic-ribbons .dor-reading-kicker,
+    #diary-river-organic-ribbons .dor-case-intro,
+    #diary-river-organic-ribbons .dor-insight-time,
+    #diary-river-organic-ribbons .dor-role-index,
+    #diary-river-organic-ribbons .dor-inference{color:#8c6c94}
+    #diary-river-organic-ribbons .dor-insight,
+    #diary-river-organic-ribbons .dor-role{border-color:rgba(79,40,96,.15)}
+    #diary-river-organic-ribbons .dor-metric{color:#a83ec1}
+    #diary-river-organic-ribbons .dor-timeline{color:#604568}
+    #diary-river-organic-ribbons .dor-role-note strong{color:#4c2e57}
+    #diary-river-organic-ribbons .dor-source{color:#765780}
+    #diary-river-organic-ribbons .dor-view-switch{border-color:rgba(91,47,111,.22);background:rgba(255,247,253,.52);box-shadow:0 10px 30px rgba(101,48,128,.1)}
+    #diary-river-organic-ribbons .dor-view-switch button{color:#6e5277}
+    #diary-river-organic-ribbons .dor-view-switch button[aria-pressed="true"]{background:#603374;color:#fff7fd}
   </style>
 
   <div class="dor-editor">
@@ -1591,19 +1675,19 @@ html>body{padding:0}</style>
 
           <p class="dor-group-title text-small">画面颜色</p>
           <div class="dor-color-grid">
-            <label class="dor-color form-label">背景<input class="form-control form-control-color" type="color" value="#f1e3ce" data-setting="background"></label>
+            <label class="dor-color form-label">背景<input class="form-control form-control-color" type="color" value="#f8e7f5" data-setting="background"></label>
             <label class="dor-color form-label">文字<input class="form-control form-control-color" type="color" value="#ffffff" data-setting="text"></label>
-            <label class="dor-color form-label">分割线<input class="form-control form-control-color" type="color" value="#f1e3ce" data-setting="separator"></label>
-            <label class="dor-color form-label">外部节点<input class="form-control form-control-color" type="color" value="#22221f" data-setting="outside-event-text"></label>
+            <label class="dor-color form-label">分割线<input class="form-control form-control-color" type="color" value="#f8e7f5" data-setting="separator"></label>
+            <label class="dor-color form-label">外部节点<input class="form-control form-control-color" type="color" value="#442352" data-setting="outside-event-text"></label>
           </div>
 
           <p class="dor-group-title text-small">主题颜色</p>
           <div class="dor-color-grid">
-            <label class="dor-color form-label">工作<input class="form-control form-control-color" type="color" value="#165d91" data-setting="work"></label>
-            <label class="dor-color form-label">个人创作<input class="form-control form-control-color" type="color" value="#d7192d" data-setting="creation"></label>
-            <label class="dor-color form-label">学习<input class="form-control form-control-color" type="color" value="#f4b51b" data-setting="learning"></label>
-            <label class="dor-color form-label">副业尝试<input class="form-control form-control-color" type="color" value="#ef7d17" data-setting="venture"></label>
-            <label class="dor-color form-label">生活与关系<input class="form-control form-control-color" type="color" value="#0b5a43" data-setting="life"></label>
+            <label class="dor-color form-label">工作<input class="form-control form-control-color" type="color" value="#7948ca" data-setting="work"></label>
+            <label class="dor-color form-label">个人创作<input class="form-control form-control-color" type="color" value="#d64fae" data-setting="creation"></label>
+            <label class="dor-color form-label">学习<input class="form-control form-control-color" type="color" value="#f1b943" data-setting="learning"></label>
+            <label class="dor-color form-label">副业尝试<input class="form-control form-control-color" type="color" value="#ef79ba" data-setting="venture"></label>
+            <label class="dor-color form-label">生活与关系<input class="form-control form-control-color" type="color" value="#a15ed3" data-setting="life"></label>
           </div>
         </div>
       </details>
@@ -1947,15 +2031,16 @@ html>body{padding:0}</style>
       function animateFutureGrowth(svg, startY, endY, width) {
         if (forecastAnimationFrame) cancelAnimationFrame(forecastAnimationFrame);
         svg.classList.remove('dor-idle-motion');
-        const pageBackground = getComputedStyle(document.documentElement).backgroundColor;
+        /* The reveal cover must match the poster, not the browser's default canvas.
+           Reading documentElement.backgroundColor returned white after the crystal
+           theme switched the page to gradients, creating a visible white block. */
+        const pageBackground = getComputedStyle(root).getPropertyValue('--dor-bg').trim();
         const cover = el('rect', {
           x: 0,
           y: startY,
           width,
           height: Math.max(0, endY - startY + 3),
-          fill: pageBackground && pageBackground !== 'rgba(0, 0, 0, 0)'
-            ? pageBackground
-            : '#ebe3d7',
+          fill: pageBackground || '#f8e7f5',
           'aria-hidden': 'true'
         });
         svg.appendChild(cover);
