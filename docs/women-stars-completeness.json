@@ -1,0 +1,1649 @@
+{
+  "generatedAt": "2026-08-12T12:53:33.205Z",
+  "total": 500,
+  "wikipediaPages": 445,
+  "completedFromPublicSources": 445,
+  "savedPhotos": 352,
+  "publicReady": 351,
+  "unresolvedProfiles": [
+    {
+      "id": "DBP-Hou_Youtang",
+      "name": "侯祐堂",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Hou_Youtang",
+        "https://www.wikidata.org/wiki/Q67169133",
+        "http://dbpedia.org/resource/Hou_Youtang"
+      ]
+    },
+    {
+      "id": "DBP-Xue-Min_Cheng",
+      "name": "Xue-Min Cheng",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xue-Min_Cheng",
+        "https://www.wikidata.org/wiki/Q58885855",
+        "http://dbpedia.org/resource/Xue-Min_Cheng"
+      ]
+    },
+    {
+      "id": "DBP-Yanqing_Ye",
+      "name": "Yanqing Ye",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Yanqing_Ye",
+        "https://www.wikidata.org/wiki/Q84076643",
+        "http://dbpedia.org/resource/Yanqing_Ye"
+      ]
+    },
+    {
+      "id": "DBP-Li-Meng_Yan",
+      "name": "閆麗夢",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Li-Meng_Yan",
+        "https://www.wikidata.org/wiki/Q97158961",
+        "http://dbpedia.org/resource/Li-Meng_Yan"
+      ]
+    },
+    {
+      "id": "DBP-Lixia_Zhang",
+      "name": "张丽霞",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lixia_Zhang",
+        "https://www.wikidata.org/wiki/Q20111994",
+        "http://dbpedia.org/resource/Lixia_Zhang"
+      ]
+    },
+    {
+      "id": "DBP-Jenny_P._Y._Ting",
+      "name": "丁邦容",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jenny_P._Y._Ting",
+        "https://www.wikidata.org/wiki/Q50858300",
+        "http://dbpedia.org/resource/Jenny_P._Y._Ting"
+      ]
+    },
+    {
+      "id": "DBP-Bo_Li_(statistician)",
+      "name": "Bo Li",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Bo_Li_(statistician)",
+        "https://www.wikidata.org/wiki/Q102408613",
+        "http://dbpedia.org/resource/Bo_Li_(statistician)"
+      ]
+    },
+    {
+      "id": "DBP-Li_Tao_(psychiatrist)",
+      "name": "李涛",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Li_Tao_(psychiatrist)",
+        "https://www.wikidata.org/wiki/Q22278858",
+        "http://dbpedia.org/resource/Li_Tao_(psychiatrist)"
+      ]
+    },
+    {
+      "id": "DBP-Xifeng_Wu",
+      "name": "吴息凤",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xifeng_Wu",
+        "https://www.wikidata.org/wiki/Q64634085",
+        "http://dbpedia.org/resource/Xifeng_Wu"
+      ]
+    },
+    {
+      "id": "DBP-Anna_Suk-Fong_Lok",
+      "name": "骆淑芳",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Anna_Suk-Fong_Lok",
+        "https://www.wikidata.org/wiki/Q22095620",
+        "http://dbpedia.org/resource/Anna_Suk-Fong_Lok"
+      ]
+    },
+    {
+      "id": "DBP-Rong_Zhang",
+      "name": "Rong Zhang",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Rong_Zhang",
+        "https://www.wikidata.org/wiki/Q110529226",
+        "http://dbpedia.org/resource/Rong_Zhang"
+      ]
+    },
+    {
+      "id": "DBP-Li_Yiyi",
+      "name": "李依依",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Li_Yiyi",
+        "https://www.wikidata.org/wiki/Q9203745",
+        "http://dbpedia.org/resource/Li_Yiyi"
+      ]
+    },
+    {
+      "id": "DBP-Tian_Zheng",
+      "name": "Tian Zheng",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Tian_Zheng",
+        "https://www.wikidata.org/wiki/Q42576718",
+        "http://dbpedia.org/resource/Tian_Zheng"
+      ]
+    },
+    {
+      "id": "DBP-Youxin_Yang",
+      "name": "杨有新",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Youxin_Yang",
+        "https://www.wikidata.org/wiki/Q8059384",
+        "http://dbpedia.org/resource/Youxin_Yang"
+      ]
+    },
+    {
+      "id": "DBP-Baohua_Jia",
+      "name": "Baohua Jia",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Baohua_Jia",
+        "https://www.wikidata.org/wiki/Q61794386",
+        "http://dbpedia.org/resource/Baohua_Jia"
+      ]
+    },
+    {
+      "id": "DBP-Lan_Zhang",
+      "name": "Lan Zhang",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lan_Zhang",
+        "https://www.wikidata.org/wiki/Q102243657",
+        "http://dbpedia.org/resource/Lan_Zhang"
+      ]
+    },
+    {
+      "id": "DBP-Lu_Wang_(biostatistician)",
+      "name": "Lu Wang",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lu_Wang_(biostatistician)",
+        "https://www.wikidata.org/wiki/Q102346691",
+        "http://dbpedia.org/resource/Lu_Wang_(biostatistician)"
+      ]
+    },
+    {
+      "id": "DBP-Shujie_Ma",
+      "name": "Shujie Ma",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Shujie_Ma",
+        "https://www.wikidata.org/wiki/Q102385037",
+        "http://dbpedia.org/resource/Shujie_Ma"
+      ]
+    },
+    {
+      "id": "DBP-Xinyi_Xu",
+      "name": "Xinyi Xu",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xinyi_Xu",
+        "https://www.wikidata.org/wiki/Q102303951",
+        "http://dbpedia.org/resource/Xinyi_Xu"
+      ]
+    },
+    {
+      "id": "DBP-Fan_Li_(statistician)",
+      "name": "Fan Li",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Fan_Li_(statistician)",
+        "https://www.wikidata.org/wiki/Q57220579",
+        "http://dbpedia.org/resource/Fan_Li_(statistician)"
+      ]
+    },
+    {
+      "id": "DBP-Gertrude_F._Rempfer",
+      "name": "Gertrude Rempfer",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Gertrude_F._Rempfer",
+        "https://www.wikidata.org/wiki/Q124615929",
+        "http://dbpedia.org/resource/Gertrude_F._Rempfer"
+      ]
+    },
+    {
+      "id": "DBP-Hamida_Saiduzzafar",
+      "name": "哈米达·赛义杜扎法尔",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Hamida_Saiduzzafar",
+        "https://www.wikidata.org/wiki/Q100553334",
+        "http://dbpedia.org/resource/Hamida_Saiduzzafar"
+      ]
+    },
+    {
+      "id": "DBP-Beatrice_de_Cardi",
+      "name": "比阿特麗斯·德·卡迪",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Beatrice_de_Cardi",
+        "https://www.wikidata.org/wiki/Q4877139",
+        "http://dbpedia.org/resource/Beatrice_de_Cardi"
+      ]
+    },
+    {
+      "id": "DBP-Kamala_Balakrishnan",
+      "name": "Kamala Balakrishnan",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kamala_Balakrishnan",
+        "https://www.wikidata.org/wiki/Q100233715",
+        "http://dbpedia.org/resource/Kamala_Balakrishnan"
+      ]
+    },
+    {
+      "id": "DBP-Phyllis_Hayford_Hutchings",
+      "name": "Phyllis Hayford Hutchings",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Phyllis_Hayford_Hutchings",
+        "https://www.wikidata.org/wiki/Q130597449",
+        "http://dbpedia.org/resource/Phyllis_Hayford_Hutchings"
+      ]
+    },
+    {
+      "id": "DBP-Gabrielle_Howard",
+      "name": "Gabrielle Howard",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Gabrielle_Howard",
+        "https://www.wikidata.org/wiki/Q1490676",
+        "http://dbpedia.org/resource/Gabrielle_Howard"
+      ]
+    },
+    {
+      "id": "DBP-R._Sowdhamini",
+      "name": "R. Sowdhamini",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/R._Sowdhamini",
+        "https://www.wikidata.org/wiki/Q46916948",
+        "http://dbpedia.org/resource/R._Sowdhamini"
+      ]
+    },
+    {
+      "id": "DBP-Ann_McMillan",
+      "name": "Ann McMillan",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ann_McMillan",
+        "https://www.wikidata.org/wiki/Q107609490",
+        "http://dbpedia.org/resource/Ann_McMillan"
+      ]
+    },
+    {
+      "id": "DBP-Betty_Talmadge",
+      "name": "Betty Talmadge",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Betty_Talmadge",
+        "https://www.wikidata.org/wiki/Q93280255",
+        "http://dbpedia.org/resource/Betty_Talmadge"
+      ]
+    },
+    {
+      "id": "DBP-Maxine_North",
+      "name": "Maxine North",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Maxine_North",
+        "https://www.wikidata.org/wiki/Q124477084",
+        "http://dbpedia.org/resource/Maxine_North"
+      ]
+    },
+    {
+      "id": "DBP-Morley_Cowles_Ballantine",
+      "name": "Elizabeth Morley Cowles",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Morley_Cowles_Ballantine",
+        "https://www.wikidata.org/wiki/Q26700164",
+        "http://dbpedia.org/resource/Morley_Cowles_Ballantine"
+      ]
+    },
+    {
+      "id": "DBP-Helen_Marie_Black",
+      "name": "Helen Marie Black",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Helen_Marie_Black",
+        "https://www.wikidata.org/wiki/Q26699957",
+        "http://dbpedia.org/resource/Helen_Marie_Black"
+      ]
+    },
+    {
+      "id": "DBP-Irene_Dorner",
+      "name": "Irene Dorner",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Irene_Dorner",
+        "https://www.wikidata.org/wiki/Q16728635",
+        "http://dbpedia.org/resource/Irene_Dorner"
+      ]
+    },
+    {
+      "id": "DBP-Mary_Barnett_Gilson",
+      "name": "Mary Barnett Gilson",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mary_Barnett_Gilson",
+        "https://www.wikidata.org/wiki/Q100279094",
+        "http://dbpedia.org/resource/Mary_Barnett_Gilson"
+      ]
+    },
+    {
+      "id": "DBP-Jenny_Craig_(businesswoman)",
+      "name": "Jenny Craig",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jenny_Craig_(businesswoman)",
+        "https://www.wikidata.org/wiki/Q6179226",
+        "http://dbpedia.org/resource/Jenny_Craig_(businesswoman)"
+      ]
+    },
+    {
+      "id": "DBP-Elizabeth_Elting",
+      "name": "Elizabeth Elting",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Elizabeth_Elting",
+        "https://www.wikidata.org/wiki/Q56610745",
+        "http://dbpedia.org/resource/Elizabeth_Elting"
+      ]
+    },
+    {
+      "id": "DBP-Louise_Lawrence_Foster",
+      "name": "Louise Lawrence Foster",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Louise_Lawrence_Foster",
+        "https://www.wikidata.org/wiki/Q117607553",
+        "http://dbpedia.org/resource/Louise_Lawrence_Foster"
+      ]
+    },
+    {
+      "id": "DBP-Narcissa_Niblack_Thorne",
+      "name": "Narcissa Niblack Thorne",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Narcissa_Niblack_Thorne",
+        "https://www.wikidata.org/wiki/Q3336054",
+        "http://dbpedia.org/resource/Narcissa_Niblack_Thorne"
+      ]
+    },
+    {
+      "id": "DBP-Kari_edwards",
+      "name": "kari edwards",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kari_edwards",
+        "https://www.wikidata.org/wiki/Q6370358",
+        "http://dbpedia.org/resource/Kari_edwards"
+      ]
+    },
+    {
+      "id": "DBP-Kate_Matthews",
+      "name": "Kate Matthews",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kate_Matthews",
+        "https://www.wikidata.org/wiki/Q6375633",
+        "http://dbpedia.org/resource/Kate_Matthews"
+      ]
+    },
+    {
+      "id": "DBP-Adelle_Lutz",
+      "name": "Adelle Lutz",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Adelle_Lutz",
+        "https://www.wikidata.org/wiki/Q4682002",
+        "http://dbpedia.org/resource/Adelle_Lutz"
+      ]
+    },
+    {
+      "id": "DBP-Suzi_Gablik",
+      "name": "Suzi Gablik",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Suzi_Gablik",
+        "https://www.wikidata.org/wiki/Q19754120",
+        "http://dbpedia.org/resource/Suzi_Gablik"
+      ]
+    },
+    {
+      "id": "DBP-Caroline_Speare_Rohland",
+      "name": "Caroline Speare Rohland",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Caroline_Speare_Rohland",
+        "https://www.wikidata.org/wiki/Q28928727",
+        "http://dbpedia.org/resource/Caroline_Speare_Rohland"
+      ]
+    },
+    {
+      "id": "DBP-June_Blum",
+      "name": "June Blum",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/June_Blum",
+        "https://www.wikidata.org/wiki/Q23091423",
+        "http://dbpedia.org/resource/June_Blum"
+      ]
+    },
+    {
+      "id": "DBP-Rhoza_A._Walker",
+      "name": "Rhoza A. Walker",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Rhoza_A._Walker",
+        "https://www.wikidata.org/wiki/Q132660186",
+        "http://dbpedia.org/resource/Rhoza_A._Walker"
+      ]
+    },
+    {
+      "id": "DBP-Ann_Jonas",
+      "name": "Ann Jonas",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ann_Jonas",
+        "https://www.wikidata.org/wiki/Q2850395",
+        "http://dbpedia.org/resource/Ann_Jonas"
+      ]
+    },
+    {
+      "id": "DBP-Pauline_Smith_(artist)",
+      "name": "Pauline Smith",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Pauline_Smith_(artist)",
+        "https://www.wikidata.org/wiki/Q30502117",
+        "http://dbpedia.org/resource/Pauline_Smith_(artist)"
+      ]
+    },
+    {
+      "id": "DBP-Elizabeth_Osborne",
+      "name": "Elizabeth Osborne",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Elizabeth_Osborne",
+        "https://www.wikidata.org/wiki/Q20685046",
+        "http://dbpedia.org/resource/Elizabeth_Osborne"
+      ]
+    },
+    {
+      "id": "DBP-Kitty_Garman",
+      "name": "Kitty Garman",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kitty_Garman",
+        "https://www.wikidata.org/wiki/Q28036796",
+        "http://dbpedia.org/resource/Kitty_Garman"
+      ]
+    },
+    {
+      "id": "DBP-Joan_Ingilby",
+      "name": "Joan Ingilby",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Joan_Ingilby",
+        "https://www.wikidata.org/wiki/Q18530079",
+        "http://dbpedia.org/resource/Joan_Ingilby"
+      ]
+    },
+    {
+      "id": "DBP-Mary_Kring_Risley",
+      "name": "Mary Kring Risley",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mary_Kring_Risley",
+        "https://www.wikidata.org/wiki/Q136194718",
+        "http://dbpedia.org/resource/Mary_Kring_Risley"
+      ]
+    },
+    {
+      "id": "DBP-Norma_Rubovits",
+      "name": "Norma Rubovits",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Norma_Rubovits",
+        "https://www.wikidata.org/wiki/Q118689005",
+        "http://dbpedia.org/resource/Norma_Rubovits"
+      ]
+    },
+    {
+      "id": "DBP-Linda_Alterwitz",
+      "name": "Linda Alterwitz",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Linda_Alterwitz",
+        "https://www.wikidata.org/wiki/Q117321890",
+        "http://dbpedia.org/resource/Linda_Alterwitz"
+      ]
+    },
+    {
+      "id": "DBP-Xue_Shaohui",
+      "name": "薛紹徽",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xue_Shaohui",
+        "https://www.wikidata.org/wiki/Q45695833",
+        "http://dbpedia.org/resource/Xue_Shaohui"
+      ]
+    },
+    {
+      "id": "DBP-Clara_Whitehill_Hunt",
+      "name": "Clara Whitehill Hunt",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Clara_Whitehill_Hunt",
+        "https://www.wikidata.org/wiki/Q5126069",
+        "http://dbpedia.org/resource/Clara_Whitehill_Hunt"
+      ]
+    },
+    {
+      "id": "DBP-Emma_Frances_Grayson_Merritt",
+      "name": "Emma Frances Grayson Merritt",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Emma_Frances_Grayson_Merritt",
+        "https://www.wikidata.org/wiki/Q61283819",
+        "http://dbpedia.org/resource/Emma_Frances_Grayson_Merritt"
+      ]
+    },
+    {
+      "id": "DBP-Janet_Hodgson",
+      "name": "Janet Hodgson",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Janet_Hodgson",
+        "https://www.wikidata.org/wiki/Q94287855",
+        "http://dbpedia.org/resource/Janet_Hodgson"
+      ]
+    },
+    {
+      "id": "DBP-Tan_Yunxian",
+      "name": "談允賢",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Tan_Yunxian",
+        "https://www.wikidata.org/wiki/Q4794429",
+        "http://dbpedia.org/resource/Tan_Yunxian"
+      ]
+    },
+    {
+      "id": "DBP-Muriel_Petioni",
+      "name": "Muriel Petioni",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Muriel_Petioni",
+        "https://www.wikidata.org/wiki/Q18158307",
+        "http://dbpedia.org/resource/Muriel_Petioni"
+      ]
+    },
+    {
+      "id": "DBP-Helen_Mackay",
+      "name": "Helen Mackay",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Helen_Mackay",
+        "https://www.wikidata.org/wiki/Q18671377",
+        "http://dbpedia.org/resource/Helen_Mackay"
+      ]
+    },
+    {
+      "id": "DBP-Olga_Stastny",
+      "name": "Olga Stastny",
+      "hasPhoto": true,
+      "hasBiography": false,
+      "sources": [
+        "http://dbpedia.org/resource/Olga_Stastny",
+        "https://en.wikipedia.org/wiki/Olga_Stastny"
+      ]
+    },
+    {
+      "id": "DBP-Ionia_Rollin_Whipper",
+      "name": "Ionia Rollin Whipper",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ionia_Rollin_Whipper",
+        "https://www.wikidata.org/wiki/Q17016444",
+        "http://dbpedia.org/resource/Ionia_Rollin_Whipper"
+      ]
+    },
+    {
+      "id": "DBP-Wang_Dingguo",
+      "name": "王定国",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Wang_Dingguo",
+        "https://www.wikidata.org/wiki/Q9314074",
+        "http://dbpedia.org/resource/Wang_Dingguo"
+      ]
+    },
+    {
+      "id": "DBP-Yu_Hongqiu",
+      "name": "喻红秋",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Yu_Hongqiu",
+        "https://www.wikidata.org/wiki/Q9079623",
+        "http://dbpedia.org/resource/Yu_Hongqiu"
+      ]
+    },
+    {
+      "id": "DBP-Wu_Guixian",
+      "name": "吴桂贤",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Wu_Guixian",
+        "https://www.wikidata.org/wiki/Q8248916",
+        "http://dbpedia.org/resource/Wu_Guixian"
+      ]
+    },
+    {
+      "id": "DBP-Yan_Junqi",
+      "name": "严隽琪",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Yan_Junqi",
+        "https://www.wikidata.org/wiki/Q261597",
+        "http://dbpedia.org/resource/Yan_Junqi"
+      ]
+    },
+    {
+      "id": "DBP-Ou_Tangliang",
+      "name": "区棠亮",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ou_Tangliang",
+        "https://www.wikidata.org/wiki/Q9114564",
+        "http://dbpedia.org/resource/Ou_Tangliang"
+      ]
+    },
+    {
+      "id": "DBP-Pang_Lijuan",
+      "name": "庞丽娟",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Pang_Lijuan",
+        "https://www.wikidata.org/wiki/Q9134411",
+        "http://dbpedia.org/resource/Pang_Lijuan"
+      ]
+    },
+    {
+      "id": "DBP-Zeng_Qinghong_(born_1962)",
+      "name": "曾庆红 (女)",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Zeng_Qinghong_(born_1962)",
+        "https://www.wikidata.org/wiki/Q9093991",
+        "http://dbpedia.org/resource/Zeng_Qinghong_(born_1962)"
+      ]
+    },
+    {
+      "id": "DBP-Tian_Xiangli",
+      "name": "田向利",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Tian_Xiangli",
+        "https://www.wikidata.org/wiki/Q8246892",
+        "http://dbpedia.org/resource/Tian_Xiangli"
+      ]
+    },
+    {
+      "id": "DBP-Zhang_Yizhen",
+      "name": "张义珍",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Zhang_Yizhen",
+        "https://www.wikidata.org/wiki/Q97164738",
+        "http://dbpedia.org/resource/Zhang_Yizhen"
+      ]
+    },
+    {
+      "id": "DBP-Li_Binzhu",
+      "name": "李滨珠",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Li_Binzhu",
+        "https://www.wikidata.org/wiki/Q54152875",
+        "http://dbpedia.org/resource/Li_Binzhu"
+      ]
+    },
+    {
+      "id": "DBP-Lian_Yueqin",
+      "name": "练月琴",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lian_Yueqin",
+        "https://www.wikidata.org/wiki/Q8999713",
+        "http://dbpedia.org/resource/Lian_Yueqin"
+      ]
+    },
+    {
+      "id": "DBP-Liu_Hua_(politician,_born_1961)",
+      "name": "刘华",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Liu_Hua_(politician%2C_born_1961)",
+        "https://www.wikidata.org/wiki/Q97167738",
+        "http://dbpedia.org/resource/Liu_Hua_(politician,_born_1961)"
+      ]
+    },
+    {
+      "id": "DBP-Lin_Wenyi",
+      "name": "林文漪",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lin_Wenyi",
+        "https://www.wikidata.org/wiki/Q8248854",
+        "http://dbpedia.org/resource/Lin_Wenyi"
+      ]
+    },
+    {
+      "id": "DBP-Wan_Shaofen",
+      "name": "萬紹芬",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Wan_Shaofen",
+        "https://www.wikidata.org/wiki/Q7212270",
+        "http://dbpedia.org/resource/Wan_Shaofen"
+      ]
+    },
+    {
+      "id": "DBP-Li_Haifeng",
+      "name": "李海峰",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Li_Haifeng",
+        "https://www.wikidata.org/wiki/Q6538804",
+        "http://dbpedia.org/resource/Li_Haifeng"
+      ]
+    },
+    {
+      "id": "DBP-Liao_Xiaoyi",
+      "name": "廖晓义",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Liao_Xiaoyi",
+        "https://www.wikidata.org/wiki/Q6540122",
+        "http://dbpedia.org/resource/Liao_Xiaoyi"
+      ]
+    },
+    {
+      "id": "DBP-Ho_Sut_Heng",
+      "name": "何雪卿",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ho_Sut_Heng",
+        "https://www.wikidata.org/wiki/Q10886447",
+        "http://dbpedia.org/resource/Ho_Sut_Heng"
+      ]
+    },
+    {
+      "id": "DBP-Song_Xiuyan",
+      "name": "宋秀岩",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Song_Xiuyan",
+        "https://www.wikidata.org/wiki/Q460107",
+        "http://dbpedia.org/resource/Song_Xiuyan"
+      ]
+    },
+    {
+      "id": "DBP-Li_Weiwei_(politician)",
+      "name": "李微微",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Li_Weiwei_(politician)",
+        "https://www.wikidata.org/wiki/Q8994832",
+        "http://dbpedia.org/resource/Li_Weiwei_(politician)"
+      ]
+    },
+    {
+      "id": "DBP-Lü_Xiwen",
+      "name": "吕锡文",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/L%C3%BC_Xiwen",
+        "https://www.wikidata.org/wiki/Q8292489",
+        "http://dbpedia.org/resource/Lü_Xiwen"
+      ]
+    },
+    {
+      "id": "DBP-Nie_Li",
+      "name": "聂力",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nie_Li",
+        "https://www.wikidata.org/wiki/Q8248937",
+        "http://dbpedia.org/resource/Nie_Li"
+      ]
+    },
+    {
+      "id": "DBP-Zhang_Xiaolan",
+      "name": "张晓兰 (官员)",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Zhang_Xiaolan",
+        "https://www.wikidata.org/wiki/Q8246788",
+        "http://dbpedia.org/resource/Zhang_Xiaolan"
+      ]
+    },
+    {
+      "id": "DBP-Liu_Hui_(politician)",
+      "name": "刘慧",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Liu_Hui_(politician%2C_born_1959)",
+        "https://www.wikidata.org/wiki/Q8246646",
+        "http://dbpedia.org/resource/Liu_Hui_(politician)"
+      ]
+    },
+    {
+      "id": "DBP-Song_Ruozhao",
+      "name": "宋若昭",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Song_Ruozhao",
+        "https://www.wikidata.org/wiki/Q8249793",
+        "http://dbpedia.org/resource/Song_Ruozhao"
+      ]
+    },
+    {
+      "id": "DBP-Cui_Wenjuan",
+      "name": "崔文娟",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Cui_Wenjuan",
+        "https://www.wikidata.org/wiki/Q107624392",
+        "http://dbpedia.org/resource/Cui_Wenjuan"
+      ]
+    },
+    {
+      "id": "DBP-Zhang_Xin_(skateboarder)",
+      "name": "张鑫",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Zhang_Xin_(skateboarder)",
+        "https://www.wikidata.org/wiki/Q107656176",
+        "http://dbpedia.org/resource/Zhang_Xin_(skateboarder)"
+      ]
+    },
+    {
+      "id": "DBP-Lu_Pinpin",
+      "name": "卢嫔嫔",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lu_Pinpin",
+        "https://www.wikidata.org/wiki/Q71704972",
+        "http://dbpedia.org/resource/Lu_Pinpin"
+      ]
+    },
+    {
+      "id": "DBP-Chrissy_Roberts",
+      "name": "Chrissy Roberts",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Chrissy_Roberts",
+        "https://www.wikidata.org/wiki/Q5108618",
+        "http://dbpedia.org/resource/Chrissy_Roberts"
+      ]
+    },
+    {
+      "id": "DBP-Alexey_Root",
+      "name": "Alexey Root",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alexey_Root",
+        "https://www.wikidata.org/wiki/Q4721336",
+        "http://dbpedia.org/resource/Alexey_Root"
+      ]
+    },
+    {
+      "id": "DBP-Susan_Beth_Scott",
+      "name": "Susan Beth Scott",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Susan_Beth_Scott",
+        "https://www.wikidata.org/wiki/Q16227554",
+        "http://dbpedia.org/resource/Susan_Beth_Scott"
+      ]
+    },
+    {
+      "id": "DBP-Yolanda_Hughes-Heying",
+      "name": "Yolanda Hughes",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Yolanda_Hughes-Heying",
+        "https://www.wikidata.org/wiki/Q8054729",
+        "http://dbpedia.org/resource/Yolanda_Hughes-Heying"
+      ]
+    },
+    {
+      "id": "DBP-Janel_Tisinger",
+      "name": "Janel Tisinger",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Janel_Tisinger",
+        "https://www.wikidata.org/wiki/Q26845014",
+        "http://dbpedia.org/resource/Janel_Tisinger"
+      ]
+    },
+    {
+      "id": "DBP-Jennifer_Soto",
+      "name": "Jennifer Soto",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jennifer_Soto",
+        "https://www.wikidata.org/wiki/Q62140681",
+        "http://dbpedia.org/resource/Jennifer_Soto"
+      ]
+    },
+    {
+      "id": "DBP-Samarria_Brevard",
+      "name": "Samarria Brevard",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Samarria_Brevard",
+        "https://www.wikidata.org/wiki/Q62065065",
+        "http://dbpedia.org/resource/Samarria_Brevard"
+      ]
+    },
+    {
+      "id": "DBP-Jo_Fletcher",
+      "name": "Jo Fletcher",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jo_Fletcher",
+        "https://www.wikidata.org/wiki/Q10485016",
+        "http://dbpedia.org/resource/Jo_Fletcher"
+      ]
+    },
+    {
+      "id": "DBP-Jade_Leitão",
+      "name": "Jade Leitão",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jade_Leit%C3%A3o",
+        "https://www.wikidata.org/wiki/Q11715832",
+        "http://dbpedia.org/resource/Jade_Leitão"
+      ]
+    },
+    {
+      "id": "DBP-Shirley_Garms",
+      "name": "Shirley Garms",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Shirley_Garms",
+        "https://www.wikidata.org/wiki/Q105229968",
+        "http://dbpedia.org/resource/Shirley_Garms"
+      ]
+    },
+    {
+      "id": "DBP-Sarah_Thomas_(American_football_official)",
+      "name": "Sarah Thomas",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Sarah_Thomas_(American_football_official)",
+        "https://www.wikidata.org/wiki/Q7422824",
+        "http://dbpedia.org/resource/Sarah_Thomas_(American_football_official)"
+      ]
+    },
+    {
+      "id": "DBP-Passion_Richardson",
+      "name": "Passion Richardson",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Passion_Richardson",
+        "https://www.wikidata.org/wiki/Q3368372",
+        "http://dbpedia.org/resource/Passion_Richardson"
+      ]
+    },
+    {
+      "id": "DBP-Mila_Marinova",
+      "name": "Mila Marinova",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mila_Marinova",
+        "https://www.wikidata.org/wiki/Q15710577",
+        "http://dbpedia.org/resource/Mila_Marinova"
+      ]
+    },
+    {
+      "id": "DBP-Judy_Vernon",
+      "name": "Judy Vernon",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Judy_Vernon",
+        "https://www.wikidata.org/wiki/Q16107165",
+        "http://dbpedia.org/resource/Judy_Vernon"
+      ]
+    },
+    {
+      "id": "DBP-Linda_Greenlaw",
+      "name": "Linda Greenlaw",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Linda_Greenlaw",
+        "https://www.wikidata.org/wiki/Q6551611",
+        "http://dbpedia.org/resource/Linda_Greenlaw"
+      ]
+    },
+    {
+      "id": "DBP-Camille_Cooper",
+      "name": "Camille Cooper",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Camille_Cooper",
+        "https://www.wikidata.org/wiki/Q18921576",
+        "http://dbpedia.org/resource/Camille_Cooper"
+      ]
+    },
+    {
+      "id": "DBP-Debbie_Combs",
+      "name": "Debbie Combs",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Debbie_Combs",
+        "https://www.wikidata.org/wiki/Q5247900",
+        "http://dbpedia.org/resource/Debbie_Combs"
+      ]
+    },
+    {
+      "id": "DBP-Marcie_Van_Dusen",
+      "name": "Marcie Van Dusen",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Marcie_Van_Dusen",
+        "https://www.wikidata.org/wiki/Q6757179",
+        "http://dbpedia.org/resource/Marcie_Van_Dusen"
+      ]
+    },
+    {
+      "id": "DBP-Vanessa_Torres",
+      "name": "Vanessa Torres",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Vanessa_Torres",
+        "https://www.wikidata.org/wiki/Q7914720",
+        "http://dbpedia.org/resource/Vanessa_Torres"
+      ]
+    },
+    {
+      "id": "DBP-Hope_Lewellen",
+      "name": "Hope Lewellen",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Hope_Lewellen",
+        "https://www.wikidata.org/wiki/Q16197072",
+        "http://dbpedia.org/resource/Hope_Lewellen"
+      ]
+    },
+    {
+      "id": "DBP-Rebecca_Lorch",
+      "name": "Rebecca Lorch",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Rebecca_Lorch",
+        "https://www.wikidata.org/wiki/Q116687041",
+        "http://dbpedia.org/resource/Rebecca_Lorch"
+      ]
+    },
+    {
+      "id": "DBP-Kelly_Ryan",
+      "name": "Kelly Ryan",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kelly_Ryan",
+        "https://www.wikidata.org/wiki/Q3814407",
+        "http://dbpedia.org/resource/Kelly_Ryan"
+      ]
+    },
+    {
+      "id": "DBP-SuGui_Kriss",
+      "name": "SuGui Kriss",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/SuGui_Kriss",
+        "https://www.wikidata.org/wiki/Q16212361",
+        "http://dbpedia.org/resource/SuGui_Kriss"
+      ]
+    },
+    {
+      "id": "DBP-Violet_Oon",
+      "name": "温美玉",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Violet_Oon",
+        "https://www.wikidata.org/wiki/Q63386251",
+        "http://dbpedia.org/resource/Violet_Oon"
+      ]
+    },
+    {
+      "id": "DBP-Sally_Darr",
+      "name": "Sally Darr",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Sally_Darr",
+        "https://www.wikidata.org/wiki/Q123485763",
+        "http://dbpedia.org/resource/Sally_Darr"
+      ]
+    },
+    {
+      "id": "DBP-Kamini_Pather",
+      "name": "Kamini Pather",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kamini_Pather",
+        "https://www.wikidata.org/wiki/Q104717322",
+        "http://dbpedia.org/resource/Kamini_Pather"
+      ]
+    },
+    {
+      "id": "DBP-Siba_Mtongana",
+      "name": "Siba Mtongana",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Siba_Mtongana",
+        "https://www.wikidata.org/wiki/Q18154035",
+        "http://dbpedia.org/resource/Siba_Mtongana"
+      ]
+    },
+    {
+      "id": "DBP-Emma_Bengtsson",
+      "name": "Emma Bengtsson",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Emma_Bengtsson",
+        "https://www.wikidata.org/wiki/Q43189607",
+        "http://dbpedia.org/resource/Emma_Bengtsson"
+      ]
+    },
+    {
+      "id": "DBP-Siddika_Kabir",
+      "name": "Siddika Kabir",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Siddika_Kabir",
+        "https://www.wikidata.org/wiki/Q7508184",
+        "http://dbpedia.org/resource/Siddika_Kabir"
+      ]
+    },
+    {
+      "id": "DBP-Shantha_Mayadunne",
+      "name": "Shantha Mayadunne",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Shantha_Mayadunne",
+        "https://www.wikidata.org/wiki/Q63247900",
+        "http://dbpedia.org/resource/Shantha_Mayadunne"
+      ]
+    },
+    {
+      "id": "DBP-Carla_Lalli_Music",
+      "name": "Carla Lalli Music",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Carla_Lalli_Music",
+        "https://www.wikidata.org/wiki/Q71513361",
+        "http://dbpedia.org/resource/Carla_Lalli_Music"
+      ]
+    },
+    {
+      "id": "DBP-Maki_Miyamae",
+      "name": "宮前真樹",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Maki_Miyamae",
+        "https://www.wikidata.org/wiki/Q1041699",
+        "http://dbpedia.org/resource/Maki_Miyamae"
+      ]
+    },
+    {
+      "id": "DBP-Ana_Roš",
+      "name": "Ana Roš Stojan",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ana_Ro%C5%A1",
+        "https://www.wikidata.org/wiki/Q28916554",
+        "http://dbpedia.org/resource/Ana_Roš"
+      ]
+    },
+    {
+      "id": "DBP-Monica_Sheridan",
+      "name": "Monica Sheridan",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Monica_Sheridan",
+        "https://www.wikidata.org/wiki/Q85335526",
+        "http://dbpedia.org/resource/Monica_Sheridan"
+      ]
+    },
+    {
+      "id": "DBP-Ruti_Broudo",
+      "name": "Ruti Broudo",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ruti_Broudo",
+        "https://www.wikidata.org/wiki/Q97205524",
+        "http://dbpedia.org/resource/Ruti_Broudo"
+      ]
+    },
+    {
+      "id": "DBP-Nora_Daza",
+      "name": "Nora Daza",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nora_Daza",
+        "https://www.wikidata.org/wiki/Q7050080",
+        "http://dbpedia.org/resource/Nora_Daza"
+      ]
+    },
+    {
+      "id": "DBP-Lucia_Pavin",
+      "name": "Lucia Pavin",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Lucia_Pavin",
+        "https://www.wikidata.org/wiki/Q16573943",
+        "http://dbpedia.org/resource/Lucia_Pavin"
+      ]
+    },
+    {
+      "id": "DBP-Cherish_Finden",
+      "name": "Cherish Finden",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Cherish_Finden",
+        "https://www.wikidata.org/wiki/Q121701753",
+        "http://dbpedia.org/resource/Cherish_Finden"
+      ]
+    },
+    {
+      "id": "DBP-Titti_Qvarnström",
+      "name": "Titti Qvarnström",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Titti_Qvarnstr%C3%B6m",
+        "https://www.wikidata.org/wiki/Q23916433",
+        "http://dbpedia.org/resource/Titti_Qvarnström"
+      ]
+    },
+    {
+      "id": "DBP-Justa_Canaviri",
+      "name": "Justa Canaviri",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Justa_Canaviri",
+        "https://www.wikidata.org/wiki/Q27977990",
+        "http://dbpedia.org/resource/Justa_Canaviri"
+      ]
+    },
+    {
+      "id": "DBP-Liu_Ping_(activist)",
+      "name": "刘萍 (维权活动家)",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Liu_Ping_(activist)",
+        "https://www.wikidata.org/wiki/Q6653658",
+        "http://dbpedia.org/resource/Liu_Ping_(activist)"
+      ]
+    },
+    {
+      "id": "DBP-Xu_Zaozao",
+      "name": "Xu Zaozao",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xu_Zaozao",
+        "https://www.wikidata.org/wiki/Q123512780",
+        "http://dbpedia.org/resource/Xu_Zaozao"
+      ]
+    },
+    {
+      "id": "DBP-Xiaowen_Liang",
+      "name": "Xiaowen Liang",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xiaowen_Liang",
+        "https://www.wikidata.org/wiki/Q94579296",
+        "http://dbpedia.org/resource/Xiaowen_Liang"
+      ]
+    },
+    {
+      "id": "DBP-Portia_Li",
+      "name": "Portia Li",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Portia_Li",
+        "https://www.wikidata.org/wiki/Q19660926",
+        "http://dbpedia.org/resource/Portia_Li"
+      ]
+    },
+    {
+      "id": "DBP-Xiao_Meili",
+      "name": "肖美丽",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xiao_Meili",
+        "https://www.wikidata.org/wiki/Q23664330",
+        "http://dbpedia.org/resource/Xiao_Meili"
+      ]
+    },
+    {
+      "id": "DBP-Cao_Shunli",
+      "name": "曹顺利",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Cao_Shunli",
+        "https://www.wikidata.org/wiki/Q15962403",
+        "http://dbpedia.org/resource/Cao_Shunli"
+      ]
+    },
+    {
+      "id": "DBP-Christy_Hui",
+      "name": "克里斯蒂·哈伊",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Christy_Hui",
+        "https://www.wikidata.org/wiki/Q4918839",
+        "http://dbpedia.org/resource/Christy_Hui"
+      ]
+    },
+    {
+      "id": "DBP-Su_Changlan",
+      "name": "苏昌兰",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Su_Changlan",
+        "https://www.wikidata.org/wiki/Q22774364",
+        "http://dbpedia.org/resource/Su_Changlan"
+      ]
+    },
+    {
+      "id": "DBP-Chai_Jing",
+      "name": "柴静",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Chai_Jing",
+        "https://www.wikidata.org/wiki/Q5067745",
+        "http://dbpedia.org/resource/Chai_Jing"
+      ]
+    },
+    {
+      "id": "DBP-Lü_Jinghua",
+      "name": "吕京花",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/L%C3%BC_Jinghua",
+        "https://www.wikidata.org/wiki/Q10918287",
+        "http://dbpedia.org/resource/Lü_Jinghua"
+      ]
+    },
+    {
+      "id": "DBP-Ye_Haiyan",
+      "name": "叶海燕",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ye_Haiyan",
+        "https://www.wikidata.org/wiki/Q10916405",
+        "http://dbpedia.org/resource/Ye_Haiyan"
+      ]
+    },
+    {
+      "id": "DBP-Xin_Ying",
+      "name": "辛颖",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xin_Ying",
+        "https://www.wikidata.org/wiki/Q96628408",
+        "http://dbpedia.org/resource/Xin_Ying"
+      ]
+    },
+    {
+      "id": "DBP-Wu_Qing_(politician,_born_1937)",
+      "name": "吴青",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Wu_Qing_(politician%2C_born_1937)",
+        "https://www.wikidata.org/wiki/Q11416818",
+        "http://dbpedia.org/resource/Wu_Qing_(politician,_born_1937)"
+      ]
+    },
+    {
+      "id": "DBP-Bingyi",
+      "name": "Bingyi",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Bingyi",
+        "https://www.wikidata.org/wiki/Q4914325",
+        "http://dbpedia.org/resource/Bingyi"
+      ]
+    },
+    {
+      "id": "DBP-Liu_Xinjuan",
+      "name": "Liu Xinjuan",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Liu_Xinjuan",
+        "https://www.wikidata.org/wiki/Q6653814",
+        "http://dbpedia.org/resource/Liu_Xinjuan"
+      ]
+    },
+    {
+      "id": "DBP-Ou_Xiaobai",
+      "name": "欧小白",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ou_Xiaobai",
+        "https://www.wikidata.org/wiki/Q28027961",
+        "http://dbpedia.org/resource/Ou_Xiaobai"
+      ]
+    },
+    {
+      "id": "DBP-Shitou_(activist)",
+      "name": "Shitou",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Shitou_(activist)",
+        "https://www.wikidata.org/wiki/Q105759720",
+        "http://dbpedia.org/resource/Shitou_(activist)"
+      ]
+    },
+    {
+      "id": "DBP-Zhang_Hanying",
+      "name": "張漢英",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Zhang_Hanying",
+        "https://www.wikidata.org/wiki/Q45688986",
+        "http://dbpedia.org/resource/Zhang_Hanying"
+      ]
+    },
+    {
+      "id": "DBP-Liang_Jun_(activist)",
+      "name": "Liang Jun",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Liang_Jun_(activist)",
+        "https://www.wikidata.org/wiki/Q111598079",
+        "http://dbpedia.org/resource/Liang_Jun_(activist)"
+      ]
+    },
+    {
+      "id": "DBP-Constance_Goh",
+      "name": "Constance Goh",
+      "hasPhoto": false,
+      "hasBiography": true,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Constance_Goh",
+        "https://www.wikidata.org/wiki/Q43174621",
+        "http://dbpedia.org/resource/Constance_Goh"
+      ]
+    }
+  ],
+  "unresolvedPhotos": []
+}
