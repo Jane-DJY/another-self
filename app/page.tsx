@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#top">后来 <span>Later</span></a>
+        <a className="brand" href="#top">另世我 <span>Another Self</span></a>
         <div className="progress" aria-label={`第 ${step + 1} 步，共 4 步`}>
           {[0, 1, 2, 3].map((item) => <i className={item <= step ? "on" : ""} key={item} />)}
         </div>
@@ -39,7 +39,7 @@ export default function Home() {
         {step === 2 && <Direction value={direction} setValue={setDirection} onNext={next} onBack={back} />}
         {step === 3 && <Result direction={direction} reflection={reflection} onBack={back} />}
       </section>
-      <footer>后来不是预测。它帮你看见此刻，并试着走向想成为的自己。</footer>
+      <footer>另世我不是预测。它用你的生活记录，陪你看见变化与下一步。</footer>
     </main>
   );
 }
@@ -47,7 +47,7 @@ export default function Home() {
 function Welcome({ onNext }: { onNext: () => void }) {
   return <div className="hero fade">
     <p className="eyebrow">一份会慢慢长大的个人导航</p>
-    <h1>把你的此刻，<br /><em>带向想成为的后来。</em></h1>
+    <h1>你认真生活的每一天，<br /><em>都在长成另一个你。</em></h1>
     <p className="lead">不需要上传日记。先用几分钟，看看此刻什么样的女性力量最能照亮你。</p>
     <button className="primary" onClick={onNext}>开始认识此刻的我 <b>→</b></button>
     <p className="micro">约 2 分钟 · 不会公开你的回答</p>
@@ -84,6 +84,6 @@ function Result({ direction, reflection, onBack }: { direction: string; reflecti
     <p className="recommend-label">此刻可以遇见的三位女性</p>
     <div className="people">{pioneers.map((person, index) => <article key={person.name}><span>0{index + 1}</span><div><h3>{person.name}</h3><small>{person.en}</small><p>{person.note}</p></div><b>↗</b></article>)}</div>
     <div className="next-step"><span>这一周的小尝试</span><strong>写下一个你愿意尝试、但不必一次成功的行动。</strong></div>
-    <div className="actions"><button className="text" onClick={onBack}>← 修改选择</button><button className="primary">保存我的后来 <b>→</b></button></div>
+    <div className="actions"><button className="text" onClick={onBack}>← 修改选择</button><button className="primary">保存我的另世我 <b>→</b></button></div>
   </div>;
 }
