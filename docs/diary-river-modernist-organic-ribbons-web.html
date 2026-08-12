@@ -1319,7 +1319,13 @@ html>body{padding:0}</style>
       letter-spacing: 0.14em;
     }
     #diary-river-organic-ribbons .dor-reading-header {
-      margin: 0 0 18px;
+      margin: 0 0 28px;
+    }
+    #diary-river-organic-ribbons .dor-reading-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
     }
     #diary-river-organic-ribbons .dor-reading-header h1 {
       margin: 0;
@@ -1334,22 +1340,23 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-view-switch {
       display: inline-flex;
       align-items: center;
+      flex: 0 0 auto;
       gap: 0;
-      margin: 0 0 30px;
-      padding: 4px;
-      border: 1px solid rgba(52, 47, 41, 0.46);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.46);
-      box-shadow: 0 2px 10px rgba(52, 47, 41, 0.08);
+      margin: 0;
+      padding: 3px;
+      border: 1px solid rgba(52, 47, 41, 0.34);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.34);
+      box-shadow: 0 1px 5px rgba(52, 47, 41, 0.06);
     }
     #diary-river-organic-ribbons .dor-view-switch > span { display: none; }
     #diary-river-organic-ribbons .dor-view-switch button {
       border: 0;
       border-radius: 5px;
-      padding: 10px 17px;
+      padding: 8px 12px;
       background: transparent;
       color: #514a41;
-      font: 500 13px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
       cursor: pointer;
       transition: color 180ms ease, background 180ms ease;
     }
@@ -1430,6 +1437,7 @@ html>body{padding:0}</style>
     }
     @media (max-width: 480px) {
       #diary-river-organic-ribbons .dor-editor { padding: 10px; gap: 28px; }
+      #diary-river-organic-ribbons .dor-reading-header-top { align-items: flex-start; flex-direction: column; gap: 12px; }
       #diary-river-organic-ribbons .dor-insight,
       #diary-river-organic-ribbons .dor-role { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
     }
@@ -1683,7 +1691,10 @@ html>body{padding:0}</style>
       }
       function readingHeaderMarkup() {
         return `<header class="dor-reading-header">
-          <h1>时间都去哪儿了？</h1>
+          <div class="dor-reading-header-top">
+            <h1>时间都去哪儿了？</h1>
+            ${viewSwitchMarkup()}
+          </div>
           <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放），不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</span>
         </header>`;
       }
@@ -1692,7 +1703,6 @@ html>body{padding:0}</style>
         if (!predictionOpen) {
           reading.innerHTML = `
             ${readingHeaderMarkup()}
-            ${viewSwitchMarkup()}
             <div class="dor-insight-list">${historicalInsights.map(item => `
               <article class="dor-insight"><div class="dor-insight-time">${item.time}</div><div><h3>${item.title}</h3><p>${item.body}</p></div></article>
             `).join('')}</div>`;
@@ -1701,7 +1711,6 @@ html>body{padding:0}</style>
         const model = roleModels[activeScenario];
         reading.innerHTML = `
           ${readingHeaderMarkup()}
-          ${viewSwitchMarkup()}
           <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
           <h2>一年后，我可能成为
             <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
