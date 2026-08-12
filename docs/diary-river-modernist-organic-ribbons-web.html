@@ -914,8 +914,21 @@ html>body{padding:0}</style>
     }
     body.dor-has-entered .dor-import-entry { opacity: 0; visibility: hidden; pointer-events: none; }
     body.dor-before-enter #diary-river-organic-ribbons { opacity: 0; transform: translateY(18px); }
-    #diary-river-organic-ribbons { transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,1,.36,1); }
+    #diary-river-organic-ribbons { position: relative; transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,1,.36,1); }
     body.dor-has-entered #diary-river-organic-ribbons { opacity: 1; transform: none; }
+    #diary-river-organic-ribbons .dor-home-button {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      z-index: 10;
+      border: 0;
+      background: transparent;
+      color: #6e665b;
+      padding: 6px 4px;
+      font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-home-button:hover { color: #28251f; }
     .dor-import-mark {
       display: flex;
       align-items: flex-end;
@@ -983,6 +996,8 @@ html>body{padding:0}</style>
       --dor-learning: #f4b51b;
       --dor-venture: #ef7d17;
       --dor-life: #0b5a43;
+      --dor-figure-head: #c88762;
+      --dor-figure-outline: #5a4335;
     }
     #diary-river-organic-ribbons .dor-editor {
       display: grid;
@@ -996,7 +1011,7 @@ html>body{padding:0}</style>
       width: 100%;
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: var(--dor-bg);
+      background: transparent;
     }
     #diary-river-organic-ribbons .dor-poster > [data-poster] { width: 100%; height: 100%; }
     #diary-river-organic-ribbons .dor-heading {
@@ -1005,9 +1020,7 @@ html>body{padding:0}</style>
       left: 1.35rem;
       right: 1.35rem;
       z-index: 3;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
+      display: block;
       color: var(--dor-title-text);
       font-family: ui-serif, Georgia, "Songti SC", serif;
       font-size: 26px;
@@ -1016,10 +1029,17 @@ html>body{padding:0}</style>
       white-space: nowrap;
       pointer-events: none;
     }
+    #diary-river-organic-ribbons .dor-data-source {
+      display: block;
+      margin-top: 5px;
+      color: var(--dor-muted);
+      font: 400 clamp(7px, 1.55vw, 9px)/1.35 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      letter-spacing: 0;
+    }
     #diary-river-organic-ribbons .dor-history-title,
     #diary-river-organic-ribbons .dor-prediction-title { pointer-events: auto; }
     #diary-river-organic-ribbons .dor-prediction-title { display: none; }
-    #diary-river-organic-ribbons.is-predicting .dor-history-title { display: none; }
+    #diary-river-organic-ribbons.is-predicting .dor-history-title { display: inline; }
     #diary-river-organic-ribbons.is-predicting .dor-prediction-title {
       display: inline-flex;
       align-items: baseline;
@@ -1169,6 +1189,7 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-subtitle,
     #diary-river-organic-ribbons .dor-legend,
     #diary-river-organic-ribbons .dor-month,
+    #diary-river-organic-ribbons .dor-month-count,
     #diary-river-organic-ribbons .dor-note {
       fill: var(--dor-muted);
     }
@@ -1189,6 +1210,11 @@ html>body{padding:0}</style>
       font-size: 12px;
       font-weight: 400;
     }
+    #diary-river-organic-ribbons .dor-month-count {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font-size: 8.5px;
+      font-weight: 400;
+    }
     #diary-river-organic-ribbons .dor-theme {
       font-size: var(--dor-theme-font-size);
       font-weight: 500;
@@ -1206,6 +1232,16 @@ html>body{padding:0}</style>
       stroke: var(--dor-separator);
       stroke-width: var(--dor-separator-width);
       stroke-linejoin: round;
+    }
+    #diary-river-organic-ribbons .dor-figure-head-shape {
+      display: none;
+    }
+    #diary-river-organic-ribbons .dor-figure-lips {
+      fill: none;
+      stroke: #c85b63;
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      opacity: 0.82;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
     #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
@@ -1278,13 +1314,18 @@ html>body{padding:0}</style>
     }
     #diary-river-organic-ribbons .dor-sidebar { display: none !important; }
     #diary-river-organic-ribbons .dor-reading {
+      position: relative;
       min-width: 0;
       max-width: 560px;
+      width: 100%;
+      height: 100%;
+      align-self: stretch;
       max-height: calc(100svh - clamp(40px, 8vw, 112px));
       overflow-y: auto;
       overscroll-behavior: contain;
       padding-right: 14px;
       scrollbar-width: thin;
+      scrollbar-gutter: stable;
       scrollbar-color: rgba(40, 37, 31, 0.28) transparent;
       color: #28251f;
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
@@ -1295,6 +1336,69 @@ html>body{padding:0}</style>
       font-size: 12px;
       letter-spacing: 0.14em;
     }
+    #diary-river-organic-ribbons .dor-reading-header-top .dor-reading-kicker {
+      margin: 0;
+    }
+    #diary-river-organic-ribbons .dor-reading-header {
+      margin: 0 0 28px;
+    }
+    #diary-river-organic-ribbons .dor-reading-header-top {
+      display: block;
+      padding-right: 180px;
+    }
+    #diary-river-organic-ribbons .dor-reading-header h1 {
+      margin: 0;
+      color: #28251f;
+      font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: -0.025em;
+    }
+    #diary-river-organic-ribbons .dor-reading-header .dor-forecast-heading {
+      margin: 0;
+      color: #28251f;
+      font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
+      letter-spacing: -0.025em;
+    }
+    #diary-river-organic-ribbons .dor-reading-header .dor-data-source {
+      margin-top: 5px;
+      font-size: 9px;
+    }
+    #diary-river-organic-ribbons .dor-view-switch {
+      position: absolute;
+      top: clamp(15px, 1.8vw, 23px);
+      right: 14px;
+      z-index: 3;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: 0;
+      margin: 0;
+      padding: 3px;
+      border: 1px solid rgba(52, 47, 41, 0.34);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.34);
+      box-shadow: 0 1px 5px rgba(52, 47, 41, 0.06);
+    }
+    #diary-river-organic-ribbons .dor-view-switch > span { display: none; }
+    #diary-river-organic-ribbons .dor-view-switch button {
+      border: 0;
+      border-radius: 5px;
+      padding: 8px 12px;
+      background: transparent;
+      color: #514a41;
+      font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      cursor: pointer;
+      transition: color 180ms ease, background 180ms ease;
+    }
+    #diary-river-organic-ribbons .dor-view-switch button[aria-pressed="true"] {
+      background: #342f29;
+      color: #f5ede2;
+    }
+    #diary-river-organic-ribbons .dor-reading .dor-scenario-select {
+      max-width: none;
+      font-size: .72em;
+      vertical-align: baseline;
+    }
     #diary-river-organic-ribbons .dor-reading h2 {
       margin: 0 0 12px;
       font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
@@ -1302,10 +1406,16 @@ html>body{padding:0}</style>
     }
     #diary-river-organic-ribbons .dor-reading-lead {
       max-width: 42em;
-      margin: 0 0 28px;
+      margin: 0 0 18px;
       color: #70675b;
       font-size: 14px;
       line-height: 1.75;
+    }
+    #diary-river-organic-ribbons .dor-case-intro {
+      margin: 0 0 18px;
+      color: #887a69;
+      font-size: 12px;
+      letter-spacing: 0.04em;
     }
     #diary-river-organic-ribbons .dor-insight-list,
     #diary-river-organic-ribbons .dor-role-list { display: grid; gap: 0; }
@@ -1359,29 +1469,20 @@ html>body{padding:0}</style>
       #diary-river-organic-ribbons .dor-editor { grid-template-columns: 1fr; height: auto; min-height: auto; }
       #diary-river-organic-ribbons .dor-poster { width: min(100%, 560px); max-height: none; justify-self: center; }
       #diary-river-organic-ribbons .dor-reading { max-width: 620px; justify-self: center; padding-bottom: 28px; }
-      #diary-river-organic-ribbons .dor-reading { max-height: none; overflow: visible; }
+      #diary-river-organic-ribbons .dor-reading { height: auto; max-height: none; overflow: visible; }
     }
     @media (max-width: 480px) {
       #diary-river-organic-ribbons .dor-editor { padding: 10px; gap: 28px; }
+      #diary-river-organic-ribbons .dor-reading-header-top { padding-right: 0; }
+      #diary-river-organic-ribbons .dor-view-switch { position: static; margin-top: 12px; transform: none; }
       #diary-river-organic-ribbons .dor-insight,
       #diary-river-organic-ribbons .dor-role { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
     }
   </style>
 
+  <button class="dor-home-button" type="button" data-return-home>← 回到首页</button>
   <div class="dor-editor">
     <div class="dor-poster">
-      <div class="dor-heading">
-        <span class="dor-history-title">时间都去哪儿了？</span>
-        <span class="dor-prediction-title">
-          <span>一年后我可能是</span>
-          <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
-            <option value="expert">创作型专家</option>
-            <option value="creator">独立创作者</option>
-            <option value="later">产品创业</option>
-          </select>
-        </span>
-        <button class="dor-predict-trigger" type="button" data-predict>预个测</button>
-      </div>
       <div data-poster></div>
       <div class="dor-node-popover" data-node-popover hidden>
         <div class="dor-node-popover-head">
@@ -1563,7 +1664,7 @@ html>body{padding:0}</style>
       const roleModels = {
         expert: {
           title: '创作型专家，可以向谁学习？',
-          lead: '共同点不是“更会画”，而是把观察、方法、作品与行业影响力连接成一条长期路径。',
+          lead: '作为一名创作型专家，你可以尝试把观察、方法、作品与行业影响力连接成一条长期路径。',
           people: [
             { name: 'Giorgia Lupi', role: '把数据变成人文语言', timeline: ['建筑与信息设计训练', '2011 创办 Accurat', '2016《Dear Data》', '2019 成为 Pentagram 合伙人'], right: '用长周期个人实验建立辨识度，再把方法带进出版、品牌与公共议题。', detour: '只模仿视觉风格，却没有持续采集、解释和写作的方法。', source: 'https://www.pentagram.com/about/giorgia-lupi' },
             { name: 'Nadieh Bremer', role: '把分析能力变成定制视觉叙事', timeline: ['天文学背景', '数据科学工作', '深入 D3 与视觉实验', '2017 创立 Visual Cinnamon'], right: '保留技术深度，同时坚持从数据与传播目标出发，形成从草图到迭代的完整流程。', detour: '为了追求复杂而复杂，忽略作品要帮助谁理解什么。', source: 'https://www.visualcinnamon.com/about/' },
@@ -1572,7 +1673,7 @@ html>body{padding:0}</style>
         },
         creator: {
           title: '独立创作者，可以向谁学习？',
-          lead: '三条路径都先建立稳定输出和清晰主题，再让内容逐步长出产品与收入。',
+          lead: '如果是成为一名独立创作者，可以先建立稳定输出和清晰主题，再让内容逐步长出产品与收入。',
           people: [
             { name: 'Jack Butcher', role: '把每日视觉练习变成产品系统', timeline: ['十年品牌与代理工作', '2019 每日一张黑白视觉', '形成课程与工具', '2020 销售突破 100 万美元'], right: '极度收窄形式与主题，用持续公开作品积累分发，再把方法产品化。', detour: '长期停留在按小时出售服务，或尚未形成视觉语法就急着扩产品线。', source: 'https://visualizevalue.com/about' },
             { name: 'Ali Abdaal', role: '用副业期验证再全职', timeline: ['2017 开始 YouTube', '6 个月发布 52 支视频', '医生阶段持续副业创作', '2020 后全职并扩展书与产品'], right: '在主业仍提供安全垫时，用高频作品验证受众与主题，信号足够强后再切换身份。', detour: '过早离开主业，或收入线扩张太快导致核心主题变模糊。', source: 'https://aliabdaal.com/about/' },
@@ -1581,7 +1682,7 @@ html>body{padding:0}</style>
         },
         later: {
           title: '产品创业，可以向谁学习？',
-          lead: '更适合你的不是先做“大平台”，而是从自己反复遇到的问题中提炼方法，再用小范围真实用户验证。',
+          lead: '如果是成为一名产品创业者，你可以尝试从自己反复遇到的问题中提炼方法，再用小范围真实用户验证。',
           people: [
             { name: 'Anne-Laure Le Cunff', role: '从公开实验长出学习产品', timeline: ['离开 Google', '一次创业尝试未持续', '100 个工作日连续写作', '形成 Ness Labs、研究与书'], right: '把失败转成研究问题，用稳定写作吸引同类，再逐渐形成社区与产品。', detour: '先造完整产品再找需求；她后来的路径更像先内容、再社区、再产品。', source: 'https://nesslabs.com/author/annelaure' },
             { name: 'Ryder Carroll', role: '把个人方法变成全球产品', timeline: ['长期打磨自己的笔记法', '2007 第一次教给别人', '2013 两周上线教程网站', '2014 社区反馈推动众筹与实体本'], right: '先免费讲清方法，看用户如何改造它；产品方向由真实使用行为而不是想象决定。', detour: '一开始就把方法做得过重，或替用户规定唯一正确的使用方式。', source: 'https://bulletjournal.com/pages/about' },
@@ -1619,13 +1720,41 @@ html>body{padding:0}</style>
         categories = historyCategories.map((item, index) => ({ ...item, values: [...item.values, ...forecast[index].values] }));
       }
       const reading = root.querySelector('[data-reading]');
+      function viewSwitchMarkup() {
+        return `<nav class="dor-view-switch" aria-label="切换时间视角">
+          <button type="button" data-view-mode="history" aria-pressed="${predictionOpen ? 'false' : 'true'}">回看过去</button>
+          <span aria-hidden="true">｜</span>
+          <button type="button" data-view-mode="future" aria-pressed="${predictionOpen ? 'true' : 'false'}">推演一年后</button>
+        </nav>`;
+      }
+      function readingHeaderMarkup() {
+        if (predictionOpen) {
+          return `<header class="dor-reading-header">
+            <div class="dor-reading-header-top" style="align-items:flex-start">
+              <h2 class="dor-forecast-heading">一年后，我可能成为<br>
+                <select class="dor-scenario-select" data-scenario-select aria-label="选择未来一年情景">
+                  <option value="expert"${activeScenario === 'expert' ? ' selected' : ''}>创作型专家</option>
+                  <option value="creator"${activeScenario === 'creator' ? ' selected' : ''}>独立创作者</option>
+                  <option value="later"${activeScenario === 'later' ? ' selected' : ''}>产品创业者</option>
+                </select>
+              </h2>
+              ${viewSwitchMarkup()}
+            </div>
+          </header>`;
+        }
+        return `<header class="dor-reading-header">
+          <div class="dor-reading-header-top">
+            <h1>时间都去哪儿了？</h1>
+            ${viewSwitchMarkup()}
+          </div>
+          <span class="dor-data-source">数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放），不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</span>
+        </header>`;
+      }
       function renderReading() {
         if (!reading) return;
         if (!predictionOpen) {
           reading.innerHTML = `
-            <p class="dor-reading-kicker">从 1—7 月的日记主题中看见</p>
-            <h2>四次精力转向</h2>
-            <p class="dor-reading-lead">河流高度表示当月日记主题中的注意力分布，不等同于精确工时。洞察只使用公开安全的主题与比例，不展示日记原文。</p>
+            ${readingHeaderMarkup()}
             <div class="dor-insight-list">${historicalInsights.map(item => `
               <article class="dor-insight"><div class="dor-insight-time">${item.time}</div><div><h3>${item.title}</h3><p>${item.body}</p></div></article>
             `).join('')}</div>`;
@@ -1633,25 +1762,25 @@ html>body{padding:0}</style>
         }
         const model = roleModels[activeScenario];
         reading.innerHTML = `
-          <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
-          <h2>${model.title}</h2>
+          ${readingHeaderMarkup()}
           <p class="dor-reading-lead">${model.lead}</p>
+          <p class="dor-case-intro">这些女性的人生经历可能给你参考</p>
+          <p class="dor-inference">“给你的避坑提醒”是根据公开经历为你的路径所做的推导，不是当事人的原话，也不是对未来的概率判断。</p>
           <div class="dor-role-list">${model.people.map((person, index) => `
             <article class="dor-role">
               <div class="dor-role-index">0${index + 1}</div>
               <div>
                 <h3>${person.name} · ${person.role}</h3>
                 <div class="dor-timeline">${person.timeline.map(point => `<span>${point}</span>`).join('')}</div>
-                <p class="dor-role-note"><strong>做对了：</strong>${person.right}</p>
-                <p class="dor-role-note"><strong>可避免的弯路：</strong>${person.detour}</p>
+                <p class="dor-role-note"><strong>案例人物的关键选择：</strong>${person.right}</p>
+                <p class="dor-role-note"><strong>给你的避坑提醒：</strong>${person.detour}</p>
                 <a class="dor-source" href="${person.source}" target="_blank" rel="noreferrer">查看公开经历 ↗</a>
               </div>
             </article>
-          `).join('')}</div>
-          <p class="dor-inference">“可避免的弯路”是基于公开经历为你的路径做的推导，不是当事人的原话，也不是对未来的概率判断。</p>`;
+          `).join('')}</div>`;
       }
       const milestones = [
-        { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: -8, outside: true },
+        { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: 15 },
         { id: 'event-first-feedback', month: 4, key: 'creation', text: '数字艺术第一个小爆款', dy: -8, wrapWidth: 48 },
         { id: 'event-second-hit', month: 6, key: 'creation', text: '第二个小爆款', dy: -9 },
         { id: 'event-later', month: 6, key: 'venture', text: '「后来」产品规划', dy: 13, outside: true },
@@ -1743,7 +1872,7 @@ html>body{padding:0}</style>
         const lines = wrapText(textValue, maxWidth, fontSize);
         const lineHeight = fontSize + 3;
         const startY = centerY - ((lines.length - 1) * lineHeight) / 2;
-        const text = el('text', { class: className, x, y: startY, 'text-anchor': anchor });
+        const text = el('text', { class: className, x, y: startY, 'text-anchor': anchor, 'font-size': fontSize });
         lines.forEach((line, index) => {
           text.appendChild(el('tspan', { x, dy: index === 0 ? 0 : lineHeight }, line));
         });
@@ -1795,12 +1924,15 @@ html>body{padding:0}</style>
       function animateFutureGrowth(svg, startY, endY, width) {
         if (forecastAnimationFrame) cancelAnimationFrame(forecastAnimationFrame);
         svg.classList.remove('dor-idle-motion');
+        const pageBackground = getComputedStyle(document.documentElement).backgroundColor;
         const cover = el('rect', {
           x: 0,
           y: startY,
           width,
           height: Math.max(0, endY - startY + 3),
-          fill: 'var(--dor-bg)',
+          fill: pageBackground && pageBackground !== 'rgba(0, 0, 0, 0)'
+            ? pageBackground
+            : '#ebe3d7',
           'aria-hidden': 'true'
         });
         svg.appendChild(cover);
@@ -1848,22 +1980,8 @@ html>body{padding:0}</style>
         svg.appendChild(el('desc', { id: 'dor-desc' }, '纵向时间轴上的五条数据丝带。整条河的总宽度由每月可归类日记数的平方根决定，每条彩带的宽度由对应主题份额决定，并保持固定顺序以便追踪。'));
 
         const pad = compact ? 22 : 38;
-        const titleY = compact ? 34 : 48;
-        let legendX = pad;
-        const legendY = titleY + 36;
-        categories.forEach((item, index) => {
-          const short = compact
-            ? { work: '工作', creation: '创作', learning: '学习', venture: '副业', life: '生活' }[item.key]
-            : item.label;
-          if (!compact && index === 3) legendX = pad;
-          const rowY = !compact && index >= 3 ? legendY + 22 : legendY;
-          svg.appendChild(el('rect', { class: 'dor-legend-mark dor-animated', x: legendX, y: rowY - 9, width: 9, height: 9, fill: item.color, rx: 1.5, 'data-animate-theme': item.key }));
-          svg.appendChild(el('text', { class: 'dor-legend dor-animated', x: legendX + 14, y: rowY, 'data-animate-theme': item.key }, short));
-          legendX += (compact ? 58 : Math.max(96, short.length * 13 + 30));
-        });
-
-        const plotTop = compact ? 116 : 138;
-        const plotBottom = height - (compact ? 92 : 116);
+        const plotTop = compact ? 154 : 178;
+        const plotBottom = height - 18;
         const ys = months.map((_, index) => plotTop + (plotBottom - plotTop) * index / (months.length - 1));
         const center = width * 0.56;
         const maxN = Math.max(...months.map((month) => month.n));
@@ -1875,15 +1993,25 @@ html>body{padding:0}</style>
             : true;
           if (!showMonth) return;
           svg.appendChild(el('circle', { class: 'dor-month-dot', cx: pad, cy: ys[index], r: 2.2 }));
-          svg.appendChild(el('text', { class: 'dor-month', x: pad + 9, y: ys[index] + 4 }, predictionOpen ? month.label : `${month.label}  n=${month.n}`));
+          svg.appendChild(el('text', {
+            class: 'dor-month',
+            x: pad + 9,
+            y: predictionOpen ? ys[index] + 4 : ys[index] - 2
+          }, month.label));
+          if (!predictionOpen) {
+            svg.appendChild(el('text', {
+              class: 'dor-month-count',
+              x: pad + 9,
+              y: ys[index] + 11
+            }, `n=${month.n}`));
+          }
         });
         let futureStartY = null;
         if (predictionOpen) {
           const nowY = ys[6];
           futureStartY = nowY;
-          svg.appendChild(el('line', { class: 'dor-now-line', x1: pad, y1: nowY, x2: width - pad, y2: nowY }));
-          svg.appendChild(el('text', { class: 'dor-now-label', x: pad, y: nowY - 7 }, '现在'));
-          svg.appendChild(el('text', { class: 'dor-forecast-label', x: width - pad, y: nowY - 7, 'text-anchor': 'end' }, '未来一年 · 行为情景推演'));
+          svg.appendChild(el('line', { class: 'dor-now-line', x1: pad + 38, y1: nowY, x2: width - pad, y2: nowY }));
+          svg.appendChild(el('text', { class: 'dor-forecast-label', x: pad + 38, y: nowY + 15 }, '预测'));
         }
 
         const styles = getComputedStyle(root);
@@ -1900,6 +2028,131 @@ html>body{padding:0}</style>
         const totalWidths = roots.map((value) => {
           const normalized = maxRoot === minRoot ? 1 : (value - minRoot) / (maxRoot - minRoot);
           return maxRiverWidth * (minWidthFactor + normalized * (0.9 - minWidthFactor));
+        });
+        const profileScale = compact ? 0.78 : 1;
+        const firstWidth = totalWidths[0];
+        const figureLayer = el('g', { 'aria-hidden': 'true' });
+        const neckWidth = firstWidth;
+        const headTop = plotTop - 98 * profileScale;
+        const headHalfWidth = neckWidth * 0.62;
+        figureLayer.appendChild(el('path', {
+          class: 'dor-figure-head-shape',
+          d: [
+            `M${center - neckWidth / 2},${plotTop + 3}`,
+            `C${center - neckWidth * 0.51},${plotTop - 9 * profileScale} ${center - headHalfWidth},${plotTop - 25 * profileScale} ${center - headHalfWidth},${plotTop - 42 * profileScale}`,
+            `C${center - headHalfWidth},${headTop + 11 * profileScale} ${center - headHalfWidth * 0.52},${headTop} ${center},${headTop}`,
+            `C${center + headHalfWidth * 0.52},${headTop} ${center + headHalfWidth},${headTop + 11 * profileScale} ${center + headHalfWidth},${plotTop - 42 * profileScale}`,
+            `C${center + headHalfWidth},${plotTop - 25 * profileScale} ${center + neckWidth * 0.51},${plotTop - 9 * profileScale} ${center + neckWidth / 2},${plotTop + 3}`,
+            'Z'
+          ].join(' ')
+        }));
+        const lipY = plotTop - 9 * profileScale;
+        const lipScale = profileScale * 0.82;
+        const figureLips = el('path', {
+          class: 'dor-figure-lips',
+          d: [
+            `M${center - 9 * lipScale},${lipY}`,
+            `Q${center},${lipY + 2.5 * lipScale} ${center + 9 * lipScale},${lipY}`,
+            `M${center - 7 * lipScale},${lipY + 0.5 * lipScale}`,
+            `Q${center},${lipY + 5 * lipScale} ${center + 7 * lipScale},${lipY + 0.5 * lipScale}`
+          ].join(' ')
+        });
+        svg.appendChild(figureLayer);
+
+        const decorativeTagLayout = compact
+          ? [
+              [-20, -170, 24, 13, -4, 2], [12, -166, 21, 12, 5, 0],
+              [-35, -161, 30, 14, 3, 4], [0, -158, 28, 13, -5, 1], [31, -156, 23, 14, 4, 2],
+              [-52, -151, 27, 13, 4, 1], [-17, -148, 30, 14, -3, 4], [22, -147, 27, 13, 5, 3],
+              [-61, -141, 32, 15, -3, 3], [-27, -137, 26, 14, 5, 0], [8, -140, 31, 15, -4, 2], [42, -137, 29, 14, 3, 1],
+              [-70, -130, 25, 14, -5, 0], [-39, -127, 29, 13, 4, 2], [2, -130, 24, 14, -4, 1], [37, -126, 30, 13, 3, 4],
+              [-57, -119, 35, 15, 4, 4], [-18, -122, 30, 14, -5, 3], [18, -118, 34, 15, 3, 0],
+              [-46, -108, 25, 13, -5, 2], [-13, -113, 22, 14, 4, 0], [22, -107, 29, 13, -3, 3],
+              [-72, -102, 32, 15, 3, 1], [-34, -99, 37, 16, -4, 4], [6, -101, 31, 15, 5, 2], [43, -99, 35, 15, -3, 0],
+              [-75, -92, 27, 15, 5, 1], [51, -91, 25, 14, -5, 4],
+              [-59, -84, 34, 16, -4, 2], [-22, -88, 39, 16, 3, 3], [19, -84, 36, 15, -5, 1],
+              [-82, -63, 23, 14, -4, 3], [63, -61, 22, 13, 6, 2],
+              [-68, -70, 35, 16, 5, 0], [-31, -72, 32, 15, -3, 4], [6, -69, 38, 16, 4, 2], [43, -68, 31, 15, -5, 1],
+              [-70, -44, 31, 14, 3, 4], [-35, -47, 23, 13, -6, 0],
+              [10, -46, 29, 14, 5, 1], [45, -40, 26, 13, -4, 3],
+              [-48, -27, 27, 12, 5, 2], [20, -25, 34, 12, -3, 4]
+            ]
+          : [
+              [-27, -170, 32, 16, -4, 2], [16, -165, 29, 15, 5, 0],
+              [-47, -160, 40, 18, 3, 4], [0, -157, 38, 17, -5, 1], [42, -155, 31, 18, 4, 2],
+              [-70, -150, 36, 16, 4, 1], [-23, -147, 40, 17, -3, 4], [30, -146, 36, 16, 5, 3],
+              [-82, -139, 43, 19, -3, 3], [-36, -136, 35, 18, 5, 0], [11, -139, 42, 19, -4, 2], [57, -135, 39, 18, 3, 1],
+              [-94, -127, 34, 17, -5, 0], [-52, -125, 39, 16, 4, 2], [3, -128, 32, 17, -4, 1], [49, -124, 40, 16, 3, 4],
+              [-77, -116, 47, 19, 4, 4], [-24, -120, 40, 18, -5, 3], [24, -115, 46, 19, 3, 0],
+              [-61, -105, 34, 16, -5, 2], [-18, -111, 30, 17, 4, 0], [29, -104, 39, 16, -3, 3],
+              [-96, -101, 43, 19, 3, 1], [-46, -98, 50, 20, -4, 4], [8, -100, 42, 19, 5, 2], [58, -97, 47, 19, -3, 0],
+              [-98, -97, 37, 18, 5, 1], [67, -96, 34, 17, -5, 4],
+              [-80, -83, 46, 20, -4, 2], [-30, -87, 52, 20, 3, 3], [26, -82, 48, 19, -5, 1],
+              [-106, -63, 31, 17, -4, 3], [82, -62, 30, 16, 6, 2],
+              [-92, -70, 47, 20, 5, 0], [-42, -72, 43, 19, -3, 4], [8, -68, 51, 20, 4, 2], [58, -67, 42, 19, -5, 1],
+              [-91, -43, 42, 17, 3, 4], [-46, -47, 31, 16, -6, 0],
+              [13, -46, 39, 17, 5, 1], [59, -39, 35, 16, -4, 3],
+              [-63, -25, 37, 15, 5, 2], [26, -24, 46, 15, -3, 4]
+            ];
+        decorativeTagLayout.forEach(([dx, dy, blockWidth, blockHeight, rotation, colorIndex]) => {
+          const blockX = center + dx * profileScale;
+          const blockY = plotTop + dy * profileScale;
+          svg.appendChild(el('rect', {
+            x: blockX,
+            y: blockY,
+            width: blockWidth * profileScale,
+            height: blockHeight * profileScale,
+            rx: 2.2 * profileScale,
+            fill: categories[colorIndex].color,
+            opacity: 0.9,
+            transform: `rotate(${rotation} ${blockX + blockWidth * profileScale / 2} ${blockY + blockHeight * profileScale / 2})`,
+            'aria-hidden': 'true',
+            style: 'filter:drop-shadow(0 1px 1px rgb(60 45 34 / 0.12))'
+          }));
+        });
+
+        const legendLayout = compact
+          ? [
+              [-49, -87, 52, -4], [-2, -91, 56, 3],
+              [-59, -66, 48, 3], [-18, -70, 53, -3], [29, -65, 53, 4]
+            ]
+          : [
+              [-65, -92, 69, -4], [-3, -96, 75, 3],
+              [-78, -69, 64, 3], [-25, -74, 71, -3], [35, -68, 67, 4]
+            ];
+        categories.forEach((item, index) => {
+          const [dx, dy, blockWidth, rotation] = legendLayout[index];
+          const blockHeight = compact ? 22 : 26;
+          const blockX = center + dx * profileScale;
+          const blockY = plotTop + dy * profileScale;
+          const legendGroup = el('g', {
+            class: 'dor-animated',
+            transform: `rotate(${rotation} ${blockX + blockWidth * profileScale / 2} ${blockY + blockHeight * profileScale / 2})`,
+            'data-animate-theme': item.key
+          });
+          legendGroup.appendChild(el('rect', {
+            x: blockX,
+            y: blockY,
+            width: blockWidth * profileScale,
+            height: blockHeight * profileScale,
+            rx: 2.5 * profileScale,
+            fill: item.color,
+            opacity: 0.96,
+            style: 'filter:drop-shadow(0 1px 1px rgb(60 45 34 / 0.16))'
+          }));
+          const legendLabel = compact
+            ? { work: '工作', creation: '创作', learning: '学习', venture: '副业', life: '生活' }[item.key]
+            : item.label;
+          legendGroup.appendChild(el('text', {
+            x: blockX + blockWidth * profileScale / 2,
+            y: blockY + blockHeight * profileScale / 2 + 4,
+            'text-anchor': 'middle',
+            fill: '#fff8ed',
+            'font-family': '-apple-system, BlinkMacSystemFont, PingFang SC, sans-serif',
+            'font-size': compact ? 10 : 12,
+            'font-weight': 500
+          }, legendLabel));
+          svg.appendChild(legendGroup);
         });
         const monthTotals = months.map((_, index) => categories.reduce((sum, item) => sum + item.values[index], 0));
         const cumulative = totalWidths.map((value) => center - value / 2);
@@ -1922,6 +2175,8 @@ html>body{padding:0}</style>
           widths.forEach((value, index) => { cumulative[index] += value; });
         });
 
+        svg.appendChild(figureLips);
+
         const labels = predictionOpen
           ? [
               { id: 'theme-work', key: 'work', month: 2, text: '工作' },
@@ -1943,9 +2198,30 @@ html>body{padding:0}</style>
                 { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
               ];
         labels.forEach((label) => {
-          const point = pointAt(geometry[label.key].centers, label.month);
+          const labelMonth = predictionOpen
+            ? geometry[label.key].widths
+                .slice(0, historyMonths.length)
+                .reduce((best, width, index, widths) => width > widths[best] ? index : best, 0)
+            : label.month;
+          const point = pointAt(geometry[label.key].centers, labelMonth);
+          const bandWidth = pointAt(geometry[label.key].widths.map((width, index) => [width, ys[index]]), labelMonth)[0];
           const offset = positionOffsets[label.id];
-          const themeText = addWrappedText(svg, 'dor-theme dor-animated', label.text, point[0] + offset.x, point[1] - 10 + offset.y, 'middle', label.wrapWidth || themeWrapWidth, themeFontSize);
+          const fittedWidth = predictionOpen
+            ? Math.max(10, Math.min(label.wrapWidth || themeWrapWidth, bandWidth - 8))
+            : label.wrapWidth || themeWrapWidth;
+          const fittedFontSize = predictionOpen
+            ? Math.max(8, Math.min(themeFontSize, fittedWidth / Math.min(label.text.length, 4)))
+            : themeFontSize;
+          const themeText = addWrappedText(
+            svg,
+            'dor-theme dor-animated',
+            label.text,
+            point[0] + (predictionOpen ? 0 : offset.x),
+            point[1] + (predictionOpen ? 0 : -10 + offset.y),
+            'middle',
+            fittedWidth,
+            fittedFontSize
+          );
           themeText.dataset.animateTheme = label.key;
         });
 
@@ -1969,10 +2245,10 @@ html>body{padding:0}</style>
         });
 
         if (predictionOpen) {
-          scenarios[activeScenario].nodes.forEach((item, index) => {
+          scenarios[activeScenario].nodes.forEach((item) => {
             const point = pointAt(geometry[item.key].centers, item.month);
-            const anchor = index === 0 ? 'start' : 'end';
-            const textX = point[0] + (index === 0 ? 6 : -6);
+            const bandWidth = pointAt(geometry[item.key].widths.map((width, index) => [width, ys[index]]), item.month)[0];
+            const nodeFontSize = Math.max(6.5, Math.min(8, (bandWidth - 12) / item.text.length));
             const group = el('g', {
               class: 'dor-future-node',
               role: 'button',
@@ -1980,7 +2256,13 @@ html>body{padding:0}</style>
               'aria-label': `${item.text}，点击查看解释`
             });
             group.appendChild(el('circle', { class: 'dor-future-dot', cx: point[0], cy: point[1], r: compact ? 2.8 : 3.4 }));
-            group.appendChild(el('text', { class: 'dor-future-text', x: textX, y: point[1] + 3, 'text-anchor': anchor }, item.text));
+            group.appendChild(el('text', {
+              class: 'dor-future-text',
+              x: point[0],
+              y: point[1] + 18,
+              'text-anchor': 'middle',
+              'font-size': nodeFontSize
+            }, item.text));
             const openPopover = () => showNodePopover(item, group);
             group.addEventListener('click', openPopover);
             group.addEventListener('keydown', (event) => {
@@ -1992,12 +2274,6 @@ html>body{padding:0}</style>
             svg.appendChild(group);
           });
         }
-
-        const footerY = height - (compact ? 48 : 62);
-        svg.appendChild(el('line', { class: 'dor-rule', x1: pad, y1: footerY - 20, x2: width - pad, y2: footerY - 20 }));
-        svg.appendChild(el('text', { class: 'dor-note', x: pad, y: footerY + (compact ? 0 : 18) }, '数据来源：截至 7 月 31 日的日记，河流总宽度表示记录强度（√n 缩放）'));
-        svg.appendChild(el('text', { class: 'dor-note', x: width - pad, y: footerY + (compact ? 16 : 0), 'text-anchor': 'end' }, '爱可视化的简女士'));
-        svg.appendChild(el('text', { class: 'dor-note', x: width - pad, y: footerY + (compact ? 30 : 18), 'text-anchor': 'end' }, 'Jane of Visual Stories'));
 
         requestAnimationFrame(() => {
           if (predictionOpen) {
@@ -2054,11 +2330,10 @@ html>body{padding:0}</style>
         if (svg) playAnimation(svg);
       });
       root.querySelector('[data-node-popover-close]')?.addEventListener('click', hideNodePopover);
-      root.querySelector('[data-predict]')?.addEventListener('click', () => {
-        predictionOpen = !predictionOpen;
+      function setPrediction(nextState) {
+        if (predictionOpen === nextState) return;
+        predictionOpen = nextState;
         root.classList.toggle('is-predicting', predictionOpen);
-        const trigger = root.querySelector('[data-predict]');
-        if (trigger) trigger.textContent = predictionOpen ? '取消预测' : '预个测';
         if (predictionOpen) {
           forecastGrowRequested = true;
           useScenario(activeScenario);
@@ -2068,10 +2343,20 @@ html>body{padding:0}</style>
         }
         renderReading();
         draw();
+      }
+      root.addEventListener('dor:return-home', () => {
+        setPrediction(false);
+        hideNodePopover();
+        reading?.scrollTo({ top: 0, behavior: 'instant' });
       });
-      root.querySelector('[data-scenario-select]')?.addEventListener('change', (event) => {
-        if (predictionOpen) {
-          useScenario(event.currentTarget.value);
+      reading?.addEventListener('click', (event) => {
+        const trigger = event.target.closest('[data-view-mode]');
+        if (!trigger) return;
+        setPrediction(trigger.dataset.viewMode === 'future');
+      });
+      reading?.addEventListener('change', (event) => {
+        if (predictionOpen && event.target.matches('[data-scenario-select]')) {
+          useScenario(event.target.value);
           renderReading();
           draw();
         }
@@ -2087,6 +2372,7 @@ html>body{padding:0}</style>
 (() => {
   const input = document.querySelector('[data-diary-files]');
   const demo = document.querySelector('[data-use-demo]');
+  const home = document.querySelector('[data-return-home]');
   const label = document.querySelector('[data-import-label]');
   const status = document.querySelector('[data-import-status]');
   let entering = false;
@@ -2123,6 +2409,17 @@ html>body{padding:0}</style>
   });
 
   demo?.addEventListener('click', () => enterRiver('正在载入示例日记数据'));
+  home?.addEventListener('click', () => {
+    document.querySelector('#diary-river-organic-ribbons')?.dispatchEvent(new CustomEvent('dor:return-home'));
+    const entry = document.querySelector('[data-import-entry]');
+    entry?.removeAttribute('hidden');
+    document.body.classList.remove('dor-has-entered');
+    document.body.classList.add('dor-before-enter');
+    if (label) label.textContent = '选择我的数据↗';
+    if (input) input.value = '';
+    entering = false;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
 })();
 </script>
 
