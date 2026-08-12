@@ -2203,8 +2203,7 @@ html>body{padding:0}</style>
           scenarios[activeScenario].nodes.forEach((item) => {
             const point = pointAt(geometry[item.key].centers, item.month);
             const bandWidth = pointAt(geometry[item.key].widths.map((width, index) => [width, ys[index]]), item.month)[0];
-            const nodeTextWidth = Math.max(16, Math.min(62, bandWidth - 10));
-            const nodeFontSize = Math.max(7, Math.min(8, nodeTextWidth / 5));
+            const nodeFontSize = Math.max(6.5, Math.min(8, (bandWidth - 12) / item.text.length));
             const group = el('g', {
               class: 'dor-future-node',
               role: 'button',
@@ -2212,16 +2211,13 @@ html>body{padding:0}</style>
               'aria-label': `${item.text}，点击查看解释`
             });
             group.appendChild(el('circle', { class: 'dor-future-dot', cx: point[0], cy: point[1], r: compact ? 2.8 : 3.4 }));
-            addWrappedText(
-              group,
-              'dor-future-text',
-              item.text,
-              point[0],
-              point[1] + 13,
-              'middle',
-              nodeTextWidth,
-              nodeFontSize
-            );
+            group.appendChild(el('text', {
+              class: 'dor-future-text',
+              x: point[0],
+              y: point[1] + 18,
+              'text-anchor': 'middle',
+              'font-size': nodeFontSize
+            }, item.text));
             const openPopover = () => showNodePopover(item, group);
             group.addEventListener('click', openPopover);
             group.addEventListener('keydown', (event) => {
