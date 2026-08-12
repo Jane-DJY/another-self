@@ -1827,7 +1827,7 @@ html>body{padding:0}</style>
         const lines = wrapText(textValue, maxWidth, fontSize);
         const lineHeight = fontSize + 3;
         const startY = centerY - ((lines.length - 1) * lineHeight) / 2;
-        const text = el('text', { class: className, x, y: startY, 'text-anchor': anchor });
+        const text = el('text', { class: className, x, y: startY, 'text-anchor': anchor, 'font-size': fontSize });
         lines.forEach((line, index) => {
           text.appendChild(el('tspan', { x, dy: index === 0 ? 0 : lineHeight }, line));
         });
@@ -2153,9 +2153,30 @@ html>body{padding:0}</style>
                 { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
               ];
         labels.forEach((label) => {
-          const point = pointAt(geometry[label.key].centers, label.month);
+          const labelMonth = predictionOpen
+            ? geometry[label.key].widths
+                .slice(0, historyMonths.length)
+                .reduce((best, width, index, widths) => width > widths[best] ? index : best, 0)
+            : label.month;
+          const point = pointAt(geometry[label.key].centers, labelMonth);
+          const bandWidth = pointAt(geometry[label.key].widths.map((width, index) => [width, ys[index]]), labelMonth)[0];
           const offset = positionOffsets[label.id];
-          const themeText = addWrappedText(svg, 'dor-theme dor-animated', label.text, point[0] + offset.x, point[1] - 10 + offset.y, 'middle', label.wrapWidth || themeWrapWidth, themeFontSize);
+          const fittedWidth = predictionOpen
+            ? Math.max(10, Math.min(label.wrapWidth || themeWrapWidth, bandWidth - 8))
+            : label.wrapWidth || themeWrapWidth;
+          const fittedFontSize = predictionOpen
+            ? Math.max(8, Math.min(themeFontSize, fittedWidth / Math.min(label.text.length, 4)))
+            : themeFontSize;
+          const themeText = addWrappedText(
+            svg,
+            'dor-theme dor-animated',
+            label.text,
+            point[0] + (predictionOpen ? 0 : offset.x),
+            point[1] + (predictionOpen ? 0 : -10 + offset.y),
+            'middle',
+            fittedWidth,
+            fittedFontSize
+          );
           themeText.dataset.animateTheme = label.key;
         });
 
@@ -2179,10 +2200,11 @@ html>body{padding:0}</style>
         });
 
         if (predictionOpen) {
-          scenarios[activeScenario].nodes.forEach((item, index) => {
+          scenarios[activeScenario].nodes.forEach((item) => {
             const point = pointAt(geometry[item.key].centers, item.month);
-            const anchor = index === 0 ? 'start' : 'end';
-            const textX = point[0] + (index === 0 ? 6 : -6);
+            const bandWidth = pointAt(geometry[item.key].widths.map((width, index) => [width, ys[index]]), item.month)[0];
+            const nodeTextWidth = Math.max(16, Math.min(62, bandWidth - 10));
+            const nodeFontSize = Math.max(7, Math.min(8, nodeTextWidth / 5));
             const group = el('g', {
               class: 'dor-future-node',
               role: 'button',
@@ -2190,7 +2212,16 @@ html>body{padding:0}</style>
               'aria-label': `${item.text}，点击查看解释`
             });
             group.appendChild(el('circle', { class: 'dor-future-dot', cx: point[0], cy: point[1], r: compact ? 2.8 : 3.4 }));
-            group.appendChild(el('text', { class: 'dor-future-text', x: textX, y: point[1] + 3, 'text-anchor': anchor }, item.text));
+            addWrappedText(
+              group,
+              'dor-future-text',
+              item.text,
+              point[0],
+              point[1] + 13,
+              'middle',
+              nodeTextWidth,
+              nodeFontSize
+            );
             const openPopover = () => showNodePopover(item, group);
             group.addEventListener('click', openPopover);
             group.addEventListener('keydown', (event) => {
