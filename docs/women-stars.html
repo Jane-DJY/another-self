@@ -64,9 +64,9 @@
 </style>
 </head>
 <body>
-<main class="sky" aria-label="一千位女性人生参照组成的星空">
+<main class="sky" aria-label="五百位女性人生参照组成的星空">
   <canvas id="stars"></canvas>
-  <header class="topbar"><div class="brand"><a href="diary-river-modernist-organic-ribbons-web.html">← 回到我的河流</a><h1>群星闪耀</h1><p>她们不是答案，是一千种已经发生过的可能</p></div></header>
+  <header class="topbar"><div class="brand"><a href="diary-river-modernist-organic-ribbons-web.html">← 回到我的河流</a><h1>群星闪耀</h1><p>她们不是答案，是五百种已经发生过的可能</p></div></header>
   <div class="hint" id="hint">移动鼠标辨认一颗星 · 点击进入她的人生轨道</div>
   <nav class="filters" aria-label="按领域筛选" id="filters"></nav>
   <div class="tooltip" id="tooltip"><b></b><span></span></div>
@@ -78,9 +78,9 @@
 (()=>{
  const data=window.WOMEN_STARS||[],canvas=document.querySelector('#stars'),ctx=canvas.getContext('2d'),tip=document.querySelector('#tooltip'),detail=document.querySelector('#detail'),story=document.querySelector('#story'),portrait=document.querySelector('#portrait');
  const colors={'科学技术':'#8447d7','商业产品':'#ee72c7','艺术创作':'#ae54e5','教育':'#ffca54','医疗照护':'#ff9dd8','公共事务':'#7151ce','体育探险':'#ffb768','农业与技能劳动':'#c77bea','社区行动':'#ef62a9','家庭生活与中年重启':'#9b65de'};
- let stars=[],active='全部',hover=null,w=0,h=0,dpr=1,t=0,exclusionRects=[];
+ let stars=[],active='全部',hover=null,w=0,h=0,dpr=1,exclusionRects=[],drawQueued=false;
  function hash(n){let x=Math.sin(n*9301+49297)*233280;return x-Math.floor(x)}
- function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);layout()}
+ function resize(){dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);layout();scheduleDraw()}
  function reservedRects(){
    const pad=22,brand=document.querySelector('.brand').getBoundingClientRect(),filters=document.querySelector('.filters').getBoundingClientRect();
    return [
@@ -91,12 +91,14 @@
  function isReserved(x,y,pad=0){return exclusionRects.some(r=>x>=r.left-pad&&x<=r.right+pad&&y>=r.top-pad&&y<=r.bottom+pad)}
  function layout(){exclusionRects=reservedRects();stars=data.map((p,i)=>{const deep=p.editorialStatus?.startsWith('深度'),margin=deep?45:12,top=12,bottom=12;let x=0,y=0;for(let attempt=0;attempt<70;attempt++){x=margin+hash(i+3+attempt*101)*(w-margin*2);y=top+hash(i+71+attempt*137)*Math.max(160,h-top-bottom);if(!isReserved(x,y,deep?24:7))break}return{p,x,y,deep,r:deep?3.1+Math.min(5,p.turnAge/15):.9+hash(i+161)*1.45,phase:hash(i+151)*6.28,speed:.45+hash(i+222)*.75}})}
  function crystalPath(x,y,r,tilt=0){const pts=[[-.2,-1],[-.78,-.34],[-.62,.58],[0,.98],[.64,.5],[.78,-.32],[.22,-1]];ctx.beginPath();pts.forEach(([px,py],i)=>{const xx=x+(px*Math.cos(tilt)-py*Math.sin(tilt))*r,yy=y+(px*Math.sin(tilt)+py*Math.cos(tilt))*r*1.28;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy)});ctx.closePath()}
- function drawCrystal(s,r,c,isGold){const tilt=Math.sin(t*.42+s.phase)*.055;ctx.save();ctx.shadowColor=isGold?'rgba(255,201,68,.68)':'rgba(151,73,207,.4)';ctx.shadowBlur=hover===s?24:11;crystalPath(s.x,s.y,r,tilt);const g=ctx.createLinearGradient(s.x-r,s.y-r,s.x+r,s.y+r);g.addColorStop(0,'rgba(255,255,255,.92)');g.addColorStop(.34,c);g.addColorStop(.72,isGold?'#ffcb45':'#c65fe2');g.addColorStop(1,'#7230bf');ctx.fillStyle=g;ctx.fill();ctx.shadowBlur=0;ctx.beginPath();ctx.moveTo(s.x,s.y-r*1.25);ctx.lineTo(s.x-r*.55,s.y+r*.5);ctx.lineTo(s.x,s.y+r*1.18);ctx.closePath();ctx.fillStyle='rgba(255,255,255,.28)';ctx.fill();ctx.beginPath();ctx.moveTo(s.x,s.y-r*1.25);ctx.lineTo(s.x+r*.58,s.y-r*.35);ctx.lineTo(s.x,s.y+r*1.18);ctx.closePath();ctx.fillStyle='rgba(105,42,180,.18)';ctx.fill();ctx.restore()}
- function draw(){t+=.012;ctx.clearRect(0,0,w,h);for(let i=0;i<150;i++){const x=hash(i+800)*w,y=hash(i+950)*h,r=.7+hash(i+1220)*2.5,a=.26+hash(i+999)*.52;if(isReserved(x,y,r+7))continue;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,238,${a})`;ctx.shadowColor='rgba(255,255,220,.8)';ctx.shadowBlur=7;ctx.fill();ctx.shadowBlur=0}
-   const shown=stars.filter(s=>active==='全部'||s.p.field===active);shown.forEach(s=>{const pulse=.96+.04*Math.sin(t*s.speed+s.phase),isGold=s.deep&&s.p.visibility==='广为人知',c=colors[s.p.field]||'#b56de1',r=s.r*(s.deep?2.35:1.18)*(hover===s?1.3:1)*pulse;ctx.save();ctx.globalAlpha=s.deep?1:.58;drawCrystal(s,r,c,isGold);ctx.restore();if(hover===s){crystalPath(s.x,s.y,r+(s.deep?6:3),Math.sin(t*.42+s.phase)*.055);ctx.strokeStyle='rgba(92,38,124,.7)';ctx.lineWidth=1;ctx.stroke()}});requestAnimationFrame(draw)}
- const fields=['全部',...new Set(data.map(d=>d.field))],nav=document.querySelector('#filters');fields.forEach((f,i)=>{const b=document.createElement('button');b.textContent=f;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{active=f;[...nav.children].forEach(x=>x.setAttribute('aria-pressed',x===b));hover=null};nav.append(b)});
+ function drawCrystal(s,r,c,isGold){const tilt=(hash(s.p.seed||1)-.5)*.08;ctx.save();ctx.shadowColor=isGold?'rgba(255,201,68,.58)':'rgba(151,73,207,.32)';ctx.shadowBlur=hover===s?18:(s.deep?8:3);crystalPath(s.x,s.y,r,tilt);const g=ctx.createLinearGradient(s.x-r,s.y-r,s.x+r,s.y+r);g.addColorStop(0,'rgba(255,255,255,.92)');g.addColorStop(.34,c);g.addColorStop(.72,isGold?'#ffcb45':'#c65fe2');g.addColorStop(1,'#7230bf');ctx.fillStyle=g;ctx.fill();ctx.shadowBlur=0;ctx.beginPath();ctx.moveTo(s.x,s.y-r*1.25);ctx.lineTo(s.x-r*.55,s.y+r*.5);ctx.lineTo(s.x,s.y+r*1.18);ctx.closePath();ctx.fillStyle='rgba(255,255,255,.28)';ctx.fill();ctx.beginPath();ctx.moveTo(s.x,s.y-r*1.25);ctx.lineTo(s.x+r*.58,s.y-r*.35);ctx.lineTo(s.x,s.y+r*1.18);ctx.closePath();ctx.fillStyle='rgba(105,42,180,.18)';ctx.fill();ctx.restore()}
+ function draw(){drawQueued=false;ctx.clearRect(0,0,w,h);for(let i=0;i<90;i++){const x=hash(i+800)*w,y=hash(i+950)*h,r=.7+hash(i+1220)*2.2,a=.22+hash(i+999)*.45;if(isReserved(x,y,r+7))continue;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,238,${a})`;ctx.fill()}
+   const shown=stars.filter(s=>active==='全部'||s.p.field===active);shown.forEach(s=>{const isGold=s.deep&&s.p.visibility==='广为人知',c=colors[s.p.field]||'#b56de1',r=s.r*(s.deep?2.35:1.18)*(hover===s?1.3:1);ctx.save();ctx.globalAlpha=s.deep?1:.58;drawCrystal(s,r,c,isGold);ctx.restore();if(hover===s){crystalPath(s.x,s.y,r+(s.deep?6:3),(hash(s.p.seed||1)-.5)*.08);ctx.strokeStyle='rgba(92,38,124,.7)';ctx.lineWidth=1;ctx.stroke()}})}
+ function scheduleDraw(){if(drawQueued)return;drawQueued=true;requestAnimationFrame(draw)}
+ const fields=['全部',...new Set(data.map(d=>d.field))],nav=document.querySelector('#filters');fields.forEach((f,i)=>{const b=document.createElement('button');b.textContent=f;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{active=f;[...nav.children].forEach(x=>x.setAttribute('aria-pressed',x===b));hover=null;scheduleDraw()};nav.append(b)});
  function nearest(e){let hit=null,dist=16;for(const s of stars){if(active!=='全部'&&s.p.field!==active)continue;const d=Math.hypot(e.clientX-s.x,e.clientY-s.y),reach=s.deep?24:9;if(d<Math.min(dist,reach)){dist=d;hit=s}}return hit}
- canvas.addEventListener('pointermove',e=>{hover=nearest(e);if(hover){tip.querySelector('b').textContent=hover.p.name;tip.querySelector('span').textContent=hover.deep?`${hover.p.field} · ${hover.p.turnAge}岁关键转折`:`${hover.p.field} · 基础档案待研究`;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.classList.add('show');canvas.style.cursor='pointer'}else{tip.classList.remove('show');canvas.style.cursor='crosshair'}});
+ canvas.addEventListener('pointermove',e=>{const next=nearest(e);if(next!==hover){hover=next;scheduleDraw()}if(hover){tip.querySelector('b').textContent=hover.p.name;tip.querySelector('span').textContent=hover.deep?`${hover.p.field} · ${hover.p.turnAge}岁关键转折`:`${hover.p.field} · 基础档案待研究`;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.classList.add('show');canvas.style.cursor='pointer'}else{tip.classList.remove('show');canvas.style.cursor='crosshair'}});
+ canvas.addEventListener('pointerleave',()=>{if(hover){hover=null;scheduleDraw()}tip.classList.remove('show')});
  canvas.addEventListener('click',e=>{const s=nearest(e);if(s)openPerson(s.p)});
  function safe(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
  function openPerson(p){document.querySelector('#hint').classList.add('hidden');const deep=p.editorialStatus?.startsWith('深度');portrait.innerHTML=p.photo?`<img src="${safe(p.photo)}" alt="${safe(p.name)}的公开照片"><p class="portrait-caption">${safe(p.photoAuthor)} · ${safe(p.photoLicense)} · <a href="${safe(p.photoPage)}" target="_blank" rel="noreferrer">原图与许可</a></p>`:`<div class="portrait-fallback" aria-label="暂无开放许可照片">${safe(p.name.slice(0,1))}</div><p class="portrait-caption">${p.photoStatus==='有公开图片线索·许可待核验'?'已有公开图片线索，但许可尚未核验，暂不展示。':'暂未找到明确开放许可照片，因此不使用新闻图片替代。'}</p>`;
@@ -106,7 +108,7 @@
   story.innerHTML=`<div class="kicker">${safe(p.region)} · ${safe(p.field)} · ${p.turnAge}岁发生关键转折</div><h2>${safe(p.name)}</h2><p class="identity">${safe(p.identity)}</p><div class="tags">${p.strengths.map(x=>`<span class="tag">${safe(x)}</span>`).join('')}</div><div class="life-viz">${stages.map((x,i)=>`<section class="stage"><small>0${i+1}</small><h3>${x[0]}</h3><p>${safe(x[1])}</p></section>`).join('')}</div><div class="balance"><div class="orbit"><h3>她当时拥有 / 承受什么</h3><div class="orbit-core">关键转折<br>${p.turnAge}岁</div>${sats.map((x,i)=>`<span class="satellite" style="left:${pos[i][0]}%;top:${pos[i][1]}%">${safe(x)}</span>`).join('')}</div><div><div class="boundary"><h3>不要照搬</h3><p>${safe(p.boundary)}</p></div><div class="action"><small>把她的方法缩小为你的7天实验</small><p>${safe(p.firstStep)}</p></div></div></div><div class="sources">适用条件：${safe(p.conditions)}<br>资料来源：${p.sources.map((u,i)=>`<a href="${safe(u)}" target="_blank" rel="noreferrer">来源 ${i+1}</a>`).join(' · ')}</div>`;
   detail.classList.add('open');detail.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.querySelector('#close').focus()}
  function close(){detail.classList.remove('open');detail.setAttribute('aria-hidden','true');document.body.style.overflow='hidden'}document.querySelector('#close').onclick=close;addEventListener('keydown',e=>{if(e.key==='Escape')close()});
- addEventListener('resize',resize);resize();draw();
+ addEventListener('resize',resize,{passive:true});resize();
 })();
 </script>
 </body></html>
