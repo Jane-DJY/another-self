@@ -914,8 +914,21 @@ html>body{padding:0}</style>
     }
     body.dor-has-entered .dor-import-entry { opacity: 0; visibility: hidden; pointer-events: none; }
     body.dor-before-enter #diary-river-organic-ribbons { opacity: 0; transform: translateY(18px); }
-    #diary-river-organic-ribbons { transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,1,.36,1); }
+    #diary-river-organic-ribbons { position: relative; transition: opacity 700ms ease, transform 700ms cubic-bezier(.22,1,.36,1); }
     body.dor-has-entered #diary-river-organic-ribbons { opacity: 1; transform: none; }
+    #diary-river-organic-ribbons .dor-home-button {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      z-index: 10;
+      border: 0;
+      background: transparent;
+      color: #6e665b;
+      padding: 6px 4px;
+      font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      cursor: pointer;
+    }
+    #diary-river-organic-ribbons .dor-home-button:hover { color: #28251f; }
     .dor-import-mark {
       display: flex;
       align-items: flex-end;
@@ -1466,6 +1479,7 @@ html>body{padding:0}</style>
     }
   </style>
 
+  <button class="dor-home-button" type="button" data-return-home>← 回到首页</button>
   <div class="dor-editor">
     <div class="dor-poster">
       <div data-poster></div>
@@ -2329,6 +2343,11 @@ html>body{padding:0}</style>
         renderReading();
         draw();
       }
+      root.addEventListener('dor:return-home', () => {
+        setPrediction(false);
+        hideNodePopover();
+        reading?.scrollTo({ top: 0, behavior: 'instant' });
+      });
       reading?.addEventListener('click', (event) => {
         const trigger = event.target.closest('[data-view-mode]');
         if (!trigger) return;
@@ -2352,6 +2371,7 @@ html>body{padding:0}</style>
 (() => {
   const input = document.querySelector('[data-diary-files]');
   const demo = document.querySelector('[data-use-demo]');
+  const home = document.querySelector('[data-return-home]');
   const label = document.querySelector('[data-import-label]');
   const status = document.querySelector('[data-import-status]');
   let entering = false;
@@ -2388,6 +2408,17 @@ html>body{padding:0}</style>
   });
 
   demo?.addEventListener('click', () => enterRiver('正在载入示例日记数据'));
+  home?.addEventListener('click', () => {
+    document.querySelector('#diary-river-organic-ribbons')?.dispatchEvent(new CustomEvent('dor:return-home'));
+    const entry = document.querySelector('[data-import-entry]');
+    entry?.removeAttribute('hidden');
+    document.body.classList.remove('dor-has-entered');
+    document.body.classList.add('dor-before-enter');
+    if (label) label.textContent = '选择我的数据↗';
+    if (input) input.value = '';
+    entering = false;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
 })();
 </script>
 
