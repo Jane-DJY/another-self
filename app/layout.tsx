@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "后来｜Later",
-  description: "一份会慢慢长大的个人导航。",
+  title: "另世我｜Another Self",
+  description: "由你的生活记录养成的另一个你。",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
