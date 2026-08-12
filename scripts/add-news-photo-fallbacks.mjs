@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+const file='docs/women-stars-data.js',text=fs.readFileSync(file,'utf8'),data=JSON.parse(text.match(/window\.WOMEN_STARS\s*=\s*([\s\S]*);\s*$/)[1]);
+const photos={
+ 'FEATURED-GIORGIA-LUPI':['https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Giorgia_Lupi.jpg/640px-Giorgia_Lupi.jpg','https://commons.wikimedia.org/wiki/File:Giorgia_Lupi.jpg','Wikimedia Commons contributor','具体许可见Wikimedia Commons原图页'],
+ 'FEATURED-SHIRLEY-WU':['https://images.ctfassets.net/s5uo95nf6njh/7jvmw1LF3pfOUsJP1B3EsH/161f39967c9875e79d59a21998418621/shirley-wu-hero.jpg?fm=jpg&w=1200','https://github.com/readme/stories/shirley-wu','GitHub ReadME Project','机构人物专访照片·许可待进一步核验'],
+ 'FEATURED-ANNE-LAURE':['https://images.squarespace-cdn.com/content/v1/58ed40453a04116f46e8d99b/443a3949-c9f3-4227-a1fb-fb30999802a9/Anne-Laure%2BLe%2BCunff.jpg?format=1200w','https://www.tenentrepreneurs.org/annelaure-le-cunff','The Entrepreneurs Network','机构人物档案照片·许可待进一步核验'],
+ 'CN23':['https://k.sinaimg.cn/n/sinakd20220701s/76/w1080h596/20220701/9108-2447a1cffb3ab80d4a9492bbf6bc7605.png/w700d1q75cms.jpg?by=cms_fixed_width','https://k.sina.com.cn/article_1607461664_v5fcfeb2001901uogj.html','新浪新闻','新闻报道截图·许可待进一步核验'],
+ 'CN09':['https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Li_Na_January_2015.jpg/640px-Li_Na_January_2015.jpg','https://commons.wikimedia.org/wiki/File:Li_Na_January_2015.jpg','Wikimedia Commons contributor','具体许可见Wikimedia Commons原图页'],
+ 'CN12':['https://p2.ssl.cdn.btime.com/t015d9268a245eceae6.jpg?size=400x587','https://item.btime.com/0767eakdiifmjmua0m93ou5f4fd','北京时间','新闻人物照片·许可待进一步核验'],
+ 'CN13':['https://imageio.forbes.com/specials-images/imageserve/6724fc55963e6ec9e66025bc/0x0.jpg?format=jpg&crop=657,657,x366,y221,safe&height=416&width=416&fit=bounds','https://www.forbes.com/profile/zhou-qunfei/','Forbes','机构人物档案照片·许可待进一步核验'],
+ 'CN14':['https://assets.weforum.org/sf_account/image/responsive_small_8jEpoCI7NNBDOnk2-fgz0zn0Gxc_YmlRCac3XrteaaI.jpg','https://www.weforum.org/people/zhang-xin/','World Economic Forum','机构人物档案照片·许可待进一步核验'],
+ 'CN01':['https://imagepphcloud.thepaper.cn/pph/image/75/393/150.jpg','https://m.thepaper.cn/baijiahao_8080473','澎湃号','历史人物公开画像·许可待进一步核验'],
+ 'CN16':['https://upload.wikimedia.org/wikipedia/commons/c/c0/Wang_Anyi_%28cropped%29.jpg','https://commons.wikimedia.org/wiki/File:Wang_Anyi_(cropped).jpg','Wikimedia Commons contributor','具体许可见Wikimedia Commons原图页'],
+ 'CN05':['https://5b0988e595225.cdn.sohucs.com/images/20190528/85b5863e00e3464bb544d312b590a0bd.jpeg','https://ysg.ckcest.cn/ysgNews/1738417.html','中国工程院院士馆相关报道','新闻人物照片·许可待进一步核验'],
+ 'CN17':['https://artlogic-res.cloudinary.com/w_1200%2Ch_630%2Cc_fill%2Cg_xy_center%2Cx_w_mul_0.55%2Cy_h_mul_0.2%2Cf_auto%2Cfl_lossy%2Cq_auto/ws-artlogicwebsite0954/usr/images/artists/artist_image/items/3d/3d30db73637d43798c016a14d85bcfb7/xiao_lu-portrait-copy.jpg','https://www.10chancerylanegallery.com/artists/92-xiao-lu/biography/','10 Chancery Lane Gallery','画廊人物档案照片·许可待进一步核验'],
+ 'CN21':['https://newsen.pku.edu.cn/Uploads/Bden/File/2020/11/09/bqtqkyoqw4s.jpg','https://newsen.pku.edu.cn/news_events/news/people/9389.html','北京大学新闻网','机构人物报道照片·许可待进一步核验'],
+ 'CN22':['https://p7.itc.cn/q_70/images03/20220911/c456336bc1054e7eaebb98afca232036.jpeg','https://www.sohu.com/a/584157589_121124334','搜狐新闻','新闻人物照片·许可待进一步核验']
+ ,'INT06':['https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Madam_C._J._Walker_by_Addison_N._Scurlock.jpg/640px-Madam_C._J._Walker_by_Addison_N._Scurlock.jpg','https://commons.wikimedia.org/wiki/File:Madam_C._J._Walker_by_Addison_N._Scurlock.jpg','Wikimedia Commons contributor','具体许可见Wikimedia Commons原图页']
+ ,'INT15':['https://www.yayoikusamamuseum.jp/assets/images/image/ogimage.png','https://yayoikusamamuseum.jp/en/about/yayoi_kusama/','Yayoi Kusama Museum','机构页面公开图片·许可待进一步核验']
+ ,'INT22':['https://img.olympics.com/images/image/private/t_social_share_thumb/f_auto/primary/bpg1hewhmku06znwbbnk','https://olympics.com/en/athletes/simone-biles','Olympics','机构人物档案图片·许可待进一步核验']
+};
+for(const x of data){const p=photos[x.id];if(!p)continue;[x.photo,x.photoPage,x.photoAuthor,x.photoLicense]=p;x.photoStatus=p[3].includes('待进一步核验')?'新闻或机构照片·许可待进一步核验':'公开人物图片·来源已记录'}
+const missing=data.filter(x=>!x.photo||!x.identity||!x.photoPage||!x.photoAuthor||!x.photoLicense||!Array.isArray(x.sources)||x.sources.length<2);if(missing.length)throw new Error(`still incomplete: ${missing.map(x=>x.name).join(', ')}`);fs.writeFileSync(file,`window.WOMEN_STARS = ${JSON.stringify(data,null,2)};\n`);console.log(`500/500 profiles now have biography, two sources, photo and photo provenance`);
