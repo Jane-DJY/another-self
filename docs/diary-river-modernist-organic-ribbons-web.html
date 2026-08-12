@@ -1392,10 +1392,16 @@ html>body{padding:0}</style>
     }
     #diary-river-organic-ribbons .dor-reading-lead {
       max-width: 42em;
-      margin: 0 0 28px;
+      margin: 0 0 18px;
       color: #70675b;
       font-size: 14px;
       line-height: 1.75;
+    }
+    #diary-river-organic-ribbons .dor-case-intro {
+      margin: 0 0 18px;
+      color: #887a69;
+      font-size: 12px;
+      letter-spacing: 0.04em;
     }
     #diary-river-organic-ribbons .dor-insight-list,
     #diary-river-organic-ribbons .dor-role-list { display: grid; gap: 0; }
@@ -1643,7 +1649,7 @@ html>body{padding:0}</style>
       const roleModels = {
         expert: {
           title: '创作型专家，可以向谁学习？',
-          lead: '这些女性的人生经历可能给你参考',
+          lead: '更适合你的，是把观察、方法、作品与行业影响力连接成一条长期路径，而不只是追求“更会画”。',
           people: [
             { name: 'Giorgia Lupi', role: '把数据变成人文语言', timeline: ['建筑与信息设计训练', '2011 创办 Accurat', '2016《Dear Data》', '2019 成为 Pentagram 合伙人'], right: '用长周期个人实验建立辨识度，再把方法带进出版、品牌与公共议题。', detour: '只模仿视觉风格，却没有持续采集、解释和写作的方法。', source: 'https://www.pentagram.com/about/giorgia-lupi' },
             { name: 'Nadieh Bremer', role: '把分析能力变成定制视觉叙事', timeline: ['天文学背景', '数据科学工作', '深入 D3 与视觉实验', '2017 创立 Visual Cinnamon'], right: '保留技术深度，同时坚持从数据与传播目标出发，形成从草图到迭代的完整流程。', detour: '为了追求复杂而复杂，忽略作品要帮助谁理解什么。', source: 'https://www.visualcinnamon.com/about/' },
@@ -1652,7 +1658,7 @@ html>body{padding:0}</style>
         },
         creator: {
           title: '独立创作者，可以向谁学习？',
-          lead: '这些女性的人生经历可能给你参考',
+          lead: '更适合你的，是先建立稳定输出和清晰主题，再让内容逐步长出产品与收入。',
           people: [
             { name: 'Jack Butcher', role: '把每日视觉练习变成产品系统', timeline: ['十年品牌与代理工作', '2019 每日一张黑白视觉', '形成课程与工具', '2020 销售突破 100 万美元'], right: '极度收窄形式与主题，用持续公开作品积累分发，再把方法产品化。', detour: '长期停留在按小时出售服务，或尚未形成视觉语法就急着扩产品线。', source: 'https://visualizevalue.com/about' },
             { name: 'Ali Abdaal', role: '用副业期验证再全职', timeline: ['2017 开始 YouTube', '6 个月发布 52 支视频', '医生阶段持续副业创作', '2020 后全职并扩展书与产品'], right: '在主业仍提供安全垫时，用高频作品验证受众与主题，信号足够强后再切换身份。', detour: '过早离开主业，或收入线扩张太快导致核心主题变模糊。', source: 'https://aliabdaal.com/about/' },
@@ -1661,7 +1667,7 @@ html>body{padding:0}</style>
         },
         later: {
           title: '产品创业，可以向谁学习？',
-          lead: '这些女性的人生经历可能给你参考',
+          lead: '更适合你的不是先做“大平台”，而是从自己反复遇到的问题中提炼方法，再用小范围真实用户验证。',
           people: [
             { name: 'Anne-Laure Le Cunff', role: '从公开实验长出学习产品', timeline: ['离开 Google', '一次创业尝试未持续', '100 个工作日连续写作', '形成 Ness Labs、研究与书'], right: '把失败转成研究问题，用稳定写作吸引同类，再逐渐形成社区与产品。', detour: '先造完整产品再找需求；她后来的路径更像先内容、再社区、再产品。', source: 'https://nesslabs.com/author/annelaure' },
             { name: 'Ryder Carroll', role: '把个人方法变成全球产品', timeline: ['长期打磨自己的笔记法', '2007 第一次教给别人', '2013 两周上线教程网站', '2014 社区反馈推动众筹与实体本'], right: '先免费讲清方法，看用户如何改造它；产品方向由真实使用行为而不是想象决定。', detour: '一开始就把方法做得过重，或替用户规定唯一正确的使用方式。', source: 'https://bulletjournal.com/pages/about' },
@@ -1743,6 +1749,7 @@ html>body{padding:0}</style>
         reading.innerHTML = `
           ${readingHeaderMarkup()}
           <p class="dor-reading-lead">${model.lead}</p>
+          <p class="dor-case-intro">这些女性的人生经历可能给你参考</p>
           <div class="dor-role-list">${model.people.map((person, index) => `
             <article class="dor-role">
               <div class="dor-role-index">0${index + 1}</div>
