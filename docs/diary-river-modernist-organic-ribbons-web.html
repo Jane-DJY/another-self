@@ -1694,9 +1694,8 @@ html>body{padding:0}</style>
       }
       function readingHeaderMarkup() {
         if (predictionOpen) {
-          return `<header class="dor-reading-header">
-            <div class="dor-reading-header-top">
-              <p class="dor-reading-kicker">未来一年 · 行为情景推演</p>
+          return `<header class="dor-reading-header" style="margin-bottom:10px">
+            <div class="dor-reading-header-top" style="justify-content:flex-end">
               ${viewSwitchMarkup()}
             </div>
           </header>`;
