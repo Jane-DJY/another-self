@@ -1303,6 +1303,9 @@ html>body{padding:0}</style>
     #diary-river-organic-ribbons .dor-reading {
       min-width: 0;
       max-width: 560px;
+      width: 100%;
+      height: 100%;
+      align-self: stretch;
       max-height: calc(100svh - clamp(40px, 8vw, 112px));
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -1442,7 +1445,7 @@ html>body{padding:0}</style>
       #diary-river-organic-ribbons .dor-editor { grid-template-columns: 1fr; height: auto; min-height: auto; }
       #diary-river-organic-ribbons .dor-poster { width: min(100%, 560px); max-height: none; justify-self: center; }
       #diary-river-organic-ribbons .dor-reading { max-width: 620px; justify-self: center; padding-bottom: 28px; }
-      #diary-river-organic-ribbons .dor-reading { max-height: none; overflow: visible; }
+      #diary-river-organic-ribbons .dor-reading { height: auto; max-height: none; overflow: visible; }
     }
     @media (max-width: 480px) {
       #diary-river-organic-ribbons .dor-editor { padding: 10px; gap: 28px; }
