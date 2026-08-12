@@ -1007,7 +1007,18 @@ html>body{padding:0}</style>
       .dor-import-entry, #diary-river-organic-ribbons { transition: none; }
     }
     /* Life crystal edition */
-    html, body { background: #f4d7ef !important; color: #442352; }
+    html {
+      min-width: 100%;
+      min-height: 100%;
+      background: linear-gradient(135deg,#fff2fa 0%,#f8e7f5 48%,#eee3ff 100%) fixed !important;
+    }
+    html > body {
+      width: 100%;
+      min-width: 100%;
+      min-height: 100svh;
+      background: linear-gradient(135deg,#fff2fa 0%,#f8e7f5 48%,#eee3ff 100%) fixed !important;
+      color: #442352;
+    }
     .dor-import-entry {
       background:
         radial-gradient(circle at 20% 18%, rgba(255,255,255,.92) 0 1px, transparent 3px),
@@ -1055,7 +1066,7 @@ html>body{padding:0}</style>
       --dor-figure-head: #e8a9d7;
       --dor-figure-outline: #754184;
     }
-    #diary-river-organic-ribbons{background:linear-gradient(135deg,#fff2fa 0%,#f8e7f5 48%,#eee3ff 100%)}
+    #diary-river-organic-ribbons{min-height:100svh;background:transparent}
     #diary-river-organic-ribbons .dor-reading{color:#442352}
     #diary-river-organic-ribbons .dor-reading-header h1,
     #diary-river-organic-ribbons .dor-reading-header .dor-forecast-heading{color:#442352}
