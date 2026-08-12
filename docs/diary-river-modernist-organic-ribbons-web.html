@@ -1520,6 +1520,19 @@ html>body{padding:0}</style>
       background: linear-gradient(145deg,#fff 0%,#dda2f2 32%,#9a4bd6 68%,#6323b4 100%);
       filter: drop-shadow(0 2px 3px rgba(83,33,123,.22));
     }
+    #diary-river-organic-ribbons .dor-role h3.has-star-link::before { display: none; }
+    #diary-river-organic-ribbons .dor-star-jump {
+      width: 18px;
+      height: 23px;
+      margin-top: -2px;
+      flex: 0 0 18px;
+      clip-path: polygon(50% 0,88% 25%,77% 76%,50% 100%,14% 72%,8% 25%);
+      background: linear-gradient(145deg,#fff 0%,#dda2f2 32%,#9a4bd6 68%,#6323b4 100%);
+      filter: drop-shadow(0 2px 3px rgba(83,33,123,.22));
+      transition: transform 160ms ease, filter 160ms ease;
+    }
+    #diary-river-organic-ribbons .dor-star-jump:hover,
+    #diary-river-organic-ribbons .dor-star-jump:focus-visible { transform: scale(1.24); filter: drop-shadow(0 3px 5px rgba(83,33,123,.38)); outline: none; }
     #diary-river-organic-ribbons .dor-insight p,
     #diary-river-organic-ribbons .dor-role p { margin: 0; color: #5f574d; font-size: 13px; line-height: 1.65; }
     #diary-river-organic-ribbons .dor-metric { color: #b02a32; font-weight: 500; }
@@ -1773,9 +1786,9 @@ html>body{padding:0}</style>
           title: '创作型专家，可以向谁学习？',
           lead: '作为一名创作型专家，你可以尝试把观察、方法、作品与行业影响力连接成一条长期路径。',
           people: [
-            { name: 'Giorgia Lupi', role: '把数据变成人文语言', timeline: ['建筑与信息设计训练', '2011 创办 Accurat', '2016《Dear Data》', '2019 成为 Pentagram 合伙人'], right: '用长周期个人实验建立辨识度，再把方法带进出版、品牌与公共议题。', detour: '只模仿视觉风格，却没有持续采集、解释和写作的方法。', source: 'https://www.pentagram.com/about/giorgia-lupi' },
-            { name: 'Nadieh Bremer', role: '把分析能力变成定制视觉叙事', timeline: ['天文学背景', '数据科学工作', '深入 D3 与视觉实验', '2017 创立 Visual Cinnamon'], right: '保留技术深度，同时坚持从数据与传播目标出发，形成从草图到迭代的完整流程。', detour: '为了追求复杂而复杂，忽略作品要帮助谁理解什么。', source: 'https://www.visualcinnamon.com/about/' },
-            { name: 'Shirley Wu', role: '用作品系列积累专业声誉', timeline: ['软件工程', '独立数据可视化', '持续公开作品与演讲', '形成鲜明的叙事型作品语言'], right: '把代码、设计和讲故事放进同一个作品里，让每个项目同时成为案例与教学材料。', detour: '项目之间没有共同主题，作品很多却难以沉淀成个人方法。', source: 'https://sxywu.github.io/' }
+            { name: 'Giorgia Lupi', starId: 'FEATURED-GIORGIA-LUPI', role: '把数据变成人文语言', timeline: ['建筑与信息设计训练', '2011 创办 Accurat', '2016《Dear Data》', '2019 成为 Pentagram 合伙人'], right: '用长周期个人实验建立辨识度，再把方法带进出版、品牌与公共议题。', detour: '只模仿视觉风格，却没有持续采集、解释和写作的方法。', source: 'https://www.pentagram.com/about/giorgia-lupi' },
+            { name: 'Nadieh Bremer', starId: 'FEATURED-NADIEH-BREMER', role: '把分析能力变成定制视觉叙事', timeline: ['天文学背景', '数据科学工作', '深入 D3 与视觉实验', '2017 创立 Visual Cinnamon'], right: '保留技术深度，同时坚持从数据与传播目标出发，形成从草图到迭代的完整流程。', detour: '为了追求复杂而复杂，忽略作品要帮助谁理解什么。', source: 'https://www.visualcinnamon.com/about/' },
+            { name: 'Shirley Wu', starId: 'FEATURED-SHIRLEY-WU', role: '用作品系列积累专业声誉', timeline: ['软件工程', '独立数据可视化', '持续公开作品与演讲', '形成鲜明的叙事型作品语言'], right: '把代码、设计和讲故事放进同一个作品里，让每个项目同时成为案例与教学材料。', detour: '项目之间没有共同主题，作品很多却难以沉淀成个人方法。', source: 'https://sxywu.github.io/' }
           ]
         },
         creator: {
@@ -1791,7 +1804,7 @@ html>body{padding:0}</style>
           title: '产品创业，可以向谁学习？',
           lead: '如果是成为一名产品创业者，你可以尝试从自己反复遇到的问题中提炼方法，再用小范围真实用户验证。',
           people: [
-            { name: 'Anne-Laure Le Cunff', role: '从公开实验长出学习产品', timeline: ['离开 Google', '一次创业尝试未持续', '100 个工作日连续写作', '形成 Ness Labs、研究与书'], right: '把失败转成研究问题，用稳定写作吸引同类，再逐渐形成社区与产品。', detour: '先造完整产品再找需求；她后来的路径更像先内容、再社区、再产品。', source: 'https://nesslabs.com/author/annelaure' },
+            { name: 'Anne-Laure Le Cunff', starId: 'FEATURED-ANNE-LAURE', role: '从公开实验长出学习产品', timeline: ['离开 Google', '一次创业尝试未持续', '100 个工作日连续写作', '形成 Ness Labs、研究与书'], right: '把失败转成研究问题，用稳定写作吸引同类，再逐渐形成社区与产品。', detour: '先造完整产品再找需求；她后来的路径更像先内容、再社区、再产品。', source: 'https://nesslabs.com/author/annelaure' },
             { name: 'Ryder Carroll', role: '把个人方法变成全球产品', timeline: ['长期打磨自己的笔记法', '2007 第一次教给别人', '2013 两周上线教程网站', '2014 社区反馈推动众筹与实体本'], right: '先免费讲清方法，看用户如何改造它；产品方向由真实使用行为而不是想象决定。', detour: '一开始就把方法做得过重，或替用户规定唯一正确的使用方式。', source: 'https://bulletjournal.com/pages/about' },
             { name: 'Tiago Forte', role: '把知识工作流产品化', timeline: ['从个人数字笔记解决真实问题', '2013 尝试线上课程', '博客持续验证方法', '发展为课程、书与工具生态'], right: '先记录自己如何解决问题，再用文章测试概念，最后把被反复需要的步骤打包。', detour: '把零散知识直接包装成产品，却没有先经过公开写作和用户反馈。', source: 'https://fortelabs.com/blog/the-story-behind-basb/' }
           ]
@@ -1877,7 +1890,7 @@ html>body{padding:0}</style>
             <article class="dor-role">
               <div class="dor-role-index">0${index + 1}</div>
               <div>
-                <h3>${person.name} · ${person.role}</h3>
+                <h3 class="${person.starId ? 'has-star-link' : ''}">${person.starId ? `<a class="dor-star-jump" href="women-stars.html?person=${encodeURIComponent(person.starId)}" aria-label="在群星闪耀中查看 ${person.name}" title="在群星闪耀中查看她"></a>` : ''}${person.name} · ${person.role}</h3>
                 <div class="dor-timeline">${person.timeline.map(point => `<span>${point}</span>`).join('')}</div>
                 <p class="dor-role-note"><strong>案例人物的关键选择：</strong>${person.right}</p>
                 <p class="dor-role-note"><strong>给你的避坑提醒：</strong>${person.detour}</p>
