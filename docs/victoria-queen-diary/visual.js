@@ -48,20 +48,44 @@ function bodyHalfWidth(t, mini = false) {
 
 function renderHead(svg, mini = false) {
   const center = mini ? 260 : 345;
-  const top = mini ? 50 : 28;
+  const top = mini ? 42 : 24;
   const colors = ['#5A3D82','#CE5A8F','#A56BD3','#E6A640','#D979B5','#6D9F91'];
-  const labels = mini ? [] : ['日常','阅读','亲情','艺术','出行','社交'];
-  for (let i = 0; i < 28; i++) {
-    const row = Math.floor(i / 6);
-    const col = i % 6;
-    const w = mini ? 66 : 78;
-    const h = mini ? 22 : 26;
-    const x = center - 175 + col * 58 + Math.sin(i * 1.8) * 16;
-    const y = top + row * 34 + Math.cos(i * 1.2) * 9;
-    const rect = el('rect', { x, y, width: w, height: h, rx: 4, fill: colors[i % colors.length], opacity: .82, transform: `rotate(${(i % 5 - 2) * 4} ${x+w/2} ${y+h/2})` });
-    svg.appendChild(rect);
-  }
-  labels.forEach((label, i) => svg.appendChild(el('text', { x: center - 150 + (i % 3) * 110, y: 105 + Math.floor(i / 3) * 45, fill: 'white', 'font-size': 15, 'font-weight': 800 }, label)));
+  const rowCounts = [3, 5, 6, 6, 5, 3];
+  const labelSlots = mini ? {} : {
+    '2-0': '日常', '2-2': '阅读', '2-4': '亲情',
+    '3-1': '艺术', '3-3': '出行', '3-5': '社交'
+  };
+  let colorIndex = 0;
+  rowCounts.forEach((count, row) => {
+    const w = mini ? 64 : 76;
+    const h = mini ? 24 : 30;
+    const stepX = mini ? 48 : 57;
+    const stepY = mini ? 27 : 32;
+    const rowWidth = (count - 1) * stepX + w;
+    for (let col = 0; col < count; col++) {
+      const jitterX = Math.sin((row + 1) * 7 + col * 2.1) * (mini ? 5 : 7);
+      const jitterY = Math.cos(row * 3.2 + col * 1.7) * (mini ? 2 : 3);
+      const x = center - rowWidth / 2 + col * stepX + jitterX;
+      const y = top + row * stepY + jitterY;
+      const rotation = ((row * 3 + col) % 5 - 2) * 2.6;
+      const label = labelSlots[`${row}-${col}`];
+      const group = el('g', { transform: `rotate(${rotation} ${x+w/2} ${y+h/2})` });
+      group.appendChild(el('rect', { x, y, width: w, height: h, rx: 5, fill: colors[colorIndex % colors.length], opacity: label ? .96 : .82 }));
+      if (label) {
+        group.appendChild(el('text', {
+          x: x + w / 2,
+          y: y + h / 2,
+          'text-anchor': 'middle',
+          'dominant-baseline': 'central',
+          fill: 'white',
+          'font-size': 14,
+          'font-weight': 800
+        }, label));
+      }
+      svg.appendChild(group);
+      colorIndex += 1;
+    }
+  });
 }
 
 function renderRiver(svg, data, mini = false) {
@@ -99,34 +123,40 @@ function renderRiver(svg, data, mini = false) {
 
   if (mini) return;
 
-  const labelRow = rows[4];
-  let labelX = center - bodyHalfWidth(4 / 6, false);
-  categories.forEach(category => {
-    const width = bodyHalfWidth(4 / 6, false) * 2 * labelRow.shares[category.key] / 100;
-    if (width > 44) svg.appendChild(el('text', { x: labelX + width / 2, y: yTop + 4 / 6 * (yBottom-yTop), 'text-anchor': 'middle', class: 'river-label' }, category.zh));
-    labelX += width;
-  });
-
+  const yearAxisX = 610;
+  svg.appendChild(el('line', { x1: yearAxisX, y1: yTop, x2: yearAxisX, y2: yBottom, stroke: '#c9b5c8', 'stroke-width': 1, opacity: .72 }));
   rows.forEach((row, ri) => {
     const t = ri / (rows.length - 1);
     const y = yTop + t * (yBottom-yTop);
-    const x = center + bodyHalfWidth(t, false) + 46;
     const g = el('g', { class: `year-hit${ri === 0 ? ' active' : ''}`, 'data-year': row.year });
-    g.appendChild(el('line', { x1: center + bodyHalfWidth(t, false) + 8, y1: y, x2: x - 10, y2: y, stroke: '#bca8b9', 'stroke-width': 1 }));
-    g.appendChild(el('circle', { cx: x, cy: y, r: 6, fill: '#9e759a' }));
-    g.appendChild(el('text', { x: x + 16, y: y + 5, class: 'year-label' }, `${row.year} · ${row.age}岁`));
+    const bodyRight = center + bodyHalfWidth(t, false);
+    g.appendChild(el('line', { x1: bodyRight + 8, y1: y, x2: yearAxisX, y2: y, stroke: '#c9b5c8', 'stroke-width': 1 }));
+    g.appendChild(el('circle', { cx: yearAxisX, cy: y, r: 6, fill: '#9e759a' }));
+    g.appendChild(el('text', { x: yearAxisX + 16, y: y + 5, class: 'year-label' }, `${row.year} · ${row.age}岁`));
     g.addEventListener('click', () => selectYear(row.year, data));
     svg.appendChild(g);
   });
 
-  data.milestones.forEach((m, i) => {
+  const milestoneCategories = {
+    1832: 'dailyRhythm',
+    1836: 'familyAffection',
+    1837: 'publicDuty',
+    1838: 'publicDuty'
+  };
+  data.milestones.forEach((m) => {
     const ri = rows.findIndex(r => r.year === m.year);
     if (ri < 0) return;
-    const t = ri / (rows.length - 1);
-    const y = yTop + t * (yBottom-yTop);
-    const x = center - bodyHalfWidth(t, false) - 22;
-    svg.appendChild(el('circle', { cx: x, cy: y, r: 5, fill: '#fff', stroke: '#6e486f', 'stroke-width': 2 }));
-    svg.appendChild(el('text', { x: x - 12, y: y - 9 - (i % 2) * 8, 'text-anchor': 'end', class: 'milestone-label' }, m.label));
+    const categoryIndex = categories.findIndex(category => category.key === milestoneCategories[m.year]);
+    if (categoryIndex < 0) return;
+    const y = yTop + ri / (rows.length - 1) * (yBottom-yTop);
+    const leftX = boundaries[categoryIndex][ri][0];
+    const rightX = boundaries[categoryIndex + 1][ri][0];
+    const x = (leftX + rightX) / 2;
+    const label = el('text', { x, y: y - 8, 'text-anchor': 'middle', class: 'milestone-label milestone-label-inside' });
+    const lines = m.year === 1832 ? ['13岁', '开始日记'] : [m.label];
+    lines.forEach((line, index) => label.appendChild(el('tspan', { x, dy: index === 0 ? 0 : 11 }, line)));
+    svg.appendChild(el('circle', { cx: x, cy: y + 7, r: 3.5, fill: '#fff', opacity: .96 }));
+    svg.appendChild(label);
   });
 
   svg.appendChild(el('text', { x: center, y: 1067, 'text-anchor': 'middle', fill: '#8c778d', 'font-size': 10 }, '公开日记选编中的主题词数份额 · 同年横截面=100%'));

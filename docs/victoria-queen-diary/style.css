@@ -159,6 +159,15 @@ body {
 }
 .year-label { fill: #725d75; font-size: 13px; font-weight: 700; }
 .milestone-label { fill: #563d5e; font-size: 12px; font-weight: 700; }
+.milestone-label-inside {
+  fill: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(68,35,82,.22);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
 
 @keyframes growRiver { from { transform: scaleY(.02); opacity: 0; } to { transform: scaleY(1); opacity: .96; } }
 .river-band.growing { animation: growRiver 1.2s cubic-bezier(.22,.8,.25,1) both; animation-delay: var(--delay); }
