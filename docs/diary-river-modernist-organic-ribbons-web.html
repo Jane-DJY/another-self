@@ -882,26 +882,27 @@ html>body{padding:0}</style>
   .dor-sales { --ink:#442352; --muted:#765f7c; --purple:#603374; --pink:#d64fae; }
   .dor-sales .dor-import-entry {
     position: relative; inset: auto; min-height: 100svh; height: auto; overflow: visible;
-    justify-content: flex-start; padding: 92px 24px 72px;
+    justify-content: flex-start; padding: 76px 24px 72px;
   }
   body.dor-has-entered .dor-sales .dor-import-entry { display: none; }
   .dor-sales-hero { display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
   .dor-sales-eyebrow { margin:0 0 16px; color:#8c5c94; font:600 12px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.18em; }
   .dor-sales .dor-import-title { max-width:820px; white-space:normal; font-size:clamp(30px,4.6vw,58px); }
   .dor-sales-lead { max-width:680px; margin:20px auto 0; color:var(--muted); font:400 clamp(15px,1.7vw,19px)/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-sales-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:30px; }
+  .dor-sales-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:8px; }
   .dor-sales-primary,.dor-sales-secondary { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 22px; border:1px solid var(--purple); font:600 14px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-decoration:none!important; }
   .dor-sales-primary { background:var(--purple); color:#fff8fd; box-shadow:0 12px 30px rgba(88,40,112,.18); }
   .dor-sales .dor-sales-primary.dor-import-demo { border:1px solid var(--purple); padding:0 22px; background:var(--purple); color:#fff8fd; text-decoration:none; }
   .dor-sales-secondary { background:rgba(255,255,255,.34); color:var(--purple); }
-  .dor-sales-note { margin-top:13px; color:#927c96; font:400 12px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-sales-note { width:100%; margin-top:13px; color:#927c96; font:400 12px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:center; }
+  .dor-sales-hero + .dor-case-first { margin-top:30px; }
   .dor-sales-section { width:min(1040px,100%); margin:76px auto 0; text-align:left; }
   .dor-sales-section h2 { margin:0; color:var(--ink); font:500 clamp(27px,3.2vw,42px)/1.25 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
   .dor-sales-section-intro { max-width:660px; margin:14px 0 0; color:var(--muted); font:400 15px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-case-card { display:grid; grid-template-columns:1.1fr .9fr; gap:32px; margin-top:26px; padding:32px; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.30); box-shadow:0 20px 60px rgba(100,54,126,.08); }
-  .dor-case-visual { min-height:290px; display:flex; flex-direction:column; justify-content:flex-end; padding:28px; background:linear-gradient(145deg,#8d62d2,#d64fae 55%,#f1b943); color:white; }
-  .dor-case-visual strong { font:500 clamp(27px,3vw,40px)/1.2 ui-serif,Georgia,"Songti SC",serif; }
-  .dor-case-visual span { margin-top:12px; font:400 13px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; opacity:.86; }
+  .dor-case-visual { position:relative; min-height:290px; overflow:hidden; background:#f6dff1; color:white; }
+  .dor-case-visual svg { width:100%; height:100%; min-height:290px; object-fit:cover; }
+  .dor-case-visual-label { position:absolute; left:22px; bottom:18px; z-index:2; padding:8px 12px; background:rgba(68,35,82,.78); color:#fff; font:500 13px/1.35 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; backdrop-filter:blur(8px); }
   .dor-case-copy { align-self:center; }
   .dor-case-copy h3 { color:var(--ink); font:500 24px/1.35 ui-serif,Georgia,"Songti SC",serif; }
   .dor-case-copy p { margin-top:14px; color:var(--muted); font:400 14px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
@@ -933,7 +934,7 @@ html>body{padding:0}</style>
   .dor-apply .dor-import-actions { position:relative; margin-top:20px; }
   .dor-apply .dor-import-primary { font-weight:600; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:76px 18px 54px}.dor-case-card,.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:58px}.dor-case-card,.dor-package,.dor-privacy{padding:24px}.dor-case-visual{min-height:220px}
+    .dor-sales .dor-import-entry{padding:68px 18px 54px}.dor-case-card,.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:58px}.dor-case-card,.dor-package,.dor-privacy{padding:20px}.dor-case-visual,.dor-case-visual svg{min-height:220px}.dor-sales-hero + .dor-case-first{margin-top:24px}
   }
 </style>
 <nav class="dor-top-nav" aria-label="另世我页面导航">
@@ -947,18 +948,29 @@ html>body{padding:0}</style>
       <figure class="dor-import-mark"><img src="assets/another-self-life-crystal-transparent.png" alt="映照出多个女性身影的生命晶体"></figure>
       <h1 class="dor-import-name" id="dor-import-name">另世我</h1>
     </div>
-    <p class="dor-sales-eyebrow">另世我 · 人生河流</p>
-    <p class="dor-import-title" id="dor-import-title">让你的生活记录，长成另一个你</p>
-    <p class="dor-sales-lead">把散落在日记、日程和生活记录里的这一年，生成一条只属于你的人生河流。看见时间流向、重要转折，以及正在发生的变化。</p>
-    <div class="dor-sales-actions"><button class="dor-sales-primary dor-import-demo" type="button" data-use-demo>看看 Jane 的另世我</button><a class="dor-sales-secondary" href="#birth-package">生成我的人生河流</a></div>
+    <div class="dor-sales-actions"><a class="dor-sales-primary" href="#birth-package">生成我的人生河流</a></div>
     <p class="dor-sales-note">真实记录生成 · 案例已脱敏 · 你的版本只使用你确认的资料</p>
   </div>
 
-  <section class="dor-sales-section" aria-labelledby="case-title">
-    <h2 id="case-title">这不只是一张图，<br>而是一份可以重新读懂自己的生活证据</h2>
-    <p class="dor-sales-section-intro">下面的交互页面来自 Jane 的真实生活记录。你的版本会拥有自己的主题、节点、颜色和故事。</p>
+  <section class="dor-sales-section dor-case-first" aria-label="Jane 的另世我案例">
     <div class="dor-case-card">
-      <div class="dor-case-visual"><strong>这是 Jane 的另世我</strong><span>滑动时间、查看主题变化，并点开那些改变河流方向的人生节点。</span></div>
+      <div class="dor-case-visual" aria-label="Jane 一月至七月的真实人生河流缩略图">
+        <svg viewBox="0 0 540 320" role="img" aria-label="工作、个人创作、学习、副业尝试与生活关系随时间变化的人生河流">
+          <defs><linearGradient id="river-paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fce9f7"/><stop offset="1" stop-color="#eadcff"/></linearGradient></defs>
+          <rect width="540" height="320" fill="url(#river-paper)"/>
+          <g opacity=".97">
+            <path d="M92 34 C124 51 114 78 144 94 C183 115 205 128 218 157 C228 181 205 209 225 234 C244 258 286 272 338 292 L416 292 C365 266 328 249 318 224 C308 198 337 176 319 149 C298 119 245 108 223 86 C205 68 214 48 198 34 Z" fill="#7948ca"/>
+            <path d="M198 34 C214 50 205 69 223 86 C245 108 298 119 319 149 C337 176 308 198 318 224 C328 249 365 266 416 292 L470 292 C418 262 386 241 383 216 C379 189 403 169 376 139 C351 112 295 98 275 77 C260 61 266 46 253 34 Z" fill="#d64fae"/>
+            <path d="M253 34 C266 46 260 61 275 77 C295 98 351 112 376 139 C403 169 379 189 383 216 C386 241 418 262 470 292 L500 292 C467 263 445 240 446 215 C448 189 467 171 441 140 C418 113 370 99 349 76 C335 61 337 46 326 34 Z" fill="#f1b943"/>
+            <path d="M326 34 C337 46 335 61 349 76 C370 99 418 113 441 140 C467 171 448 189 446 215 C445 240 467 263 500 292 L516 292 C497 259 486 236 491 211 C496 185 505 169 482 137 C463 111 426 94 409 74 C396 58 398 44 391 34 Z" fill="#ef79ba"/>
+            <path d="M391 34 C398 44 396 58 409 74 C426 94 463 111 482 137 C505 169 496 185 491 211 C486 236 497 259 516 292 L526 292 L526 34 Z" fill="#a15ed3"/>
+          </g>
+          <g fill="#6b4e73" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif" font-size="11"><text x="26" y="40">1月</text><text x="26" y="84">2月</text><text x="26" y="127">3月</text><text x="26" y="170">4月</text><text x="26" y="213">5月</text><text x="26" y="256">6月</text><text x="26" y="299">7月</text></g>
+          <g fill="#fff" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif" font-size="12" font-weight="600"><text x="164" y="64">工作</text><text x="292" y="151">个人创作</text><text x="413" y="194">学习</text></g>
+          <g fill="#fff7fd" stroke="#5d2d73" stroke-width="2"><circle cx="323" cy="221" r="5"/><circle cx="376" cy="263" r="5"/></g>
+        </svg>
+        <span class="dor-case-visual-label">Jane 的真实人生河流 · 1—7月</span>
+      </div>
       <div class="dor-case-copy"><h3>她原以为，这一年主要是在工作。</h3><p>记录却显示，创作从一次偶然尝试，逐渐变成持续扩张的生活主题。很多方向并不是突然决定的，只是我们第一次看见：自己已经走在路上。</p><div class="dor-proof">“我不是突然想成为谁。原来我的时间，早就在替我做选择。”</div><button class="dor-sales-primary dor-import-demo" type="button" data-use-demo>进入完整互动案例</button></div>
     </div>
   </section>
