@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "title": "The Girlhood of Queen Victoria, Vol. 1",
+    "scope": "公开出版选编第一卷，非141册完整日记",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/75138",
+    "sourceEdition": "Reginald Brett, Viscount Esher (ed.), John Murray, 1912",
+    "method": "日记条目按日期拆分；句子依据预注册英文词典单标签归类；河宽为各年被编码词数占比，不是实际时间分配。",
+    "generatedAt": "2026-08-13T08:52:54.895Z",
+    "entryCount": 316,
+    "wordCount": 87884,
+    "codedWordCount": 87884,
+    "years": [
+      1832,
+      1833,
+      1834,
+      1835,
+      1836,
+      1837,
+      1838
+    ]
+  },
+  "categories": [
+    {
+      "key": "publicDuty",
+      "zh": "公共责任",
+      "color": "#5A3D82"
+    },
+    {
+      "key": "familyAffection",
+      "zh": "家庭与亲情",
+      "color": "#CE5A8F"
+    },
+    {
+      "key": "socialLife",
+      "zh": "社交与宫廷",
+      "color": "#A56BD3"
+    },
+    {
+      "key": "learning",
+      "zh": "学习与阅读",
+      "color": "#E6A640"
+    },
+    {
+      "key": "arts",
+      "zh": "音乐与艺术",
+      "color": "#D979B5"
+    },
+    {
+      "key": "movementNature",
+      "zh": "出行与自然",
+      "color": "#6D9F91"
+    },
+    {
+      "key": "dailyRhythm",
+      "zh": "日常节律",
+      "color": "#EACBB4"
+    }
+  ],
+  "yearly": [
+    {
+      "year": 1832,
+      "age": 13,
+      "entries": 17,
+      "words": 4884,
+      "codedWords": 4884,
+      "counts": {
+        "publicDuty": 321,
+        "familyAffection": 527,
+        "socialLife": 1041,
+        "learning": 76,
+        "arts": 117,
+        "movementNature": 932,
+        "dailyRhythm": 1870
+      },
+      "shares": {
+        "publicDuty": 6.57,
+        "familyAffection": 10.79,
+        "socialLife": 21.31,
+        "learning": 1.56,
+        "arts": 2.4,
+        "movementNature": 19.08,
+        "dailyRhythm": 38.29
+      }
+    },
+    {
+      "year": 1833,
+      "age": 14,
+      "entries": 26,
+      "words": 5953,
+      "codedWords": 5953,
+      "counts": {
+        "publicDuty": 534,
+        "familyAffection": 1124,
+        "socialLife": 1231,
+        "learning": 114,
+        "arts": 345,
+        "movementNature": 579,
+        "dailyRhythm": 2026
+      },
+      "shares": {
+        "publicDuty": 8.97,
+        "familyAffection": 18.88,
+        "socialLife": 20.68,
+        "learning": 1.92,
+        "arts": 5.8,
+        "movementNature": 9.73,
+        "dailyRhythm": 34.03
+      }
+    },
+    {
+      "year": 1834,
+      "age": 15,
+      "entries": 17,
+      "words": 3581,
+      "codedWords": 3581,
+      "counts": {
+        "publicDuty": 288,
+        "familyAffection": 1016,
+        "socialLife": 659,
+        "learning": 123,
+        "arts": 285,
+        "movementNature": 318,
+        "dailyRhythm": 892
+      },
+      "shares": {
+        "publicDuty": 8.04,
+        "familyAffection": 28.37,
+        "socialLife": 18.4,
+        "learning": 3.43,
+        "arts": 7.96,
+        "movementNature": 8.88,
+        "dailyRhythm": 24.91
+      }
+    },
+    {
+      "year": 1835,
+      "age": 16,
+      "entries": 27,
+      "words": 8548,
+      "codedWords": 8548,
+      "counts": {
+        "publicDuty": 581,
+        "familyAffection": 2095,
+        "socialLife": 1195,
+        "learning": 552,
+        "arts": 638,
+        "movementNature": 464,
+        "dailyRhythm": 3023
+      },
+      "shares": {
+        "publicDuty": 6.8,
+        "familyAffection": 24.51,
+        "socialLife": 13.98,
+        "learning": 6.46,
+        "arts": 7.46,
+        "movementNature": 5.43,
+        "dailyRhythm": 35.36
+      }
+    },
+    {
+      "year": 1836,
+      "age": 17,
+      "entries": 42,
+      "words": 11630,
+      "codedWords": 11630,
+      "counts": {
+        "publicDuty": 880,
+        "familyAffection": 3969,
+        "socialLife": 765,
+        "learning": 1055,
+        "arts": 818,
+        "movementNature": 374,
+        "dailyRhythm": 3769
+      },
+      "shares": {
+        "publicDuty": 7.57,
+        "familyAffection": 34.13,
+        "socialLife": 6.58,
+        "learning": 9.07,
+        "arts": 7.03,
+        "movementNature": 3.22,
+        "dailyRhythm": 32.41
+      }
+    },
+    {
+      "year": 1837,
+      "age": 18,
+      "entries": 73,
+      "words": 15791,
+      "codedWords": 15791,
+      "counts": {
+        "publicDuty": 4188,
+        "familyAffection": 2507,
+        "socialLife": 2521,
+        "learning": 827,
+        "arts": 546,
+        "movementNature": 751,
+        "dailyRhythm": 4451
+      },
+      "shares": {
+        "publicDuty": 26.52,
+        "familyAffection": 15.88,
+        "socialLife": 15.96,
+        "learning": 5.24,
+        "arts": 3.46,
+        "movementNature": 4.76,
+        "dailyRhythm": 28.19
+      }
+    },
+    {
+      "year": 1838,
+      "age": 19,
+      "entries": 114,
+      "words": 37497,
+      "codedWords": 37497,
+      "counts": {
+        "publicDuty": 21184,
+        "familyAffection": 1990,
+        "socialLife": 2590,
+        "learning": 1043,
+        "arts": 1235,
+        "movementNature": 1110,
+        "dailyRhythm": 8345
+      },
+      "shares": {
+        "publicDuty": 56.5,
+        "familyAffection": 5.31,
+        "socialLife": 6.91,
+        "learning": 2.78,
+        "arts": 3.29,
+        "movementNature": 2.96,
+        "dailyRhythm": 22.26
+      }
+    }
+  ],
+  "totals": {
+    "publicDuty": 27976,
+    "familyAffection": 13228,
+    "socialLife": 10002,
+    "learning": 3790,
+    "arts": 3984,
+    "movementNature": 4528,
+    "dailyRhythm": 24376
+  },
+  "totalShares": {
+    "publicDuty": 31.83,
+    "familyAffection": 15.05,
+    "socialLife": 11.38,
+    "learning": 4.31,
+    "arts": 4.53,
+    "movementNature": 5.15,
+    "dailyRhythm": 27.74
+  },
+  "milestones": [
+    {
+      "year": 1832,
+      "label": "13岁，开始日记",
+      "source": "本卷首篇：1832年8月1日"
+    },
+    {
+      "year": 1836,
+      "label": "第一次见到阿尔伯特",
+      "source": "1836年5月日记选篇"
+    },
+    {
+      "year": 1837,
+      "label": "18岁，即位",
+      "source": "1837年6月20日日记"
+    },
+    {
+      "year": 1838,
+      "label": "加冕年",
+      "source": "1838年6月28日加冕礼"
+    }
+  ]
+}
