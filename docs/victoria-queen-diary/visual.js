@@ -50,22 +50,22 @@ function renderHead(svg, mini = false) {
   const center = mini ? 260 : 345;
   const top = mini ? 28 : 4;
   const colors = ['#5A3D82','#CE5A8F','#A56BD3','#E6A640','#D979B5','#6D9F91'];
-  const rowCounts = [2, 3, 4, 5, 5, 5, 4, 3];
+  const rowCounts = [3, 5, 6, 7, 7, 7, 6, 5, 3];
   const backgroundBlocks = [];
   let colorIndex = 0;
   rowCounts.forEach((count, row) => {
-    const baseW = mini ? 60 : 72;
-    const h = mini ? 22 : 27;
-    const stepX = mini ? 45 : 52;
-    const stepY = mini ? 24 : 27;
+    const baseW = mini ? 43 : 52;
+    const h = mini ? 18 : 22;
+    const stepX = mini ? 31 : 36;
+    const stepY = mini ? 20 : 24;
     const rowWidth = (count - 1) * stepX + baseW;
     for (let col = 0; col < count; col++) {
-      const w = baseW + Math.sin(row * 4.7 + col * 2.3) * (mini ? 6 : 10);
-      const jitterX = Math.sin((row + 1) * 5.3 + col * 2.7) * (mini ? 8 : 13);
-      const jitterY = Math.cos(row * 2.8 + col * 1.9) * (mini ? 3 : 5);
+      const w = baseW + Math.sin(row * 4.7 + col * 2.3) * (mini ? 4 : 7);
+      const jitterX = Math.sin((row + 1) * 5.3 + col * 2.7) * (mini ? 5 : 8);
+      const jitterY = Math.cos(row * 2.8 + col * 1.9) * (mini ? 2 : 3);
       const x = center - rowWidth / 2 + col * stepX + jitterX - (w - baseW) / 2;
       const y = top + row * stepY + jitterY;
-      const rotation = Math.sin(row * 2.1 + col * 3.4) * 6.5;
+      const rotation = Math.sin(row * 2.1 + col * 3.4) * 8;
       const group = el('g', { transform: `rotate(${rotation} ${x+w/2} ${y+h/2})` });
       group.appendChild(el('rect', { x, y, width: w, height: h, rx: 5, fill: colors[colorIndex % colors.length], opacity: .8 }));
       backgroundBlocks.push(group);
@@ -76,15 +76,15 @@ function renderHead(svg, mini = false) {
 
   if (!mini) {
     const labelBlocks = [
-      { label: '日常', x: center - 128, y: 84, w: 80, color: '#5A3D82', rotation: -4 },
-      { label: '阅读', x: center - 38, y: 76, w: 78, color: '#CE5A8F', rotation: 3 },
-      { label: '亲情', x: center + 54, y: 86, w: 82, color: '#A56BD3', rotation: -2 },
-      { label: '艺术', x: center - 112, y: 122, w: 78, color: '#E6A640', rotation: 4 },
-      { label: '出行', x: center - 18, y: 116, w: 80, color: '#6D9F91', rotation: -3 },
-      { label: '社交', x: center + 76, y: 126, w: 78, color: '#D979B5', rotation: 3 }
+      { label: '日常', x: center - 120, y: 86, w: 72, color: '#5A3D82', rotation: -4 },
+      { label: '阅读', x: center - 38, y: 78, w: 72, color: '#CE5A8F', rotation: 3 },
+      { label: '亲情', x: center + 48, y: 88, w: 74, color: '#A56BD3', rotation: -2 },
+      { label: '艺术', x: center - 106, y: 124, w: 72, color: '#E6A640', rotation: 4 },
+      { label: '出行', x: center - 20, y: 116, w: 74, color: '#6D9F91', rotation: -3 },
+      { label: '社交', x: center + 66, y: 126, w: 72, color: '#D979B5', rotation: 3 }
     ];
     labelBlocks.forEach(item => {
-      const h = 30;
+      const h = 28;
       const group = el('g', { transform: `rotate(${item.rotation} ${item.x + item.w/2} ${item.y + h/2})` });
       group.appendChild(el('rect', { x: item.x, y: item.y, width: item.w, height: h, rx: 5, fill: item.color, opacity: .98 }));
       group.appendChild(el('text', {
@@ -93,7 +93,7 @@ function renderHead(svg, mini = false) {
         'text-anchor': 'middle',
         'dominant-baseline': 'central',
         fill: 'white',
-        'font-size': 14,
+          'font-size': 14,
         'font-weight': 800
       }, item.label));
       svg.appendChild(group);
@@ -150,25 +150,27 @@ function renderRiver(svg, data, mini = false) {
     svg.appendChild(g);
   });
 
-  const milestoneCategories = {
-    1832: 'dailyRhythm',
-    1836: 'familyAffection',
-    1837: 'publicDuty',
-    1838: 'publicDuty'
-  };
   data.milestones.forEach((m) => {
-    const ri = rows.findIndex(r => r.year === m.year);
-    if (ri < 0) return;
-    const categoryIndex = categories.findIndex(category => category.key === milestoneCategories[m.year]);
+    const at = Math.max(0, Math.min(rows.length - 1, Number(m.at)));
+    const lower = Math.floor(at);
+    const upper = Math.ceil(at);
+    const mix = at - lower;
+    const categoryIndex = categories.findIndex(category => category.key === m.category);
     if (categoryIndex < 0) return;
-    const y = yTop + ri / (rows.length - 1) * (yBottom-yTop);
-    const leftX = boundaries[categoryIndex][ri][0];
-    const rightX = boundaries[categoryIndex + 1][ri][0];
+    const y = yTop + at / (rows.length - 1) * (yBottom-yTop);
+    const interpolateX = (boundaryIndex) => {
+      const from = boundaries[boundaryIndex][lower][0];
+      const to = boundaries[boundaryIndex][upper][0];
+      return from + (to - from) * mix;
+    };
+    const leftX = interpolateX(categoryIndex);
+    const rightX = interpolateX(categoryIndex + 1);
     const x = (leftX + rightX) / 2;
-    const label = el('text', { x, y: y - 8, 'text-anchor': 'middle', class: 'milestone-label milestone-label-inside' });
-    const lines = m.year === 1832 ? ['13岁', '开始日记'] : [m.label];
-    lines.forEach((line, index) => label.appendChild(el('tspan', { x, dy: index === 0 ? 0 : 11 }, line)));
-    svg.appendChild(el('circle', { cx: x, cy: y + 7, r: 3.5, fill: '#fff', opacity: .96 }));
+    const lines = m.lines || [m.label];
+    const labelY = y - 10 - (lines.length - 1) * 17;
+    const label = el('text', { x, y: labelY, 'text-anchor': 'middle', class: 'milestone-label milestone-label-inside' });
+    lines.forEach((line, index) => label.appendChild(el('tspan', { x, dy: index === 0 ? 0 : 17 }, line)));
+    svg.appendChild(el('circle', { cx: x, cy: y, r: 4, fill: '#fff', opacity: .96 }));
     svg.appendChild(label);
   });
 

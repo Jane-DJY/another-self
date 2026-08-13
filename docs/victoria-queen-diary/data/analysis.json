@@ -252,25 +252,14 @@
     "dailyRhythm": 27.74
   },
   "milestones": [
-    {
-      "year": 1832,
-      "label": "13岁，开始日记",
-      "source": "本卷首篇：1832年8月1日"
-    },
-    {
-      "year": 1836,
-      "label": "第一次见到阿尔伯特",
-      "source": "1836年5月日记选篇"
-    },
-    {
-      "year": 1837,
-      "label": "18岁，即位",
-      "source": "1837年6月20日日记"
-    },
-    {
-      "year": 1838,
-      "label": "加冕年",
-      "source": "1838年6月28日加冕礼"
-    }
+    { "at": 0.18, "category": "dailyRhythm", "label": "开始写日记", "lines": ["开始", "写日记"], "source": "1832年8月1日日记" },
+    { "at": 0.72, "category": "dailyRhythm", "label": "小狗 Dash 到来", "lines": ["小狗 Dash", "到来"], "source": "1833年1月日记与本卷第二章目录" },
+    { "at": 0.98, "category": "socialLife", "label": "14岁生日舞会", "lines": ["14岁", "生日舞会"], "source": "1833年5月24日生日日记" },
+    { "at": 1.62, "category": "movementNature", "label": "登上“胜利号”", "lines": ["登上", "“胜利号”"], "source": "1833年朴次茅斯行程日记" },
+    { "at": 1.9, "category": "learning", "label": "听物理学讲座", "lines": ["物理学", "讲座"], "source": "1833年12月27日日记" },
+    { "at": 3.18, "category": "arts", "label": "听歌剧《奥赛罗》", "lines": ["歌剧", "《奥赛罗》"], "source": "1835年日记与本卷第四章目录" },
+    { "at": 4.02, "category": "familyAffection", "label": "第一次见到阿尔伯特", "lines": ["第一次见到", "阿尔伯特"], "source": "1836年5月日记选篇" },
+    { "at": 5.08, "category": "publicDuty", "label": "第一次主持枢密院", "lines": ["第一次主持", "枢密院"], "source": "1837年6月20日日记" },
+    { "at": 6, "category": "publicDuty", "label": "加冕礼", "lines": ["加冕礼"], "source": "1838年6月28日日记" }
   ]
 }

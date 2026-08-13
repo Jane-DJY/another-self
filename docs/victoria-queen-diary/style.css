@@ -161,7 +161,7 @@ body {
 .milestone-label { fill: #563d5e; font-size: 12px; font-weight: 700; }
 .milestone-label-inside {
   fill: #fff;
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 700;
   paint-order: stroke;
   stroke: rgba(68,35,82,.22);
