@@ -163,6 +163,7 @@ function selectYear(year, data) {
   document.querySelector('.river-panel')?.classList.remove('has-active');
   document.querySelectorAll('.river-band').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.year-hit').forEach(g => g.classList.toggle('active', Number(g.dataset.year) === year));
+  document.querySelectorAll('.insight').forEach(item => item.classList.toggle('is-active', Number(item.dataset.year) === year));
   const row = data.yearly.find(r => r.year === year);
   const top = data.categories.map(c => ({...c, share: row.shares[c.key]})).sort((a,b) => b.share-a.share).slice(0,2);
   const details = document.getElementById('details');
@@ -190,6 +191,9 @@ fetch('data/analysis.json')
     if (mini) { renderHead(mini, true); renderRiver(mini, data, true); }
     const chart = document.getElementById('riverChart');
     if (chart) { renderHead(chart, false); renderRiver(chart, data, false); renderLegend(data); }
+    document.querySelectorAll('.insight').forEach(item => {
+      item.addEventListener('click', () => selectYear(Number(item.dataset.year), data));
+    });
     document.getElementById('replay')?.addEventListener('click', replay);
   })
   .catch(error => {

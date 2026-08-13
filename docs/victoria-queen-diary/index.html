@@ -6,36 +6,59 @@
   <title>探索｜维多利亚女王的少女日记</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="explore-page">
-  <header class="topbar">
-    <a href="../diary-river-modernist-organic-ribbons-web.html" class="back-link">← 返回另世我首页</a>
-    <div class="source-pill">316篇记录 · 87,884词 · 1832—1838</div>
-  </header>
+<body>
+  <nav class="dor-top-nav" aria-label="另世我页面导航">
+    <a class="dor-home-button" href="../diary-river-modernist-organic-ribbons-web.html">⌂ 首页</a>
+    <a class="dor-stars-button" href="../women-stars.html" aria-label="进入群星闪耀女性人生参照库">群星闪耀</a>
+  </nav>
+
   <main class="explore-layout">
-    <section class="story-panel">
-      <p class="eyebrow">另世我 · 历史女性日记案例</p>
-      <h1>她的日记，<br>慢慢变成了一件王袍。</h1>
-      <p class="intro">从上往下是1832至1838年。每一横截面合计100%；点击年份或河流，查看真实文本分类结果。</p>
-      <div id="legend" class="legend" aria-label="主题图例"></div>
-      <div id="details" class="details" aria-live="polite">
-        <p class="detail-kicker">1832 · 13岁</p>
-        <h2>她的身体还由日常和出行构成。</h2>
-        <p>点击河流查看某个主题，或点击右侧年份比较变化。</p>
+    <section class="story-panel" aria-labelledby="page-title">
+      <div class="story-heading">
+        <p class="eyebrow">VICTORIA · 1832—1838</p>
+        <h1 id="page-title">她的日记，<br>慢慢变成了一件王袍。</h1>
+        <p class="source-line">数据来源：1912年出版的日记选编第一卷，共316篇带日期记录、87,884词。河宽表示同年主题词数占比，不等于实际时间。</p>
       </div>
-      <aside class="method-note">
-        <strong>数据边界</strong>
-        <p>本作品分析的是1912年出版选编第一卷，不是维多利亚一生的141册完整日记。句子经预注册词典单标签归类；未命中明确词典的句子归入“日常节律”。</p>
-      </aside>
+
+      <div class="insights" aria-label="日记数据洞察">
+        <button class="insight is-active" type="button" data-year="1832">
+          <span class="insight-period">1832—1834</span>
+          <span class="insight-copy">
+            <strong>少女生活仍占据身体</strong>
+            <span>13岁时，“日常节律”占 <em>38.3%</em>，“出行与自然”占 <em>19.1%</em>。王位尚未成为日记的中心。</span>
+          </span>
+        </button>
+        <button class="insight" type="button" data-year="1836">
+          <span class="insight-period">1835—1836</span>
+          <span class="insight-copy">
+            <strong>家庭与亲情抵达高点</strong>
+            <span>“家庭与亲情”从 <em>24.5%</em> 升至 <em>34.1%</em>，是登基前最宽的一条私人河流。</span>
+          </span>
+        </button>
+        <button class="insight" type="button" data-year="1837">
+          <span class="insight-period">1837</span>
+          <span class="insight-copy">
+            <strong>登基让公共责任涌入日记</strong>
+            <span>“公共责任”由前一年的 <em>7.6%</em> 跃至 <em>26.5%</em>，一年增加18.9个百分点。</span>
+          </span>
+        </button>
+        <button class="insight" type="button" data-year="1838">
+          <span class="insight-period">1838</span>
+          <span class="insight-copy">
+            <strong>王袍成为最大的河</strong>
+            <span>“公共责任”扩张至 <em>56.5%</em>；“家庭与亲情”收窄至 <em>5.3%</em>。</span>
+          </span>
+        </button>
+      </div>
+
+      <p class="method-note">数据边界：这是公开出版的选编第一卷，并非维多利亚一生141册日记全文；文本按预设词典进行单标签归类，未命中明确主题的句子归入“日常节律”。</p>
     </section>
-    <section class="river-panel">
+
+    <section class="river-panel" aria-label="维多利亚女王日记主题河流">
       <svg id="riverChart" viewBox="0 0 720 1120" role="img" aria-label="1832至1838年维多利亚日记主题人形河流图"></svg>
-      <button id="replay" class="replay" type="button">重新生长</button>
     </section>
   </main>
-  <footer>
-    <span>数据来源：Project Gutenberg #75138</span>
-    <span>爱可视化的简女士 · Jane of Visual Stories</span>
-  </footer>
+
   <script src="visual.js"></script>
 </body>
 </html>
