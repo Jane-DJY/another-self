@@ -2535,54 +2535,6 @@ html>body{padding:0}</style>
 
         svg.appendChild(figureLips);
 
-        const labels = predictionOpen
-          ? [
-              { id: 'theme-work', key: 'work', month: 2, text: '工作' },
-              { id: 'theme-creation', key: 'creation', month: 5, text: '个人创作' },
-              { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
-              { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
-            ]
-          : compact
-            ? [
-                { id: 'theme-work', key: 'work', month: 2, text: '工作' },
-                { id: 'theme-creation', key: 'creation', month: 5, text: '个人创作' },
-                { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
-                { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
-              ]
-            : [
-                { id: 'theme-work', key: 'work', month: 1, text: '工作' },
-                { id: 'theme-creation', key: 'creation', month: 5.2, text: '个人创作', wrapWidth: 50 },
-                { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
-                { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
-              ];
-        labels.forEach((label) => {
-          const labelMonth = predictionOpen
-            ? geometry[label.key].widths
-                .slice(0, historyMonths.length)
-                .reduce((best, width, index, widths) => width > widths[best] ? index : best, 0)
-            : label.month;
-          const point = pointAt(geometry[label.key].centers, labelMonth);
-          const bandWidth = pointAt(geometry[label.key].widths.map((width, index) => [width, ys[index]]), labelMonth)[0];
-          const offset = positionOffsets[label.id];
-          const fittedWidth = predictionOpen
-            ? Math.max(10, Math.min(label.wrapWidth || themeWrapWidth, bandWidth - 8))
-            : label.wrapWidth || themeWrapWidth;
-          const fittedFontSize = predictionOpen
-            ? Math.max(8, Math.min(themeFontSize, fittedWidth / Math.min(label.text.length, 4)))
-            : themeFontSize;
-          const themeText = addWrappedText(
-            svg,
-            'dor-theme dor-animated',
-            label.text,
-            point[0] + (predictionOpen ? 0 : offset.x),
-            point[1] + (predictionOpen ? 0 : -10 + offset.y),
-            'middle',
-            fittedWidth,
-            fittedFontSize
-          );
-          themeText.dataset.animateTheme = label.key;
-        });
-
         const visibleMilestones = predictionOpen
           ? []
           : compact
