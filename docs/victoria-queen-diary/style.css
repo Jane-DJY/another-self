@@ -1,0 +1,210 @@
+:root {
+  --ink: #442352;
+  --muted: #755e7b;
+  --paper: #f8e7f5;
+  --line: rgba(79, 40, 96, .15);
+  --metric: #a83ec1;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); color: var(--ink); }
+body {
+  margin: 0;
+  height: 100svh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  background:
+    radial-gradient(circle at 76% 38%, rgba(255,255,255,.34), transparent 36%),
+    linear-gradient(135deg, #faeaf6 0%, #f8e7f5 55%, #f2e8fb 100%);
+}
+
+.dor-top-nav {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dor-home-button,
+.dor-stars-button {
+  color: #694d75;
+  padding: 6px 4px;
+  font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.dor-stars-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-left: 1px solid rgba(55,48,41,.24);
+  padding-left: 12px;
+}
+.dor-stars-button::before {
+  content: "";
+  width: 10px;
+  height: 14px;
+  flex: none;
+  clip-path: polygon(50% 0,88% 25%,77% 76%,50% 100%,14% 72%,8% 25%);
+  background: linear-gradient(145deg,#fff 0%,#dda2f2 32%,#9a4bd6 68%,#6323b4 100%);
+  filter: drop-shadow(0 2px 3px rgba(83,33,123,.22));
+}
+.dor-home-button:hover,
+.dor-stars-button:hover { color: #442352; }
+
+.explore-layout {
+  --content-shift: clamp(48px, 4vw, 80px);
+  --content-drop: clamp(18px, 2.2vh, 26px);
+  width: calc(100% - (2 * var(--content-shift)));
+  max-width: 1500px;
+  height: 100svh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(420px, 620px) minmax(520px, 700px);
+  gap: clamp(24px, 3vw, 48px);
+  justify-content: center;
+  align-items: center;
+  padding: clamp(20px, 4vw, 56px);
+  transform: translate(var(--content-shift), var(--content-drop));
+}
+.story-panel {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 620px;
+  max-height: calc(100svh - clamp(40px, 8vw, 112px));
+  align-self: stretch;
+  justify-self: end;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 14px;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scrollbar-color: rgba(79,40,96,.24) transparent;
+}
+.story-heading { margin: 0 0 28px; }
+.story-heading h1 {
+  margin: 0;
+  color: var(--ink);
+  font: 500 clamp(25px, 3vw, 38px)/1.2 ui-serif, Georgia, "Songti SC", serif;
+  letter-spacing: -.025em;
+}
+.source-line {
+  display: block;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.55;
+}
+.insights { display: grid; gap: 0; }
+.insight {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.insight-period {
+  color: #8c6c94;
+  font: 500 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.insight-copy { min-width: 0; }
+.insight-copy strong {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.insight-copy span {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.insight-copy em { color: var(--metric); font-style: normal; font-weight: 600; }
+.method-note {
+  margin: 18px 0 0;
+  color: #8c6c94;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.river-panel {
+  position: relative;
+  width: min(100%, calc((100svh - clamp(40px, 8vw, 112px)) * .64));
+  max-width: 700px;
+  max-height: calc(100svh - clamp(40px, 8vw, 112px));
+  aspect-ratio: 720 / 1120;
+  justify-self: start;
+  transform: translateY(8px);
+  overflow: visible;
+}
+.river-panel svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.river-band { cursor: pointer; transition: opacity .2s, filter .2s; transform-origin: center top; }
+.river-band:hover,
+.river-band.active { filter: brightness(1.08) saturate(1.12); }
+.river-panel.has-active .river-band:not(.active) { opacity: .28; }
+.year-hit { cursor: pointer; }
+.year-hit circle { transition: r .2s, fill .2s; }
+.year-hit:hover circle,
+.year-hit.active circle { r: 9; fill: #382243; }
+.river-label {
+  fill: white;
+  font-size: 15px;
+  font-weight: 800;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: rgba(57,34,67,.18);
+  stroke-width: 3px;
+}
+.year-label { fill: #725d75; font-size: 13px; font-weight: 700; }
+.milestone-label { fill: #563d5e; font-size: 12px; font-weight: 700; }
+.milestone-label-inside {
+  fill: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(68,35,82,.22);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+
+@keyframes growRiver { from { transform: scaleY(.02); opacity: 0; } to { transform: scaleY(1); opacity: .96; } }
+.river-band.growing { animation: growRiver 1.2s cubic-bezier(.22,.8,.25,1) both; animation-delay: var(--delay); }
+
+@media (max-width: 1240px) {
+  body { width: 100%; height: auto; min-height: 100svh; overflow-x: hidden; overflow-y: auto; }
+  .explore-layout {
+    width: 100%;
+    height: auto;
+    min-height: 100svh;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 72px 20px 28px;
+    transform: none;
+  }
+  .story-panel { max-width: 620px; max-height: none; justify-self: center; overflow: visible; padding-right: 0; }
+  .river-panel { width: min(100%, 560px); max-height: none; justify-self: center; transform: none; }
+}
+
+@media (max-width: 480px) {
+  .insight { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+  .story-heading h1 { font-size: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .river-band.growing { animation: none; }
+}
+
+html.preview-mode,
+body.preview-mode { overflow: hidden; background: transparent; }
+body.preview-mode .dor-top-nav,
+body.preview-mode .story-panel { display: none; }
+body.preview-mode .explore-layout { display: block; width: 100%; max-width: none; height: 100svh; min-height: 0; padding: 0; }
+body.preview-mode .river-panel { width: 100%; max-width: none; max-height: none; height: 100%; margin: 0; transform: none; aspect-ratio: auto; }
+body.preview-mode .river-panel svg { width: 100%; height: 100%; }

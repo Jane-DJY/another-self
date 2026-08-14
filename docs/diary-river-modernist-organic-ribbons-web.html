@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' file: blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' file: blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>另世我·人生河流｜让生活记录长成另一个你</title>
 <style>:root {
   color-scheme: light dark;
@@ -882,10 +882,16 @@ html>body{padding:0}</style>
   .dor-sales { --ink:#442352; --muted:#765f7c; --purple:#603374; --pink:#d64fae; }
   .dor-sales .dor-import-entry {
     position: relative; inset: auto; min-height: 100svh; height: auto; overflow: visible;
-    justify-content: flex-start; padding: 76px 24px 72px;
+    justify-content: flex-start; padding: 52px 24px 56px;
   }
   body.dor-has-entered .dor-sales .dor-import-entry { display: none; }
   .dor-sales-hero { display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
+  .dor-sales .dor-import-brand { position:fixed; top:18px; right:20px; z-index:30; flex-direction:row; align-items:center; gap:7px; margin:0; padding:6px 4px; text-align:left; }
+  .dor-sales .dor-import-mark { width:10px; height:14px; aspect-ratio:auto; filter:drop-shadow(0 2px 3px rgba(83,33,123,.22)); animation:none; }
+  .dor-sales .dor-import-name { margin:0; font:500 11px/1.2 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.08em; text-indent:0; }
+  .dor-brand-message { display:grid; justify-items:center; gap:8px; max-width:760px; color:var(--ink); text-align:center; }
+  .dor-brand-message strong { font:500 clamp(36px,4.6vw,58px)/1.24 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.035em; }
+  .dor-brand-message span { max-width:700px; color:var(--muted); font:400 clamp(13px,1.4vw,16px)/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-sales-eyebrow { margin:0 0 16px; color:#8c5c94; font:600 12px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.18em; }
   .dor-sales .dor-import-title { max-width:820px; white-space:normal; font-size:clamp(30px,4.6vw,58px); }
   .dor-sales-lead { max-width:680px; margin:20px auto 0; color:var(--muted); font:400 clamp(15px,1.7vw,19px)/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
@@ -895,18 +901,28 @@ html>body{padding:0}</style>
   .dor-sales .dor-sales-primary.dor-import-demo { border:1px solid var(--purple); padding:0 22px; background:var(--purple); color:#fff8fd; text-decoration:none; }
   .dor-sales-secondary { background:rgba(255,255,255,.34); color:var(--purple); }
   .dor-sales-note { width:100%; margin-top:13px; color:#927c96; font:400 12px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:center; }
-  .dor-sales-hero + .dor-case-first { margin-top:30px; }
+  .dor-sales-hero + .dor-case-showcase { margin-top:22px; }
   .dor-sales-section { width:min(1040px,100%); margin:76px auto 0; text-align:left; }
   .dor-sales-section h2 { margin:0; color:var(--ink); font:500 clamp(27px,3.2vw,42px)/1.25 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
   .dor-sales-section-intro { max-width:660px; margin:14px 0 0; color:var(--muted); font:400 15px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-case-card { display:grid; grid-template-columns:1.1fr .9fr; gap:32px; margin-top:26px; padding:32px; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.30); box-shadow:0 20px 60px rgba(100,54,126,.08); }
-  .dor-case-visual { position:relative; height:390px; min-height:290px; overflow:hidden; background:#faeaf6; color:white; }
-  .dor-case-visual img { display:block; width:100%; height:100%; object-fit:contain; object-position:center; }
-  .dor-case-visual-label { position:absolute; left:18px; top:18px; z-index:2; padding:8px 12px; background:rgba(68,35,82,.78); color:#fff; font:500 13px/1.35 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; backdrop-filter:blur(8px); }
-  .dor-case-copy { align-self:center; }
-  .dor-case-copy h3 { color:var(--ink); font:500 24px/1.35 ui-serif,Georgia,"Songti SC",serif; }
-  .dor-case-copy p { margin-top:14px; color:var(--muted); font:400 14px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-proof { margin-top:22px; padding:16px 18px; border-left:3px solid var(--pink); background:rgba(255,255,255,.38); color:var(--ink); font:500 15px/1.7 ui-serif,Georgia,"Songti SC",serif; }
+  .dor-dual-case { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); align-items:center; min-height:320px; padding:16px 34px; overflow:hidden; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.28); box-shadow:0 16px 46px rgba(100,54,126,.07); }
+  .dor-dual-copy { position:relative; z-index:5; align-self:center; padding:0 clamp(8px,2.4vw,30px) 0 clamp(4px,1vw,12px); }
+  .dor-sales-section .dor-dual-hook { max-width:390px; margin:0; color:var(--ink); font:500 clamp(24px,2.7vw,36px)/1.35 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
+  .dor-dual-benefits { display:grid; gap:4px; margin:16px 0 0; padding:0; list-style:none; color:var(--muted); font:500 14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.06em; }
+  .dor-dual-cta { margin-top:20px; }
+  .dor-dual-figures { display:flex; align-items:center; justify-content:center; width:100%; height:280px; padding:0 12px; }
+  .dor-dual-person { position:relative; display:flex; flex:0 0 220px; align-items:flex-end; justify-content:center; width:220px; height:280px; overflow:hidden; background:transparent; isolation:isolate; transform-origin:50% 86%; transition:transform 240ms ease,filter 240ms ease; }
+  .dor-dual-person:first-child { z-index:1; margin-right:-30px; transform:rotate(-9deg) translateY(5px); }
+  .dor-dual-person:last-child { z-index:2; transform:rotate(8deg) translateY(-3px); }
+  .dor-dual-person::after { display:none; }
+  .dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within { z-index:4; transform:rotate(-5deg) translateY(-5px) scale(1.035); filter:drop-shadow(0 18px 20px rgba(82,39,101,.17)); }
+  .dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within { z-index:4; transform:rotate(4deg) translateY(-8px) scale(1.035); filter:drop-shadow(0 18px 20px rgba(82,39,101,.17)); }
+  .dor-case-preview { display:block; height:390px; border:0; background:transparent; pointer-events:none; transform:scale(.6667); transform-origin:50% 100%; }
+  .dor-case-preview-jane,.dor-case-preview-victoria { width:278px; }
+  .dor-dual-enter { position:absolute; inset:0; z-index:3; display:flex; align-items:flex-end; justify-content:center; width:100%; padding:0 18px 28px; border:0; border-radius:0; background:transparent; color:#fff; font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:center; text-decoration:none!important; cursor:pointer; opacity:0; transform:translateY(8px); transition:opacity 180ms ease,transform 220ms ease; }
+  .dor-dual-enter span { display:block; padding:9px 14px; border:1px solid rgba(255,255,255,.48); background:rgba(68,35,82,.34); backdrop-filter:blur(7px); }
+  .dor-dual-person:hover .dor-dual-enter,.dor-dual-person:focus-within .dor-dual-enter,.dor-dual-enter:focus-visible { opacity:1; transform:translateY(0); }
+  .dor-dual-enter:focus-visible { outline:2px solid #fff; outline-offset:-6px; }
   .dor-card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
   .dor-card { padding:24px; border:1px solid rgba(93,45,115,.13); background:rgba(255,255,255,.28); }
   .dor-card b { display:block; color:var(--ink); font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
@@ -941,8 +957,20 @@ html>body{padding:0}</style>
   .dor-site-footer a { color:var(--purple); text-underline-offset:3px; overflow-wrap:anywhere; }
   .dor-footer-meta { margin-top:30px!important; padding-top:16px; border-top:1px solid rgba(93,45,115,.12); color:#927c96; font-size:12px; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:68px 18px 54px}.dor-case-card,.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:58px}.dor-case-card,.dor-package,.dor-privacy{padding:20px}.dor-case-visual{height:360px;min-height:220px}.dor-sales-hero + .dor-case-first{margin-top:24px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
+    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
   }
+  html.dor-preview,
+  body.dor-preview { overflow:hidden!important; background:transparent!important; }
+  body.dor-preview .dor-top-nav,
+  body.dor-preview .dor-import-entry,
+  body.dor-preview #diary-river-organic-ribbons .dor-reading,
+  body.dor-preview #diary-river-organic-ribbons .dor-sidebar { display:none!important; }
+  body.dor-preview #diary-river-organic-ribbons { width:540px!important; max-width:none!important; height:720px!important; min-height:0!important; overflow:hidden!important; transform:scale(.5138889)!important; transform-origin:top left!important; }
+  body.dor-preview #diary-river-organic-ribbons .dor-editor { display:block!important; width:540px!important; height:720px!important; min-height:0!important; padding:0!important; }
+  body.dor-preview #diary-river-organic-ribbons .dor-poster { width:540px!important; max-width:none!important; max-height:none!important; height:720px!important; aspect-ratio:auto!important; justify-self:auto!important; }
+  body.dor-preview #diary-river-organic-ribbons [data-poster],
+  body.dor-preview #diary-river-organic-ribbons [data-poster] svg { width:100%; height:100%; }
+  @media(max-width:260px){body.dor-preview #diary-river-organic-ribbons{transform:scale(.4583333)!important}}
 </style>
 <nav class="dor-top-nav" aria-label="另世我页面导航">
   <button class="dor-home-button" type="button" data-return-home>⌂ 首页</button>
@@ -955,17 +983,33 @@ html>body{padding:0}</style>
       <figure class="dor-import-mark"><img src="assets/another-self-life-crystal-transparent.png" alt="映照出多个女性身影的生命晶体"></figure>
       <h1 class="dor-import-name" id="dor-import-name">另世我</h1>
     </div>
-    <div class="dor-sales-actions"><a class="dor-sales-primary" href="#birth-package">生成我的人生河流</a></div>
-    <p class="dor-sales-note">真实记录生成 · 案例已脱敏 · 你的版本只使用你确认的资料</p>
+    <p class="dor-brand-message">
+      <strong>你的故事，值得被看见</strong>
+      <span>上传生活记录，生成专属人生图景，定制成冰箱贴、挂画等独一无二的纪念品。</span>
+    </p>
   </div>
 
-  <section class="dor-sales-section dor-case-first" aria-label="Jane 的另世我案例">
-    <div class="dor-case-card">
-      <div class="dor-case-visual" aria-label="Jane 一月至七月的真实人生河流缩略图">
-        <img src="assets/jane-another-self-real-life-river.png" alt="Jane 的人物形态人生河流，呈现工作、个人创作、学习、副业尝试和生活与关系的变化">
-        <span class="dor-case-visual-label">Jane 的真实人生河流 · 1—7月</span>
+  <section class="dor-sales-section dor-case-showcase" aria-labelledby="dor-dual-case-title">
+    <div class="dor-dual-case">
+      <div class="dor-dual-copy">
+        <h2 class="dor-dual-hook" id="dor-dual-case-title">分析日记，看见过往人生轨迹</h2>
+        <ul class="dor-dual-benefits" aria-label="人生河流可以帮助你">
+          <li>看见时间流向</li>
+          <li>辨别关键节点</li>
+          <li>留下人生回忆</li>
+        </ul>
+        <a class="dor-sales-primary dor-dual-cta" href="#birth-package">立即体验</a>
       </div>
-      <div class="dor-case-copy"><h3>她原以为，这一年主要是在工作。</h3><p>记录却显示，创作从一次偶然尝试，逐渐变成持续扩张的生活主题。很多方向并不是突然决定的，只是我们第一次看见：自己已经走在路上。</p><div class="dor-proof">“我不是突然想成为谁。原来我的时间，早就在替我做选择。”</div><button class="dor-sales-primary dor-import-demo" type="button" data-use-demo>进入完整互动案例</button></div>
+      <div class="dor-dual-figures">
+        <article class="dor-dual-person" aria-label="Jane 一月至七月的真实人生河流案例">
+          <iframe class="dor-case-preview dor-case-preview-jane" src="diary-river-modernist-organic-ribbons-web.html?view=demo&amp;preview=1" title="Jane 最终版人物形态人生河流" tabindex="-1" loading="eager"></iframe>
+          <button class="dor-dual-enter" type="button" data-use-demo><span>Jane · 进入完整互动案例 →</span></button>
+        </article>
+        <article class="dor-dual-person" aria-label="维多利亚女王少女日记主题河流案例">
+          <iframe class="dor-case-preview dor-case-preview-victoria" src="victoria-queen-diary/?preview=1" title="维多利亚女王最终版少女日记主题河流" tabindex="-1" loading="eager"></iframe>
+          <a class="dor-dual-enter" href="victoria-queen-diary/"><span>维多利亚女王 · 进入完整互动案例 →</span></a>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -1563,6 +1607,7 @@ html>body{padding:0}</style>
       opacity: 0.82;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
+    #diary-river-organic-ribbons .dor-month-axis { stroke: #8c6c94; stroke-width: 1; opacity: 0.28; }
     #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
     #diary-river-organic-ribbons .dor-event-bg { fill: var(--dor-bg); opacity: var(--dor-event-bg-opacity); }
     #diary-river-organic-ribbons .dor-rule { stroke: #8c8172; stroke-width: 0.7; opacity: 0.35; }
@@ -1915,7 +1960,10 @@ html>body{padding:0}</style>
                   </optgroup>
                   <optgroup label="节点文字">
                     <option value="event-responsibility">承担负责人角色</option>
+                    <option value="event-pacificvis">到悉尼参加 PacificVis</option>
+                    <option value="event-tulips">清晨去太子湾看郁金香</option>
                     <option value="event-first-feedback">数字艺术第一个小爆款</option>
+                    <option value="event-new-home">搬进新家</option>
                     <option value="event-second-hit">第二个小爆款</option>
                     <option value="event-later">「另世我」产品规划</option>
                     <option value="event-statistics">统计学学习</option>
@@ -2155,7 +2203,10 @@ html>body{padding:0}</style>
       }
       const milestones = [
         { id: 'event-responsibility', month: 0, key: 'work', text: '承担负责人角色', dy: 15 },
+        { id: 'event-pacificvis', month: 3.6, key: 'work', text: '到悉尼参加 PacificVis', dy: -8, wrapWidth: 104 },
+        { id: 'event-tulips', month: 2.23, key: 'life', text: '清晨去太子湾看郁金香', dy: -8, wrapWidth: 66 },
         { id: 'event-first-feedback', month: 4, key: 'creation', text: '数字艺术第一个小爆款', dy: -8, wrapWidth: 48 },
+        { id: 'event-new-home', month: 4.48, key: 'life', text: '搬进新家', dy: -8 },
         { id: 'event-second-hit', month: 6, key: 'creation', text: '第二个小爆款', dy: -9 },
         { id: 'event-later', month: 6, key: 'venture', text: '「另世我」产品规划', dy: 13, outside: true },
         { id: 'event-statistics', month: 5.5, key: 'learning', text: '统计学学习', dy: -8 },
@@ -2167,7 +2218,10 @@ html>body{padding:0}</style>
         'theme-learning': { x: 0, y: 0 },
         'theme-life': { x: 2, y: 18 },
         'event-responsibility': { x: 0, y: 0 },
+        'event-pacificvis': { x: 0, y: 0 },
+        'event-tulips': { x: 0, y: 0 },
         'event-first-feedback': { x: 0, y: 0 },
+        'event-new-home': { x: 0, y: 0 },
         'event-second-hit': { x: 0, y: 0 },
         'event-later': { x: 0, y: 0 },
         'event-statistics': { x: 0, y: 0 },
@@ -2362,6 +2416,14 @@ html>body{padding:0}</style>
         const maxN = Math.max(...months.map((month) => month.n));
         const geometry = {};
 
+        svg.appendChild(el('line', {
+          class: 'dor-month-axis',
+          x1: pad,
+          y1: ys[0],
+          x2: pad,
+          y2: ys[ys.length - 1]
+        }));
+
         months.forEach((month, index) => {
           const showMonth = predictionOpen
             ? index === 0 || index === 2 || index === 4 || index === 6 || index === 8 || index === 10 || index === 12 || index === 14 || index === 16 || index === 18
@@ -2552,54 +2614,6 @@ html>body{padding:0}</style>
 
         svg.appendChild(figureLips);
 
-        const labels = predictionOpen
-          ? [
-              { id: 'theme-work', key: 'work', month: 2, text: '工作' },
-              { id: 'theme-creation', key: 'creation', month: 5, text: '个人创作' },
-              { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
-              { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
-            ]
-          : compact
-            ? [
-                { id: 'theme-work', key: 'work', month: 2, text: '工作' },
-                { id: 'theme-creation', key: 'creation', month: 5, text: '个人创作' },
-                { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
-                { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
-              ]
-            : [
-                { id: 'theme-work', key: 'work', month: 1, text: '工作' },
-                { id: 'theme-creation', key: 'creation', month: 5.2, text: '个人创作', wrapWidth: 50 },
-                { id: 'theme-learning', key: 'learning', month: 3, text: '学习' },
-                { id: 'theme-life', key: 'life', month: 2, text: '生活与关系' }
-              ];
-        labels.forEach((label) => {
-          const labelMonth = predictionOpen
-            ? geometry[label.key].widths
-                .slice(0, historyMonths.length)
-                .reduce((best, width, index, widths) => width > widths[best] ? index : best, 0)
-            : label.month;
-          const point = pointAt(geometry[label.key].centers, labelMonth);
-          const bandWidth = pointAt(geometry[label.key].widths.map((width, index) => [width, ys[index]]), labelMonth)[0];
-          const offset = positionOffsets[label.id];
-          const fittedWidth = predictionOpen
-            ? Math.max(10, Math.min(label.wrapWidth || themeWrapWidth, bandWidth - 8))
-            : label.wrapWidth || themeWrapWidth;
-          const fittedFontSize = predictionOpen
-            ? Math.max(8, Math.min(themeFontSize, fittedWidth / Math.min(label.text.length, 4)))
-            : themeFontSize;
-          const themeText = addWrappedText(
-            svg,
-            'dor-theme dor-animated',
-            label.text,
-            point[0] + (predictionOpen ? 0 : offset.x),
-            point[1] + (predictionOpen ? 0 : -10 + offset.y),
-            'middle',
-            fittedWidth,
-            fittedFontSize
-          );
-          themeText.dataset.animateTheme = label.key;
-        });
-
         const visibleMilestones = predictionOpen
           ? []
           : compact
@@ -2751,6 +2765,11 @@ html>body{padding:0}</style>
 
 <script>
 (() => {
+  const pageParams = new URLSearchParams(location.search);
+  if (pageParams.get('preview') === '1') {
+    document.documentElement.classList.add('dor-preview');
+    document.body.classList.add('dor-preview');
+  }
   const input = document.querySelector('[data-diary-files]');
   const demos = document.querySelectorAll('[data-use-demo]');
   const home = document.querySelector('[data-return-home]');
@@ -2803,7 +2822,7 @@ html>body{padding:0}</style>
     window.scrollTo({ top: 0, behavior: 'instant' });
   });
 
-  if (new URLSearchParams(location.search).get('view') === 'demo') {
+  if (pageParams.get('view') === 'demo') {
     document.querySelector('[data-import-entry]')?.setAttribute('hidden', '');
     document.body.classList.remove('dor-before-enter');
     document.body.classList.add('dor-has-entered');
