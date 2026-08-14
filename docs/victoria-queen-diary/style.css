@@ -271,7 +271,6 @@ body {
   .portrait-card-queen img { height: 140px; }
   .portrait-card figcaption span { display: none; }
   .dor-corner-brand { top: 12px; right: 12px; }
-  .dor-corner-brand span { font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
