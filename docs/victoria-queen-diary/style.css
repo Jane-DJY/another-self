@@ -65,6 +65,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: clamp(20px, 4vw, 56px);
+  transform: translateX(clamp(36px, 3.2vw, 64px));
 }
 .story-panel {
   min-width: 0;
@@ -182,6 +183,7 @@ body {
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
     padding: 72px 20px 28px;
+    transform: none;
   }
   .story-panel { max-width: 620px; max-height: none; justify-self: center; overflow: visible; padding-right: 0; }
   .river-panel { width: min(100%, 560px); max-height: none; justify-self: center; transform: none; }
