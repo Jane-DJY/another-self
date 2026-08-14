@@ -161,18 +161,6 @@ body {
   font: 600 10px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 .portrait-card figcaption span { display: block; }
-.portrait-caption {
-  position: absolute;
-  z-index: 2;
-  right: 18px;
-  bottom: 7px;
-  left: 18px;
-  margin: 0;
-  color: #6e5d32;
-  font: 500 9px/1.4 ui-serif, Georgia, "Songti SC", serif;
-  letter-spacing: .03em;
-  text-align: center;
-}
 .insights { display: grid; gap: 0; }
 .insight {
   display: grid;
