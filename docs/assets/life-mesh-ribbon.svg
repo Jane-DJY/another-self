@@ -2,13 +2,27 @@
   <defs>
     <path id="mesh-a" d="M-120 188 C130 18 320 330 590 148 S1030 20 1510 192"/>
     <path id="mesh-b" d="M-120 102 C170 306 390 -8 690 174 S1110 330 1510 86"/>
+    <linearGradient id="mesh-gradient-a" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d56bb8"/><stop offset="0.3" stop-color="#8c64cf"/>
+      <stop offset="0.58" stop-color="#68a69e"/><stop offset="0.82" stop-color="#c86da9"/>
+      <stop offset="1" stop-color="#e3ac55"/>
+    </linearGradient>
+    <linearGradient id="mesh-gradient-b" x1="80" y1="330" x2="1320" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6ea9a5"/><stop offset="0.28" stop-color="#d181bd"/>
+      <stop offset="0.55" stop-color="#7650ad"/><stop offset="0.78" stop-color="#e2aa5f"/>
+      <stop offset="1" stop-color="#b966a8"/>
+    </linearGradient>
+    <linearGradient id="mesh-highlight" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="0.42" stop-color="#edb5dd"/>
+      <stop offset="0.68" stop-color="#a9d5c8"/><stop offset="1" stop-color="#f3cf8c"/>
+    </linearGradient>
     <filter id="organic-weave" x="-10%" y="-30%" width="120%" height="160%">
       <feTurbulence type="fractalNoise" baseFrequency="0.003 0.011" numOctaves="2" seed="19" result="flow"/>
       <feDisplacementMap in="SourceGraphic" in2="flow" scale="34" xChannelSelector="R" yChannelSelector="B"/>
     </filter>
   </defs>
-  <g fill="none" stroke="#68466f" stroke-width="0.75" stroke-linecap="round" filter="url(#organic-weave)">
-    <g opacity="0.17">
+  <g fill="none" stroke-width="0.8" stroke-linecap="round" filter="url(#organic-weave)">
+    <g opacity="0.27" stroke="url(#mesh-gradient-a)">
       <use href="#mesh-a" transform="translate(0 -42)"/><use href="#mesh-a" transform="translate(0 -36)"/>
       <use href="#mesh-a" transform="translate(0 -30)"/><use href="#mesh-a" transform="translate(0 -24)"/>
       <use href="#mesh-a" transform="translate(0 -18)"/><use href="#mesh-a" transform="translate(0 -12)"/>
@@ -18,7 +32,7 @@
       <use href="#mesh-a" transform="translate(0 30)"/><use href="#mesh-a" transform="translate(0 36)"/>
       <use href="#mesh-a" transform="translate(0 42)"/>
     </g>
-    <g opacity="0.12">
+    <g opacity="0.2" stroke="url(#mesh-gradient-b)">
       <use href="#mesh-b" transform="translate(0 -36)"/><use href="#mesh-b" transform="translate(0 -30)"/>
       <use href="#mesh-b" transform="translate(0 -24)"/><use href="#mesh-b" transform="translate(0 -18)"/>
       <use href="#mesh-b" transform="translate(0 -12)"/><use href="#mesh-b" transform="translate(0 -6)"/>
@@ -26,6 +40,11 @@
       <use href="#mesh-b" transform="translate(0 12)"/><use href="#mesh-b" transform="translate(0 18)"/>
       <use href="#mesh-b" transform="translate(0 24)"/><use href="#mesh-b" transform="translate(0 30)"/>
       <use href="#mesh-b" transform="translate(0 36)"/>
+    </g>
+    <g opacity="0.16" stroke="url(#mesh-highlight)" stroke-width="1.05">
+      <use href="#mesh-a" transform="translate(0 -21)"/><use href="#mesh-a" transform="translate(0 3)"/>
+      <use href="#mesh-a" transform="translate(0 27)"/><use href="#mesh-b" transform="translate(0 -15)"/>
+      <use href="#mesh-b" transform="translate(0 15)"/>
     </g>
   </g>
 </svg>
