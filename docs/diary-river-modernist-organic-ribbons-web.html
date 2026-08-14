@@ -1012,6 +1012,7 @@ html>body{padding:0}</style>
   html.dor-preview,
   body.dor-preview { overflow:hidden!important; background:transparent!important; }
   body.dor-preview .dor-top-nav,
+  body.dor-preview .dor-corner-brand,
   body.dor-preview .dor-import-entry,
   body.dor-preview #diary-river-organic-ribbons .dor-reading,
   body.dor-preview #diary-river-organic-ribbons .dor-sidebar { display:none!important; }
@@ -1021,11 +1022,17 @@ html>body{padding:0}</style>
   body.dor-preview #diary-river-organic-ribbons [data-poster],
   body.dor-preview #diary-river-organic-ribbons [data-poster] svg { width:100%; height:100%; }
   @media(max-width:260px){body.dor-preview #diary-river-organic-ribbons{transform:scale(.4583333)!important}}
+  .dor-corner-brand { position:fixed; top:17px; right:20px; z-index:31; display:none; align-items:center; gap:8px; padding:5px 8px 5px 5px; border:1px solid rgba(68,35,82,.14); border-radius:999px; background:rgba(255,248,253,.68); color:#442352; box-shadow:0 8px 24px rgba(68,35,82,.1); backdrop-filter:blur(14px); font:600 12px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.08em; text-decoration:none; transition:color 180ms ease,transform 180ms ease; }
+  .dor-corner-brand img { display:block; width:25px; height:25px; object-fit:contain; }
+  body.dor-has-entered .dor-corner-brand { display:flex; }
+  .dor-corner-brand:hover { color:#8e3315; transform:translateY(-1px); }
+  @media(max-width:600px){.dor-corner-brand{top:12px;right:12px}.dor-corner-brand span{font-size:11px}}
 </style>
 <nav class="dor-top-nav" aria-label="另世我页面导航">
   <button class="dor-home-button" type="button" data-return-home>⌂ 首页</button>
   <a class="dor-stars-button" href="women-stars.html" aria-label="进入群星闪耀女性人生参照库">群星闪耀</a>
 </nav>
+<a class="dor-corner-brand" href="diary-river-modernist-organic-ribbons-web.html" aria-label="另世我首页"><img src="assets/another-self-life-crystal-transparent.png" alt=""><span>另世我</span></a>
 <div class="dor-sales">
 <main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-name">
   <div class="dor-sales-hero">

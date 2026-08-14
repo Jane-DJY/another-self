@@ -53,6 +53,9 @@ body {
 }
 .dor-home-button:hover,
 .dor-stars-button:hover { color: #292618; }
+.dor-corner-brand { position: fixed; top: 17px; right: 20px; z-index: 31; display: flex; align-items: center; gap: 8px; padding: 5px 8px 5px 5px; border: 1px solid rgba(71,49,29,.18); border-radius: 999px; background: rgba(238,228,199,.76); color: #292618; box-shadow: 0 8px 24px rgba(71,49,29,.12); backdrop-filter: blur(14px); font: 600 12px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .08em; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
+.dor-corner-brand img { display: block; width: 25px; height: 25px; object-fit: contain; }
+.dor-corner-brand:hover { color: #8e3315; transform: translateY(-1px); }
 
 .explore-layout {
   --content-shift: clamp(48px, 4vw, 80px);
@@ -279,6 +282,8 @@ body {
   .portrait-card img { height: 124px; border-width: 4px; border-bottom-width: 14px; }
   .portrait-card-queen img { height: 140px; }
   .portrait-card figcaption span { display: none; }
+  .dor-corner-brand { top: 12px; right: 12px; }
+  .dor-corner-brand span { font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -288,6 +293,7 @@ body {
 html.preview-mode,
 body.preview-mode { overflow: hidden; background: transparent; }
 body.preview-mode .dor-top-nav,
+body.preview-mode .dor-corner-brand,
 body.preview-mode .story-panel { display: none; }
 body.preview-mode .explore-layout { display: block; width: 100%; max-width: none; height: 100svh; min-height: 0; padding: 0; }
 body.preview-mode .river-panel { width: 100%; max-width: none; max-height: none; height: 100%; margin: 0; transform: none; aspect-ratio: auto; }
