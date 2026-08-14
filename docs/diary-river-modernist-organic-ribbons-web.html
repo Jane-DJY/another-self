@@ -899,14 +899,17 @@ html>body{padding:0}</style>
   .dor-sales-section { width:min(1040px,100%); margin:76px auto 0; text-align:left; }
   .dor-sales-section h2 { margin:0; color:var(--ink); font:500 clamp(27px,3.2vw,42px)/1.25 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
   .dor-sales-section-intro { max-width:660px; margin:14px 0 0; color:var(--muted); font:400 15px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-dual-case { position:relative; min-height:460px; padding:66px 42px 22px; overflow:hidden; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.28); box-shadow:0 16px 46px rgba(100,54,126,.07); }
-  .dor-dual-hook { position:absolute; left:28px; top:24px; z-index:5; max-width:none; margin:0; color:var(--ink); font:500 clamp(22px,2.6vw,34px)/1.25 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.025em; white-space:nowrap; }
-  .dor-dual-figures { display:grid; grid-template-columns:1fr 1fr; align-items:end; justify-items:center; gap:clamp(24px,6vw,86px); width:min(780px,100%); height:370px; margin:0 auto; }
-  .dor-dual-person { position:relative; display:flex; align-items:flex-end; justify-content:center; width:100%; height:100%; overflow:hidden; background:#faeaf6; isolation:isolate; transition:transform 220ms ease,box-shadow 220ms ease; }
-  .dor-dual-person::after { content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top,rgba(68,35,82,.76),rgba(68,35,82,.08) 42%,transparent 66%); opacity:0; transition:opacity 220ms ease; }
-  .dor-dual-person:hover,.dor-dual-person:focus-within { transform:translateY(-5px) scale(1.015); box-shadow:0 18px 40px rgba(82,39,101,.16); }
-  .dor-dual-person:hover::after,.dor-dual-person:focus-within::after { opacity:1; }
-  .dor-case-preview { display:block; height:100%; border:0; background:#faeaf6; pointer-events:none; }
+  .dor-dual-case { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); align-items:center; min-height:470px; padding:28px 34px; overflow:hidden; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.28); box-shadow:0 16px 46px rgba(100,54,126,.07); }
+  .dor-dual-copy { position:relative; z-index:5; align-self:center; padding:0 clamp(8px,2.4vw,30px) 0 clamp(4px,1vw,12px); }
+  .dor-sales-section .dor-dual-hook { max-width:390px; margin:0; color:var(--ink); font:500 clamp(30px,3.6vw,48px)/1.3 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.035em; }
+  .dor-dual-figures { display:flex; align-items:center; justify-content:center; width:100%; height:414px; padding:8px 12px; }
+  .dor-dual-person { position:relative; display:flex; flex:0 0 300px; align-items:flex-end; justify-content:center; width:300px; height:390px; overflow:hidden; background:transparent; isolation:isolate; transform-origin:50% 86%; transition:transform 240ms ease,filter 240ms ease; }
+  .dor-dual-person:first-child { z-index:1; margin-right:-42px; transform:rotate(-4.5deg) translateY(10px); }
+  .dor-dual-person:last-child { z-index:2; transform:rotate(4deg) translateY(-3px); }
+  .dor-dual-person::after { display:none; }
+  .dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within { z-index:4; transform:rotate(-2deg) translateY(-5px) scale(1.025); filter:drop-shadow(0 18px 20px rgba(82,39,101,.17)); }
+  .dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within { z-index:4; transform:rotate(2deg) translateY(-8px) scale(1.025); filter:drop-shadow(0 18px 20px rgba(82,39,101,.17)); }
+  .dor-case-preview { display:block; height:100%; border:0; background:transparent; pointer-events:none; }
   .dor-case-preview-jane,.dor-case-preview-victoria { width:278px; }
   .dor-dual-enter { position:absolute; inset:0; z-index:3; display:flex; align-items:flex-end; justify-content:center; width:100%; padding:0 18px 28px; border:0; border-radius:0; background:transparent; color:#fff; font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:center; text-decoration:none!important; cursor:pointer; opacity:0; transform:translateY(8px); transition:opacity 180ms ease,transform 220ms ease; }
   .dor-dual-enter span { display:block; padding:9px 14px; border:1px solid rgba(255,255,255,.48); background:rgba(68,35,82,.34); backdrop-filter:blur(7px); }
@@ -939,9 +942,10 @@ html>body{padding:0}</style>
   .dor-apply .dor-import-actions { position:relative; margin-top:20px; }
   .dor-apply .dor-import-primary { font-weight:600; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-dual-case{padding:92px 14px 18px}.dor-dual-hook{left:18px;right:18px;top:20px;white-space:normal}.dor-dual-figures{grid-template-columns:1fr;height:auto;gap:16px}.dor-dual-person{height:330px}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person::after{opacity:.6}.dor-dual-person:hover,.dor-dual-person:focus-within{transform:none}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}
+    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:32px 12px 22px}.dor-dual-copy{padding:0 10px 20px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(30px,10vw,42px)}.dor-dual-figures{height:340px;padding:0}.dor-dual-person{flex-basis:224px;width:224px;height:320px}.dor-dual-person:first-child{margin-right:-62px;transform:rotate(-4deg) translateY(8px)}.dor-dual-person:last-child{transform:rotate(4deg) translateY(-2px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-4deg) translateY(8px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(4deg) translateY(-2px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}
   }
-  body.dor-preview { overflow:hidden!important; background:#faeaf6!important; }
+  html.dor-preview,
+  body.dor-preview { overflow:hidden!important; background:transparent!important; }
   body.dor-preview .dor-top-nav,
   body.dor-preview .dor-import-entry,
   body.dor-preview #diary-river-organic-ribbons .dor-reading,
@@ -970,7 +974,9 @@ html>body{padding:0}</style>
 
   <section class="dor-sales-section dor-case-showcase" aria-labelledby="dor-dual-case-title">
     <div class="dor-dual-case">
-      <h2 class="dor-dual-hook" id="dor-dual-case-title">分析日记，看见过往人生轨迹</h2>
+      <div class="dor-dual-copy">
+        <h2 class="dor-dual-hook" id="dor-dual-case-title">分析日记，看见过往人生轨迹</h2>
+      </div>
       <div class="dor-dual-figures">
         <article class="dor-dual-person" aria-label="Jane 一月至七月的真实人生河流案例">
           <iframe class="dor-case-preview dor-case-preview-jane" src="diary-river-modernist-organic-ribbons-web.html?view=demo&amp;preview=1" title="Jane 最终版人物形态人生河流" tabindex="-1" loading="eager"></iframe>
@@ -2717,7 +2723,10 @@ html>body{padding:0}</style>
 <script>
 (() => {
   const pageParams = new URLSearchParams(location.search);
-  if (pageParams.get('preview') === '1') document.body.classList.add('dor-preview');
+  if (pageParams.get('preview') === '1') {
+    document.documentElement.classList.add('dor-preview');
+    document.body.classList.add('dor-preview');
+  }
   const input = document.querySelector('[data-diary-files]');
   const demos = document.querySelectorAll('[data-use-demo]');
   const home = document.querySelector('[data-return-home]');

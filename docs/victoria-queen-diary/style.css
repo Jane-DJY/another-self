@@ -201,7 +201,8 @@ body {
   .river-band.growing { animation: none; }
 }
 
-body.preview-mode { overflow: hidden; background: #faeaf6; }
+html.preview-mode,
+body.preview-mode { overflow: hidden; background: transparent; }
 body.preview-mode .dor-top-nav,
 body.preview-mode .story-panel { display: none; }
 body.preview-mode .explore-layout { display: block; width: 100%; max-width: none; height: 100svh; min-height: 0; padding: 0; }
