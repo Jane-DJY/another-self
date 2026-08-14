@@ -60,7 +60,7 @@ body {
   height: 100svh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(500px, .96fr) minmax(620px, 1.04fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(24px, 3vw, 48px);
   align-items: center;
   padding: clamp(20px, 4vw, 56px);
@@ -69,10 +69,10 @@ body {
   min-width: 0;
   width: 100%;
   height: 100%;
-  max-width: 560px;
+  max-width: 620px;
   max-height: calc(100svh - clamp(40px, 8vw, 112px));
   align-self: stretch;
-  justify-self: end;
+  justify-self: start;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 14px;
@@ -136,7 +136,8 @@ body {
   max-width: 700px;
   max-height: calc(100svh - clamp(40px, 8vw, 112px));
   aspect-ratio: 720 / 1120;
-  justify-self: start;
+  justify-self: end;
+  transform: translateY(8px);
   overflow: visible;
 }
 .river-panel svg { display: block; width: 100%; height: 100%; overflow: visible; }
@@ -182,7 +183,7 @@ body {
     padding: 72px 20px 28px;
   }
   .story-panel { max-width: 620px; max-height: none; justify-self: center; overflow: visible; padding-right: 0; }
-  .river-panel { width: min(100%, 560px); max-height: none; justify-self: center; }
+  .river-panel { width: min(100%, 560px); max-height: none; justify-self: center; transform: none; }
 }
 
 @media (max-width: 480px) {

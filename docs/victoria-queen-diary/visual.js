@@ -48,16 +48,16 @@ function bodyHalfWidth(t, mini = false) {
 
 function renderHead(svg, mini = false) {
   const center = mini ? 260 : 320;
-  const top = mini ? 28 : 0;
+  const top = mini ? 28 : 18;
   const colors = ['#5A3D82','#CE5A8F','#A56BD3','#E6A640','#D979B5','#6D9F91'];
-  const rowCounts = mini ? [3, 5, 6, 7, 7, 7, 6, 5, 3] : [3, 5, 7, 8, 9, 9, 8, 7, 5, 3];
+  const rowCounts = mini ? [3, 5, 6, 7, 7, 7, 6, 5, 3] : [2, 4, 5, 6, 7, 6, 5, 4, 2];
   const backgroundBlocks = [];
   let colorIndex = 0;
   rowCounts.forEach((count, row) => {
-    const baseW = mini ? 43 : 64;
-    const h = mini ? 18 : 26;
-    const stepX = mini ? 31 : 45;
-    const stepY = mini ? 20 : 21.5;
+    const baseW = mini ? 43 : 68;
+    const h = mini ? 18 : 28;
+    const stepX = mini ? 31 : 50;
+    const stepY = mini ? 20 : 28.5;
     const rowWidth = (count - 1) * stepX + baseW;
     for (let col = 0; col < count; col++) {
       const w = baseW + Math.sin(row * 4.7 + col * 2.3) * (mini ? 4 : 7);
@@ -76,12 +76,12 @@ function renderHead(svg, mini = false) {
 
   if (!mini) {
     const labelBlocks = [
-      { label: '日常', x: center - 174, y: 82, w: 104, color: '#5A3D82', rotation: -4 },
-      { label: '阅读', x: center - 52, y: 75, w: 104, color: '#CE5A8F', rotation: 3 },
-      { label: '亲情', x: center + 70, y: 84, w: 106, color: '#A56BD3', rotation: -2 },
-      { label: '艺术', x: center - 157, y: 133, w: 104, color: '#E6A640', rotation: 4 },
-      { label: '出行', x: center - 34, y: 124, w: 106, color: '#6D9F91', rotation: -3 },
-      { label: '社交', x: center + 90, y: 135, w: 104, color: '#D979B5', rotation: 3 }
+      { label: '日常', x: center - 165, y: 110, w: 104, color: '#5A3D82', rotation: -4 },
+      { label: '阅读', x: center - 52, y: 102, w: 104, color: '#CE5A8F', rotation: 3 },
+      { label: '亲情', x: center + 62, y: 111, w: 106, color: '#A56BD3', rotation: -2 },
+      { label: '艺术', x: center - 150, y: 169, w: 104, color: '#E6A640', rotation: 4 },
+      { label: '出行', x: center - 30, y: 160, w: 106, color: '#6D9F91', rotation: -3 },
+      { label: '社交', x: center + 90, y: 171, w: 104, color: '#D979B5', rotation: 3 }
     ];
     labelBlocks.forEach(item => {
       const h = 38;
@@ -99,7 +99,7 @@ function renderHead(svg, mini = false) {
       svg.appendChild(group);
     });
     svg.appendChild(el('path', {
-      d: `M ${center - 12} 229 Q ${center} 238 ${center + 12} 229 M ${center - 8} 231 Q ${center} 236 ${center + 8} 231`,
+      d: `M ${center - 12} 286 Q ${center} 295 ${center + 12} 286 M ${center - 8} 288 Q ${center} 293 ${center + 8} 288`,
       fill: 'none',
       stroke: '#c96f7d',
       'stroke-width': 2.6,
@@ -112,8 +112,8 @@ function renderHead(svg, mini = false) {
 
 function renderRiver(svg, data, mini = false) {
   const center = mini ? 260 : 320;
-  const yTop = mini ? 245 : 245;
-  const yBottom = mini ? 720 : 1030;
+  const yTop = mini ? 245 : 302;
+  const yBottom = mini ? 720 : 1062;
   const rows = data.yearly;
   const categories = data.categories;
   const boundaries = Array.from({ length: categories.length + 1 }, () => []);
@@ -181,8 +181,6 @@ function renderRiver(svg, data, mini = false) {
     svg.appendChild(label);
   });
 
-  svg.appendChild(el('text', { x: center, y: 1067, 'text-anchor': 'middle', fill: '#8c778d', 'font-size': 10 }, '公开日记选编中的主题词数份额 · 同年横截面=100%'));
-  svg.appendChild(el('text', { x: 674, y: 1088, 'text-anchor': 'end', fill: 'rgba(56,34,67,.45)', 'font-size': 8 }, 'Jane of Visual Stories'));
 }
 
 function renderLegend(data) {
