@@ -886,6 +886,10 @@ html>body{padding:0}</style>
   }
   body.dor-has-entered .dor-sales .dor-import-entry { display: none; }
   .dor-sales-hero { display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
+  .dor-sales .dor-import-brand { margin-bottom:14px; }
+  .dor-brand-message { display:grid; justify-items:center; gap:8px; max-width:760px; color:var(--ink); text-align:center; }
+  .dor-brand-message strong { font:500 clamp(24px,2.8vw,36px)/1.3 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.025em; }
+  .dor-brand-message span { max-width:700px; color:var(--muted); font:400 clamp(13px,1.4vw,16px)/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-sales-eyebrow { margin:0 0 16px; color:#8c5c94; font:600 12px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.18em; }
   .dor-sales .dor-import-title { max-width:820px; white-space:normal; font-size:clamp(30px,4.6vw,58px); }
   .dor-sales-lead { max-width:680px; margin:20px auto 0; color:var(--muted); font:400 clamp(15px,1.7vw,19px)/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
@@ -902,6 +906,7 @@ html>body{padding:0}</style>
   .dor-dual-case { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); align-items:center; min-height:470px; padding:28px 34px; overflow:hidden; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.28); box-shadow:0 16px 46px rgba(100,54,126,.07); }
   .dor-dual-copy { position:relative; z-index:5; align-self:center; padding:0 clamp(8px,2.4vw,30px) 0 clamp(4px,1vw,12px); }
   .dor-sales-section .dor-dual-hook { max-width:390px; margin:0; color:var(--ink); font:500 clamp(30px,3.6vw,48px)/1.3 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.035em; }
+  .dor-dual-cta { margin-top:26px; }
   .dor-dual-figures { display:flex; align-items:center; justify-content:center; width:100%; height:414px; padding:8px 12px; }
   .dor-dual-person { position:relative; display:flex; flex:0 0 300px; align-items:flex-end; justify-content:center; width:300px; height:390px; overflow:hidden; background:transparent; isolation:isolate; transform-origin:50% 86%; transition:transform 240ms ease,filter 240ms ease; }
   .dor-dual-person:first-child { z-index:1; margin-right:-42px; transform:rotate(-4.5deg) translateY(10px); }
@@ -942,7 +947,7 @@ html>body{padding:0}</style>
   .dor-apply .dor-import-actions { position:relative; margin-top:20px; }
   .dor-apply .dor-import-primary { font-weight:600; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:32px 12px 22px}.dor-dual-copy{padding:0 10px 20px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(30px,10vw,42px)}.dor-dual-figures{height:340px;padding:0}.dor-dual-person{flex-basis:224px;width:224px;height:320px}.dor-dual-person:first-child{margin-right:-62px;transform:rotate(-4deg) translateY(8px)}.dor-dual-person:last-child{transform:rotate(4deg) translateY(-2px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-4deg) translateY(8px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(4deg) translateY(-2px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}
+    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(24px,8vw,32px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:32px 12px 22px}.dor-dual-copy{padding:0 10px 20px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(30px,10vw,42px)}.dor-dual-cta{margin-top:20px}.dor-dual-figures{height:340px;padding:0}.dor-dual-person{flex-basis:224px;width:224px;height:320px}.dor-dual-person:first-child{margin-right:-62px;transform:rotate(-4deg) translateY(8px)}.dor-dual-person:last-child{transform:rotate(4deg) translateY(-2px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-4deg) translateY(8px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(4deg) translateY(-2px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}
   }
   html.dor-preview,
   body.dor-preview { overflow:hidden!important; background:transparent!important; }
@@ -968,14 +973,17 @@ html>body{padding:0}</style>
       <figure class="dor-import-mark"><img src="assets/another-self-life-crystal-transparent.png" alt="映照出多个女性身影的生命晶体"></figure>
       <h1 class="dor-import-name" id="dor-import-name">另世我</h1>
     </div>
-    <div class="dor-sales-actions"><a class="dor-sales-primary" href="#birth-package">生成我的人生河流</a></div>
-    <p class="dor-sales-note">真实记录生成 · 案例已脱敏 · 你的版本只使用你确认的资料</p>
+    <p class="dor-brand-message">
+      <strong>你的故事，值得被看见</strong>
+      <span>上传生活记录，生成专属人生图景，定制成冰箱贴、挂画等独一无二的纪念品。</span>
+    </p>
   </div>
 
   <section class="dor-sales-section dor-case-showcase" aria-labelledby="dor-dual-case-title">
     <div class="dor-dual-case">
       <div class="dor-dual-copy">
         <h2 class="dor-dual-hook" id="dor-dual-case-title">分析日记，看见过往人生轨迹</h2>
+        <a class="dor-sales-primary dor-dual-cta" href="#birth-package">立即体验</a>
       </div>
       <div class="dor-dual-figures">
         <article class="dor-dual-person" aria-label="Jane 一月至七月的真实人生河流案例">
