@@ -23,37 +23,37 @@
     {
       "key": "publicDuty",
       "zh": "公共责任",
-      "color": "#3F4934"
+      "color": "#514B5B"
     },
     {
       "key": "familyAffection",
       "zh": "家庭与亲情",
-      "color": "#8E3315"
+      "color": "#B94D3A"
     },
     {
       "key": "socialLife",
       "zh": "社交与宫廷",
-      "color": "#6E5D32"
+      "color": "#7A5A35"
     },
     {
       "key": "learning",
       "zh": "学习与阅读",
-      "color": "#B08A32"
+      "color": "#B77D45"
     },
     {
       "key": "arts",
       "zh": "音乐与艺术",
-      "color": "#7A271C"
+      "color": "#8F3527"
     },
     {
       "key": "movementNature",
       "zh": "出行与自然",
-      "color": "#66704A"
+      "color": "#697166"
     },
     {
       "key": "dailyRhythm",
       "zh": "日常节律",
-      "color": "#C3A85F"
+      "color": "#A97866"
     }
   ],
   "yearly": [
