@@ -1,5 +1,9 @@
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
+if (new URLSearchParams(location.search).get('preview') === '1') {
+  document.body.classList.add('preview-mode');
+}
+
 const el = (name, attrs = {}, text = '') => {
   const node = document.createElementNS(SVG_NS, name);
   Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' file: blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' file: blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>另世我·人生河流｜让生活记录长成另一个你</title>
 <style>:root {
   color-scheme: light dark;
@@ -882,7 +882,7 @@ html>body{padding:0}</style>
   .dor-sales { --ink:#442352; --muted:#765f7c; --purple:#603374; --pink:#d64fae; }
   .dor-sales .dor-import-entry {
     position: relative; inset: auto; min-height: 100svh; height: auto; overflow: visible;
-    justify-content: flex-start; padding: 76px 24px 72px;
+    justify-content: flex-start; padding: 52px 24px 56px;
   }
   body.dor-has-entered .dor-sales .dor-import-entry { display: none; }
   .dor-sales-hero { display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
@@ -895,18 +895,21 @@ html>body{padding:0}</style>
   .dor-sales .dor-sales-primary.dor-import-demo { border:1px solid var(--purple); padding:0 22px; background:var(--purple); color:#fff8fd; text-decoration:none; }
   .dor-sales-secondary { background:rgba(255,255,255,.34); color:var(--purple); }
   .dor-sales-note { width:100%; margin-top:13px; color:#927c96; font:400 12px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:center; }
-  .dor-sales-hero + .dor-case-first { margin-top:30px; }
+  .dor-sales-hero + .dor-case-first { margin-top:22px; }
   .dor-sales-section { width:min(1040px,100%); margin:76px auto 0; text-align:left; }
+  .dor-case-follow { margin-top:28px; }
   .dor-sales-section h2 { margin:0; color:var(--ink); font:500 clamp(27px,3.2vw,42px)/1.25 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
   .dor-sales-section-intro { max-width:660px; margin:14px 0 0; color:var(--muted); font:400 15px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-case-card { display:grid; grid-template-columns:1.1fr .9fr; gap:32px; margin-top:26px; padding:32px; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.30); box-shadow:0 20px 60px rgba(100,54,126,.08); }
-  .dor-case-visual { position:relative; height:390px; min-height:290px; overflow:hidden; background:#faeaf6; color:white; }
-  .dor-case-visual img { display:block; width:100%; height:100%; object-fit:contain; object-position:center; }
-  .dor-case-visual-label { position:absolute; left:18px; top:18px; z-index:2; padding:8px 12px; background:rgba(68,35,82,.78); color:#fff; font:500 13px/1.35 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; backdrop-filter:blur(8px); }
+  .dor-case-card { display:grid; grid-template-columns:.86fr 1.14fr; gap:24px; margin-top:0; padding:22px; border:1px solid rgba(93,45,115,.14); background:rgba(255,255,255,.30); box-shadow:0 16px 46px rgba(100,54,126,.07); }
+  .dor-case-visual { position:relative; display:flex; align-items:center; justify-content:center; height:300px; min-height:240px; overflow:hidden; background:#faeaf6; color:white; }
+  .dor-case-preview { display:block; height:100%; border:0; background:#faeaf6; pointer-events:none; }
+  .dor-case-preview-jane { width:225px; }
+  .dor-case-preview-victoria { width:193px; }
+  .dor-case-visual-label { position:absolute; left:14px; top:14px; z-index:2; padding:7px 10px; background:rgba(68,35,82,.78); color:#fff; font:500 12px/1.35 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; backdrop-filter:blur(8px); }
   .dor-case-copy { align-self:center; }
-  .dor-case-copy h3 { color:var(--ink); font:500 24px/1.35 ui-serif,Georgia,"Songti SC",serif; }
-  .dor-case-copy p { margin-top:14px; color:var(--muted); font:400 14px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-proof { margin-top:22px; padding:16px 18px; border-left:3px solid var(--pink); background:rgba(255,255,255,.38); color:var(--ink); font:500 15px/1.7 ui-serif,Georgia,"Songti SC",serif; }
+  .dor-case-copy h3 { color:var(--ink); font:500 22px/1.32 ui-serif,Georgia,"Songti SC",serif; }
+  .dor-case-copy p { margin-top:11px; color:var(--muted); font:400 13px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-proof { margin-top:16px; padding:13px 16px; border-left:3px solid var(--pink); background:rgba(255,255,255,.38); color:var(--ink); font:500 14px/1.62 ui-serif,Georgia,"Songti SC",serif; }
   .dor-card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
   .dor-card { padding:24px; border:1px solid rgba(93,45,115,.13); background:rgba(255,255,255,.28); }
   .dor-card b { display:block; color:var(--ink); font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
@@ -934,8 +937,18 @@ html>body{padding:0}</style>
   .dor-apply .dor-import-actions { position:relative; margin-top:20px; }
   .dor-apply .dor-import-primary { font-weight:600; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:68px 18px 54px}.dor-case-card,.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:58px}.dor-case-card,.dor-package,.dor-privacy{padding:20px}.dor-case-visual{height:360px;min-height:220px}.dor-sales-hero + .dor-case-first{margin-top:24px}
+    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-case-card,.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-case-follow{margin-top:24px}.dor-case-card,.dor-package,.dor-privacy{padding:18px}.dor-case-visual{height:300px;min-height:220px}.dor-sales-hero + .dor-case-first{margin-top:20px}
   }
+  body.dor-preview { overflow:hidden!important; background:#faeaf6!important; }
+  body.dor-preview .dor-top-nav,
+  body.dor-preview .dor-import-entry,
+  body.dor-preview #diary-river-organic-ribbons .dor-reading,
+  body.dor-preview #diary-river-organic-ribbons .dor-sidebar { display:none!important; }
+  body.dor-preview #diary-river-organic-ribbons { width:540px!important; max-width:none!important; height:720px!important; min-height:0!important; overflow:hidden!important; transform:scale(.4166667)!important; transform-origin:top left!important; }
+  body.dor-preview #diary-river-organic-ribbons .dor-editor { display:block!important; width:540px!important; height:720px!important; min-height:0!important; padding:0!important; }
+  body.dor-preview #diary-river-organic-ribbons .dor-poster { width:540px!important; max-width:none!important; max-height:none!important; height:720px!important; aspect-ratio:auto!important; justify-self:auto!important; }
+  body.dor-preview #diary-river-organic-ribbons [data-poster],
+  body.dor-preview #diary-river-organic-ribbons [data-poster] svg { width:100%; height:100%; }
 </style>
 <nav class="dor-top-nav" aria-label="另世我页面导航">
   <button class="dor-home-button" type="button" data-return-home>⌂ 首页</button>
@@ -955,7 +968,7 @@ html>body{padding:0}</style>
   <section class="dor-sales-section dor-case-first" aria-label="Jane 的另世我案例">
     <div class="dor-case-card">
       <div class="dor-case-visual" aria-label="Jane 一月至七月的真实人生河流缩略图">
-        <img src="assets/jane-another-self-real-life-river.png" alt="Jane 的人物形态人生河流，呈现工作、个人创作、学习、副业尝试和生活与关系的变化">
+        <iframe class="dor-case-preview dor-case-preview-jane" src="diary-river-modernist-organic-ribbons-web.html?view=demo&amp;preview=1" title="Jane 最终版人物形态人生河流" tabindex="-1" loading="eager"></iframe>
         <span class="dor-case-visual-label">Jane 的真实人生河流 · 1—7月</span>
       </div>
       <div class="dor-case-copy"><h3>她原以为，这一年主要是在工作。</h3><p>记录却显示，创作从一次偶然尝试，逐渐变成持续扩张的生活主题。很多方向并不是突然决定的，只是我们第一次看见：自己已经走在路上。</p><div class="dor-proof">“我不是突然想成为谁。原来我的时间，早就在替我做选择。”</div><button class="dor-sales-primary dor-import-demo" type="button" data-use-demo>进入完整互动案例</button></div>
@@ -965,7 +978,7 @@ html>body{padding:0}</style>
   <section class="dor-sales-section dor-case-follow" aria-label="维多利亚女王日记案例">
     <div class="dor-case-card">
       <div class="dor-case-visual" aria-label="维多利亚女王少女日记主题河流缩略图">
-        <img src="assets/victoria-queen-diary-river.png" alt="维多利亚女王1832至1838年少女日记主题河流，呈现公共责任、家庭亲情、社交宫廷、学习阅读、音乐艺术、出行自然与日常节律的变化">
+        <iframe class="dor-case-preview dor-case-preview-victoria" src="victoria-queen-diary/?preview=1" title="维多利亚女王最终版少女日记主题河流" tabindex="-1" loading="lazy"></iframe>
         <span class="dor-case-visual-label">维多利亚的少女日记 · 1832—1838</span>
       </div>
       <div class="dor-case-copy"><h3>她原本只是在记录每一天。</h3><p>316篇带日期记录显示：登基前后，日记中的“公共责任”从1832年的6.6%，扩张到1838年的56.5%。一个13岁女孩的日常，逐渐长成了一位女王的身体。</p><div class="dor-proof">“成为女王，不只发生在加冕那一天。责任早已开始改变她的语言。”</div><a class="dor-sales-primary dor-import-demo" href="victoria-queen-diary/">进入完整互动案例</a></div>
@@ -2695,6 +2708,8 @@ html>body{padding:0}</style>
 
 <script>
 (() => {
+  const pageParams = new URLSearchParams(location.search);
+  if (pageParams.get('preview') === '1') document.body.classList.add('dor-preview');
   const input = document.querySelector('[data-diary-files]');
   const demos = document.querySelectorAll('[data-use-demo]');
   const home = document.querySelector('[data-return-home]');
@@ -2747,7 +2762,7 @@ html>body{padding:0}</style>
     window.scrollTo({ top: 0, behavior: 'instant' });
   });
 
-  if (new URLSearchParams(location.search).get('view') === 'demo') {
+  if (pageParams.get('view') === 'demo') {
     document.querySelector('[data-import-entry]')?.setAttribute('hidden', '');
     document.body.classList.remove('dor-before-enter');
     document.body.classList.add('dor-has-entered');

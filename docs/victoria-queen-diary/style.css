@@ -194,3 +194,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .river-band.growing { animation: none; }
 }
+
+body.preview-mode { overflow: hidden; background: #faeaf6; }
+body.preview-mode .dor-top-nav,
+body.preview-mode .story-panel { display: none; }
+body.preview-mode .explore-layout { display: block; width: 100%; max-width: none; height: 100svh; min-height: 0; padding: 0; }
+body.preview-mode .river-panel { width: 100%; max-width: none; max-height: none; height: 100%; margin: 0; transform: none; aspect-ratio: auto; }
+body.preview-mode .river-panel svg { width: 100%; height: 100%; }
