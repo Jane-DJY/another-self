@@ -1,9 +1,9 @@
 :root {
-  --ink: #442352;
-  --muted: #755e7b;
-  --paper: #f8e7f5;
-  --line: rgba(79, 40, 96, .15);
-  --metric: #a83ec1;
+  --ink: #292618;
+  --muted: #6e5d32;
+  --paper: #e8ddbd;
+  --line: rgba(71, 49, 29, .18);
+  --metric: #8e3315;
 }
 
 * { box-sizing: border-box; }
@@ -14,8 +14,8 @@ body {
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   background:
-    radial-gradient(circle at 76% 38%, rgba(255,255,255,.34), transparent 36%),
-    linear-gradient(135deg, #faeaf6 0%, #f8e7f5 55%, #f2e8fb 100%);
+    radial-gradient(circle at 76% 38%, rgba(255,250,224,.42), transparent 36%),
+    linear-gradient(135deg, #eee4c7 0%, #e8ddbd 55%, #d8c686 100%);
 }
 
 .dor-top-nav {
@@ -29,7 +29,7 @@ body {
 }
 .dor-home-button,
 .dor-stars-button {
-  color: #694d75;
+  color: #6e5d32;
   padding: 6px 4px;
   font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   text-decoration: none;
@@ -48,11 +48,11 @@ body {
   height: 14px;
   flex: none;
   clip-path: polygon(50% 0,88% 25%,77% 76%,50% 100%,14% 72%,8% 25%);
-  background: linear-gradient(145deg,#fff 0%,#dda2f2 32%,#9a4bd6 68%,#6323b4 100%);
-  filter: drop-shadow(0 2px 3px rgba(83,33,123,.22));
+  background: linear-gradient(145deg,#f7efcf 0%,#d8c686 32%,#a68f4e 68%,#47311d 100%);
+  filter: drop-shadow(0 2px 3px rgba(71,49,29,.24));
 }
 .dor-home-button:hover,
-.dor-stars-button:hover { color: #442352; }
+.dor-stars-button:hover { color: #292618; }
 
 .explore-layout {
   --content-shift: clamp(48px, 4vw, 80px);
@@ -82,7 +82,7 @@ body {
   padding-right: 14px;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  scrollbar-color: rgba(79,40,96,.24) transparent;
+  scrollbar-color: rgba(71,49,29,.28) transparent;
 }
 .story-heading { margin: 0 0 28px; }
 .story-heading h1 {
@@ -107,7 +107,7 @@ body {
   border-top: 1px solid var(--line);
 }
 .insight-period {
-  color: #8c6c94;
+  color: #8e602d;
   font: 500 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 .insight-copy { min-width: 0; }
@@ -129,7 +129,7 @@ body {
 .insight-copy em { color: var(--metric); font-style: normal; font-weight: 600; }
 .method-note {
   margin: 18px 0 0;
-  color: #8c6c94;
+  color: #8e602d;
   font-size: 9px;
   line-height: 1.6;
 }
@@ -152,24 +152,24 @@ body {
 .year-hit { cursor: pointer; }
 .year-hit circle { transition: r .2s, fill .2s; }
 .year-hit:hover circle,
-.year-hit.active circle { r: 9; fill: #382243; }
+.year-hit.active circle { r: 9; fill: #292618; }
 .river-label {
   fill: white;
   font-size: 15px;
   font-weight: 800;
   pointer-events: none;
   paint-order: stroke;
-  stroke: rgba(57,34,67,.18);
+  stroke: rgba(41,38,24,.2);
   stroke-width: 3px;
 }
-.year-label { fill: #725d75; font-size: 13px; font-weight: 700; }
-.milestone-label { fill: #563d5e; font-size: 12px; font-weight: 700; }
+.year-label { fill: #6e5d32; font-size: 13px; font-weight: 700; }
+.milestone-label { fill: #47311d; font-size: 12px; font-weight: 700; }
 .milestone-label-inside {
   fill: #fff;
   font-size: 15px;
   font-weight: 700;
   paint-order: stroke;
-  stroke: rgba(68,35,82,.22);
+  stroke: rgba(41,38,24,.24);
   stroke-width: 2px;
   stroke-linejoin: round;
 }
