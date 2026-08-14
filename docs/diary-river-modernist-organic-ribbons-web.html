@@ -887,11 +887,11 @@ html>body{padding:0}</style>
   }
   body.dor-has-entered .dor-sales .dor-import-entry { display: none; }
   .dor-sales-hero { position:relative; isolation:isolate; display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
-  .dor-sales-hero::before,.dor-sales-hero::after { content:""; position:absolute; left:50%; z-index:0; width:min(1120px,112vw); height:250px; pointer-events:none; background-repeat:no-repeat; background-position:center; background-size:100% 100%; opacity:.58; transform:translateX(-50%); }
-  .dor-sales-hero::before { top:-82px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1120 250'%3E%3Cpath d='M-50 190 C180 20 360 270 585 105 S920 35 1170 155' fill='none' stroke='%23d64fae' stroke-opacity='.17' stroke-width='22' stroke-linecap='round'/%3E%3Cpath d='M-40 210 C210 70 375 245 600 125 S920 70 1160 175' fill='none' stroke='%237f55d9' stroke-opacity='.13' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M-35 165 C185 5 405 225 625 75 S955 20 1165 135' fill='none' stroke='%23f2b94b' stroke-opacity='.11' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E"); animation:dor-life-ribbon-drift 13s ease-in-out infinite alternate; }
-  .dor-sales-hero::after { top:-46px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1120 250'%3E%3Cpath d='M-70 80 C165 235 380 15 590 150 S920 220 1190 85' fill='none' stroke='%23603374' stroke-opacity='.09' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M-60 102 C180 245 395 45 610 170 S935 235 1180 112' fill='none' stroke='%23ffffff' stroke-opacity='.22' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E"); animation:dor-life-ribbon-drift-reverse 16s ease-in-out infinite alternate; }
-  @keyframes dor-life-ribbon-drift { from { transform:translateX(-53%) translateY(0) scaleX(.98); } to { transform:translateX(-47%) translateY(9px) scaleX(1.03); } }
-  @keyframes dor-life-ribbon-drift-reverse { from { transform:translateX(-47%) translateY(5px) scaleX(1.02); } to { transform:translateX(-53%) translateY(-5px) scaleX(.98); } }
+  .dor-sales-hero::before,.dor-sales-hero::after { content:""; position:absolute; left:50%; z-index:0; width:min(1260px,126vw); height:300px; pointer-events:none; background:url("assets/life-mesh-ribbon.svg") center/100% 100% no-repeat; transform:translateX(-50%); }
+  .dor-sales-hero::before { top:-104px; opacity:.78; animation:dor-life-mesh-drift 18s ease-in-out infinite alternate; }
+  .dor-sales-hero::after { top:-68px; opacity:.3; transform:translateX(-50%) scaleX(-1) scaleY(.82); animation:dor-life-mesh-breathe 22s ease-in-out infinite alternate; }
+  @keyframes dor-life-mesh-drift { from { transform:translateX(-52%) translateY(-3px) scaleX(.98); } to { transform:translateX(-48%) translateY(7px) scaleX(1.02); } }
+  @keyframes dor-life-mesh-breathe { from { transform:translateX(-49%) scaleX(-.98) scaleY(.8); } to { transform:translateX(-51%) translateY(8px) scaleX(-1.02) scaleY(.86); } }
   .dor-sales .dor-import-brand { position:fixed; top:18px; right:20px; z-index:30; flex-direction:row; align-items:center; gap:10.5px; margin:0; padding:6px 4px; text-align:left; }
   .dor-brand-letter-trigger { position:absolute; inset:0; z-index:2; border:0; border-radius:12px; background:transparent; cursor:pointer; }
   .dor-brand-letter-trigger:focus-visible { outline:2px solid rgba(96,51,116,.58); outline-offset:3px; }
@@ -982,7 +982,8 @@ html>body{padding:0}</style>
     .dor-sales-hero + .dor-case-showcase{margin-top:120px}
     .dor-dual-person:first-child,.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-14deg) translateY(7px)}
     .dor-dual-person:last-child,.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(13deg) translateY(-5px)}
-    .dor-sales-hero::before,.dor-sales-hero::after{width:150vw;height:220px;opacity:.48}
+    .dor-sales-hero::before,.dor-sales-hero::after{width:150vw;height:220px}
+    .dor-sales-hero::before{opacity:.62}.dor-sales-hero::after{opacity:.22}
     .dor-founder-letter-inner{padding:42px 24px 30px}
   }
   @media(prefers-reduced-motion:reduce){.dor-sales-hero::before,.dor-sales-hero::after{animation:none}}

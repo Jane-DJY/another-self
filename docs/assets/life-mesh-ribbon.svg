@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 360" preserveAspectRatio="none">
+  <defs>
+    <path id="mesh-a" d="M-120 188 C130 18 320 330 590 148 S1030 20 1510 192"/>
+    <path id="mesh-b" d="M-120 102 C170 306 390 -8 690 174 S1110 330 1510 86"/>
+    <filter id="organic-weave" x="-10%" y="-30%" width="120%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.003 0.011" numOctaves="2" seed="19" result="flow"/>
+      <feDisplacementMap in="SourceGraphic" in2="flow" scale="34" xChannelSelector="R" yChannelSelector="B"/>
+    </filter>
+  </defs>
+  <g fill="none" stroke="#68466f" stroke-width="0.75" stroke-linecap="round" filter="url(#organic-weave)">
+    <g opacity="0.17">
+      <use href="#mesh-a" transform="translate(0 -42)"/><use href="#mesh-a" transform="translate(0 -36)"/>
+      <use href="#mesh-a" transform="translate(0 -30)"/><use href="#mesh-a" transform="translate(0 -24)"/>
+      <use href="#mesh-a" transform="translate(0 -18)"/><use href="#mesh-a" transform="translate(0 -12)"/>
+      <use href="#mesh-a" transform="translate(0 -6)"/><use href="#mesh-a"/>
+      <use href="#mesh-a" transform="translate(0 6)"/><use href="#mesh-a" transform="translate(0 12)"/>
+      <use href="#mesh-a" transform="translate(0 18)"/><use href="#mesh-a" transform="translate(0 24)"/>
+      <use href="#mesh-a" transform="translate(0 30)"/><use href="#mesh-a" transform="translate(0 36)"/>
+      <use href="#mesh-a" transform="translate(0 42)"/>
+    </g>
+    <g opacity="0.12">
+      <use href="#mesh-b" transform="translate(0 -36)"/><use href="#mesh-b" transform="translate(0 -30)"/>
+      <use href="#mesh-b" transform="translate(0 -24)"/><use href="#mesh-b" transform="translate(0 -18)"/>
+      <use href="#mesh-b" transform="translate(0 -12)"/><use href="#mesh-b" transform="translate(0 -6)"/>
+      <use href="#mesh-b"/><use href="#mesh-b" transform="translate(0 6)"/>
+      <use href="#mesh-b" transform="translate(0 12)"/><use href="#mesh-b" transform="translate(0 18)"/>
+      <use href="#mesh-b" transform="translate(0 24)"/><use href="#mesh-b" transform="translate(0 30)"/>
+      <use href="#mesh-b" transform="translate(0 36)"/>
+    </g>
+  </g>
+</svg>
