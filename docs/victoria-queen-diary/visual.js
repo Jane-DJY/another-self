@@ -29,7 +29,7 @@ function bandPath(left, right) {
 }
 
 function bodyHalfWidth(t, mini = false) {
-  const scale = mini ? .72 : 1;
+  const scale = mini ? .72 : 1.12;
   const points = [
     [0, 70], [.08, 56], [.17, 94], [.28, 190], [.42, 225],
     [.57, 168], [.7, 156], [.82, 178], [1, 205]
@@ -54,10 +54,10 @@ function renderHead(svg, mini = false) {
   const backgroundBlocks = [];
   let colorIndex = 0;
   rowCounts.forEach((count, row) => {
-    const baseW = mini ? 43 : 52;
-    const h = mini ? 18 : 22;
-    const stepX = mini ? 31 : 36;
-    const stepY = mini ? 20 : 24;
+    const baseW = mini ? 43 : 58;
+    const h = mini ? 18 : 24;
+    const stepX = mini ? 31 : 40;
+    const stepY = mini ? 20 : 25;
     const rowWidth = (count - 1) * stepX + baseW;
     for (let col = 0; col < count; col++) {
       const w = baseW + Math.sin(row * 4.7 + col * 2.3) * (mini ? 4 : 7);
@@ -76,15 +76,15 @@ function renderHead(svg, mini = false) {
 
   if (!mini) {
     const labelBlocks = [
-      { label: '日常', x: center - 120, y: 86, w: 72, color: '#5A3D82', rotation: -4 },
-      { label: '阅读', x: center - 38, y: 78, w: 72, color: '#CE5A8F', rotation: 3 },
-      { label: '亲情', x: center + 48, y: 88, w: 74, color: '#A56BD3', rotation: -2 },
-      { label: '艺术', x: center - 106, y: 124, w: 72, color: '#E6A640', rotation: 4 },
-      { label: '出行', x: center - 20, y: 116, w: 74, color: '#6D9F91', rotation: -3 },
-      { label: '社交', x: center + 66, y: 126, w: 72, color: '#D979B5', rotation: 3 }
+      { label: '日常', x: center - 134, y: 88, w: 80, color: '#5A3D82', rotation: -4 },
+      { label: '阅读', x: center - 43, y: 80, w: 80, color: '#CE5A8F', rotation: 3 },
+      { label: '亲情', x: center + 53, y: 90, w: 82, color: '#A56BD3', rotation: -2 },
+      { label: '艺术', x: center - 118, y: 128, w: 80, color: '#E6A640', rotation: 4 },
+      { label: '出行', x: center - 23, y: 120, w: 82, color: '#6D9F91', rotation: -3 },
+      { label: '社交', x: center + 74, y: 130, w: 80, color: '#D979B5', rotation: 3 }
     ];
     labelBlocks.forEach(item => {
-      const h = 28;
+      const h = 30;
       const group = el('g', { transform: `rotate(${item.rotation} ${item.x + item.w/2} ${item.y + h/2})` });
       group.appendChild(el('rect', { x: item.x, y: item.y, width: item.w, height: h, rx: 5, fill: item.color, opacity: .98 }));
       group.appendChild(el('text', {
@@ -93,7 +93,7 @@ function renderHead(svg, mini = false) {
         'text-anchor': 'middle',
         'dominant-baseline': 'central',
         fill: 'white',
-          'font-size': 14,
+          'font-size': 15,
         'font-weight': 800
       }, item.label));
       svg.appendChild(group);
@@ -136,7 +136,7 @@ function renderRiver(svg, data, mini = false) {
 
   if (mini) return;
 
-  const yearAxisX = 610;
+  const yearAxisX = 625;
   svg.appendChild(el('line', { x1: yearAxisX, y1: yTop, x2: yearAxisX, y2: yBottom, stroke: '#c9b5c8', 'stroke-width': 1, opacity: .72 }));
   rows.forEach((row, ri) => {
     const t = ri / (rows.length - 1);
