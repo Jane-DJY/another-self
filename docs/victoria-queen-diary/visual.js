@@ -51,10 +51,11 @@ function bodyHalfWidth(t, mini = false) {
   return width * scale;
 }
 
-function renderHead(svg, mini = false) {
+function renderHead(svg, data, mini = false) {
   const center = mini ? 260 : 320;
   const top = mini ? 28 : 18;
-  const colors = ['#5A3D82','#CE5A8F','#A56BD3','#E6A640','#D979B5','#6D9F91'];
+  const categoryByKey = Object.fromEntries(data.categories.map(category => [category.key, category]));
+  const colors = data.categories.map(category => category.color);
   const rowCounts = mini ? [3, 5, 6, 7, 7, 7, 6, 5, 3] : [2, 4, 5, 6, 7, 6, 5, 4, 2];
   const backgroundBlocks = [];
   let colorIndex = 0;
@@ -81,13 +82,18 @@ function renderHead(svg, mini = false) {
 
   if (!mini) {
     const labelBlocks = [
-      { label: '日常', x: center - 165, y: 110, w: 104, color: '#5A3D82', rotation: -4 },
-      { label: '阅读', x: center - 52, y: 102, w: 104, color: '#CE5A8F', rotation: 3 },
-      { label: '亲情', x: center + 62, y: 111, w: 106, color: '#A56BD3', rotation: -2 },
-      { label: '艺术', x: center - 150, y: 169, w: 104, color: '#E6A640', rotation: 4 },
-      { label: '出行', x: center - 30, y: 160, w: 106, color: '#6D9F91', rotation: -3 },
-      { label: '社交', x: center + 90, y: 171, w: 104, color: '#D979B5', rotation: 3 }
-    ];
+      { key: 'publicDuty', x: center - 66, y: 60, w: 132, rotation: -2 },
+      { key: 'dailyRhythm', x: center - 190, y: 112, w: 118, rotation: -4, textColor: '#442352' },
+      { key: 'learning', x: center - 62, y: 104, w: 124, rotation: 3 },
+      { key: 'familyAffection', x: center + 72, y: 113, w: 128, rotation: -2 },
+      { key: 'arts', x: center - 184, y: 170, w: 128, rotation: 4 },
+      { key: 'movementNature', x: center - 48, y: 161, w: 128, rotation: -3 },
+      { key: 'socialLife', x: center + 88, y: 171, w: 128, rotation: 3 }
+    ].map(item => ({
+      ...item,
+      label: categoryByKey[item.key].zh,
+      color: categoryByKey[item.key].color
+    }));
     labelBlocks.forEach(item => {
       const h = 38;
       const group = el('g', { transform: `rotate(${item.rotation} ${item.x + item.w/2} ${item.y + h/2})` });
@@ -97,8 +103,8 @@ function renderHead(svg, mini = false) {
         y: item.y + h / 2,
         'text-anchor': 'middle',
         'dominant-baseline': 'central',
-        fill: 'white',
-        'font-size': 20,
+        fill: item.textColor || 'white',
+        'font-size': 18,
         'font-weight': 800
       }, item.label));
       svg.appendChild(group);
@@ -241,9 +247,9 @@ fetch('data/analysis.json')
   })
   .then(data => {
     const mini = document.getElementById('miniRiver');
-    if (mini) { renderHead(mini, true); renderRiver(mini, data, true); }
+    if (mini) { renderHead(mini, data, true); renderRiver(mini, data, true); }
     const chart = document.getElementById('riverChart');
-    if (chart) { renderHead(chart, false); renderRiver(chart, data, false); renderLegend(data); }
+    if (chart) { renderHead(chart, data, false); renderRiver(chart, data, false); renderLegend(data); }
     document.getElementById('replay')?.addEventListener('click', replay);
   })
   .catch(error => {
