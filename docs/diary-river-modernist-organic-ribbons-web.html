@@ -886,11 +886,18 @@ html>body{padding:0}</style>
     justify-content: flex-start; padding: clamp(230px,27vh,320px) 24px 56px;
   }
   body.dor-has-entered .dor-sales .dor-import-entry { display: none; }
-  .dor-sales-hero { display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
+  .dor-sales-hero { position:relative; isolation:isolate; display:grid; justify-items:center; width:min(920px,100%); margin:0 auto; }
+  .dor-sales-hero::before,.dor-sales-hero::after { content:""; position:absolute; left:50%; z-index:0; width:min(1120px,112vw); height:250px; pointer-events:none; background-repeat:no-repeat; background-position:center; background-size:100% 100%; opacity:.58; transform:translateX(-50%); }
+  .dor-sales-hero::before { top:-82px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1120 250'%3E%3Cpath d='M-50 190 C180 20 360 270 585 105 S920 35 1170 155' fill='none' stroke='%23d64fae' stroke-opacity='.17' stroke-width='22' stroke-linecap='round'/%3E%3Cpath d='M-40 210 C210 70 375 245 600 125 S920 70 1160 175' fill='none' stroke='%237f55d9' stroke-opacity='.13' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M-35 165 C185 5 405 225 625 75 S955 20 1165 135' fill='none' stroke='%23f2b94b' stroke-opacity='.11' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E"); animation:dor-life-ribbon-drift 13s ease-in-out infinite alternate; }
+  .dor-sales-hero::after { top:-46px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1120 250'%3E%3Cpath d='M-70 80 C165 235 380 15 590 150 S920 220 1190 85' fill='none' stroke='%23603374' stroke-opacity='.09' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M-60 102 C180 245 395 45 610 170 S935 235 1180 112' fill='none' stroke='%23ffffff' stroke-opacity='.22' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E"); animation:dor-life-ribbon-drift-reverse 16s ease-in-out infinite alternate; }
+  @keyframes dor-life-ribbon-drift { from { transform:translateX(-53%) translateY(0) scaleX(.98); } to { transform:translateX(-47%) translateY(9px) scaleX(1.03); } }
+  @keyframes dor-life-ribbon-drift-reverse { from { transform:translateX(-47%) translateY(5px) scaleX(1.02); } to { transform:translateX(-53%) translateY(-5px) scaleX(.98); } }
   .dor-sales .dor-import-brand { position:fixed; top:18px; right:20px; z-index:30; flex-direction:row; align-items:center; gap:10.5px; margin:0; padding:6px 4px; text-align:left; }
+  .dor-brand-letter-trigger { position:absolute; inset:0; z-index:2; border:0; border-radius:12px; background:transparent; cursor:pointer; }
+  .dor-brand-letter-trigger:focus-visible { outline:2px solid rgba(96,51,116,.58); outline-offset:3px; }
   .dor-sales .dor-import-mark { width:15px; height:21px; aspect-ratio:auto; filter:drop-shadow(0 2px 3px rgba(83,33,123,.22)); animation:none; }
   .dor-sales .dor-import-name { margin:0; font:500 16.5px/1.2 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.08em; text-indent:0; }
-  .dor-brand-message { display:grid; justify-items:center; gap:8px; max-width:760px; color:var(--ink); text-align:center; }
+  .dor-brand-message { position:relative; z-index:1; display:grid; justify-items:center; gap:8px; max-width:760px; color:var(--ink); text-align:center; }
   .dor-brand-message strong { font:500 clamp(36px,4.6vw,58px)/1.24 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.035em; }
   .dor-brand-message span { max-width:700px; color:var(--muted); font:400 clamp(13px,1.4vw,16px)/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-sales-eyebrow { margin:0 0 16px; color:#8c5c94; font:600 12px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.18em; }
@@ -909,8 +916,11 @@ html>body{padding:0}</style>
   .dor-dual-case { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); align-items:center; min-height:320px; padding:16px 34px; overflow:hidden; border:1px solid rgba(93,45,115,.11); border-radius:20px; background:rgba(255,255,255,.2); box-shadow:0 18px 56px rgba(100,54,126,.06); backdrop-filter:blur(3px); }
   .dor-dual-copy { position:relative; z-index:5; align-self:center; padding:0 clamp(8px,2.4vw,30px) 0 clamp(4px,1vw,12px); }
   .dor-sales-section .dor-dual-hook { max-width:390px; margin:0; color:var(--ink); font:500 clamp(24px,2.7vw,36px)/1.35 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
-  .dor-dual-benefits { display:grid; gap:4px; margin:16px 0 0; padding:0; list-style:none; color:var(--muted); font:500 14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.06em; }
-  .dor-dual-cta { margin-top:20px; }
+  .dor-dual-benefits { display:grid; gap:10px; margin:20px 0 0; padding:0; list-style:none; }
+  .dor-dual-benefits li { display:grid; gap:2px; padding-left:12px; border-left:2px solid rgba(118,65,132,.22); }
+  .dor-dual-benefits strong { color:var(--ink); font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-dual-benefits span { max-width:310px; color:var(--muted); font:400 12px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-dual-cta { margin-top:22px; cursor:pointer; }
   .dor-dual-figures { display:flex; align-items:center; justify-content:flex-end; width:100%; height:280px; padding:0 22px; }
   .dor-dual-person { position:relative; display:flex; flex:0 0 220px; align-items:flex-end; justify-content:center; width:220px; height:280px; overflow:hidden; background:transparent; isolation:isolate; transform-origin:50% 86%; transition:transform 240ms ease,filter 240ms ease; }
   .dor-dual-person:first-child { z-index:1; margin-right:-100px; transform:rotate(-14deg) translateY(7px); }
@@ -957,13 +967,25 @@ html>body{padding:0}</style>
   .dor-site-footer p { margin:0 0 9px; }
   .dor-site-footer a { color:var(--purple); text-underline-offset:3px; overflow-wrap:anywhere; }
   .dor-footer-meta { margin-top:30px!important; padding-top:16px; border-top:1px solid rgba(93,45,115,.12); color:#927c96; font-size:12px; }
+  .dor-founder-letter { --ink:#442352; --purple:#603374; width:min(620px,calc(100vw - 32px)); max-height:min(82vh,760px); padding:0; overflow:auto; border:1px solid rgba(93,45,115,.16); border-radius:24px; background:rgba(255,248,253,.96); color:var(--ink); box-shadow:0 28px 90px rgba(68,35,82,.22); backdrop-filter:blur(18px); }
+  .dor-founder-letter::backdrop { background:rgba(59,31,67,.28); backdrop-filter:blur(7px); }
+  .dor-founder-letter-inner { position:relative; padding:clamp(32px,6vw,56px); }
+  .dor-founder-letter-close { position:absolute; top:16px; right:16px; display:grid; place-items:center; width:36px; height:36px; border:1px solid rgba(93,45,115,.14); border-radius:50%; background:rgba(255,255,255,.55); color:var(--ink); font:400 21px/1 sans-serif; cursor:pointer; }
+  .dor-founder-letter-kicker { margin:0 0 12px; color:#9b5aa0; font:600 11px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.18em; }
+  .dor-founder-letter h2 { margin:0 0 24px; font:500 clamp(30px,5vw,42px)/1.28 ui-serif,Georgia,"Songti SC",serif; letter-spacing:-.03em; }
+  .dor-founder-letter p { margin:0 0 16px; color:#664f6b; font:400 15px/1.85 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-founder-letter-signature { margin-top:26px!important; color:var(--ink)!important; font-family:ui-serif,Georgia,"Songti SC",serif!important; }
+  .dor-founder-letter-contact { display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin-top:8px; padding:0 18px; border-radius:999px; background:var(--purple); color:#fff!important; font:600 13px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-decoration:none!important; }
   @media(max-width:760px){
     .dor-sales .dor-import-entry{padding:clamp(96px,14vh,120px) 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
     .dor-sales .dor-import-entry{padding-top:clamp(132px,19vh,180px)}
     .dor-sales-hero + .dor-case-showcase{margin-top:120px}
     .dor-dual-person:first-child,.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-14deg) translateY(7px)}
     .dor-dual-person:last-child,.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(13deg) translateY(-5px)}
+    .dor-sales-hero::before,.dor-sales-hero::after{width:150vw;height:220px;opacity:.48}
+    .dor-founder-letter-inner{padding:42px 24px 30px}
   }
+  @media(prefers-reduced-motion:reduce){.dor-sales-hero::before,.dor-sales-hero::after{animation:none}}
   html.dor-preview,
   body.dor-preview { overflow:hidden!important; background:transparent!important; }
   body.dor-preview .dor-top-nav,
@@ -985,6 +1007,7 @@ html>body{padding:0}</style>
 <main class="dor-import-entry" data-import-entry aria-labelledby="dor-import-name">
   <div class="dor-sales-hero">
     <div class="dor-import-brand">
+      <button class="dor-brand-letter-trigger" type="button" data-open-founder-letter aria-label="阅读创作者写给你的信"></button>
       <figure class="dor-import-mark"><img src="assets/another-self-life-crystal-transparent.png" alt="映照出多个女性身影的生命晶体"></figure>
       <h1 class="dor-import-name" id="dor-import-name">另世我</h1>
     </div>
@@ -999,9 +1022,9 @@ html>body{padding:0}</style>
       <div class="dor-dual-copy">
         <h2 class="dor-dual-hook" id="dor-dual-case-title">上传日记等文本记录<br>看见过往人生轨迹</h2>
         <ul class="dor-dual-benefits" aria-label="人生河流可以帮助你">
-          <li>看见时间流向</li>
-          <li>辨别关键节点</li>
-          <li>留下人生回忆</li>
+          <li><strong>看见时间流向</strong><span>生日、年中年末，或忙到不知道时间去了哪里</span></li>
+          <li><strong>辨别关键节点</strong><span>换工作、换城市，或告别一段关系与生活阶段</span></li>
+          <li><strong>留下人生回忆</strong><span>把散落的记录连起来，看见自己怎样一路改变</span></li>
         </ul>
         <a class="dor-sales-primary dor-dual-cta" href="#birth-package">立即体验</a>
       </div>
@@ -1017,8 +1040,6 @@ html>body{padding:0}</style>
       </div>
     </div>
   </section>
-
-  <section class="dor-sales-section"><h2>也许你正站在这里</h2><p class="dor-sales-section-intro">另世我不按年龄或身份定义你，而从一个值得重新回望的人生节点开始。</p><div class="dor-node-grid"><div class="dor-node">又到生日，想知道这一岁究竟发生了什么</div><div class="dor-node">想做年度或年中复盘，却不想再填模板</div><div class="dor-node">正在换工作、换岗位或换一座城市</div><div class="dor-node">经历了一段关系或生活阶段的结束</div><div class="dor-node">记录了很多，却看不出自己怎样改变</div><div class="dor-node">感到一直很忙，却不知道时间去了哪里</div></div></section>
 
   <section class="dor-sales-section" id="birth-package"><h2>第一批「另世我诞生版」</h2><p class="dor-sales-section-intro">这是一个由创作者本人参与整理、分析和制作的半人工服务。先把第一条河认真做出来，再谈长期陪伴。</p><div class="dor-package"><div><h3>另世我 · 人生河流</h3><div class="dor-price">¥599 <small>首发共创价</small></div><p class="dor-package-meta">正式价预计 ¥899 · 首批限5位<br>资料确认后预计7—10天交付</p><a class="dor-sales-primary" href="#apply">申请生成我的另世我</a></div><ul><li>6—12个月生活记录整理</li><li>一个专属可交互的人生河流网页</li><li>一张可收藏、可脱敏分享的出生照</li><li>3—5个重要人生节点</li><li>3—5条有记录依据的个人洞察</li><li>一封写给当下自己的信</li><li>一次30分钟线上解读</li></ul></div></section>
 
@@ -1049,6 +1070,20 @@ html>body{padding:0}</style>
   </footer>
 </main>
 </div>
+<dialog class="dor-founder-letter" data-founder-letter aria-labelledby="dor-founder-letter-title">
+  <div class="dor-founder-letter-inner">
+    <button class="dor-founder-letter-close" type="button" data-close-founder-letter aria-label="关闭这封信">×</button>
+    <p class="dor-founder-letter-kicker">FROM THE CREATOR</p>
+    <h2 id="dor-founder-letter-title">写给来到这里的你</h2>
+    <p>你好，我是爱可视化的简女士。</p>
+    <p>我做「另世我」，是因为我越来越相信：我们认真生活过的痕迹，不应该只散落在日记、日程和一条条记录里。很多时候，我们留下了很多，却很难重新看清自己经历了什么、正在怎样改变，又想走向哪里。</p>
+    <p>所以我想尝试把这些零散的生活记录，慢慢养成一个会生长的“另一个你”。它不是给你贴标签，也不是替你下结论，而是用人生河流、关键节点和一封信，陪你重新看见自己的时间、选择与变化。</p>
+    <p>现在的「另世我」还在很早期。我会亲自参与每一次整理、分析和制作，也希望它最终不只是一张好看的图，而是一份真正能被保存、被理解，并在某个时刻给你一点方向感的生命纪念。</p>
+    <p>如果你对这个产品有任何感受、疑问，或者觉得哪里还可以更好，都欢迎告诉我。你的建议和意见，会帮助「另世我」长成更接近真实需要的样子。</p>
+    <p class="dor-founder-letter-signature">谢谢你来到这里。<br>爱可视化的简女士</p>
+    <a class="dor-founder-letter-contact" href="mailto:djy20182019@gmail.com?subject=%E7%BB%99%E3%80%8C%E5%8F%A6%E4%B8%96%E6%88%91%E3%80%8D%E7%9A%84%E5%BB%BA%E8%AE%AE">给我写信</a>
+  </div>
+</dialog>
 <section id="diary-river-organic-ribbons" aria-label="2026 年日记现代主义有机丝带图">
   <style>
     html, body { background: #ebe3d7 !important; }
@@ -2771,7 +2806,22 @@ html>body{padding:0}</style>
   const home = document.querySelector('[data-return-home]');
   const label = document.querySelector('[data-import-label]');
   const status = document.querySelector('[data-import-status]');
+  const founderLetter = document.querySelector('[data-founder-letter]');
+  const founderLetterTrigger = document.querySelector('[data-open-founder-letter]');
+  const founderLetterClose = document.querySelector('[data-close-founder-letter]');
   let entering = false;
+
+  function openFounderLetter() {
+    if (!founderLetter) return;
+    if (typeof founderLetter.showModal === 'function') founderLetter.showModal();
+    else founderLetter.setAttribute('open', '');
+  }
+
+  function closeFounderLetter() {
+    if (!founderLetter) return;
+    if (typeof founderLetter.close === 'function') founderLetter.close();
+    else founderLetter.removeAttribute('open');
+  }
 
   function enterRiver(message) {
     if (entering) return;
@@ -2805,6 +2855,13 @@ html>body{padding:0}</style>
   });
 
   demos.forEach((demo) => demo.addEventListener('click', () => enterRiver('正在载入示例日记数据')));
+  founderLetterTrigger?.addEventListener('click', openFounderLetter);
+  founderLetterClose?.addEventListener('click', closeFounderLetter);
+  founderLetter?.addEventListener('click', (event) => {
+    const rect = founderLetter.getBoundingClientRect();
+    const outside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+    if (outside) closeFounderLetter();
+  });
   home?.addEventListener('click', () => {
     document.querySelector('#diary-river-organic-ribbons')?.dispatchEvent(new CustomEvent('dor:return-home'));
     const entry = document.querySelector('[data-import-entry]');
