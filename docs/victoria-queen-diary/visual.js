@@ -29,7 +29,7 @@ function bandPath(left, right) {
 }
 
 function bodyHalfWidth(t, mini = false) {
-  const scale = mini ? .72 : 1.12;
+  const scale = mini ? .72 : 1.24;
   const points = [
     [0, 70], [.08, 56], [.17, 94], [.28, 190], [.42, 225],
     [.57, 168], [.7, 156], [.82, 178], [1, 205]
@@ -47,17 +47,17 @@ function bodyHalfWidth(t, mini = false) {
 }
 
 function renderHead(svg, mini = false) {
-  const center = mini ? 260 : 345;
-  const top = mini ? 28 : 4;
+  const center = mini ? 260 : 320;
+  const top = mini ? 28 : 0;
   const colors = ['#5A3D82','#CE5A8F','#A56BD3','#E6A640','#D979B5','#6D9F91'];
-  const rowCounts = [3, 5, 6, 7, 7, 7, 6, 5, 3];
+  const rowCounts = mini ? [3, 5, 6, 7, 7, 7, 6, 5, 3] : [3, 5, 7, 8, 9, 9, 8, 7, 5, 3];
   const backgroundBlocks = [];
   let colorIndex = 0;
   rowCounts.forEach((count, row) => {
-    const baseW = mini ? 43 : 58;
-    const h = mini ? 18 : 24;
-    const stepX = mini ? 31 : 40;
-    const stepY = mini ? 20 : 25;
+    const baseW = mini ? 43 : 64;
+    const h = mini ? 18 : 26;
+    const stepX = mini ? 31 : 45;
+    const stepY = mini ? 20 : 21.5;
     const rowWidth = (count - 1) * stepX + baseW;
     for (let col = 0; col < count; col++) {
       const w = baseW + Math.sin(row * 4.7 + col * 2.3) * (mini ? 4 : 7);
@@ -76,15 +76,15 @@ function renderHead(svg, mini = false) {
 
   if (!mini) {
     const labelBlocks = [
-      { label: '日常', x: center - 134, y: 88, w: 80, color: '#5A3D82', rotation: -4 },
-      { label: '阅读', x: center - 43, y: 80, w: 80, color: '#CE5A8F', rotation: 3 },
-      { label: '亲情', x: center + 53, y: 90, w: 82, color: '#A56BD3', rotation: -2 },
-      { label: '艺术', x: center - 118, y: 128, w: 80, color: '#E6A640', rotation: 4 },
-      { label: '出行', x: center - 23, y: 120, w: 82, color: '#6D9F91', rotation: -3 },
-      { label: '社交', x: center + 74, y: 130, w: 80, color: '#D979B5', rotation: 3 }
+      { label: '日常', x: center - 174, y: 82, w: 104, color: '#5A3D82', rotation: -4 },
+      { label: '阅读', x: center - 52, y: 75, w: 104, color: '#CE5A8F', rotation: 3 },
+      { label: '亲情', x: center + 70, y: 84, w: 106, color: '#A56BD3', rotation: -2 },
+      { label: '艺术', x: center - 157, y: 133, w: 104, color: '#E6A640', rotation: 4 },
+      { label: '出行', x: center - 34, y: 124, w: 106, color: '#6D9F91', rotation: -3 },
+      { label: '社交', x: center + 90, y: 135, w: 104, color: '#D979B5', rotation: 3 }
     ];
     labelBlocks.forEach(item => {
-      const h = 30;
+      const h = 38;
       const group = el('g', { transform: `rotate(${item.rotation} ${item.x + item.w/2} ${item.y + h/2})` });
       group.appendChild(el('rect', { x: item.x, y: item.y, width: item.w, height: h, rx: 5, fill: item.color, opacity: .98 }));
       group.appendChild(el('text', {
@@ -93,16 +93,25 @@ function renderHead(svg, mini = false) {
         'text-anchor': 'middle',
         'dominant-baseline': 'central',
         fill: 'white',
-          'font-size': 15,
+        'font-size': 20,
         'font-weight': 800
       }, item.label));
       svg.appendChild(group);
     });
+    svg.appendChild(el('path', {
+      d: `M ${center - 12} 229 Q ${center} 238 ${center + 12} 229 M ${center - 8} 231 Q ${center} 236 ${center + 8} 231`,
+      fill: 'none',
+      stroke: '#c96f7d',
+      'stroke-width': 2.6,
+      'stroke-linecap': 'round',
+      opacity: .95,
+      'aria-hidden': 'true'
+    }));
   }
 }
 
 function renderRiver(svg, data, mini = false) {
-  const center = mini ? 260 : 345;
+  const center = mini ? 260 : 320;
   const yTop = mini ? 245 : 245;
   const yBottom = mini ? 720 : 1030;
   const rows = data.yearly;
@@ -136,14 +145,12 @@ function renderRiver(svg, data, mini = false) {
 
   if (mini) return;
 
-  const yearAxisX = 625;
+  const yearAxisX = 648;
   svg.appendChild(el('line', { x1: yearAxisX, y1: yTop, x2: yearAxisX, y2: yBottom, stroke: '#c9b5c8', 'stroke-width': 1, opacity: .72 }));
   rows.forEach((row, ri) => {
     const t = ri / (rows.length - 1);
     const y = yTop + t * (yBottom-yTop);
     const g = el('g', { class: `year-hit${ri === 0 ? ' active' : ''}`, 'data-year': row.year });
-    const bodyRight = center + bodyHalfWidth(t, false);
-    g.appendChild(el('line', { x1: bodyRight + 8, y1: y, x2: yearAxisX, y2: y, stroke: '#c9b5c8', 'stroke-width': 1 }));
     g.appendChild(el('circle', { cx: yearAxisX, cy: y, r: 6, fill: '#9e759a' }));
     g.appendChild(el('text', { x: yearAxisX + 16, y: y + 5, class: 'year-label' }, `${row.year} · ${row.age}岁`));
     g.addEventListener('click', () => selectYear(row.year, data));

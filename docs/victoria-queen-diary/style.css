@@ -56,12 +56,12 @@ body {
 
 .explore-layout {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1500px;
   height: 100svh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(360px, 1.08fr) minmax(420px, .92fr);
-  gap: clamp(28px, 4vw, 72px);
+  grid-template-columns: minmax(500px, .96fr) minmax(620px, 1.04fr);
+  gap: clamp(24px, 3vw, 48px);
   align-items: center;
   padding: clamp(20px, 4vw, 56px);
 }
@@ -132,8 +132,8 @@ body {
 
 .river-panel {
   position: relative;
-  width: min(100%, calc((100svh - clamp(40px, 8vw, 112px)) * .75));
-  max-width: 620px;
+  width: min(100%, calc((100svh - clamp(40px, 8vw, 112px)) * .64));
+  max-width: 700px;
   max-height: calc(100svh - clamp(40px, 8vw, 112px));
   aspect-ratio: 720 / 1120;
   justify-self: start;
@@ -172,7 +172,7 @@ body {
 @keyframes growRiver { from { transform: scaleY(.02); opacity: 0; } to { transform: scaleY(1); opacity: .96; } }
 .river-band.growing { animation: growRiver 1.2s cubic-bezier(.22,.8,.25,1) both; animation-delay: var(--delay); }
 
-@media (max-width: 860px) {
+@media (max-width: 1240px) {
   body { width: 100%; height: auto; min-height: 100svh; overflow-x: hidden; overflow-y: auto; }
   .explore-layout {
     height: auto;
