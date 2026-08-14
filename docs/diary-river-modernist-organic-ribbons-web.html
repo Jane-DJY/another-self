@@ -955,6 +955,14 @@ html>body{padding:0}</style>
   .dor-addon-price { margin:14px 0 7px; color:#7b378f; font:600 34px/1 ui-serif,Georgia,serif; }
   .dor-addon-price small { margin-left:8px; color:#6c5b72; font:400 13px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-addon-card p { margin:0; color:#6c5b72; font:400 13px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-delivery-flow { position:relative; overflow:hidden; padding:clamp(28px,4vw,44px); border:1px solid rgba(93,45,115,.13); border-radius:22px; background:linear-gradient(135deg,rgba(255,255,255,.48),rgba(246,218,246,.38)); box-shadow:0 18px 54px rgba(107,55,125,.06); }
+  .dor-delivery-flow::after { position:absolute; top:-100px; right:-80px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle,rgba(226,102,199,.18),transparent 68%); content:""; pointer-events:none; }
+  .dor-flow-kicker { margin:0 0 7px; color:#9b5aa0; font:600 11px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:.15em; }
+  .dor-flow-list { position:relative; z-index:1; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:30px 0 0; padding:0; list-style:none; }
+  .dor-flow-list::before { position:absolute; top:25px; left:9%; right:9%; height:2px; background:linear-gradient(90deg,#de8bc6,#8b4ca1); content:""; opacity:.48; }
+  .dor-flow-step { position:relative; text-align:center; }
+  .dor-flow-number { position:relative; z-index:1; display:grid; place-items:center; width:52px; height:52px; margin:0 auto 14px; border:1px solid rgba(255,255,255,.76); border-radius:50%; color:#fff; background:linear-gradient(145deg,#5b2f70,#a34cab); box-shadow:0 9px 22px rgba(83,39,101,.2); font:600 13px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-flow-step h3 { margin:0; color:var(--ink); font:500 14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-concerns { padding:clamp(26px,4vw,44px); border:1px solid rgba(93,45,115,.13); border-radius:22px; background:rgba(255,255,255,.32); box-shadow:0 18px 54px rgba(107,55,125,.06); }
   .dor-concerns-head { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:36px; align-items:end; }
   .dor-concerns-head .dor-sales-section-intro { margin:0; }
@@ -963,11 +971,6 @@ html>body{padding:0}</style>
   .dor-concern h3 { display:flex; align-items:flex-start; gap:10px; margin:0; color:var(--ink); font:500 15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-concern h3::before { content:"?"; display:grid; place-items:center; flex:0 0 22px; width:22px; height:22px; margin-top:1px; border-radius:50%; color:var(--pink); background:rgba(234,75,170,.1); font:600 12px/1 sans-serif; }
   .dor-concern p { margin:9px 0 0 32px; color:var(--muted); font:400 13px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-concerns-path { margin:22px 0 0; padding-top:18px; border-top:1px solid rgba(93,45,115,.12); color:var(--muted); font:400 12px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-concerns-path b { margin-right:8px; color:var(--ink); font-weight:500; }
-  .dor-concerns-action { margin-top:24px; text-align:center; }
-  .dor-concerns-action .dor-import-actions { justify-content:center; }
-  .dor-concerns-action .dor-sales-note { margin:12px auto 0; }
   .dor-apply { text-align:center; padding-bottom:40px; }
   .dor-apply h2,.dor-apply .dor-sales-section-intro { margin-left:auto; margin-right:auto; }
   .dor-apply-questions { max-width:650px; margin:24px auto; padding:20px; border-radius:14px; color:var(--muted); background:rgba(255,255,255,.3); font:400 13px/1.8 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:left; }
@@ -990,7 +993,7 @@ html>body{padding:0}</style>
   .dor-founder-letter-signature { margin-top:26px!important; color:var(--ink)!important; font-family:ui-serif,Georgia,"Songti SC",serif!important; }
   .dor-founder-letter-contact { display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin-top:8px; padding:0 18px; border-radius:999px; background:var(--purple); color:#fff!important; font:600 13px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-decoration:none!important; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:clamp(96px,14vh,120px) 18px 46px}.dor-package{grid-template-columns:1fr}.dor-package-grid,.dor-card-grid,.dor-node-grid,.dor-concerns-head,.dor-concerns-grid{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package{padding:18px}.dor-concerns{padding:22px 18px}.dor-concerns-head{gap:12px}.dor-concerns-grid{margin-top:22px}.dor-concern{padding:18px}.dor-addon-card{padding:20px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
+    .dor-sales .dor-import-entry{padding:clamp(96px,14vh,120px) 18px 46px}.dor-package{grid-template-columns:1fr}.dor-package-grid,.dor-card-grid,.dor-node-grid,.dor-concerns-head,.dor-concerns-grid{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package{padding:18px}.dor-delivery-flow{padding:24px 20px}.dor-flow-list{grid-template-columns:1fr;gap:0;margin-top:24px}.dor-flow-list::before{top:24px;bottom:24px;left:25px;right:auto;width:2px;height:auto}.dor-flow-step{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;min-height:76px;text-align:left}.dor-flow-number{margin:0}.dor-concerns{padding:22px 18px}.dor-concerns-head{gap:12px}.dor-concerns-grid{margin-top:22px}.dor-concern{padding:18px}.dor-addon-card{padding:20px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
     .dor-sales .dor-import-entry{padding-top:clamp(132px,19vh,180px)}
     .dor-sales-hero + .dor-case-showcase{margin-top:120px}
     .dor-dual-person:first-child,.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-14deg) translateY(7px)}
@@ -1057,7 +1060,9 @@ html>body{padding:0}</style>
 
   <section class="dor-sales-section" id="birth-package"><h2>现在预定你将获得什么</h2><p class="dor-sales-section-intro">这是一个由创作者本人参与整理、分析和制作的半人工服务。</p><div class="dor-package"><div><h3>另世我网页版</h3><div class="dor-price">¥9.9 <small>8月20日前体验价</small></div><p class="dor-package-meta">限前10名 · 8月20日后恢复至 ¥99<br>资料确认后预计7—10天交付</p><a class="dor-sales-primary" href="#apply">申请生成我的另世我</a></div><ul><li>6—12个月生活记录整理</li><li>一个专属可交互的人生河流网页</li><li>一张可收藏、可脱敏分享的出生照</li><li>3—5个重要人生节点</li><li>3—5条有记录依据的个人洞察</li><li>一封写给当下自己的信</li><li>一次30分钟线上解读</li></ul></div><div class="dor-package-grid" aria-label="另世我实体定制"><article class="dor-addon-card"><h3>另世我晶体挂件 / 冰箱贴</h3><div class="dor-addon-price">¥39 <small>8月20日前</small></div><p>限前10名 · 8月20日后恢复至 ¥69</p></article><article class="dor-addon-card"><h3>另世我丝带人摆件 / 桌面件</h3><div class="dor-addon-price">¥69 <small>8月20日前</small></div><p>限前10名 · 8月20日后恢复至 ¥129</p></article></div></section>
 
-  <section class="dor-sales-section dor-concerns" id="apply"><div class="dor-concerns-head"><h2>我们懂你的顾虑</h2><p class="dor-sales-section-intro">这些顾虑都很正常。开始之前，我们会把资料范围、隐私边界和交付方式一项项与你确认。</p></div><div class="dor-concerns-grid"><article class="dor-concern"><h3>我的记录很乱，不知道该从哪里开始？</h3><p>不用先整理。你只需要告诉我手里有哪些记录，主题和关键事件由我协助梳理。</p></article><article class="dor-concern"><h3>我还不知道自己想看懂哪一段人生，可以开始吗？</h3><p>可以。先想想你正处在哪个人生节点、记录覆盖多久，以及最想理解的一个问题，我们会一起找到入口。</p></article><article class="dor-concern"><h3>一定要把整本私人日记交出来吗？</h3><p>不用。第一次只确认意向，不上传原始日记；正式开始前，只选择你愿意提供的记录类型和时间范围。</p></article><article class="dor-concern"><h3>只是先体验，文件也会被上传吗？</h3><p>不会。本地体验只在你的浏览器里读取记录，不会把文件上传到服务器；你也可以不选文件，先看完整案例。</p></article><article class="dor-concern"><h3>记录里有真实姓名和敏感信息怎么办？</h3><p>可以先用代称替换姓名、公司和关系人物；分析范围与哪些内容绝不使用，会在开始前写清楚。</p></article><article class="dor-concern"><h3>会不会被 AI 随意解读、给我贴标签？</h3><p>不会用通用人格模板定义你。每条洞察都回到具体记录，并在交付前与你核对，也允许你更正。</p></article><article class="dor-concern"><h3>我的日记会不会被公开？</h3><p>未经允许，不公开原文或敏感信息。默认交付私密版和脱敏分享版，公开到什么程度由你决定。</p></article><article class="dor-concern"><h3>交付之后，我的资料还会被留着吗？</h3><p>你可以要求更正、缩小使用范围，或在交付后删除本次提供的原始资料。</p></article></div><p class="dor-concerns-path"><b>整个过程：</b>确认节点与边界 → 整理记录 → 生成河流 → 核对洞察 → 交付私密版与分享版</p><div class="dor-concerns-action"><div class="dor-import-actions"><label class="dor-import-primary" for="dor-diary-files"><span data-import-label>先用本地记录体验</span></label><input id="dor-diary-files" data-diary-files type="file" accept=".md,.txt,.json,.csv,text/plain,text/markdown,application/json,text/csv" multiple><button class="dor-import-demo" type="button" data-use-demo>暂不上传，先看完整案例</button></div><p class="dor-sales-note">先体验，不等于提交申请；是否进入正式共创，由你体验后再决定。</p></div></section>
+  <section class="dor-sales-section dor-delivery-flow" aria-labelledby="dor-flow-title"><p class="dor-flow-kicker">整个过程</p><h2 id="dor-flow-title">从你的记录，到可以回看的人生河流</h2><ol class="dor-flow-list"><li class="dor-flow-step"><span class="dor-flow-number">01</span><h3>确认节点与边界</h3></li><li class="dor-flow-step"><span class="dor-flow-number">02</span><h3>整理记录</h3></li><li class="dor-flow-step"><span class="dor-flow-number">03</span><h3>生成河流</h3></li><li class="dor-flow-step"><span class="dor-flow-number">04</span><h3>核对洞察</h3></li><li class="dor-flow-step"><span class="dor-flow-number">05</span><h3>交付私密版与分享版</h3></li></ol></section>
+
+  <section class="dor-sales-section dor-concerns" id="apply"><div class="dor-concerns-head"><h2>我们懂你的顾虑</h2><p class="dor-sales-section-intro">这些顾虑都很正常。开始之前，我们会把资料范围、隐私边界和交付方式一项项与你确认。</p></div><div class="dor-concerns-grid"><article class="dor-concern"><h3>我的记录很乱，不知道该从哪里开始？</h3><p>不用先整理。你只需要告诉我手里有哪些记录，主题和关键事件由我协助梳理。</p></article><article class="dor-concern"><h3>我还不知道自己想看懂哪一段人生，可以开始吗？</h3><p>可以。先想想你正处在哪个人生节点、记录覆盖多久，以及最想理解的一个问题，我们会一起找到入口。</p></article><article class="dor-concern"><h3>一定要把整本私人日记交出来吗？</h3><p>不用。第一次只确认意向，不上传原始日记；正式开始前，只选择你愿意提供的记录类型和时间范围。</p></article><article class="dor-concern"><h3>只是先体验，文件也会被上传吗？</h3><p>不会。本地体验只在你的浏览器里读取记录，不会把文件上传到服务器；你也可以不选文件，先看完整案例。</p></article><article class="dor-concern"><h3>记录里有真实姓名和敏感信息怎么办？</h3><p>可以先用代称替换姓名、公司和关系人物；分析范围与哪些内容绝不使用，会在开始前写清楚。</p></article><article class="dor-concern"><h3>会不会被 AI 随意解读、给我贴标签？</h3><p>不会用通用人格模板定义你。每条洞察都回到具体记录，并在交付前与你核对，也允许你更正。</p></article><article class="dor-concern"><h3>我的日记会不会被公开？</h3><p>未经允许，不公开原文或敏感信息。默认交付私密版和脱敏分享版，公开到什么程度由你决定。</p></article><article class="dor-concern"><h3>交付之后，我的资料还会被留着吗？</h3><p>你可以要求更正、缩小使用范围，或在交付后删除本次提供的原始资料。</p></article></div></section>
 
   <footer class="dor-site-footer" aria-label="关于另世我与数据处理说明">
     <div class="dor-footer-grid">
@@ -1224,7 +1229,6 @@ html>body{padding:0}</style>
       transition: transform 180ms ease, background 180ms ease;
     }
     .dor-import-primary:hover { transform: translateY(-2px); background: #b32332; border-color: #b32332; }
-    [data-diary-files] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); }
     .dor-import-demo { border: 0; border-bottom: 1px solid #918577; padding: 2px 0 4px; background: transparent; color: #504a42; font: 400 12px/1.3 inherit; cursor: pointer; }
     @media (max-width: 520px) {
       .dor-import-entry { padding: 22px; }
@@ -2812,11 +2816,8 @@ html>body{padding:0}</style>
     document.documentElement.classList.add('dor-preview');
     document.body.classList.add('dor-preview');
   }
-  const input = document.querySelector('[data-diary-files]');
   const demos = document.querySelectorAll('[data-use-demo]');
   const home = document.querySelector('[data-return-home]');
-  const label = document.querySelector('[data-import-label]');
-  const status = document.querySelector('[data-import-status]');
   const founderLetter = document.querySelector('[data-founder-letter]');
   const founderLetterTrigger = document.querySelector('[data-open-founder-letter]');
   const founderLetterClose = document.querySelector('[data-close-founder-letter]');
@@ -2834,11 +2835,9 @@ html>body{padding:0}</style>
     else founderLetter.removeAttribute('open');
   }
 
-  function enterRiver(message) {
+  function enterRiver() {
     if (entering) return;
     entering = true;
-    if (label) label.textContent = '正在生成河流…';
-    if (status) status.textContent = message;
     window.setTimeout(() => {
       document.body.classList.remove('dor-before-enter');
       document.body.classList.add('dor-has-entered');
@@ -2847,25 +2846,7 @@ html>body{padding:0}</style>
     }, 620);
   }
 
-  input?.addEventListener('change', async () => {
-    const files = [...(input.files || [])];
-    if (!files.length) return;
-    const total = files.reduce((sum, file) => sum + file.size, 0);
-    if (total > 20 * 1024 * 1024) {
-      if (status) status.textContent = '文件总大小请控制在 20 MB 以内';
-      input.value = '';
-      return;
-    }
-    try {
-      await Promise.all(files.map(file => file.text()));
-      const name = files.length === 1 ? files[0].name : `${files.length} 个文件`;
-      enterRiver(`已在本地读取 ${name}`);
-    } catch (_) {
-      if (status) status.textContent = '暂时无法读取这个文件，请换一种格式';
-    }
-  });
-
-  demos.forEach((demo) => demo.addEventListener('click', () => enterRiver('正在载入示例日记数据')));
+  demos.forEach((demo) => demo.addEventListener('click', enterRiver));
   founderLetterTrigger?.addEventListener('click', openFounderLetter);
   founderLetterClose?.addEventListener('click', closeFounderLetter);
   founderLetter?.addEventListener('click', (event) => {
