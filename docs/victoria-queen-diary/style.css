@@ -56,6 +56,7 @@ body {
 
 .explore-layout {
   --content-shift: clamp(48px, 4vw, 80px);
+  --content-drop: clamp(18px, 2.2vh, 26px);
   width: calc(100% - (2 * var(--content-shift)));
   max-width: 1500px;
   height: 100svh;
@@ -66,7 +67,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: clamp(20px, 4vw, 56px);
-  transform: translateX(var(--content-shift));
+  transform: translate(var(--content-shift), var(--content-drop));
 }
 .story-panel {
   min-width: 0;
