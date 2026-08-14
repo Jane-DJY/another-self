@@ -946,11 +946,12 @@ html>body{padding:0}</style>
   body.dor-preview .dor-import-entry,
   body.dor-preview #diary-river-organic-ribbons .dor-reading,
   body.dor-preview #diary-river-organic-ribbons .dor-sidebar { display:none!important; }
-  body.dor-preview #diary-river-organic-ribbons { width:540px!important; max-width:none!important; height:720px!important; min-height:0!important; overflow:hidden!important; transform:scale(.4166667)!important; transform-origin:top left!important; }
+  body.dor-preview #diary-river-organic-ribbons { width:540px!important; max-width:none!important; height:720px!important; min-height:0!important; overflow:hidden!important; transform:scale(.5138889)!important; transform-origin:top left!important; }
   body.dor-preview #diary-river-organic-ribbons .dor-editor { display:block!important; width:540px!important; height:720px!important; min-height:0!important; padding:0!important; }
   body.dor-preview #diary-river-organic-ribbons .dor-poster { width:540px!important; max-width:none!important; max-height:none!important; height:720px!important; aspect-ratio:auto!important; justify-self:auto!important; }
   body.dor-preview #diary-river-organic-ribbons [data-poster],
   body.dor-preview #diary-river-organic-ribbons [data-poster] svg { width:100%; height:100%; }
+  @media(max-width:260px){body.dor-preview #diary-river-organic-ribbons{transform:scale(.4583333)!important}}
 </style>
 <nav class="dor-top-nav" aria-label="另世我页面导航">
   <button class="dor-home-button" type="button" data-return-home>⌂ 首页</button>
@@ -1557,6 +1558,7 @@ html>body{padding:0}</style>
       opacity: 0.82;
     }
     #diary-river-organic-ribbons .dor-month-dot { fill: #746b5e; opacity: 0.5; }
+    #diary-river-organic-ribbons .dor-month-axis { stroke: #8c6c94; stroke-width: 1; opacity: 0.28; }
     #diary-river-organic-ribbons .dor-event-dot { fill: var(--dor-text); }
     #diary-river-organic-ribbons .dor-event-bg { fill: var(--dor-bg); opacity: var(--dor-event-bg-opacity); }
     #diary-river-organic-ribbons .dor-rule { stroke: #8c8172; stroke-width: 0.7; opacity: 0.35; }
@@ -2364,6 +2366,14 @@ html>body{padding:0}</style>
         const center = width * 0.56;
         const maxN = Math.max(...months.map((month) => month.n));
         const geometry = {};
+
+        svg.appendChild(el('line', {
+          class: 'dor-month-axis',
+          x1: pad,
+          y1: ys[0],
+          x2: pad,
+          y2: ys[ys.length - 1]
+        }));
 
         months.forEach((month, index) => {
           const showMonth = predictionOpen
