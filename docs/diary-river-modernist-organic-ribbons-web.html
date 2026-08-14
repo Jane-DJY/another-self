@@ -920,7 +920,6 @@ html>body{padding:0}</style>
   .dor-dual-benefits li { display:grid; gap:2px; padding-left:12px; border-left:2px solid rgba(118,65,132,.22); }
   .dor-dual-benefits strong { color:var(--ink); font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
   .dor-dual-benefits span { max-width:310px; color:var(--muted); font:400 12px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
-  .dor-dual-cta { margin-top:22px; border-radius:999px; cursor:pointer; }
   .dor-dual-figures { display:flex; align-items:center; justify-content:flex-end; width:100%; height:280px; padding:0 22px; }
   .dor-dual-person { position:relative; display:flex; flex:0 0 220px; align-items:flex-end; justify-content:center; width:220px; height:280px; overflow:hidden; background:transparent; isolation:isolate; transform-origin:50% 86%; transition:transform 240ms ease,filter 240ms ease; }
   .dor-dual-person:first-child { z-index:1; margin-right:-100px; transform:rotate(-14deg) translateY(7px); }
@@ -930,6 +929,13 @@ html>body{padding:0}</style>
   .dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within { z-index:4; transform:rotate(10deg) translateY(-8px) scale(1.035); filter:drop-shadow(0 18px 20px rgba(82,39,101,.17)); }
   .dor-case-preview { display:block; height:390px; border:0; background:transparent; pointer-events:none; transform:scale(.6667); transform-origin:50% 100%; }
   .dor-case-preview-jane,.dor-case-preview-victoria { width:278px; }
+  .dor-case-bubble { position:absolute; z-index:5; display:block; padding:8px 11px; border:1px solid rgba(93,45,115,.16); border-radius:14px; color:#5d2d73; background:rgba(255,250,254,.94); box-shadow:0 9px 24px rgba(75,34,91,.13); font:600 11px/1.25 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; white-space:nowrap; pointer-events:none; transition:color 180ms ease,background 180ms ease,transform 220ms ease; }
+  .dor-case-bubble::after { position:absolute; bottom:-6px; width:10px; height:10px; border-right:1px solid rgba(93,45,115,.16); border-bottom:1px solid rgba(93,45,115,.16); background:inherit; content:""; transform:rotate(45deg); }
+  .dor-dual-person:first-child .dor-case-bubble { top:40px; left:8px; }
+  .dor-dual-person:first-child .dor-case-bubble::after { left:22px; }
+  .dor-dual-person:last-child .dor-case-bubble { top:12px; right:6px; }
+  .dor-dual-person:last-child .dor-case-bubble::after { right:22px; }
+  .dor-dual-person:hover .dor-case-bubble,.dor-dual-person:focus-within .dor-case-bubble { color:#fff; background:#6b367f; transform:translateY(-3px); }
   .dor-dual-enter { position:absolute; inset:0; z-index:3; display:flex; align-items:flex-end; justify-content:center; width:100%; padding:0 18px 28px; border:0; border-radius:0; background:transparent; color:#fff; font:600 14px/1.45 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:center; text-decoration:none!important; cursor:pointer; opacity:0; transform:translateY(8px); transition:opacity 180ms ease,transform 220ms ease; }
   .dor-dual-enter span { display:block; padding:9px 14px; border:1px solid rgba(255,255,255,.48); background:rgba(68,35,82,.34); backdrop-filter:blur(7px); }
   .dor-dual-person:hover .dor-dual-enter,.dor-dual-person:focus-within .dor-dual-enter,.dor-dual-enter:focus-visible { opacity:1; transform:translateY(0); }
@@ -993,7 +999,7 @@ html>body{padding:0}</style>
   .dor-founder-letter-signature { margin-top:26px!important; color:var(--ink)!important; font-family:ui-serif,Georgia,"Songti SC",serif!important; }
   .dor-founder-letter-contact { display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin-top:8px; padding:0 18px; border-radius:999px; background:var(--purple); color:#fff!important; font:600 13px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-decoration:none!important; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:clamp(96px,14vh,120px) 18px 46px}.dor-package{grid-template-columns:1fr}.dor-package-grid,.dor-card-grid,.dor-node-grid,.dor-concerns-head,.dor-concerns-grid{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package{padding:18px}.dor-delivery-flow{padding:24px 20px}.dor-flow-list{grid-template-columns:1fr;gap:0;margin-top:24px}.dor-flow-list::before{top:24px;bottom:24px;left:25px;right:auto;width:2px;height:auto}.dor-flow-step{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;min-height:76px;text-align:left}.dor-flow-number{margin:0}.dor-concerns{padding:22px 18px}.dor-concerns-head{gap:12px}.dor-concerns-grid{margin-top:22px}.dor-concern{padding:18px}.dor-addon-card{padding:20px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
+    .dor-sales .dor-import-entry{padding:clamp(96px,14vh,120px) 18px 46px}.dor-package{grid-template-columns:1fr}.dor-package-grid,.dor-card-grid,.dor-node-grid,.dor-concerns-head,.dor-concerns-grid{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package{padding:18px}.dor-delivery-flow{padding:24px 20px}.dor-flow-list{grid-template-columns:1fr;gap:0;margin-top:24px}.dor-flow-list::before{top:24px;bottom:24px;left:25px;right:auto;width:2px;height:auto}.dor-flow-step{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;min-height:76px;text-align:left}.dor-flow-number{margin:0}.dor-concerns{padding:22px 18px}.dor-concerns-head{gap:12px}.dor-concerns-grid{margin-top:22px}.dor-concern{padding:18px}.dor-addon-card{padding:20px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
     .dor-sales .dor-import-entry{padding-top:clamp(132px,19vh,180px)}
     .dor-sales-hero + .dor-case-showcase{margin-top:120px}
     .dor-dual-person:first-child,.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-14deg) translateY(7px)}
@@ -1043,16 +1049,17 @@ html>body{padding:0}</style>
           <li><strong>辨别关键节点</strong><span>换工作、换城市，或告别一段关系与生活阶段</span></li>
           <li><strong>留下人生回忆</strong><span>把散落的记录连起来，看见自己怎样一路改变</span></li>
         </ul>
-        <a class="dor-sales-primary dor-dual-cta" href="#birth-package">点击右侧查看案例</a>
       </div>
       <div class="dor-dual-figures">
         <article class="dor-dual-person" aria-label="Jane 一月至七月的真实人生河流案例">
+          <span class="dor-case-bubble">点我，看真实案例</span>
           <iframe class="dor-case-preview dor-case-preview-jane" src="diary-river-modernist-organic-ribbons-web.html?view=demo&amp;preview=1" title="Jane 最终版人物形态人生河流" tabindex="-1" loading="eager"></iframe>
-          <button class="dor-dual-enter" type="button" data-use-demo><span>Jane · 进入完整互动案例 →</span></button>
+          <button class="dor-dual-enter" type="button" data-use-demo><span>Jane · 真实人生河流</span></button>
         </article>
         <article class="dor-dual-person" aria-label="维多利亚女王少女日记主题河流案例">
+          <span class="dor-case-bubble">点我，看日记案例</span>
           <iframe class="dor-case-preview dor-case-preview-victoria" src="victoria-queen-diary/?preview=1" title="维多利亚女王最终版少女日记主题河流" tabindex="-1" loading="eager"></iframe>
-          <a class="dor-dual-enter" href="victoria-queen-diary/"><span>维多利亚女王 · 进入完整互动案例 →</span></a>
+          <a class="dor-dual-enter" href="victoria-queen-diary/"><span>维多利亚女王 · 少女日记河流</span></a>
         </article>
       </div>
     </div>
