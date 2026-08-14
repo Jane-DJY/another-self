@@ -55,7 +55,8 @@ body {
 .dor-stars-button:hover { color: #442352; }
 
 .explore-layout {
-  width: 100%;
+  --content-shift: clamp(48px, 4vw, 80px);
+  width: calc(100% - (2 * var(--content-shift)));
   max-width: 1500px;
   height: 100svh;
   margin: 0 auto;
@@ -65,7 +66,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: clamp(20px, 4vw, 56px);
-  transform: translateX(clamp(36px, 3.2vw, 64px));
+  transform: translateX(var(--content-shift));
 }
 .story-panel {
   min-width: 0;
@@ -178,6 +179,7 @@ body {
 @media (max-width: 1240px) {
   body { width: 100%; height: auto; min-height: 100svh; overflow-x: hidden; overflow-y: auto; }
   .explore-layout {
+    width: 100%;
     height: auto;
     min-height: 100svh;
     grid-template-columns: minmax(0, 1fr);
