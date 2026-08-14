@@ -31,7 +31,8 @@ body {
 .dor-stars-button {
   color: #6f5e64;
   padding: 6px 4px;
-  font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font: 400 16.5px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  letter-spacing: .02em;
   text-decoration: none;
   transition: color 180ms ease;
 }
@@ -53,7 +54,7 @@ body {
 }
 .dor-home-button:hover,
 .dor-stars-button:hover { color: #2a2026; }
-.dor-corner-brand { position: fixed; top: 17px; right: 20px; z-index: 31; display: flex; align-items: center; gap: 8px; padding: 5px 8px 5px 5px; border: 1px solid rgba(91,31,46,.16); border-radius: 999px; background: rgba(255,248,246,.76); color: #2a2026; box-shadow: 0 8px 24px rgba(42,32,38,.1); backdrop-filter: blur(14px); font: 600 12px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .08em; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
+.dor-corner-brand { position: fixed; top: 17px; right: 20px; z-index: 31; display: flex; align-items: center; gap: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #2a2026; box-shadow: none; backdrop-filter: none; font: 600 12px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .08em; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
 .dor-corner-brand img { display: block; width: 25px; height: 25px; object-fit: contain; }
 .dor-corner-brand:hover { color: #9f1f2d; transform: translateY(-1px); }
 
