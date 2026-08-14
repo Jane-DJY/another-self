@@ -60,8 +60,9 @@ body {
   height: 100svh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(420px, 620px) minmax(520px, 700px);
   gap: clamp(24px, 3vw, 48px);
+  justify-content: center;
   align-items: center;
   padding: clamp(20px, 4vw, 56px);
 }
@@ -72,7 +73,7 @@ body {
   max-width: 620px;
   max-height: calc(100svh - clamp(40px, 8vw, 112px));
   align-self: stretch;
-  justify-self: start;
+  justify-self: end;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 14px;
@@ -136,7 +137,7 @@ body {
   max-width: 700px;
   max-height: calc(100svh - clamp(40px, 8vw, 112px));
   aspect-ratio: 720 / 1120;
-  justify-self: end;
+  justify-self: start;
   transform: translateY(8px);
   overflow: visible;
 }
