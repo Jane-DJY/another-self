@@ -949,8 +949,15 @@ html>body{padding:0}</style>
   .dor-apply-questions { max-width:650px; margin:24px auto; padding:20px; color:var(--muted); background:rgba(255,255,255,.3); font:400 13px/1.8 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; text-align:left; }
   .dor-apply .dor-import-actions { position:relative; margin-top:20px; }
   .dor-apply .dor-import-primary { font-weight:600; }
+  .dor-site-footer { width:min(1040px,100%); margin:82px auto 0; padding:34px 0 4px; border-top:1px solid rgba(93,45,115,.18); color:var(--muted); font:400 13px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-footer-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:52px; }
+  .dor-site-footer h2 { margin:0 0 14px; color:var(--ink); font:500 22px/1.3 ui-serif,Georgia,"Songti SC",serif; }
+  .dor-site-footer h3 { margin:22px 0 8px; color:var(--ink); font:600 13px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .dor-site-footer p { margin:0 0 9px; }
+  .dor-site-footer a { color:var(--purple); text-underline-offset:3px; overflow-wrap:anywhere; }
+  .dor-footer-meta { margin-top:30px!important; padding-top:16px; border-top:1px solid rgba(93,45,115,.12); color:#927c96; font-size:12px; }
   @media(max-width:760px){
-    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}
+    .dor-sales .dor-import-entry{padding:48px 18px 46px}.dor-package,.dor-privacy{grid-template-columns:1fr}.dor-card-grid,.dor-node-grid{grid-template-columns:1fr}.dor-process{grid-template-columns:1fr 1fr}.dor-privacy ul{grid-template-columns:1fr}.dor-sales-section{margin-top:46px}.dor-package,.dor-privacy{padding:18px}.dor-sales-hero + .dor-case-showcase{margin-top:20px}.dor-sales .dor-import-brand{top:18px;right:14px}.dor-brand-message{padding:0 8px}.dor-brand-message strong{font-size:clamp(34px,10vw,44px)}.dor-brand-message span{font-size:13px}.dor-dual-case{grid-template-columns:1fr;min-height:0;padding:24px 12px 16px}.dor-dual-copy{padding:0 10px 16px}.dor-sales-section .dor-dual-hook{max-width:360px;font-size:clamp(24px,7.5vw,32px)}.dor-dual-benefits{margin-top:14px}.dor-dual-cta{margin-top:18px}.dor-dual-figures{height:260px;padding:0}.dor-dual-person{flex-basis:180px;width:180px;height:250px}.dor-dual-person:first-child{margin-right:-48px;transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child{transform:rotate(8deg) translateY(-3px)}.dor-dual-enter{opacity:1;transform:none;padding-bottom:18px}.dor-dual-person:first-child:hover,.dor-dual-person:first-child:focus-within{transform:rotate(-9deg) translateY(6px)}.dor-dual-person:last-child:hover,.dor-dual-person:last-child:focus-within{transform:rotate(8deg) translateY(-3px)}.dor-case-preview-jane,.dor-case-preview-victoria{width:248px}.dor-footer-grid{grid-template-columns:1fr;gap:30px}.dor-site-footer{margin-top:62px;padding-top:28px}
   }
   html.dor-preview,
   body.dor-preview { overflow:hidden!important; background:transparent!important; }
@@ -1024,6 +1031,26 @@ html>body{padding:0}</style>
   <section class="dor-sales-section dor-privacy"><div><h2>你的记录，仍然属于你</h2><p class="dor-sales-section-intro">隐私不是页脚里的一句承诺，而是交付过程的一部分。</p></div><ul><li>申请阶段不上传原始日记</li><li>可以先用代称替换姓名</li><li>只分析你确认的时间范围</li><li>不公开未经允许的原文</li><li>分享版默认隐藏敏感信息</li><li>交付后可要求删除原始资料</li></ul></section>
 
   <section class="dor-sales-section dor-apply" id="apply"><h2>先告诉我，你想看懂人生的哪一段</h2><p class="dor-sales-section-intro">首批采用共创申请制。第一步只确认意向，不需要上传私人日记。</p><div class="dor-apply-questions">申请时可以准备：你正处在哪个人生节点？你有哪些记录？记录覆盖多久？你最想理解的一个问题是什么？</div><div class="dor-import-actions"><label class="dor-import-primary" for="dor-diary-files"><span data-import-label>先用本地记录体验</span></label><input id="dor-diary-files" data-diary-files type="file" accept=".md,.txt,.json,.csv,text/plain,text/markdown,application/json,text/csv" multiple><button class="dor-import-demo" type="button" data-use-demo>暂不上传，先看完整案例</button></div><p class="dor-sales-note">本地体验不会把文件上传到服务器；正式共创的资料范围会在开始前单独确认。</p></section>
+
+  <footer class="dor-site-footer" aria-label="关于另世我与数据处理说明">
+    <div class="dor-footer-grid">
+      <section aria-labelledby="dor-about-title">
+        <h2 id="dor-about-title">关于我们</h2>
+        <p>「另世我」由爱可视化的简女士发起，用个人记录生成可以回看、理解和继续生长的人生河流。</p>
+        <p>邮箱：<a href="mailto:djy20182019@gmail.com">djy20182019@gmail.com</a></p>
+        <p>小红书：<a href="https://www.xiaohongshu.com/user/profile/5bb83c1794605e000140ff4f" target="_blank" rel="noopener noreferrer">爱可视化的简女士</a></p>
+        <h3>内容进度</h3>
+        <p><a href="women-stars.html">群星闪耀</a>目前有 351 位人物的资料与照片已核验；其余 149 位仍在补证，暂不展示空卡。</p>
+      </section>
+      <section aria-labelledby="dor-data-title">
+        <h2 id="dor-data-title">数据与隐私</h2>
+        <p>网页中的本地体验只在当前浏览器读取你选择的文件，不会自动上传原始记录。正式共创开始前，我们会与你确认资料类型、时间范围、分析目的和可公开边界。</p>
+        <p>你的记录只用于整理人生主题、关键事件和生成约定的交付内容。洞察会与你核对；未经允许，不公开原文、真实姓名、关系、健康、公司等敏感信息。</p>
+        <p>默认提供私密版与脱敏分享版。你可以要求更正内容、缩小使用范围，或在交付后删除为本次共创提供的原始资料。如需咨询、撤回授权或提出删除要求，请通过上述邮箱联系我们。</p>
+      </section>
+    </div>
+    <p class="dor-footer-meta">© 另世我 · 具体资料处理方式以每次共创开始前与你确认的说明为准。</p>
+  </footer>
 </main>
 </div>
 <section id="diary-river-organic-ribbons" aria-label="2026 年日记现代主义有机丝带图">
