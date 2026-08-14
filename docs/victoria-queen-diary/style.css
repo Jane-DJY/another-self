@@ -1,9 +1,9 @@
 :root {
-  --ink: #4a342c;
-  --muted: #80675c;
-  --paper: #ead4c9;
-  --line: rgba(118, 59, 37, .16);
-  --metric: #ad3d25;
+  --ink: #2a2026;
+  --muted: #6f5e64;
+  --paper: #f1e6e2;
+  --line: rgba(91, 31, 46, .16);
+  --metric: #9f1f2d;
 }
 
 * { box-sizing: border-box; }
@@ -14,8 +14,8 @@ body {
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   background:
-    radial-gradient(circle at 76% 38%, rgba(255,248,241,.5), transparent 36%),
-    linear-gradient(135deg, #f6e7df 0%, #ead4c9 55%, #d6b194 100%);
+    radial-gradient(circle at 76% 38%, rgba(255,255,255,.68), transparent 36%),
+    linear-gradient(135deg, #faf3ef 0%, #f1e6e2 55%, #dccbc6 100%);
 }
 
 .dor-top-nav {
@@ -29,7 +29,7 @@ body {
 }
 .dor-home-button,
 .dor-stars-button {
-  color: #80675c;
+  color: #6f5e64;
   padding: 6px 4px;
   font: 500 11px/1.2 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
   text-decoration: none;
@@ -39,7 +39,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  border-left: 1px solid rgba(118,59,37,.2);
+  border-left: 1px solid rgba(91,31,46,.2);
   padding-left: 12px;
 }
 .dor-stars-button::before {
@@ -48,14 +48,14 @@ body {
   height: 14px;
   flex: none;
   clip-path: polygon(50% 0,88% 25%,77% 76%,50% 100%,14% 72%,8% 25%);
-  background: linear-gradient(145deg,#f3dfc4 0%,#d6b194 32%,#bb5d30 68%,#514b5b 100%);
-  filter: drop-shadow(0 2px 3px rgba(118,59,37,.22));
+  background: linear-gradient(145deg,#fff8eb 0%,#c7922f 31%,#9f1f2d 66%,#24212e 100%);
+  filter: drop-shadow(0 2px 3px rgba(42,32,38,.28));
 }
 .dor-home-button:hover,
-.dor-stars-button:hover { color: #4a342c; }
-.dor-corner-brand { position: fixed; top: 17px; right: 20px; z-index: 31; display: flex; align-items: center; gap: 8px; padding: 5px 8px 5px 5px; border: 1px solid rgba(118,59,37,.16); border-radius: 999px; background: rgba(255,242,237,.7); color: #4a342c; box-shadow: 0 8px 24px rgba(118,59,37,.1); backdrop-filter: blur(14px); font: 600 12px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .08em; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
+.dor-stars-button:hover { color: #2a2026; }
+.dor-corner-brand { position: fixed; top: 17px; right: 20px; z-index: 31; display: flex; align-items: center; gap: 8px; padding: 5px 8px 5px 5px; border: 1px solid rgba(91,31,46,.16); border-radius: 999px; background: rgba(255,248,246,.76); color: #2a2026; box-shadow: 0 8px 24px rgba(42,32,38,.1); backdrop-filter: blur(14px); font: 600 12px/1 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; letter-spacing: .08em; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
 .dor-corner-brand img { display: block; width: 25px; height: 25px; object-fit: contain; }
-.dor-corner-brand:hover { color: #ad3d25; transform: translateY(-1px); }
+.dor-corner-brand:hover { color: #9f1f2d; transform: translateY(-1px); }
 
 .explore-layout {
   --content-shift: clamp(48px, 4vw, 80px);
@@ -85,7 +85,7 @@ body {
   padding-right: 14px;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  scrollbar-color: rgba(118,59,37,.26) transparent;
+  scrollbar-color: rgba(91,31,46,.26) transparent;
 }
 .story-heading { margin: 0 0 28px; }
 .story-heading h1 {
@@ -110,12 +110,12 @@ body {
   min-height: 222px;
   margin: 2px 0 24px;
   padding: 13px 13px 34px;
-  border: 1px solid rgba(118,59,37,.13);
+  border: 1px solid rgba(91,31,46,.13);
   border-radius: 20px;
   background:
-    linear-gradient(180deg, rgba(255,245,240,.54), rgba(214,177,148,.16)),
-    repeating-linear-gradient(90deg, transparent 0 53px, rgba(118,59,37,.032) 54px);
-  box-shadow: 0 18px 42px rgba(118,59,37,.08);
+    linear-gradient(180deg, rgba(255,252,249,.7), rgba(159,31,45,.055)),
+    repeating-linear-gradient(90deg, transparent 0 53px, rgba(91,31,46,.03) 54px);
+  box-shadow: 0 18px 42px rgba(42,32,38,.08);
   overflow: hidden;
 }
 .portrait-timeline::after {
@@ -125,7 +125,7 @@ body {
   bottom: 26px;
   left: 14px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(118,59,37,.36) 10% 90%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(91,31,46,.34) 10% 90%, transparent);
 }
 .portrait-card {
   position: relative;
@@ -140,13 +140,13 @@ body {
   display: block;
   width: 100%;
   height: 148px;
-  border: 5px solid #f3dfd3;
+  border: 5px solid #f7eeea;
   border-bottom-width: 18px;
   border-radius: 3px;
   object-fit: cover;
   object-position: 50% 20%;
   filter: sepia(.08) saturate(.88) contrast(.97);
-  box-shadow: 0 8px 18px rgba(74,52,44,.18);
+  box-shadow: 0 8px 18px rgba(42,32,38,.2);
 }
 .portrait-card-queen img { height: 166px; object-position: 50% 14%; }
 .portrait-card-study img { object-position: 50% 12%; }
@@ -170,7 +170,7 @@ body {
   border-top: 1px solid var(--line);
 }
 .insight-period {
-  color: #a15b45;
+  color: #8c5260;
   font: 500 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 .insight-copy { min-width: 0; }
@@ -192,18 +192,18 @@ body {
 .insight-copy em { color: var(--metric); font-style: normal; font-weight: 600; }
 .method-note {
   margin: 18px 0 0;
-  color: #a15b45;
+  color: #8c5260;
   font-size: 9px;
   line-height: 1.6;
 }
 .portrait-source {
   margin: 8px 0 0;
-  color: #a15b45;
+  color: #8c5260;
   font-size: 9px;
   line-height: 1.6;
 }
-.portrait-source a { color: #80675c; text-underline-offset: 2px; }
-.portrait-source a:hover { color: #ad3d25; }
+.portrait-source a { color: #6f5e64; text-underline-offset: 2px; }
+.portrait-source a:hover { color: #9f1f2d; }
 
 .river-panel {
   position: relative;
@@ -223,24 +223,24 @@ body {
 .year-hit { cursor: pointer; }
 .year-hit circle { transition: r .2s, fill .2s; }
 .year-hit:hover circle,
-.year-hit.active circle { r: 9; fill: #4a342c; }
+.year-hit.active circle { r: 9; fill: #24212e; }
 .river-label {
   fill: white;
   font-size: 15px;
   font-weight: 800;
   pointer-events: none;
   paint-order: stroke;
-  stroke: rgba(74,52,44,.2);
+  stroke: rgba(42,32,38,.24);
   stroke-width: 3px;
 }
-.year-label { fill: #80675c; font-size: 13px; font-weight: 700; }
-.milestone-label { fill: #763b25; font-size: 12px; font-weight: 700; }
+.year-label { fill: #6f5e64; font-size: 13px; font-weight: 700; }
+.milestone-label { fill: #6d203a; font-size: 12px; font-weight: 700; }
 .milestone-label-inside {
   fill: #fff;
   font-size: 15px;
   font-weight: 700;
   paint-order: stroke;
-  stroke: rgba(74,52,44,.24);
+  stroke: rgba(42,32,38,.28);
   stroke-width: 2px;
   stroke-linejoin: round;
 }
