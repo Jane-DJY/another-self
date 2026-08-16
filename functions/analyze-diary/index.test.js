@@ -28,6 +28,8 @@ test('normalizes shares, evidence, coverage, future paths and verified links', (
   assert.equal(result.milestones[0].themeKey, 'work');
   assert.deepEqual(result.futurePaths[0].themeChanges, { create: 12 });
   assert.equal(result.roleModels.length, 1);
+  assert.equal(result.roleModels[0].name, 'Nadieh Bremer');
+  assert.equal(result.roleModels[0].sourceUrl, 'https://www.visualcinnamon.com/about');
 });
 
 test('normalizes a local review without changing unrelated report data', () => {
