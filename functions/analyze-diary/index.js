@@ -27,10 +27,6 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
 function cors(origin) {
   return {
     'content-type': 'application/json; charset=utf-8',
-    'access-control-allow-origin': ALLOWED_ORIGINS.has(origin) ? origin : 'https://jane-djy.github.io',
-    'access-control-allow-methods': 'POST, OPTIONS',
-    'access-control-allow-headers': 'content-type',
-    'access-control-max-age': '3600',
     'cache-control': 'no-store',
     'x-content-type-options': 'nosniff'
   };
