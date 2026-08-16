@@ -10,19 +10,24 @@ const MODEL = process.env.DASHSCOPE_MODEL || 'qwen-plus';
 const ENDPOINT = process.env.DASHSCOPE_ENDPOINT ||
   'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
 
-const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据用户提供的记录提取可核对的模式，不诊断、不预测命运、不补造事实。
+const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据用户提供的记录提取可核对的模式，不诊断、不预测命运、不补造事实。所有判断都必须写成“在本次记录中”的有限观察。
 请输出严格 JSON，且只能输出 JSON。结构如下：
 {
   "title":"12字以内的生命阶段标题",
   "subtitle":"30字以内的证据边界说明",
   "periods":["时间段1","时间段2","时间段3","时间段4"],
   "themes":[{"key":"英文短键","label":"中文主题","color":"#六位十六进制色","shares":[25,30,20,25]}],
-  "milestones":[{"periodIndex":0,"themeKey":"对应主题key","label":"12字以内","evidence":"记录中的简短依据"}],
-  "insights":[{"title":"16字以内","body":"60字以内，说明观察和依据","evidence":"来自哪些日期或原句特征"}],
+  "coverage":{"range":"记录覆盖的日期或诚实阶段","summary":"覆盖度说明","gaps":["已知缺口"]},
+  "milestones":[{"periodIndex":0,"themeKey":"对应主题key","label":"12字以内","evidence":"匿名化的简短原文或特征","meaning":"这段变化可能意味着什么"}],
+  "insights":[{"type":"repeating|growing|compressed|tension","title":"16字以内","body":"80字以内的有限观察","evidenceRefs":["日期或匿名化原句特征"]}],
+  "futurePaths":[{"key":"英文短键","title":"条件化路径名称","premise":"如果继续什么投入","conditions":["需要的条件"],"gain":"可能获得什么","cost":"需要付出什么代价","themeChanges":{"主题key":5},"nextAction":"7天内可执行的低风险行动"}],
+  "roleModels":[{"pathKey":"对应路径key","name":"公开人物姓名","identity":"身份","reason":"为什么她的公开经历值得参考","sourceTitle":"来源标题","sourceUrl":"可直接核验的https链接"}],
   "letter":"写给当下自己的150至260字中文信，不做医疗或人生定论",
   "privacyWarnings":["检测到的可能敏感信息类型，不复述原文"]
 }
-规则：periods 取3至8个真实时间段；themes 取4至7个互斥主题；每个 shares 数组长度必须等于 periods，且同一时间段所有主题份额之和为100；milestones 取3至5个；insights 取3至5条。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。`;
+规则：periods 取3至8个真实时间段；themes 取4至7个互斥主题；每个 shares 数组长度必须等于 periods，且同一时间段所有主题份额之和为100；milestones 取3至5个；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。roleModels 只能使用你确信存在且 sourceUrl 可直接核验的公开资料；不确定就返回空数组，绝不编造。`;
+
+const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
 
 function cors(origin) {
   return {
@@ -47,7 +52,15 @@ function normalizeEvent(event) {
   return event || {};
 }
 
-function validateAndNormalize(result) {
+function safeText(value, max) { return String(value || '').trim().slice(0, max); }
+function safeArray(value, max, itemMax = 120) {
+  return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
+}
+function safeUrl(value) {
+  try { const url = new URL(String(value || '')); return url.protocol === 'https:' ? url.href.slice(0, 500) : ''; } catch { return ''; }
+}
+
+function validateAndNormalize(result, metadata = {}) {
   if (!result || !Array.isArray(result.periods) || !Array.isArray(result.themes)) {
     throw new Error('模型返回的数据结构不完整');
   }
@@ -65,25 +78,66 @@ function validateAndNormalize(result) {
     themes.forEach(theme => { theme.shares[periodIndex] = Number((theme.shares[periodIndex] * 100 / total).toFixed(2)); });
   });
   const validKeys = new Set(themes.map(theme => theme.key));
+  const futurePaths = (Array.isArray(result.futurePaths) ? result.futurePaths : []).slice(0, 3).map((item, index) => {
+    const changes = {};
+    Object.entries(item.themeChanges || {}).forEach(([key, value]) => {
+      if (validKeys.has(key)) changes[key] = Math.max(-50, Math.min(50, Number(value) || 0));
+    });
+    return {
+      key: safeText(item.key || `path${index + 1}`, 24).replace(/[^a-zA-Z0-9_-]/g, '') || `path${index + 1}`,
+      title: safeText(item.title || `可能路径${index + 1}`, 36), premise: safeText(item.premise, 180),
+      conditions: safeArray(item.conditions, 4, 100), gain: safeText(item.gain, 180), cost: safeText(item.cost, 180),
+      themeChanges: changes, nextAction: safeText(item.nextAction, 180)
+    };
+  });
+  const pathKeys = new Set(futurePaths.map(item => item.key));
   return {
     title: String(result.title || '我的另世我').slice(0, 30),
     subtitle: String(result.subtitle || '基于本次提供的生活记录生成').slice(0, 80),
     periods,
     themes,
+    coverage: {
+      range: safeText(result.coverage?.range || `${periods[0]}—${periods[periods.length - 1]}`, 80),
+      fileCount: Math.max(0, Number(metadata.fileCount) || 0),
+      characterCount: Math.max(0, Number(metadata.characterCount) || 0),
+      summary: safeText(result.coverage?.summary || '仅反映本次提供的记录，不代表完整人生。', 180),
+      gaps: safeArray(result.coverage?.gaps, 5, 100)
+    },
     milestones: (Array.isArray(result.milestones) ? result.milestones : []).slice(0, 5).map(item => ({
       periodIndex: Math.min(periods.length - 1, Math.max(0, Number(item.periodIndex) || 0)),
       themeKey: validKeys.has(item.themeKey) ? item.themeKey : themes[0].key,
       label: String(item.label || '重要节点').slice(0, 24),
-      evidence: String(item.evidence || '').slice(0, 160)
+      evidence: String(item.evidence || '').slice(0, 220),
+      meaning: safeText(item.meaning, 220)
     })),
     insights: (Array.isArray(result.insights) ? result.insights : []).slice(0, 5).map(item => ({
+      type: ['repeating', 'growing', 'compressed', 'tension'].includes(item.type) ? item.type : 'repeating',
       title: String(item.title || '记录中的变化').slice(0, 36),
       body: String(item.body || '').slice(0, 220),
-      evidence: String(item.evidence || '').slice(0, 220)
+      evidenceRefs: safeArray(item.evidenceRefs || (item.evidence ? [item.evidence] : []), 4, 160)
     })),
+    futurePaths,
+    roleModels: (Array.isArray(result.roleModels) ? result.roleModels : []).slice(0, 9).map(item => ({
+      pathKey: pathKeys.has(item.pathKey) ? item.pathKey : '', name: safeText(item.name, 60), identity: safeText(item.identity, 100),
+      reason: safeText(item.reason, 220), sourceTitle: safeText(item.sourceTitle, 120), sourceUrl: safeUrl(item.sourceUrl)
+    })).filter(item => item.pathKey && item.name && item.reason && item.sourceUrl),
     letter: String(result.letter || '').slice(0, 1200),
     privacyWarnings: (Array.isArray(result.privacyWarnings) ? result.privacyWarnings : []).slice(0, 8).map(item => String(item).slice(0, 80))
   };
+}
+
+function normalizeReview(module, result, context) {
+  const periods = Array.isArray(context?.periods) ? context.periods : [];
+  const themes = Array.isArray(context?.themes) ? context.themes : [];
+  const validKeys = new Set(themes.map(theme => theme.key));
+  if (module === 'theme') {
+    const shares = periods.map((_, i) => Math.max(0, Number(result.shares?.[i]) || 0));
+    return { key: safeText(result.key, 24).replace(/[^a-zA-Z0-9_-]/g, ''), label: safeText(result.label, 12), color: /^#[0-9a-fA-F]{6}$/.test(result.color) ? result.color : '#673779', shares };
+  }
+  if (module === 'milestone') return { periodIndex: Math.min(periods.length - 1, Math.max(0, Number(result.periodIndex) || 0)), themeKey: validKeys.has(result.themeKey) ? result.themeKey : themes[0]?.key, label: safeText(result.label, 24), evidence: safeText(result.evidence, 220), meaning: safeText(result.meaning, 220) };
+  if (module === 'insight') return { type: ['repeating','growing','compressed','tension'].includes(result.type) ? result.type : 'repeating', title: safeText(result.title, 36), body: safeText(result.body, 220), evidenceRefs: safeArray(result.evidenceRefs, 4, 160) };
+  if (module === 'futurePath') return { key: safeText(result.key, 24).replace(/[^a-zA-Z0-9_-]/g, ''), title: safeText(result.title, 36), premise: safeText(result.premise, 180), conditions: safeArray(result.conditions, 4, 100), gain: safeText(result.gain, 180), cost: safeText(result.cost, 180), themeChanges: Object.fromEntries(Object.entries(result.themeChanges || {}).filter(([key]) => validKeys.has(key)).map(([key,value]) => [key, Math.max(-50, Math.min(50, Number(value) || 0))])), nextAction: safeText(result.nextAction, 180) };
+  throw new Error('不支持的局部修订类型');
 }
 
 exports.handler = async function handler(rawEvent) {
@@ -112,6 +166,7 @@ exports.handler = async function handler(rawEvent) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 110000);
   try {
+    const reviewMode = input.action === 'review';
     const apiResponse = await fetch(ENDPOINT, {
       method: 'POST',
       signal: controller.signal,
@@ -119,8 +174,10 @@ exports.handler = async function handler(rawEvent) {
       body: JSON.stringify({
         model: MODEL,
         messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content: `请以 JSON 分析以下材料。用户设置：${JSON.stringify(userContext)}\n\n生活记录：\n${diary}` }
+          { role: 'system', content: reviewMode ? REVIEW_PROMPT : SYSTEM_PROMPT },
+          { role: 'user', content: reviewMode
+            ? `module=${safeText(input.module, 30)}\n当前模块：${JSON.stringify(input.current || {})}\n报告上下文：${JSON.stringify(input.context || {})}\n用户反馈：${safeText(input.feedback, 500)}\n\n生活记录：\n${diary}`
+            : `请以 JSON 分析以下材料。用户设置：${JSON.stringify(userContext)}\n文件数量：${Math.max(0, Number(input.fileCount) || 0)}\n有效字符数：${diary.length}\n\n生活记录：\n${diary}` }
         ],
         response_format: { type: 'json_object' },
         extra_body: { enable_thinking: false }
@@ -129,7 +186,10 @@ exports.handler = async function handler(rawEvent) {
     const payload = await apiResponse.json();
     if (!apiResponse.ok) throw new Error(payload?.error?.message || `百炼请求失败（${apiResponse.status}）`);
     const content = payload?.choices?.[0]?.message?.content;
-    const result = validateAndNormalize(JSON.parse(content));
+    const parsed = JSON.parse(content);
+    const result = reviewMode
+      ? normalizeReview(safeText(input.module, 30), { ...(input.current || {}), ...parsed }, input.context || {})
+      : validateAndNormalize(parsed, { fileCount: input.fileCount, characterCount: diary.length });
     return response(200, origin, { result, usage: payload.usage || null });
   } catch (error) {
     const message = error?.name === 'AbortError' ? '分析超时，请稍后重试' : String(error?.message || '分析失败');
@@ -138,3 +198,6 @@ exports.handler = async function handler(rawEvent) {
     clearTimeout(timeout);
   }
 };
+
+exports.validateAndNormalize = validateAndNormalize;
+exports.normalizeReview = normalizeReview;
