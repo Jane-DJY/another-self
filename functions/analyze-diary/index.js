@@ -30,6 +30,21 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
 const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
 const LETTER_PROMPT = `你正在为“另世我”生成一封信。只返回严格 JSON：{"letter":"正文"}。写信人是一位来自已核验人物库的真实人物，但不得伪造她说过的话，也不得声称她真的读过用户日记。请明确这是“借用她公开人生经验形成的想象来信”。正文180至300字，回应记录中的具体主题与洞察，温暖、克制、不诊断、不预测、不复述姓名、公司、地址、健康或关系隐私，不替用户做决定。`;
 
+const COLOR_PALETTES = {
+  '电光花园': ['#5B2EFF','#FF4FA3','#FFC857','#00C2A8','#1769FF','#F05D23','#7A5195'],
+  '珊瑚海岸': ['#005F73','#EE6C4D','#F2CC8F','#3D5A80','#81B29A','#E07A5F','#9B5DE5'],
+  '钴蓝柠檬': ['#0047AB','#FFD400','#E84855','#00A896','#8A4FFF','#FF8C42','#2D3142'],
+  '森林珊瑚': ['#1B4332','#FF6B6B','#F4D35E','#277DA1','#9B5DE5','#43AA8B','#F9844A'],
+  '酒红薄荷': ['#8C1C3A','#52B788','#FFB703','#3A86FF','#8338EC','#FB5607','#264653'],
+  '群青橘子': ['#3A0CA3','#FF7B00','#00B4D8','#F72585','#90BE6D','#F9C74F','#4361EE'],
+  '复古原色': ['#D62828','#003049','#F77F00','#2A9D8F','#6A4C93','#FCBF49','#457B9D'],
+  '夜间霓虹': ['#240046','#00F5D4','#F15BB5','#FEE440','#00BBF9','#9B5DE5','#FF6D00']
+};
+function resolvePaletteColors(name, customColors) {
+  const custom = (Array.isArray(customColors) ? customColors : []).filter(color => /^#[0-9a-fA-F]{6}$/.test(color)).slice(0, 7);
+  return custom.length >= 4 ? custom.map(color => color.toUpperCase()) : COLOR_PALETTES[name] || COLOR_PALETTES['电光花园'];
+}
+
 function cors(origin) {
   return {
     'content-type': 'application/json; charset=utf-8',
@@ -185,6 +200,7 @@ exports.handler = async function handler(rawEvent) {
     exclude: String(input.exclude || '').slice(0, 300),
     palette: String(input.palette || '暮色紫').slice(0, 20)
   };
+  const requestedColors = resolvePaletteColors(userContext.palette, input.customColors);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 110000);
   try {
@@ -217,6 +233,9 @@ exports.handler = async function handler(rawEvent) {
       : letterMode
         ? { letter: safeText(parsed.letter, 1200) }
       : validateAndNormalize(parsed, { fileCount: input.fileCount, characterCount: diary.length });
+    if (!reviewMode && !letterMode) {
+      result.themes.forEach((theme, index) => { theme.color = requestedColors[index % requestedColors.length]; });
+    }
     return response(200, origin, { result, usage: payload.usage || null });
   } catch (error) {
     const message = error?.name === 'AbortError' ? '分析超时，请稍后重试' : String(error?.message || '分析失败');
@@ -228,3 +247,4 @@ exports.handler = async function handler(rawEvent) {
 
 exports.validateAndNormalize = validateAndNormalize;
 exports.normalizeReview = normalizeReview;
+exports.resolvePaletteColors = resolvePaletteColors;
