@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateAndNormalize, normalizeReview } = require('./index.js');
+const { validateAndNormalize, normalizeReview, resolvePaletteColors } = require('./index.js');
 
 const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
@@ -41,4 +41,10 @@ test('normalizes shares, evidence, coverage, future paths and verified links', (
 test('normalizes a local review without changing unrelated report data', () => {
   const reviewed = normalizeReview('insight', { type: 'tension', title: '新的理解', body: '只修改这一条', evidenceRefs: ['用户补充'] }, { periods: base.periods, themes: base.themes });
   assert.deepEqual(reviewed, { type: 'tension', title: '新的理解', body: '只修改这一条', evidenceRefs: ['用户补充'] });
+});
+
+test('uses distinct preset colors and accepts only valid custom photo colors', () => {
+  assert.equal(new Set(resolvePaletteColors('电光花园')).size, 7);
+  assert.deepEqual(resolvePaletteColors('照片取色', ['#ff0000','#00ff00','#0000ff','#ffee00','bad']), ['#FF0000','#00FF00','#0000FF','#FFEE00']);
+  assert.deepEqual(resolvePaletteColors('照片取色', ['#ff0000']), resolvePaletteColors('电光花园'));
 });
