@@ -17,7 +17,9 @@
 .letter-shell{width:min(1180px,calc(100% - 32px))}
 .letter-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}.letter-card{padding:25px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.55)}.letter-card h3{margin:6px 0 10px;font:600 23px/1.35 ui-serif,Georgia,"Songti SC",serif}.letter-card .letter-text{min-height:250px}.letter-card .letter-status{margin:0}
 .section-head.single{display:block}
+.hero{align-items:start;overflow:visible}.portrait-wrap{position:sticky;top:0;height:100vh;min-height:100vh;align-self:start}.side{align-self:start;min-height:100vh}.side h1{font-size:clamp(30px,3.6vw,48px);letter-spacing:-.035em}
 @media(max-width:820px){.letter-pair{grid-template-columns:1fr}}
+@media(max-width:820px){.portrait-wrap{position:relative;top:auto;height:auto;min-height:76vh}.side{min-height:0}.side h1{font-size:clamp(30px,10vw,44px)}}
 </style>
 </head>
 <body>
@@ -28,11 +30,11 @@
 (()=>{
 const app=document.querySelector('#app'),embedded=document.querySelector('#embeddedResult')?.textContent||'';let stored='';try{stored=sessionStorage.getItem('anotherSelfResult')||''}catch{}const raw=stored||embedded;if(!raw){app.innerHTML='<section class="empty"><h1>这里还没有另世我</h1><p>请先上传生活记录并完成生成。</p><a href="generate-another-self.html">开始生成 →</a></section>';return}
 const state=JSON.parse(raw),data=state.result,review=state.reviewState||(state.reviewState={confirmed:[],hidden:[],feedback:{},history:[]}),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const typeLabels={repeating:'反复出现',growing:'正在增强',compressed:'正在被挤压',tension:'尚未解决的拉扯'};let feedbackTarget=null,sharePlatform='xhs',shareUrl='';
+let feedbackTarget=null,sharePlatform='xhs',shareUrl='';
 const itemId=(k,i)=>`${k}:${i}`,hidden=id=>review.hidden.includes(id);
 function bestRole(){return (data.roleModels||[])[0]||null}
 function render(){const c=data.coverage||{},range=c.range||`${data.periods[0]}—${data.periods.at(-1)}`,summary=String(c.summary||data.subtitle||'仅反映本次提供的记录，不代表完整人生').replace(/[。！？]$/,''),gaps=(c.gaps||[]).length?`；已知缺口：${esc(c.gaps.join('、'))}`:'';
- const insights=(data.insights||[]).map((x,i)=>`<article class="insight" data-item="${itemId('insight',i)}"><span class="type">${esc(typeLabels[x.type]||typeLabels.repeating)}</span><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p><p class="evidence">依据：${esc((x.evidenceRefs||[]).join('；')||'本次记录中的重复特征')}</p></article>`).join('');
+ const insights=(data.insights||[]).map((x,i)=>`<article class="insight" data-item="${itemId('insight',i)}"><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p><p class="evidence">依据：${esc((x.evidenceRefs||[]).join('；')||'本次记录中的重复特征')}</p></article>`).join('');
  const role=bestRole(),roleHtml=role?`<div class="role-card"><img class="role-photo" src="${esc(role.photo||'assets/women-stars/PROFILE-002-FEATURED-NADIEH-BREMER.png')}" alt="${esc(role.name)}"><div class="role-copy"><h3>${esc(role.name)}</h3><p class="identity">${esc(role.identity)}</p><p>${esc(role.biography||role.reason)}</p><p class="match"><strong>为什么是她</strong><br>${esc(role.reason)}</p><a href="${esc(role.libraryUrl||'women-stars.html')}" target="_blank" rel="noopener">进入群星闪耀，继续探索她的人生轨道 ↗</a></div></div>`:`<p>这批记录还不足以匹配一位有可靠公开资料的人物，因此暂不展示。</p>`;
  app.innerHTML=`<section class="hero"><div class="portrait-wrap"><svg id="river" viewBox="0 0 700 850" role="img" aria-label="左侧带时间轴、头部带主题图例的人物形态人生河流"></svg></div><div class="side"><h1>时间都去哪儿了</h1><div class="data-note"><p><strong>数据来源与处理：</strong>${esc(summary)}。基于你本次提供的 ${Number(c.fileCount||0)} 个日记文件、${Number(c.characterCount||0).toLocaleString()} 个有效字符，覆盖 ${esc(range)}。系统依据记录中的时间标记划分为 ${data.periods.length} 个阶段，并将文本归入不同生活主题，计算各阶段的相对主题份额${gaps}。</p><p><strong>如何阅读：</strong>河宽表示记录文本中的相对主题份额，不等于真实时间分配；每条河上的白点是该主题的重要记录节点。</p></div><div class="insights side-insights">${insights}</div></div></section>
  <section class="star-shell"><div class="section-head single"><div><h2>群星里，有一个她与你此刻的轨迹相呼应</h2><p>匹配依据来自上面的主题与洞察，不代表你需要复制她的人生。</p></div></div>${roleHtml}</section>
