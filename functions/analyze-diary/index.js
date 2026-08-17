@@ -17,7 +17,7 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
   "subtitle":"30字以内的证据边界说明",
   "periods":["时间段1","时间段2","时间段3","时间段4"],
   "periodVolumes":[320,180,460,250],
-  "themes":[{"key":"英文短键","label":"中文主题","color":"#六位十六进制色","shares":[25,30,20,25]}],
+  "themes":[{"key":"英文短键","label":"中文主题","color":"#六位十六进制色","volumes":[80,54,92,63]}],
   "coverage":{"range":"记录覆盖的日期或诚实阶段","summary":"覆盖度说明","gaps":["已知缺口"]},
   "milestones":[{"periodIndex":0,"themeKey":"对应主题key","label":"12字以内","quote":"日记中的一小段原话，隐去姓名、公司、地址等敏感标识","evidence":"日期或上下文线索","meaning":"为什么把它识别为节点，60字以内"}],
   "insights":[{"type":"repeating|growing|compressed|tension","title":"16字以内","body":"80字以内的有限观察","evidenceRefs":["日期或匿名化原句特征"]}],
@@ -25,7 +25,7 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
   "letter":"写给当下自己的150至260字中文信，不做医疗或人生定论",
   "privacyWarnings":["检测到的可能敏感信息类型，不复述原文"]
 }
-规则：periods 取3至8个真实时间段；periodVolumes 长度必须等于 periods，填写原始记录归入各时间段后的有效字符数，只统计用户原文，不按阶段时长修正、不为了图形好看而调整；themes 取4至7个互斥主题；每个 shares 数组长度必须等于 periods，且同一时间段所有主题份额之和为100；milestones 取3至5个，每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
+规则：periods 取3至8个真实时间段；periodVolumes 长度必须等于 periods，填写原始记录归入各时间段后的有效字符数，只统计用户原文，不按阶段时长修正、不为了图形好看而调整；themes 取4至7个互斥主题；每个 volumes 数组长度必须等于 periods，填写各时间段内实际归入该主题的有效字符数，同一时间段所有主题 volumes 之和应等于对应的 periodVolumes，不得换算成百分比；milestones 取3至5个，每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
 
 const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
 const LETTER_PROMPT = `你正在为“另世我”生成一封信。只返回严格 JSON：{"letter":"正文"}。写信人是一位来自已核验人物库的真实人物，但不得伪造她说过的话，也不得声称她真的读过用户日记。请明确这是“借用她公开人生经验形成的想象来信”。正文180至300字，回应记录中的具体主题与洞察，温暖、克制、不诊断、不预测、不复述姓名、公司、地址、健康或关系隐私，不替用户做决定。`;
@@ -84,12 +84,22 @@ function validateAndNormalize(result, metadata = {}) {
     key: String(theme.key || `theme${index + 1}`).replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24),
     label: String(theme.label || `主题${index + 1}`).slice(0, 12),
     color: /^#[0-9a-fA-F]{6}$/.test(theme.color) ? theme.color : ['#673779','#d64fae','#f1b943','#447ca8','#5a8770','#c66d50','#8c6bb1'][index],
+    volumes: periods.map((_, i) => Math.max(0, Number(theme.volumes?.[i]) || 0)),
     shares: periods.map((_, i) => Math.max(0, Number(theme.shares?.[i]) || 0))
   })).filter(theme => theme.key);
   if (themes.length < 3) throw new Error('主题不足');
   periods.forEach((_, periodIndex) => {
-    const total = themes.reduce((sum, theme) => sum + theme.shares[periodIndex], 0) || 1;
-    themes.forEach(theme => { theme.shares[periodIndex] = Number((theme.shares[periodIndex] * 100 / total).toFixed(2)); });
+    let volumeTotal = themes.reduce((sum, theme) => sum + theme.volumes[periodIndex], 0);
+    if (!volumeTotal) {
+      const shareTotal = themes.reduce((sum, theme) => sum + theme.shares[periodIndex], 0) || 1;
+      themes.forEach(theme => { theme.volumes[periodIndex] = periodVolumes[periodIndex] * theme.shares[periodIndex] / shareTotal; });
+      volumeTotal = themes.reduce((sum, theme) => sum + theme.volumes[periodIndex], 0);
+    }
+    const target = periodVolumes[periodIndex] || volumeTotal || 1;
+    themes.forEach(theme => {
+      theme.volumes[periodIndex] = Number((theme.volumes[periodIndex] * target / (volumeTotal || 1)).toFixed(2));
+      theme.shares[periodIndex] = Number((theme.volumes[periodIndex] * 100 / target).toFixed(2));
+    });
   });
   const validKeys = new Set(themes.map(theme => theme.key));
   const futurePaths = (Array.isArray(result.futurePaths) ? result.futurePaths : []).slice(0, 3).map((item, index) => {
