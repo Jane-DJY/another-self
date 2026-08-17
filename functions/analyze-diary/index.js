@@ -27,6 +27,7 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
 规则：periods 取3至8个真实时间段；themes 取4至7个互斥主题；每个 shares 数组长度必须等于 periods，且同一时间段所有主题份额之和为100；milestones 取3至5个；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
 
 const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
+const LETTER_PROMPT = `你正在为“另世我”生成一封信。只返回严格 JSON：{"letter":"正文"}。写信人是一位来自已核验人物库的真实人物，但不得伪造她说过的话，也不得声称她真的读过用户日记。请明确这是“借用她公开人生经验形成的想象来信”。正文180至300字，回应记录中的具体主题与洞察，温暖、克制、不诊断、不预测、不复述姓名、公司、地址、健康或关系隐私，不替用户做决定。`;
 
 function cors(origin) {
   return {
@@ -60,20 +61,14 @@ function safeUrl(value) {
 }
 
 const VERIFIED_ROLE_MODELS = [
-  { name: 'Nadieh Bremer', identity: '数据可视化设计师与独立创作者', keywords: /创作|视觉|数据|作品|表达/, reason: '她长期以数据可视化和独立创作为实践，可作为持续小步创作、逐步形成个人方法的公开参照。', sourceTitle: 'Visual Cinnamon · About', sourceUrl: 'https://www.visualcinnamon.com/about' },
-  { name: 'Jen Simmons', identity: '网页设计师与 Web 标准倡导者', keywords: /产品|设计|网页|公开|专业/, reason: '她长期公开分享网页设计与标准实践，可作为把专业投入沉淀为公开作品和可复用方法的参照。', sourceTitle: 'Jen Simmons · Official Website', sourceUrl: 'https://jensimmons.com/' },
-  { name: '李飞飞', identity: '计算机科学家与人工智能研究者', keywords: /学习|研究|技术|教育|长期/, reason: '她在研究、教育与产业之间长期工作，可作为把持续学习积累转化为长期专业方向的公开参照。', sourceTitle: 'Stanford · Fei-Fei Li', sourceUrl: 'https://cs.stanford.edu/people/feifeili/' }
+  { name: 'Nadieh Bremer', identity: '数据可视化设计师、Visual Cinnamon 创办人', keywords: /创作|视觉|数据|作品|表达/, reason: '你们都在尝试把分析能力、个人经验和视觉表达连接成自己的方法。', biography: '她从天文学和数据科学背景进入可视化创作，持续公开 D3 与视觉实验，逐步形成以复杂数据和定制视觉叙事见长的独立实践，并与 Shirley Wu 合著《Data Sketches》。', photo: 'assets/women-stars/PROFILE-002-FEATURED-NADIEH-BREMER.png', libraryUrl: 'women-stars.html?person=FEATURED-NADIEH-BREMER', sourceTitle: 'Visual Cinnamon · About', sourceUrl: 'https://www.visualcinnamon.com/about' },
+  { name: 'Fei-Fei Li', identity: '计算机科学家与人工智能研究者', keywords: /学习|研究|技术|教育|长期/, reason: '你们都在寻找如何把持续学习转化为一条更长期、更有主体性的专业道路。', biography: '她长期工作于计算机视觉、人工智能研究与教育之间，也持续推动以人为本的人工智能发展。', photo: 'assets/women-stars/INT05.jpg', libraryUrl: 'women-stars.html?person=INT05', sourceTitle: 'Stanford · Fei-Fei Li', sourceUrl: 'https://profiles.stanford.edu/fei-fei-li' }
 ];
 
 function matchVerifiedRoleModels(futurePaths) {
-  const used = new Set();
-  return futurePaths.map((path, index) => {
-    const text = `${path.title} ${path.premise} ${path.gain} ${(path.conditions || []).join(' ')}`;
-    let model = VERIFIED_ROLE_MODELS.find(item => item.keywords.test(text) && !used.has(item.name));
-    if (!model) model = VERIFIED_ROLE_MODELS.find(item => !used.has(item.name)) || VERIFIED_ROLE_MODELS[index % VERIFIED_ROLE_MODELS.length];
-    used.add(model.name);
-    return { pathKey: path.key, name: model.name, identity: model.identity, reason: model.reason, sourceTitle: model.sourceTitle, sourceUrl: model.sourceUrl };
-  });
+  const text = (futurePaths || []).map(path => `${path.title} ${path.premise} ${path.gain} ${(path.conditions || []).join(' ')}`).join(' ');
+  const model = VERIFIED_ROLE_MODELS.find(item => item.keywords.test(text)) || VERIFIED_ROLE_MODELS[0];
+  return [{ name: model.name, identity: model.identity, reason: model.reason, biography: model.biography, photo: model.photo, libraryUrl: model.libraryUrl, sourceTitle: model.sourceTitle, sourceUrl: model.sourceUrl }];
 }
 
 function validateAndNormalize(result, metadata = {}) {
@@ -179,6 +174,7 @@ exports.handler = async function handler(rawEvent) {
   const timeout = setTimeout(() => controller.abort(), 110000);
   try {
     const reviewMode = input.action === 'review';
+    const letterMode = input.action === 'letter';
     const apiResponse = await fetch(ENDPOINT, {
       method: 'POST',
       signal: controller.signal,
@@ -186,9 +182,11 @@ exports.handler = async function handler(rawEvent) {
       body: JSON.stringify({
         model: MODEL,
         messages: [
-          { role: 'system', content: reviewMode ? REVIEW_PROMPT : SYSTEM_PROMPT },
+          { role: 'system', content: reviewMode ? REVIEW_PROMPT : letterMode ? LETTER_PROMPT : SYSTEM_PROMPT },
           { role: 'user', content: reviewMode
             ? `module=${safeText(input.module, 30)}\n当前模块：${JSON.stringify(input.current || {})}\n报告上下文：${JSON.stringify(input.context || {})}\n用户反馈：${safeText(input.feedback, 500)}\n\n生活记录：\n${diary}`
+            : letterMode
+              ? `写信人资料：${JSON.stringify(input.author || {})}\n主题：${JSON.stringify(input.themes || [])}\n洞察：${JSON.stringify(input.insights || [])}\n称呼：${safeText(input.nickname, 30)}\n\n生活记录：\n${diary}`
             : `请以 JSON 分析以下材料。用户设置：${JSON.stringify(userContext)}\n文件数量：${Math.max(0, Number(input.fileCount) || 0)}\n有效字符数：${diary.length}\n\n生活记录：\n${diary}` }
         ],
         response_format: { type: 'json_object' },
@@ -201,6 +199,8 @@ exports.handler = async function handler(rawEvent) {
     const parsed = JSON.parse(content);
     const result = reviewMode
       ? normalizeReview(safeText(input.module, 30), { ...(input.current || {}), ...parsed }, input.context || {})
+      : letterMode
+        ? { letter: safeText(parsed.letter, 1200) }
       : validateAndNormalize(parsed, { fileCount: input.fileCount, characterCount: diary.length });
     return response(200, origin, { result, usage: payload.usage || null });
   } catch (error) {
