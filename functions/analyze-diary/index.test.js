@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle, buildRoleLetter, buildDiarySelfLetter } = require('./index.js');
+const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle, formatLetter, buildRoleLetter, buildDiarySelfLetter } = require('./index.js');
 
 const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
@@ -69,6 +69,11 @@ test('removes contrast-template phrasing from generated letters', () => {
   assert.match(cleaned, /先放一放/);
   assert.match(cleaned, /全部/);
   assert.match(cleaned, /先睡一觉/);
+});
+
+test('turns generated copy into a clean signed letter', () => {
+  const letter = formatLetter('（依据 Fei-Fei Li 的公开表达特征写成的想象来信。）\n\nJane：\n\n请继续记录。', 'Fei-Fei Li');
+  assert.equal(letter, '展信佳。\n\n请继续记录。\n\nFei-Fei Li');
 });
 
 test('builds the public-figure letter only from supplied evidence', () => {

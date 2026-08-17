@@ -75,6 +75,19 @@ function cleanLetterStyle(value) {
     .replace(/与其说([^。！？\n]{1,90})[，,；;]\s*不如说([^。！？\n]{1,120})/g, '$2')
     .replace(/这意味着你正在/g, '你在');
 }
+function formatLetter(value, signer) {
+  const safeSigner = safeText(signer, 60) || '写信人';
+  const escapedSigner = safeSigner.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  let body = cleanLetterStyle(value)
+    .replace(/^（?依据[^\n]{0,100}(?:想象来信|公开表达)[^\n]*\n*/, '')
+    .replace(/^参考[^\n]{0,100}(?:想象来信|公开表达)[^\n]*\n*/, '')
+    .replace(/^想象来信[^\n]*\n*/, '')
+    .replace(/^[^\n：:]{1,30}[：:]\s*\n*/, '')
+    .replace(new RegExp(`\\n{1,3}${escapedSigner}\\s*$`), '')
+    .trim();
+  if (!/^展信佳[。！!]?/.test(body)) body = `展信佳。\n\n${body}`;
+  return `${body}\n\n${safeSigner}`;
+}
 
 function buildRoleLetter(input) {
   const author = input.author || {};
@@ -99,7 +112,7 @@ function buildRoleLetter(input) {
     ? '继续记具体发生过的事，也记下当时做出的选择。过一段时间再回来看，你会更容易辨认什么值得长期留下。'
     : '继续记具体发生过的事：做了哪一步，在哪里停住，后来又怎样。下一次回看，把这些片段并排放好，变化会自己显出来。';
 
-  return cleanLetterStyle(`展信佳。\n\n${evidence}${observation}${ending}\n\n${name}`);
+  return formatLetter(`${evidence}${observation}${ending}`, name);
 }
 
 function buildDiarySelfLetter(diary, nickname, milestones) {
@@ -117,7 +130,7 @@ function buildDiarySelfLetter(diary, nickname, milestones) {
   const ending = averageLength <= 22
     ? '这些都写过。先留在这里。以后还是这样，发生了什么，就写什么。做了哪一步，也写下来。过一阵再看。先不急着下结论。就这样。'
     : '这些都是当时真正写下来的事。以后也照这样记：发生了什么，做了哪一步，在哪里停住。过一阵再回来读，先看记录，再想怎么说。';
-  return cleanLetterStyle(`展信佳。\n\n${evidence}。${ending}\n\n过去的${name}`);
+  return formatLetter(`${evidence}。${ending}`, `过去的${name}`);
 }
 function safeArray(value, max, itemMax = 120) {
   return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
@@ -295,7 +308,7 @@ exports.handler = async function handler(rawEvent) {
     const result = reviewMode
       ? normalizeReview(safeText(input.module, 30), { ...(input.current || {}), ...parsed }, input.context || {})
       : letterMode
-        ? { letter: cleanLetterStyle(parsed.letter) }
+        ? { letter: formatLetter(parsed.letter, safeText(input.author?.name, 60) || '她') }
       : validateAndNormalize(parsed, { fileCount: input.fileCount, characterCount: diary.length });
     if (!reviewMode && !letterMode) {
       result.themes.forEach((theme, index) => { theme.color = requestedColors[index % requestedColors.length]; });
@@ -314,5 +327,6 @@ exports.validateAndNormalize = validateAndNormalize;
 exports.normalizeReview = normalizeReview;
 exports.resolvePaletteColors = resolvePaletteColors;
 exports.cleanLetterStyle = cleanLetterStyle;
+exports.formatLetter = formatLetter;
 exports.buildRoleLetter = buildRoleLetter;
 exports.buildDiarySelfLetter = buildDiarySelfLetter;
