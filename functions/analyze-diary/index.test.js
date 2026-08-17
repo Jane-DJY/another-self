@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle, buildRoleLetter } = require('./index.js');
+const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle, buildRoleLetter, buildDiarySelfLetter } = require('./index.js');
 
 const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
@@ -77,4 +77,17 @@ test('builds the public-figure letter only from supplied evidence', () => {
   assert.doesNotMatch(letter, /。”[；。]/);
   assert.doesNotMatch(letter, /具体、好奇、重视过程/);
   assert.doesNotMatch(letter, /折痕|指甲|鞋底|塑料袋|关灯|她曾|我曾|不是|而是/);
+});
+
+test('builds the diary-self letter from anonymized diary evidence in the diary rhythm', () => {
+  const letter = buildDiarySelfLetter(
+    '今天事情很多。先不管。删了六项。居然做完了。还行。',
+    '小雨',
+    [{ quote: '删了六项。' }, { quote: '居然做完了。' }, { quote: '还行。' }],
+    [{ title: '删减后更容易开始' }]
+  );
+  assert.match(letter, /“删了六项”/);
+  assert.match(letter, /“居然做完了”/);
+  assert.match(letter, /先不急着下结论/);
+  assert.doesNotMatch(letter, /摸到自己的边|手在学|踩出的印子|第一次|总是|从不|不是|而是/);
 });
