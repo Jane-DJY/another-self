@@ -18,13 +18,13 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
   "periods":["时间段1","时间段2","时间段3","时间段4"],
   "themes":[{"key":"英文短键","label":"中文主题","color":"#六位十六进制色","shares":[25,30,20,25]}],
   "coverage":{"range":"记录覆盖的日期或诚实阶段","summary":"覆盖度说明","gaps":["已知缺口"]},
-  "milestones":[{"periodIndex":0,"themeKey":"对应主题key","label":"12字以内","evidence":"匿名化的简短原文或特征","meaning":"这段变化可能意味着什么"}],
+  "milestones":[{"periodIndex":0,"themeKey":"对应主题key","label":"12字以内","quote":"日记中的一小段原话，隐去姓名、公司、地址等敏感标识","evidence":"日期或上下文线索","meaning":"为什么把它识别为节点，60字以内"}],
   "insights":[{"type":"repeating|growing|compressed|tension","title":"16字以内","body":"80字以内的有限观察","evidenceRefs":["日期或匿名化原句特征"]}],
   "futurePaths":[{"key":"英文短键","title":"条件化路径名称","premise":"如果继续什么投入","conditions":["需要的条件"],"gain":"可能获得什么","cost":"需要付出什么代价","themeChanges":{"主题key":5},"nextAction":"7天内可执行的低风险行动"}],
   "letter":"写给当下自己的150至260字中文信，不做医疗或人生定论",
   "privacyWarnings":["检测到的可能敏感信息类型，不复述原文"]
 }
-规则：periods 取3至8个真实时间段；themes 取4至7个互斥主题；每个 shares 数组长度必须等于 periods，且同一时间段所有主题份额之和为100；milestones 取3至5个；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
+规则：periods 取3至8个真实时间段；themes 取4至7个互斥主题；每个 shares 数组长度必须等于 periods，且同一时间段所有主题份额之和为100；milestones 取3至5个，每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
 
 const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
 const LETTER_PROMPT = `你正在为“另世我”生成一封信。只返回严格 JSON：{"letter":"正文"}。写信人是一位来自已核验人物库的真实人物，但不得伪造她说过的话，也不得声称她真的读过用户日记。请明确这是“借用她公开人生经验形成的想象来信”。正文180至300字，回应记录中的具体主题与洞察，温暖、克制、不诊断、不预测、不复述姓名、公司、地址、健康或关系隐私，不替用户做决定。`;
@@ -117,6 +117,7 @@ function validateAndNormalize(result, metadata = {}) {
       periodIndex: Math.min(periods.length - 1, Math.max(0, Number(item.periodIndex) || 0)),
       themeKey: validKeys.has(item.themeKey) ? item.themeKey : themes[0].key,
       label: String(item.label || '重要节点').slice(0, 24),
+      quote: safeText(item.quote || item.evidence, 260),
       evidence: String(item.evidence || '').slice(0, 220),
       meaning: safeText(item.meaning, 220)
     })),
@@ -141,7 +142,7 @@ function normalizeReview(module, result, context) {
     const shares = periods.map((_, i) => Math.max(0, Number(result.shares?.[i]) || 0));
     return { key: safeText(result.key, 24).replace(/[^a-zA-Z0-9_-]/g, ''), label: safeText(result.label, 12), color: /^#[0-9a-fA-F]{6}$/.test(result.color) ? result.color : '#673779', shares };
   }
-  if (module === 'milestone') return { periodIndex: Math.min(periods.length - 1, Math.max(0, Number(result.periodIndex) || 0)), themeKey: validKeys.has(result.themeKey) ? result.themeKey : themes[0]?.key, label: safeText(result.label, 24), evidence: safeText(result.evidence, 220), meaning: safeText(result.meaning, 220) };
+  if (module === 'milestone') return { periodIndex: Math.min(periods.length - 1, Math.max(0, Number(result.periodIndex) || 0)), themeKey: validKeys.has(result.themeKey) ? result.themeKey : themes[0]?.key, label: safeText(result.label, 24), quote: safeText(result.quote || result.evidence, 260), evidence: safeText(result.evidence, 220), meaning: safeText(result.meaning, 220) };
   if (module === 'insight') return { type: ['repeating','growing','compressed','tension'].includes(result.type) ? result.type : 'repeating', title: safeText(result.title, 36), body: safeText(result.body, 220), evidenceRefs: safeArray(result.evidenceRefs, 4, 160) };
   if (module === 'futurePath') return { key: safeText(result.key, 24).replace(/[^a-zA-Z0-9_-]/g, ''), title: safeText(result.title, 36), premise: safeText(result.premise, 180), conditions: safeArray(result.conditions, 4, 100), gain: safeText(result.gain, 180), cost: safeText(result.cost, 180), themeChanges: Object.fromEntries(Object.entries(result.themeChanges || {}).filter(([key]) => validKeys.has(key)).map(([key,value]) => [key, Math.max(-50, Math.min(50, Number(value) || 0))])), nextAction: safeText(result.nextAction, 180) };
   throw new Error('不支持的局部修订类型');
