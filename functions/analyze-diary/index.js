@@ -71,9 +71,36 @@ function normalizeEvent(event) {
 function safeText(value, max) { return String(value || '').trim().slice(0, max); }
 function cleanLetterStyle(value) {
   return safeText(value, 1200)
-    .replace(/(?:不是|并非)([^。！？\n]{1,90})[，,；;]\s*(?:而是|只是|是)([^。！？\n]{1,120})/g, '$2')
+    .replace(/(?:不是|并非)([^。！？\n]{1,90})[，,；;]\s*(?:而是|只是|就是|是)([^。！？\n]{1,120})/g, '$2')
     .replace(/与其说([^。！？\n]{1,90})[，,；;]\s*不如说([^。！？\n]{1,120})/g, '$2')
     .replace(/这意味着你正在/g, '你在');
+}
+
+function buildRoleLetter(input) {
+  const author = input.author || {};
+  const name = safeText(author.name, 60) || '她';
+  const nickname = safeText(input.nickname, 30) || '你';
+  const traits = safeText(author.voiceTraits, 100) || '具体、克制、重视过程';
+  const quotes = (Array.isArray(input.milestones) ? input.milestones : [])
+    .map(item => safeText(item?.quote, 80)).filter(Boolean).slice(0, 3);
+  const insightTitles = (Array.isArray(input.insights) ? input.insights : [])
+    .map(item => safeText(item?.title, 36)).filter(Boolean).slice(0, 2);
+  const themeLabels = (Array.isArray(input.themes) ? input.themes : [])
+    .map(item => safeText(item?.label, 20)).filter(Boolean).slice(0, 2);
+
+  const evidence = quotes.length
+    ? `我先把你写下的几个片段放在一起：${quotes.map(quote => `“${quote}”`).join('；')}。`
+    : '我先看你留下的记录，一条一条放回它们原来的时间里。';
+  const observation = insightTitles.length
+    ? `这些片段连起来，可以继续观察“${insightTitles.join('”和“')}”。`
+    : themeLabels.length
+      ? `这些片段连起来，${themeLabels.join('和')}之间的变化会更清楚。`
+      : '这些片段连起来，变化会比单独回想时更清楚。';
+  const ending = name === 'Fei-Fei Li'
+    ? '继续记具体发生过的事，也记下当时做出的选择。过一段时间再回来看，你会更容易辨认什么值得长期留下。'
+    : '继续记具体发生过的事：做了哪一步，在哪里停住，后来又怎样。下一次回看，把这些片段并排放好，变化会自己显出来。';
+
+  return cleanLetterStyle(`（这是一封参考 ${name} 公开表达中“${traits}”这些特征写成的想象来信。）\n\n${nickname}：\n\n${evidence}${observation}${ending}`);
 }
 function safeArray(value, max, itemMax = 120) {
   return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
@@ -207,6 +234,9 @@ exports.handler = async function handler(rawEvent) {
     palette: String(input.palette || '暮色紫').slice(0, 20)
   };
   const requestedColors = resolvePaletteColors(userContext.palette, input.customColors);
+  if (input.action === 'letter') {
+    return response(200, origin, { result: { letter: buildRoleLetter(input) }, usage: null });
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 110000);
   try {
@@ -256,3 +286,4 @@ exports.validateAndNormalize = validateAndNormalize;
 exports.normalizeReview = normalizeReview;
 exports.resolvePaletteColors = resolvePaletteColors;
 exports.cleanLetterStyle = cleanLetterStyle;
+exports.buildRoleLetter = buildRoleLetter;

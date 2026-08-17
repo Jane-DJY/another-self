@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle } = require('./index.js');
+const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle, buildRoleLetter } = require('./index.js');
 
 const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
@@ -51,10 +51,28 @@ test('uses distinct preset colors and accepts only valid custom photo colors', (
 });
 
 test('removes contrast-template phrasing from generated letters', () => {
-  const cleaned = cleanLetterStyle('这不是一次退后，而是一次停顿。并非你不够努力，而是清单太满。不是卡住，是先放一放。与其说这是失败，不如说先睡一觉。');
+  const cleaned = cleanLetterStyle('这不是一次退后，而是一次停顿。并非你不够努力，而是清单太满。不是卡住，是先放一放。不是铺垫，就是全部。与其说这是失败，不如说先睡一觉。');
   assert.doesNotMatch(cleaned, /不是|并非|而是|与其说|不如说/);
   assert.match(cleaned, /一次停顿/);
   assert.match(cleaned, /清单太满/);
   assert.match(cleaned, /先放一放/);
+  assert.match(cleaned, /全部/);
   assert.match(cleaned, /先睡一觉/);
+});
+
+test('builds the public-figure letter only from supplied evidence', () => {
+  const letter = buildRoleLetter({
+    nickname: '小雨',
+    author: { name: 'Nadieh Bremer', voiceTraits: '具体、好奇、重视过程' },
+    milestones: [
+      { quote: '今天删掉了清单里的六项。' },
+      { quote: '发完图，我就去买菜。' }
+    ],
+    insights: [{ title: '创作节奏逐渐稳定' }],
+    themes: [{ label: '创作' }]
+  });
+  assert.match(letter, /今天删掉了清单里的六项/);
+  assert.match(letter, /发完图，我就去买菜/);
+  assert.match(letter, /创作节奏逐渐稳定/);
+  assert.doesNotMatch(letter, /折痕|指甲|鞋底|塑料袋|关灯|她曾|我曾|不是|而是/);
 });
