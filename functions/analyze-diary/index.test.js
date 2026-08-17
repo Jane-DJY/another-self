@@ -30,6 +30,8 @@ test('normalizes shares, evidence, coverage, future paths and verified links', (
   assert.equal(result.roleModels.length, 1);
   assert.equal(result.roleModels[0].name, 'Nadieh Bremer');
   assert.equal(result.roleModels[0].sourceUrl, 'https://www.visualcinnamon.com/about');
+  assert.match(result.roleModels[0].libraryUrl, /women-stars/);
+  assert.ok(result.roleModels[0].photo);
 });
 
 test('normalizes a local review without changing unrelated report data', () => {
