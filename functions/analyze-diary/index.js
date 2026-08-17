@@ -80,19 +80,18 @@ function buildRoleLetter(input) {
   const author = input.author || {};
   const name = safeText(author.name, 60) || '她';
   const nickname = safeText(input.nickname, 30) || '你';
-  const traits = safeText(author.voiceTraits, 100) || '具体、克制、重视过程';
   const quotes = (Array.isArray(input.milestones) ? input.milestones : [])
-    .map(item => safeText(item?.quote, 80)).filter(Boolean).slice(0, 3);
+    .map(item => safeText(item?.quote, 80).replace(/[。！？!?；;，,]+$/g, '')).filter(Boolean).slice(0, 3);
   const insightTitles = (Array.isArray(input.insights) ? input.insights : [])
     .map(item => safeText(item?.title, 36)).filter(Boolean).slice(0, 2);
   const themeLabels = (Array.isArray(input.themes) ? input.themes : [])
     .map(item => safeText(item?.label, 20)).filter(Boolean).slice(0, 2);
 
   const evidence = quotes.length
-    ? `我先把你写下的几个片段放在一起：${quotes.map(quote => `“${quote}”`).join('；')}。`
+    ? `我把你写下的几个片段放在一起看：“${quotes.join('”“')}”。`
     : '我先看你留下的记录，一条一条放回它们原来的时间里。';
   const observation = insightTitles.length
-    ? `这些片段连起来，可以继续观察“${insightTitles.join('”和“')}”。`
+    ? `接下来，我会继续看两件事：${insightTitles.join('，')}。`
     : themeLabels.length
       ? `这些片段连起来，${themeLabels.join('和')}之间的变化会更清楚。`
       : '这些片段连起来，变化会比单独回想时更清楚。';
@@ -100,7 +99,7 @@ function buildRoleLetter(input) {
     ? '继续记具体发生过的事，也记下当时做出的选择。过一段时间再回来看，你会更容易辨认什么值得长期留下。'
     : '继续记具体发生过的事：做了哪一步，在哪里停住，后来又怎样。下一次回看，把这些片段并排放好，变化会自己显出来。';
 
-  return cleanLetterStyle(`（这是一封参考 ${name} 公开表达中“${traits}”这些特征写成的想象来信。）\n\n${nickname}：\n\n${evidence}${observation}${ending}`);
+  return cleanLetterStyle(`（依据 ${name} 的公开表达特征写成的想象来信。）\n\n${nickname}：\n\n${evidence}${observation}${ending}`);
 }
 function safeArray(value, max, itemMax = 120) {
   return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
