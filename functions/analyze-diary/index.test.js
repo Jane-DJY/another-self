@@ -8,9 +8,9 @@ const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
   periodVolumes: [120, 40, 260],
   themes: [
-    { key: 'work', label: '工作', color: '#663377', shares: [8, 3, 9] },
-    { key: 'create', label: '创作', color: '#ff6633', shares: [1, 5, 0] },
-    { key: 'care', label: '照护', color: '#ffcc33', shares: [1, 2, 1] }
+    { key: 'work', label: '工作', color: '#663377', volumes: [96, 12, 234] },
+    { key: 'create', label: '创作', color: '#ff6633', volumes: [12, 20, 0] },
+    { key: 'care', label: '照护', color: '#ffcc33', volumes: [12, 8, 26] }
   ],
   milestones: [{ periodIndex: 99, themeKey: 'missing', label: '节点', quote: '今天第一次把作品公开发了出去。', evidence: '匿名证据', meaning: '从私下练习变成公开表达。' }],
   insights: [{ type: 'growing', title: '创作变多', body: '在本次记录中出现得更频繁', evidenceRefs: ['近期多次提到'] }],
@@ -26,6 +26,7 @@ test('normalizes shares, evidence, coverage, future paths and verified links', (
   result.periods.forEach((_, index) => assert.ok(Math.abs(result.themes.reduce((sum, theme) => sum + theme.shares[index], 0) - 100) < 0.02));
   assert.equal(result.coverage.fileCount, 2);
   assert.deepEqual(result.periodVolumes, [120, 40, 260]);
+  result.periods.forEach((_, index) => assert.ok(Math.abs(result.themes.reduce((sum, theme) => sum + theme.volumes[index], 0) - result.periodVolumes[index]) < 0.02));
   assert.equal(result.milestones[0].periodIndex, 2);
   assert.equal(result.milestones[0].themeKey, 'work');
   assert.equal(result.milestones[0].quote, '今天第一次把作品公开发了出去。');
