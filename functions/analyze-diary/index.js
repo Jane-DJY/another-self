@@ -22,13 +22,13 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
   "milestones":[{"periodIndex":0,"themeKey":"对应主题key","label":"12字以内","quote":"日记中的一小段原话，隐去姓名、公司、地址等敏感标识","evidence":"日期或上下文线索","meaning":"为什么把它识别为节点，60字以内"}],
   "insights":[{"type":"repeating|growing|compressed|tension","title":"16字以内","body":"80字以内的有限观察","evidenceRefs":["日期或匿名化原句特征"]}],
   "futurePaths":[{"key":"英文短键","title":"条件化路径名称","premise":"如果继续什么投入","conditions":["需要的条件"],"gain":"可能获得什么","cost":"需要付出什么代价","themeChanges":{"主题key":5},"nextAction":"7天内可执行的低风险行动"}],
-  "letter":"写给当下自己的150至260字中文信，不做医疗或人生定论",
+  "letter":"日记里的自己写给当下自己的150至260字中文信",
   "privacyWarnings":["检测到的可能敏感信息类型，不复述原文"]
 }
-规则：periods 取3至8个真实时间段；periodVolumes 长度必须等于 periods，填写原始记录归入各时间段后的有效字符数，只统计用户原文，不按阶段时长修正、不为了图形好看而调整；themes 取4至7个互斥主题；每个 volumes 数组长度必须等于 periods，填写各时间段内实际归入该主题的有效字符数，同一时间段所有主题 volumes 之和应等于对应的 periodVolumes，不得换算成百分比；每个主题必须生成1至2个 milestones，因此 milestones 总数为 themes 数量的1至2倍；每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
+规则：periods 取3至8个真实时间段；periodVolumes 长度必须等于 periods，填写原始记录归入各时间段后的有效字符数，只统计用户原文，不按阶段时长修正、不为了图形好看而调整；themes 取4至7个互斥主题；每个 volumes 数组长度必须等于 periods，填写各时间段内实际归入该主题的有效字符数，同一时间段所有主题 volumes 之和应等于对应的 periodVolumes，不得换算成百分比；每个主题必须生成1至2个 milestones，因此 milestones 总数为 themes 数量的1至2倍；每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。letter 必须先观察用户日记的句子长短、标点、口语程度、常用词和叙述节奏，再沿用这种个人语气写，像同一个人在回看自己；不要写总结报告、心理分析、励志结尾或华丽升华。所有模块禁止使用“不是……而是……”“并非……而是……”“与其说……不如说……”等对照转折模板。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
 
 const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
-const LETTER_PROMPT = `你正在为“另世我”生成一封信。只返回严格 JSON：{"letter":"正文"}。写信人是一位来自已核验人物库的真实人物，但不得伪造她说过的话，也不得声称她真的读过用户日记。请明确这是“借用她公开人生经验形成的想象来信”。正文180至300字，回应记录中的具体主题与洞察，温暖、克制、不诊断、不预测、不复述姓名、公司、地址、健康或关系隐私，不替用户做决定。`;
+const LETTER_PROMPT = `你正在为“另世我”生成一封想象来信。只返回严格 JSON：{"letter":"正文"}。先阅读写信人资料中的 voiceTraits，只借用这些来自公开表达的高层特征，例如句子节奏、具体程度、技术性、好奇心或克制程度；不得复刻标志性句子，不得伪造她说过的话，不得声称她真的读过用户日记。正文180至300字，回应记录中的具体主题与洞察，保持人物表达特征，不写通用鼓励、总结报告、心理诊断或华丽升华，不替用户做决定。禁止使用“不是……而是……”“并非……而是……”“与其说……不如说……”等对照转折模板。开头用一句简短说明表明这是依据她公开经历与表达特征形成的想象来信，不要反复解释。`;
 
 const COLOR_PALETTES = {
   '电光花园': ['#5B2EFF','#FF4FA3','#FFC857','#00C2A8','#1769FF','#F05D23','#7A5195'],
@@ -69,6 +69,12 @@ function normalizeEvent(event) {
 }
 
 function safeText(value, max) { return String(value || '').trim().slice(0, max); }
+function cleanLetterStyle(value) {
+  return safeText(value, 1200)
+    .replace(/(?:不是|并非)([^。！？\n]{1,90})[，,；;]\s*(?:而是|只是)([^。！？\n]{1,120})/g, '$2')
+    .replace(/与其说([^。！？\n]{1,90})[，,；;]\s*不如说([^。！？\n]{1,120})/g, '$2')
+    .replace(/这意味着你正在/g, '你在');
+}
 function safeArray(value, max, itemMax = 120) {
   return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
 }
@@ -77,14 +83,14 @@ function safeUrl(value) {
 }
 
 const VERIFIED_ROLE_MODELS = [
-  { name: 'Nadieh Bremer', identity: '数据可视化设计师、Visual Cinnamon 创办人', keywords: /创作|视觉|数据|作品|表达/, reason: '你们都在尝试把分析能力、个人经验和视觉表达连接成自己的方法。', biography: '她从天文学和数据科学背景进入可视化创作，持续公开 D3 与视觉实验，逐步形成以复杂数据和定制视觉叙事见长的独立实践，并与 Shirley Wu 合著《Data Sketches》。', photo: 'assets/women-stars/PROFILE-002-FEATURED-NADIEH-BREMER.png', libraryUrl: 'women-stars.html?person=FEATURED-NADIEH-BREMER', sourceTitle: 'Visual Cinnamon · About', sourceUrl: 'https://www.visualcinnamon.com/about' },
-  { name: 'Fei-Fei Li', identity: '计算机科学家与人工智能研究者', keywords: /学习|研究|技术|教育|长期/, reason: '你们都在寻找如何把持续学习转化为一条更长期、更有主体性的专业道路。', biography: '她长期工作于计算机视觉、人工智能研究与教育之间，也持续推动以人为本的人工智能发展。', photo: 'assets/women-stars/INT05.jpg', libraryUrl: 'women-stars.html?person=INT05', sourceTitle: 'Stanford · Fei-Fei Li', sourceUrl: 'https://profiles.stanford.edu/fei-fei-li' }
+  { name: 'Nadieh Bremer', identity: '数据可视化设计师、Visual Cinnamon 创办人', keywords: /创作|视觉|数据|作品|表达/, reason: '你们都在尝试把分析能力、个人经验和视觉表达连接成自己的方法。', biography: '她从天文学和数据科学背景进入可视化创作，持续公开 D3 与视觉实验，逐步形成以复杂数据和定制视觉叙事见长的独立实践，并与 Shirley Wu 合著《Data Sketches》。', voiceTraits: '具体、好奇、重视过程；常从一次实验或一个可见细节讲起，再谈技术选择；句子清楚，少用抽象励志判断。', photo: 'assets/women-stars/PROFILE-002-FEATURED-NADIEH-BREMER.png', libraryUrl: 'women-stars.html?person=FEATURED-NADIEH-BREMER', sourceTitle: 'Visual Cinnamon · About', sourceUrl: 'https://www.visualcinnamon.com/about' },
+  { name: 'Fei-Fei Li', identity: '计算机科学家与人工智能研究者', keywords: /学习|研究|技术|教育|长期/, reason: '你们都在寻找如何把持续学习转化为一条更长期、更有主体性的专业道路。', biography: '她长期工作于计算机视觉、人工智能研究与教育之间，也持续推动以人为本的人工智能发展。', voiceTraits: '清晰、克制、有长期视角；把技术问题放回人的经验与责任中；偏好具体行动和朴素判断，避免夸张断言。', photo: 'assets/women-stars/INT05.jpg', libraryUrl: 'women-stars.html?person=INT05', sourceTitle: 'Stanford · Fei-Fei Li', sourceUrl: 'https://profiles.stanford.edu/fei-fei-li' }
 ];
 
 function matchVerifiedRoleModels(futurePaths) {
   const text = (futurePaths || []).map(path => `${path.title} ${path.premise} ${path.gain} ${(path.conditions || []).join(' ')}`).join(' ');
   const model = VERIFIED_ROLE_MODELS.find(item => item.keywords.test(text)) || VERIFIED_ROLE_MODELS[0];
-  return [{ name: model.name, identity: model.identity, reason: model.reason, biography: model.biography, photo: model.photo, libraryUrl: model.libraryUrl, sourceTitle: model.sourceTitle, sourceUrl: model.sourceUrl }];
+  return [{ name: model.name, identity: model.identity, reason: model.reason, biography: model.biography, voiceTraits: model.voiceTraits, photo: model.photo, libraryUrl: model.libraryUrl, sourceTitle: model.sourceTitle, sourceUrl: model.sourceUrl }];
 }
 
 function validateAndNormalize(result, metadata = {}) {
@@ -158,7 +164,7 @@ function validateAndNormalize(result, metadata = {}) {
     })),
     futurePaths,
     roleModels: matchVerifiedRoleModels(futurePaths),
-    letter: String(result.letter || '').slice(0, 1200),
+    letter: cleanLetterStyle(result.letter),
     privacyWarnings: (Array.isArray(result.privacyWarnings) ? result.privacyWarnings : []).slice(0, 8).map(item => String(item).slice(0, 80))
   };
 }
@@ -231,7 +237,7 @@ exports.handler = async function handler(rawEvent) {
     const result = reviewMode
       ? normalizeReview(safeText(input.module, 30), { ...(input.current || {}), ...parsed }, input.context || {})
       : letterMode
-        ? { letter: safeText(parsed.letter, 1200) }
+        ? { letter: cleanLetterStyle(parsed.letter) }
       : validateAndNormalize(parsed, { fileCount: input.fileCount, characterCount: diary.length });
     if (!reviewMode && !letterMode) {
       result.themes.forEach((theme, index) => { theme.color = requestedColors[index % requestedColors.length]; });
@@ -248,3 +254,4 @@ exports.handler = async function handler(rawEvent) {
 exports.validateAndNormalize = validateAndNormalize;
 exports.normalizeReview = normalizeReview;
 exports.resolvePaletteColors = resolvePaletteColors;
+exports.cleanLetterStyle = cleanLetterStyle;

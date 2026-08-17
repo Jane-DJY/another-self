@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateAndNormalize, normalizeReview, resolvePaletteColors } = require('./index.js');
+const { validateAndNormalize, normalizeReview, resolvePaletteColors, cleanLetterStyle } = require('./index.js');
 
 const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
@@ -36,6 +36,7 @@ test('normalizes shares, evidence, coverage, future paths and verified links', (
   assert.equal(result.roleModels[0].sourceUrl, 'https://www.visualcinnamon.com/about');
   assert.match(result.roleModels[0].libraryUrl, /women-stars/);
   assert.ok(result.roleModels[0].photo);
+  assert.ok(result.roleModels[0].voiceTraits);
 });
 
 test('normalizes a local review without changing unrelated report data', () => {
@@ -47,4 +48,12 @@ test('uses distinct preset colors and accepts only valid custom photo colors', (
   assert.equal(new Set(resolvePaletteColors('电光花园')).size, 7);
   assert.deepEqual(resolvePaletteColors('照片取色', ['#ff0000','#00ff00','#0000ff','#ffee00','bad']), ['#FF0000','#00FF00','#0000FF','#FFEE00']);
   assert.deepEqual(resolvePaletteColors('照片取色', ['#ff0000']), resolvePaletteColors('电光花园'));
+});
+
+test('removes contrast-template phrasing from generated letters', () => {
+  const cleaned = cleanLetterStyle('这不是一次退后，而是一次停顿。并非你不够努力，而是清单太满。与其说这是失败，不如说先睡一觉。');
+  assert.doesNotMatch(cleaned, /不是|并非|而是|与其说|不如说/);
+  assert.match(cleaned, /一次停顿/);
+  assert.match(cleaned, /清单太满/);
+  assert.match(cleaned, /先睡一觉/);
 });
