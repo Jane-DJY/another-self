@@ -102,7 +102,7 @@ function buildRoleLetter(input) {
   return cleanLetterStyle(`（依据 ${name} 的公开表达特征写成的想象来信。）\n\n${nickname}：\n\n${evidence}${observation}${ending}`);
 }
 
-function buildDiarySelfLetter(diary, nickname, milestones, insights) {
+function buildDiarySelfLetter(diary, nickname, milestones) {
   const name = safeText(nickname, 30) || '你';
   const sourceSentences = String(diary || '').split(/[。！？!?\n]+/).map(item => item.trim()).filter(Boolean);
   const averageLength = sourceSentences.length
@@ -111,16 +111,13 @@ function buildDiarySelfLetter(diary, nickname, milestones, insights) {
   const quotes = (Array.isArray(milestones) ? milestones : [])
     .map(item => safeText(item?.quote, 80).replace(/[。！？!?；;，,]+$/g, ''))
     .filter(Boolean).slice(0, 4);
-  const insightTitles = (Array.isArray(insights) ? insights : [])
-    .map(item => safeText(item?.title, 36)).filter(Boolean).slice(0, 2);
   const evidence = quotes.length
-    ? quotes.map(quote => `“${quote}”。`).join(averageLength <= 22 ? '' : '\n')
+    ? quotes.map(quote => `“${quote}”`).join(averageLength <= 22 ? '。' : '\n')
     : '我把这段时间写下来的事，又看了一遍。';
-  const observations = insightTitles.length ? `还想记住两件事：${insightTitles.join('，')}。` : '';
   const ending = averageLength <= 22
     ? '这些都写过。先留在这里。以后还是这样，发生了什么，就写什么。做了哪一步，也写下来。过一阵再看。先不急着下结论。就这样。'
     : '这些都是当时真正写下来的事。以后也照这样记：发生了什么，做了哪一步，在哪里停住。过一阵再回来读，先看记录，再想怎么说。';
-  return cleanLetterStyle(`${name}：\n\n${evidence}${observations}${ending}`);
+  return cleanLetterStyle(`${name}：\n\n${evidence}。${ending}`);
 }
 function safeArray(value, max, itemMax = 120) {
   return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
@@ -292,7 +289,7 @@ exports.handler = async function handler(rawEvent) {
       : validateAndNormalize(parsed, { fileCount: input.fileCount, characterCount: diary.length });
     if (!reviewMode && !letterMode) {
       result.themes.forEach((theme, index) => { theme.color = requestedColors[index % requestedColors.length]; });
-      result.letter = buildDiarySelfLetter(diary, userContext.nickname, result.milestones, result.insights);
+      result.letter = buildDiarySelfLetter(diary, userContext.nickname, result.milestones);
     }
     return response(200, origin, { result, usage: payload.usage || null });
   } catch (error) {

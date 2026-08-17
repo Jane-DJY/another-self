@@ -83,11 +83,11 @@ test('builds the diary-self letter from anonymized diary evidence in the diary r
   const letter = buildDiarySelfLetter(
     '今天事情很多。先不管。删了六项。居然做完了。还行。',
     '小雨',
-    [{ quote: '删了六项。' }, { quote: '居然做完了。' }, { quote: '还行。' }],
-    [{ title: '删减后更容易开始' }]
+    [{ quote: '删了六项。' }, { quote: '居然做完了。' }, { quote: '还行。' }]
   );
   assert.match(letter, /“删了六项”/);
   assert.match(letter, /“居然做完了”/);
   assert.match(letter, /先不急着下结论/);
+  assert.doesNotMatch(letter, /频次|洞察|删减后更容易开始/);
   assert.doesNotMatch(letter, /摸到自己的边|手在学|踩出的印子|第一次|总是|从不|不是|而是/);
 });
