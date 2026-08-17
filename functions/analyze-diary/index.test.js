@@ -6,6 +6,7 @@ const { validateAndNormalize, normalizeReview } = require('./index.js');
 
 const base = {
   title: '正在重建坐标', periods: ['前段', '中段', '近期'],
+  periodVolumes: [120, 40, 260],
   themes: [
     { key: 'work', label: '工作', color: '#663377', shares: [8, 3, 9] },
     { key: 'create', label: '创作', color: '#ff6633', shares: [1, 5, 0] },
@@ -24,6 +25,7 @@ test('normalizes shares, evidence, coverage, future paths and verified links', (
   const result = validateAndNormalize(base, { fileCount: 2, characterCount: 2400 });
   result.periods.forEach((_, index) => assert.ok(Math.abs(result.themes.reduce((sum, theme) => sum + theme.shares[index], 0) - 100) < 0.02));
   assert.equal(result.coverage.fileCount, 2);
+  assert.deepEqual(result.periodVolumes, [120, 40, 260]);
   assert.equal(result.milestones[0].periodIndex, 2);
   assert.equal(result.milestones[0].themeKey, 'work');
   assert.equal(result.milestones[0].quote, '今天第一次把作品公开发了出去。');
