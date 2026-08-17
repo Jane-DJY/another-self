@@ -51,9 +51,10 @@ test('uses distinct preset colors and accepts only valid custom photo colors', (
 });
 
 test('removes contrast-template phrasing from generated letters', () => {
-  const cleaned = cleanLetterStyle('这不是一次退后，而是一次停顿。并非你不够努力，而是清单太满。与其说这是失败，不如说先睡一觉。');
+  const cleaned = cleanLetterStyle('这不是一次退后，而是一次停顿。并非你不够努力，而是清单太满。不是卡住，是先放一放。与其说这是失败，不如说先睡一觉。');
   assert.doesNotMatch(cleaned, /不是|并非|而是|与其说|不如说/);
   assert.match(cleaned, /一次停顿/);
   assert.match(cleaned, /清单太满/);
+  assert.match(cleaned, /先放一放/);
   assert.match(cleaned, /先睡一觉/);
 });
