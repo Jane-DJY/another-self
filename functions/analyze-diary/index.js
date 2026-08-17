@@ -25,10 +25,10 @@ const SYSTEM_PROMPT = `你是“另世我”的生活记录分析器。只根据
   "letter":"日记里的自己写给当下自己的150至260字中文信",
   "privacyWarnings":["检测到的可能敏感信息类型，不复述原文"]
 }
-规则：periods 取3至8个真实时间段；periodVolumes 长度必须等于 periods，填写原始记录归入各时间段后的有效字符数，只统计用户原文，不按阶段时长修正、不为了图形好看而调整；themes 取4至7个互斥主题；每个 volumes 数组长度必须等于 periods，填写各时间段内实际归入该主题的有效字符数，同一时间段所有主题 volumes 之和应等于对应的 periodVolumes，不得换算成百分比；每个主题必须生成1至2个 milestones，因此 milestones 总数为 themes 数量的1至2倍；每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。letter 必须先观察用户日记的句子长短、标点、口语程度、常用词和叙述节奏，再沿用这种个人语气写，像同一个人在回看自己；尽量只用日记原文中已经出现的词，除必要连接词外不另造表达；不添加比喻、象征、感官细节或“第一次、总是、从不”等原文没有明确支持的判断；不要写总结报告、心理分析、励志结尾或华丽升华。所有模块禁止使用“不是……而是……”“并非……而是……”“与其说……不如说……”等对照转折模板。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
+规则：periods 取3至8个真实时间段；periodVolumes 长度必须等于 periods，填写原始记录归入各时间段后的有效字符数，只统计用户原文，不按阶段时长修正、不为了图形好看而调整；themes 取4至5个互斥且容易一眼理解的生活主题，标签使用4至8个汉字，优先采用“工作与事业、学习与探索、创作与表达、关系与家庭、身体与生活”这类同一层级的宽口径分类，并依据实际记录合并、删减或改名，不要把具体事件、方法、情绪或阶段性结论当成主题；每个 volumes 数组长度必须等于 periods，填写各时间段内实际归入该主题的有效字符数，同一时间段所有主题 volumes 之和应等于对应的 periodVolumes，不得换算成百分比；每个主题必须生成1至2个 milestones，因此 milestones 总数为 themes 数量的1至2倍；每个节点的 quote 必须摘自用户记录原句，最多80字，不得改写或补造，只隐去姓名、公司、地址、联系方式、健康细节或关系人物身份；meaning 用日常中文直说为什么这句话代表一次变化，不写空泛鼓励或“这意味着你正在”等AI腔；insights 取3至5条并尽量覆盖四种 type；futurePaths 固定3条，只能写条件化情景；themeChanges 是相对当前最后阶段的百分点变化，可正可负。letter 必须以“展信佳。”开头，以“过去的+用户称呼”落款；正文先观察用户日记的句子长短、标点、口语程度、常用词和叙述节奏，再沿用这种个人语气写，像同一个人在回看自己；尽量只用日记原文中已经出现的词，除必要连接词外不另造表达；不添加比喻、象征、感官细节或“第一次、总是、从不”等原文没有明确支持的判断；不要写总结报告、心理分析、励志结尾或华丽升华。所有模块禁止使用“不是……而是……”“并非……而是……”“与其说……不如说……”等对照转折模板。若记录日期不足，使用“前段/中段/后段”等诚实标签。不得输出用户记录中的真实姓名、公司名、联系方式、地址、健康细节或关系人物身份。不要生成或推荐任何真实人物，人物参照由系统的已核验资料库另行匹配。`;
 
 const REVIEW_PROMPT = `你正在局部修订“另世我”报告。只返回严格 JSON，不要改动用户没有要求修改的模块。根据 module 输出对应结构：theme 返回单个 theme；milestone 返回单个 milestone；insight 返回单个 insight；futurePath 返回单个 futurePath。保留有限表述，不诊断、不预测命运，不复述敏感信息。`;
-const LETTER_PROMPT = `你正在为“另世我”生成一封想象来信。只返回严格 JSON：{"letter":"正文"}。先阅读写信人资料中的 voiceTraits，只借用这些来自公开表达的高层特征，例如句子节奏、具体程度、技术性、好奇心或克制程度；不得复刻标志性句子，不得伪造她说过的话，不得声称她真的读过用户日记。第一句简短说明这是依据该人物公开经历与表达特征形成的想象来信；从第二句开始，只能使用用户生活记录、主题和洞察里已经出现的事实，直接对用户说话。逐句检查：每一个数字、物件、动作、项目、场景和感官细节都必须能在用户材料中找到原文依据；没有依据就删除。禁止自行添加比喻、类比、想象场景或传记轶事。第二句以后禁止出现人物姓名、“她”“我曾”“她曾”“我做过”“她做过”等传记叙述。人物风格只能体现在措辞、节奏、观察角度和具体程度中。正文180至300字，不写通用鼓励、总结报告、心理诊断或华丽升华，不替用户做决定。禁止使用“不是……而是……”“不是……是……”“并非……而是……”“与其说……不如说……”等对照转折模板。`;
+const LETTER_PROMPT = `你正在为“另世我”生成一封书信。只返回严格 JSON：{"letter":"正文"}。先阅读写信人资料中的 voiceTraits，只借用这些来自公开表达的高层特征，例如句子节奏、具体程度、技术性、好奇心或克制程度；不得复刻标志性句子，不得伪造她说过的话，不得声称她真的读过用户日记。信件必须以“展信佳。”开头，以写信人的姓名落款；不要解释创作方法，不要出现“想象来信”“依据公开表达”“参考风格”等说明。从问候后的正文开始，只能使用用户生活记录、主题和洞察里已经出现的事实，直接对用户说话。逐句检查：每一个数字、物件、动作、项目、场景和感官细节都必须能在用户材料中找到原文依据；没有依据就删除。禁止自行添加比喻、类比、想象场景或传记轶事。正文中禁止出现“她”“我曾”“她曾”“我做过”“她做过”等传记叙述。人物风格只能体现在措辞、节奏、观察角度和具体程度中。正文180至300字，不写通用鼓励、总结报告、心理诊断或华丽升华，不替用户做决定。禁止使用“不是……而是……”“不是……是……”“并非……而是……”“与其说……不如说……”等对照转折模板。`;
 
 const COLOR_PALETTES = {
   '电光花园': ['#5B2EFF','#FF4FA3','#FFC857','#00C2A8','#1769FF','#F05D23','#7A5195'],
@@ -99,7 +99,7 @@ function buildRoleLetter(input) {
     ? '继续记具体发生过的事，也记下当时做出的选择。过一段时间再回来看，你会更容易辨认什么值得长期留下。'
     : '继续记具体发生过的事：做了哪一步，在哪里停住，后来又怎样。下一次回看，把这些片段并排放好，变化会自己显出来。';
 
-  return cleanLetterStyle(`（依据 ${name} 的公开表达特征写成的想象来信。）\n\n${nickname}：\n\n${evidence}${observation}${ending}`);
+  return cleanLetterStyle(`展信佳。\n\n${evidence}${observation}${ending}\n\n${name}`);
 }
 
 function buildDiarySelfLetter(diary, nickname, milestones) {
@@ -117,7 +117,7 @@ function buildDiarySelfLetter(diary, nickname, milestones) {
   const ending = averageLength <= 22
     ? '这些都写过。先留在这里。以后还是这样，发生了什么，就写什么。做了哪一步，也写下来。过一阵再看。先不急着下结论。就这样。'
     : '这些都是当时真正写下来的事。以后也照这样记：发生了什么，做了哪一步，在哪里停住。过一阵再回来读，先看记录，再想怎么说。';
-  return cleanLetterStyle(`${name}：\n\n${evidence}。${ending}`);
+  return cleanLetterStyle(`展信佳。\n\n${evidence}。${ending}\n\n过去的${name}`);
 }
 function safeArray(value, max, itemMax = 120) {
   return (Array.isArray(value) ? value : []).slice(0, max).map(item => safeText(item, itemMax)).filter(Boolean);
@@ -145,13 +145,23 @@ function validateAndNormalize(result, metadata = {}) {
   if (periods.length < 3) throw new Error('时间段不足');
   const periodVolumes = periods.map((_, index) => Math.max(0, Math.round(Number(result.periodVolumes?.[index]) || 0)));
   if (!periodVolumes.some(Boolean)) periodVolumes.fill(1);
-  const themes = result.themes.slice(0, 7).map((theme, index) => ({
+  const rawThemes = result.themes.map((theme, index) => ({
     key: String(theme.key || `theme${index + 1}`).replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24),
     label: String(theme.label || `主题${index + 1}`).slice(0, 12),
     color: /^#[0-9a-fA-F]{6}$/.test(theme.color) ? theme.color : ['#673779','#d64fae','#f1b943','#447ca8','#5a8770','#c66d50','#8c6bb1'][index],
     volumes: periods.map((_, i) => Math.max(0, Number(theme.volumes?.[i]) || 0)),
     shares: periods.map((_, i) => Math.max(0, Number(theme.shares?.[i]) || 0))
   })).filter(theme => theme.key);
+  const rankedThemes = rawThemes.slice().sort((a, b) => b.volumes.reduce((sum, value) => sum + value, 0) - a.volumes.reduce((sum, value) => sum + value, 0));
+  const keptThemes = rankedThemes.slice(0, 4);
+  const overflowThemes = rankedThemes.slice(4);
+  const mergedKeys = new Set(overflowThemes.map(theme => theme.key));
+  const mergedThemeKey = rawThemes.some(theme => theme.key === 'other-life') ? 'other-life-merged' : 'other-life';
+  const themes = overflowThemes.length ? [...keptThemes, {
+    key: mergedThemeKey, label: '其他生活', color: overflowThemes[0].color,
+    volumes: periods.map((_, i) => overflowThemes.reduce((sum, theme) => sum + theme.volumes[i], 0)),
+    shares: periods.map((_, i) => overflowThemes.reduce((sum, theme) => sum + theme.shares[i], 0))
+  }] : rankedThemes;
   if (themes.length < 3) throw new Error('主题不足');
   periods.forEach((_, periodIndex) => {
     let volumeTotal = themes.reduce((sum, theme) => sum + theme.volumes[periodIndex], 0);
@@ -194,7 +204,7 @@ function validateAndNormalize(result, metadata = {}) {
     },
     milestones: (Array.isArray(result.milestones) ? result.milestones : []).slice(0, 14).map(item => ({
       periodIndex: Math.min(periods.length - 1, Math.max(0, Number(item.periodIndex) || 0)),
-      themeKey: validKeys.has(item.themeKey) ? item.themeKey : themes[0].key,
+      themeKey: validKeys.has(item.themeKey) ? item.themeKey : mergedKeys.has(item.themeKey) ? mergedThemeKey : themes[0].key,
       label: String(item.label || '重要节点').slice(0, 24),
       quote: safeText(item.quote || item.evidence, 260),
       evidence: String(item.evidence || '').slice(0, 220),

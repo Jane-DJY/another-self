@@ -44,6 +44,17 @@ test('normalizes a local review without changing unrelated report data', () => {
   assert.deepEqual(reviewed, { type: 'tension', title: '新的理解', body: '只修改这一条', evidenceRefs: ['用户补充'] });
 });
 
+test('limits themes to five and preserves overflow record volume', () => {
+  const result = validateAndNormalize({
+    periods: ['前段', '中段', '后段'],
+    periodVolumes: [28, 56, 84],
+    themes: Array.from({ length: 7 }, (_, index) => ({ key: `t${index}`, label: `主题${index}`, volumes: [index + 1, (index + 1) * 2, (index + 1) * 3] }))
+  });
+  assert.equal(result.themes.length, 5);
+  assert.deepEqual(result.periods.map((_, i) => result.themes.reduce((sum, theme) => sum + theme.volumes[i], 0)), [28, 56, 84]);
+  assert.equal(result.themes.at(-1).label, '其他生活');
+});
+
 test('uses distinct preset colors and accepts only valid custom photo colors', () => {
   assert.equal(new Set(resolvePaletteColors('电光花园')).size, 7);
   assert.deepEqual(resolvePaletteColors('照片取色', ['#ff0000','#00ff00','#0000ff','#ffee00','bad']), ['#FF0000','#00FF00','#0000FF','#FFEE00']);
@@ -76,7 +87,9 @@ test('builds the public-figure letter only from supplied evidence', () => {
   assert.match(letter, /创作节奏逐渐稳定/);
   assert.doesNotMatch(letter, /。”[；。]/);
   assert.doesNotMatch(letter, /具体、好奇、重视过程/);
-  assert.doesNotMatch(letter, /折痕|指甲|鞋底|塑料袋|关灯|她曾|我曾|不是|而是/);
+  assert.match(letter, /^展信佳。/);
+  assert.match(letter, /Nadieh Bremer$/);
+  assert.doesNotMatch(letter, /想象来信|依据公开表达|折痕|指甲|鞋底|塑料袋|关灯|她曾|我曾|不是|而是/);
 });
 
 test('builds the diary-self letter from anonymized diary evidence in the diary rhythm', () => {
@@ -88,6 +101,8 @@ test('builds the diary-self letter from anonymized diary evidence in the diary r
   assert.match(letter, /“删了六项”/);
   assert.match(letter, /“居然做完了”/);
   assert.match(letter, /先不急着下结论/);
+  assert.match(letter, /^展信佳。/);
+  assert.match(letter, /过去的小雨$/);
   assert.doesNotMatch(letter, /频次|洞察|删减后更容易开始/);
   assert.doesNotMatch(letter, /摸到自己的边|手在学|踩出的印子|第一次|总是|从不|不是|而是/);
 });
