@@ -74,5 +74,7 @@ test('builds the public-figure letter only from supplied evidence', () => {
   assert.match(letter, /今天删掉了清单里的六项/);
   assert.match(letter, /发完图，我就去买菜/);
   assert.match(letter, /创作节奏逐渐稳定/);
+  assert.doesNotMatch(letter, /。”[；。]/);
+  assert.doesNotMatch(letter, /具体、好奇、重视过程/);
   assert.doesNotMatch(letter, /折痕|指甲|鞋底|塑料袋|关灯|她曾|我曾|不是|而是/);
 });
